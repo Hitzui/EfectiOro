@@ -1,0 +1,7 @@
+﻿------ Operación Generar iniciada: proyecto: EfectiOro, configuración: Debug x86 ------
+vbc : warning BC40059: Se creó una referencia al ensamblado de interoperabilidad 'Accessibility' incrustado debido a una referencia indirecta a dicho ensamblado desde el ensamblado 'System.Windows.Forms'. Considere cambiar la propiedad "Incrustar tipos de interoperabilidad" en uno de los ensamblados.
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\Servicios\ServiciosBasicos.vb(203) : warning BC42353: La función 'NumeroDec' no devuelve un valor en todas las rutas de acceso de código. ¿Falta una instrucción 'Return'?
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\Servicios\ServiciosBasicos.vb(264) : warning BC42353: La función 'NumeroDec' no devuelve un valor en todas las rutas de acceso de código. ¿Falta una instrucción 'Return'?
+  No existe ningún medio para resolver el conflicto entre "log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821" y "log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304". Se elegirá "log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821" de manera arbitraria.
+  EfectiOro -> E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+========== Generar: 1 correctos o actualizados, 0 incorrectos, 0 omitidos ==========

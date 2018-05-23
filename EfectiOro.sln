@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EfectiOro", "EfectiOro\EfectiOro.vbproj", "{F10E4176-43C3-4A87-9360-DE73209DF6BD}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DataBase", "DataBase\DataBase.vbproj", "{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Debug|x86.ActiveCfg = Debug|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Debug|x86.Build.0 = Debug|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Release|Any CPU.ActiveCfg = Release|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Release|x86.ActiveCfg = Release|x86
+		{F10E4176-43C3-4A87-9360-DE73209DF6BD}.Release|x86.Build.0 = Release|x86
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{78891BA7-6DD3-42F6-B38A-D63B73DDDBFF}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal
