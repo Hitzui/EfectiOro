@@ -262,7 +262,6 @@ Public Class frmPrecios2
                                     Dim sum_pb As Decimal = calculoPrecioBaseMatriz.Sum()
                                     sum_pb = ServiciosBasicos.redondearMenos(sum_pb)
                                     Dim tempPrecioBase As Decimal = (pb + sum_pb) / temp_onzas
-
                                     tempPrecioBase = ServiciosBasicos.redondearMenos(tempPrecioBase)
                                     precio = tempPrecioBase * quilate
                                 Else
