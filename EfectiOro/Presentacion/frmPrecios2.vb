@@ -206,7 +206,8 @@ Public Class frmPrecios2
                                 If onzas_diferencia < Decimal.Zero Then
                                     _onzasDiferencias.Item(dato.CodCierre) = Decimal.Zero
                                     Dim calculo As Decimal = dato.PrecioBase * findOnzas
-                                    calculoPrecioBaseMatriz.Add(calculo)
+                                    calculo = ServiciosBasicos.redondearMenos(calculo)
+                                    calculoPrecioBaseMatriz.Add(Decimal.Round(calculo, 2))
                                     onzas_ingresar = Decimal.Subtract(onzas_ingresar, findOnzas)
                                     'este es valor que se uso para las onzas
                                     dato.SaldoOnzas = findOnzas
@@ -215,7 +216,8 @@ Public Class frmPrecios2
                                     _onzasDiferencias.Item(dato.CodCierre) = onzas_diferencia
                                     Dim pb As Decimal = _preciosBaseCierres.Item(dato.CodCierre)
                                     Dim precio As Decimal = pb * quilate
-                                    dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 0), gramos)
+                                    precio = ServiciosBasicos.redondearMenos(precio)
+                                    dgvPrecios.Rows.Add(linea, quilate, precio, gramos)
                                     'onzas usadas para el precio
                                     dato.SaldoOnzas = onzas_ingresar
                                     listaCierresUsadosPrecios.Add(dato)
@@ -230,6 +232,7 @@ Public Class frmPrecios2
                                 _onzasDiferencias.Add(dato.CodCierre, Decimal.Zero)
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
                                 Dim calculo As Decimal = dato.PrecioBase * dato.SaldoOnzas
+                                calculo = ServiciosBasicos.redondearMenos(calculo)
                                 calculoPrecioBaseMatriz.Add(calculo)
                                 onzas_ingresar = Decimal.Subtract(onzas_ingresar, dato.SaldoOnzas)
                                 listaCierresUsadosPrecios.Add(dato)
@@ -237,12 +240,13 @@ Public Class frmPrecios2
                                 Dim precio As Decimal = Decimal.Zero
                                 Dim pb As Decimal = Decimal.Zero
                                 If Decimal.Equals(onzas_ingresar, temp_onzas) = False Then
-                                    pb = Decimal.Round(dato.PrecioBase * onzas_ingresar, 2)
-                                    Dim sum_pb As Decimal = Decimal.Round(calculoPrecioBaseMatriz.Sum(), 2)
+                                    pb = dato.PrecioBase * onzas_ingresar
+                                    Dim sum_pb As Decimal = calculoPrecioBaseMatriz.Sum()
                                     precio = ((pb + sum_pb) / temp_onzas) * quilate
                                 Else
                                     precio = dato.PrecioBase * quilate
                                 End If
+                                precio = ServiciosBasicos.redondearMenos(precio)
                                 _onzasDiferencias.Add(dato.CodCierre, onzas_diferencia)
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
                                 dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos)

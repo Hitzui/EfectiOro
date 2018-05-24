@@ -180,7 +180,7 @@ Public Class frmCierrePrecios
             End If
             Dim precioBase As Decimal = Decimal.Zero
             precioBase = (1 - (margen / 100)) * (1 - 0.002) * 0.994 * (precioOro - 0.5) * tipoCambio() / 31.1035 / 24
-            txtPrecioBase.Text = Convert.ToString(Decimal.Round(precioBase, 1))
+            txtPrecioBase.Text = Convert.ToString(Decimal.Round(precioBase, 2))
         Catch ex As Exception
             MsgBox("Error al calcular el precio base: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try

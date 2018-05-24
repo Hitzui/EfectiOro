@@ -256,6 +256,17 @@ Module ServiciosBasicos
     Public Const campoVacio As String = "No puede estar vacio este campo"
     Public logger As log4net.ILog
 #End Region
+    Public Function redondearMenos(ByVal var As Decimal) As Decimal
+        Try
+            Dim Input As Decimal
+            Dim Output As Decimal
+            Input = Decimal.Round(var, 3)
+            Output = Input - (Input Mod 0.01)
+            Return Output
+        Catch ex As Exception
+            Return var
+        End Try
+    End Function
     Public Sub colorearGrid(ByVal dgv As DataGridView)
         dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells
         ' Set the selection background color for all the cells.

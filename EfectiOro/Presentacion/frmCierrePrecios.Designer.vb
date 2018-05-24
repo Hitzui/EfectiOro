@@ -57,10 +57,10 @@ Partial Class frmCierrePrecios
         Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colOnzas = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colSaldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.colFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPrecioBase = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.grpCliente.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDatos.SuspendLayout()
@@ -160,9 +160,11 @@ Partial Class frmCierrePrecios
         'btnCalcular
         '
         Appearance1.Image = Global.EfectiOro.My.Resources.Resources.calculator2
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
         Me.btnCalcular.Appearance = Appearance1
         Me.btnCalcular.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Me.btnCalcular.ImageSize = New System.Drawing.Size(24, 24)
+        Me.btnCalcular.ImageSize = New System.Drawing.Size(32, 32)
         Me.btnCalcular.Location = New System.Drawing.Point(220, 97)
         Me.btnCalcular.Name = "btnCalcular"
         Me.btnCalcular.Size = New System.Drawing.Size(40, 39)
@@ -389,15 +391,6 @@ Partial Class frmCierrePrecios
         Me.colSaldo.ReadOnly = True
         Me.colSaldo.Width = 63
         '
-        'tip
-        '
-        Me.tip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        '
-        'erp
-        '
-        Me.erp.ContainerControl = Me
-        Me.erp.Icon = CType(resources.GetObject("erp.Icon"), System.Drawing.Icon)
-        '
         'colFecha
         '
         Me.colFecha.HeaderText = "Fecha"
@@ -411,6 +404,15 @@ Partial Class frmCierrePrecios
         Me.colPrecioBase.Name = "colPrecioBase"
         Me.colPrecioBase.ReadOnly = True
         Me.colPrecioBase.Width = 63
+        '
+        'tip
+        '
+        Me.tip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'erp
+        '
+        Me.erp.ContainerControl = Me
+        Me.erp.Icon = CType(resources.GetObject("erp.Icon"), System.Drawing.Icon)
         '
         'frmCierrePrecios
         '
