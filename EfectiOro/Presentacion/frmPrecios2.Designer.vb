@@ -63,6 +63,7 @@ Partial Class frmPrecios2
         Me.colPrecioOro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPrecioBase = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colMargen = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -319,8 +320,8 @@ Partial Class frmPrecios2
         Me.btnQuitarSeleccion.Name = "btnQuitarSeleccion"
         Me.btnQuitarSeleccion.Size = New System.Drawing.Size(60, 60)
         Me.btnQuitarSeleccion.TabIndex = 20
+        Me.toolTip.SetToolTip(Me.btnQuitarSeleccion, "Restablecer precios del cliente")
         Me.btnQuitarSeleccion.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
-        Me.btnQuitarSeleccion.Visible = False
         '
         'btnCancelar
         '
@@ -430,6 +431,10 @@ Partial Class frmPrecios2
         Me.colMargen.Name = "colMargen"
         Me.colMargen.ReadOnly = True
         '
+        'toolTip
+        '
+        Me.toolTip.ToolTipTitle = "EfectiOro"
+        '
         'frmPrecios2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -495,4 +500,5 @@ Partial Class frmPrecios2
     Friend WithEvents colPrecioOro As DataGridViewTextBoxColumn
     Friend WithEvents colPrecioBase As DataGridViewTextBoxColumn
     Friend WithEvents colMargen As DataGridViewTextBoxColumn
+    Friend WithEvents toolTip As ToolTip
 End Class

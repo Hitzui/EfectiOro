@@ -240,4 +240,8 @@
     Private Sub ReservarOroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservarOroToolStripMenuItem.Click
         ServiciosBasicos.agregarAlPanel(frmCierrePrecios, Me.panelCentral)
     End Sub
+
+    Private Sub CierrePreciosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CierrePreciosToolStripMenuItem.Click
+        ServiciosBasicos.agregarAlPanel(frmReportesCierreOpciones, Me.panelCentral)
+    End Sub
 End Class

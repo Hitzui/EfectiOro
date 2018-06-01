@@ -66,6 +66,7 @@ Partial Class frmPrincipal
         Me.DeClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeDescarguesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeCajasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CierrePreciosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.panelLateral = New System.Windows.Forms.Panel()
@@ -77,7 +78,6 @@ Partial Class frmPrincipal
         Me.panelCentral = New System.Windows.Forms.Panel()
         Me.status = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.CierrePreciosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.panelLateral.SuspendLayout()
         Me.status.SuspendLayout()
@@ -299,6 +299,12 @@ Partial Class frmPrincipal
         Me.DeCajasToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.DeCajasToolStripMenuItem.Text = "De cajas"
         '
+        'CierrePreciosToolStripMenuItem
+        '
+        Me.CierrePreciosToolStripMenuItem.Name = "CierrePreciosToolStripMenuItem"
+        Me.CierrePreciosToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.CierrePreciosToolStripMenuItem.Text = "Cierre precios"
+        '
         'AcercaDeToolStripMenuItem
         '
         Me.AcercaDeToolStripMenuItem.ForeColor = System.Drawing.Color.White
@@ -478,14 +484,8 @@ Partial Class frmPrincipal
         Me.lblStatus.BackColor = System.Drawing.Color.Transparent
         Me.lblStatus.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(140, 19)
+        Me.lblStatus.Size = New System.Drawing.Size(141, 19)
         Me.lblStatus.Text = "ToolStripStatusLabel1"
-        '
-        'CierrePreciosToolStripMenuItem
-        '
-        Me.CierrePreciosToolStripMenuItem.Name = "CierrePreciosToolStripMenuItem"
-        Me.CierrePreciosToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
-        Me.CierrePreciosToolStripMenuItem.Text = "Cierre precios"
         '
         'frmPrincipal
         '

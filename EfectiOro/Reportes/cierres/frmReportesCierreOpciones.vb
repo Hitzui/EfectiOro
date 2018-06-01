@@ -28,13 +28,20 @@ Public Class frmReportesCierreOpciones
                 Dim row As DataGridViewRow = dgvCliente.CurrentRow
                 Dim codcliente As String = row.Cells(0).Value
                 Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
-                                                              Where cp.Codcliente = codcliente And cp.Fecha.ToShortDateString >= txtDesde.Value.ToShortDateString And cp.Fecha.ToShortDateString <= txtHasta.Value.ToShortDateString
+                                                              Where cp.Codcliente = codcliente And cp.Fecha >= txtDesde.Value And cp.Fecha <= txtHasta.Value
                                                               Select cp).ToList
                 Dim listaDetaCierres As List(Of DetaCierre) = (From cp In ctx.DetaCierre
-                                                               Where cp.Fecha.ToShortDateString >= txtDesde.Value.ToShortDateString And cp.Fecha.ToShortDateString <= txtHasta.Value.ToShortDateString
+                                                               Where cp.Fecha >= txtDesde.Value And cp.Fecha <= txtHasta.Value
                                                                Select cp).ToList
+                Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Where cli.Codcliente = codcliente Select cli).ToList
+                Dim report As New rptCierrePreciosClientesGeneral
+                report.Database.Tables(0).SetDataSource(listaCliente)
+                report.Database.Tables(1).SetDataSource(listaCierres)
+                report.Database.Tables(2).SetDataSource(listaDetaCierres)
+                frmReporteCierre.reportViewer.ReportSource = report
+                frmReporteCierre.Show()
             Catch ex As Exception
-
+                MsgBox("Error al crear el reporte, revise la siguiente información: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
         End Using
     End Sub

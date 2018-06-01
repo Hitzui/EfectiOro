@@ -538,16 +538,10 @@
     <Compile Include="Reportes\cierres\frmReportesCierreOpciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reportes\cierres\rptCierrePrecioGeneral.vb">
+    <Compile Include="Reportes\cierres\rptCierrePreciosClientesGeneral.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptCierrePrecioGeneral.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reportes\cierres\rptHistoricoCierre.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptHistoricoCierre.rpt</DependentUpon>
+      <DependentUpon>rptCierrePreciosClientesGeneral.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\clientes\AdelantosPendientesReport.vb" />
@@ -1032,13 +1026,9 @@
     <EmbeddedResource Include="Reportes\cierres\frmReportesCierreOpciones.resx">
       <DependentUpon>frmReportesCierreOpciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\cierres\rptCierrePrecioGeneral.rpt">
+    <EmbeddedResource Include="Reportes\cierres\rptCierrePreciosClientesGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptCierrePrecioGeneral.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\cierres\rptHistoricoCierre.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptHistoricoCierre.vb</LastGenOutput>
+      <LastGenOutput>rptCierrePreciosClientesGeneral.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\clientes\frmReporteContrato.resx">
       <DependentUpon>frmReporteContrato.vb</DependentUpon>

@@ -106,6 +106,10 @@ Public Class frmPrecios2
                 For Each valor In listaCierreClientes
                     dgvCierrePrecios.Rows.Add(True, valor.CodCierre, valor.SaldoOnzas, valor.PrecioOro, valor.PrecioBase, valor.Margen)
                 Next
+                Dim preciosCliente = (From p In ctx.Precios Where p.Codcliente = _codcliente Select p).ToList
+                If preciosCliente.Count > 0 Then
+                    MsgBox("El cliente actual tiene precios establecidos, eliminelos para poder continuar", MsgBoxStyle.Information, "Precios")
+                End If
             Catch ex As Exception
 
             End Try
@@ -197,6 +201,7 @@ Public Class frmPrecios2
             'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
             If listaCierreClientes.Count > 0 Then
                 Dim onzasDisponibles As Decimal = listaCierreClientes.Sum(Function(p) p.SaldoOnzas)
+                onzasUsadas.Clear()
                 For Each dato As CierrePrecios In listaCierreClientes
                     If onzas_ingresar > Decimal.Zero Then
                         Try
@@ -211,11 +216,7 @@ Public Class frmPrecios2
                                     onzas_ingresar = Decimal.Subtract(onzas_ingresar, findOnzas)
                                     'este es valor que se uso para las onzas
                                     dato.SaldoOnzas = findOnzas
-                                    Try
-                                        onzasUsadas.Item(dato.CodCierre) = findOnzas
-                                    Catch ex As Exception
-                                        onzasUsadas.Add(dato.CodCierre, findOnzas)
-                                    End Try
+                                    onzasUsadas.Add(dato.CodCierre, findOnzas)
                                     listaCierresUsadosPrecios.Add(dato)
                                 Else
                                     _onzasDiferencias.Item(dato.CodCierre) = onzas_diferencia
@@ -226,11 +227,7 @@ Public Class frmPrecios2
                                     dgvPrecios.Rows.Add(linea, quilate, precio, gramos)
                                     'onzas usadas para el precio
                                     dato.SaldoOnzas = onzas_ingresar
-                                    Try
-                                        onzasUsadas.Item(dato.CodCierre) = Decimal.Zero
-                                    Catch ex As Exception
-                                        onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
-                                    End Try
+                                    onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
                                     listaCierresUsadosPrecios.Add(dato)
                                     listaCierresUsadosPrecios.Add(dato)
                                     onzasUsadasLinea.Add(linea, listaCierresUsadosPrecios)
@@ -247,11 +244,7 @@ Public Class frmPrecios2
                                 calculo = ServiciosBasicos.redondearMenos(calculo)
                                 calculoPrecioBaseMatriz.Add(calculo)
                                 onzas_ingresar = Decimal.Subtract(onzas_ingresar, dato.SaldoOnzas)
-                                Try
-                                    onzasUsadas.Item(dato.CodCierre) = dato.SaldoOnzas
-                                Catch ex2 As Exception
-                                    onzasUsadas.Add(dato.CodCierre, dato.SaldoOnzas)
-                                End Try
+                                onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
                                 listaCierresUsadosPrecios.Add(dato)
                             Else
                                 Dim precio As Decimal = Decimal.Zero
@@ -271,11 +264,7 @@ Public Class frmPrecios2
                                 _onzasDiferencias.Add(dato.CodCierre, onzas_diferencia)
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
                                 dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos)
-                                Try
-                                    onzasUsadas.Item(dato.CodCierre) = Decimal.Zero
-                                Catch ex2 As Exception
-                                    onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
-                                End Try
+                                onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
                                 'onzas usadas para el precio
                                 dato.SaldoOnzas = onzas_ingresar
                                 listaCierresUsadosPrecios.Add(dato)
@@ -537,5 +526,30 @@ Public Class frmPrecios2
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Warning")
         End Try
+    End Sub
+
+    Private Sub btnQuitarSeleccion_Click(sender As Object, e As EventArgs) Handles btnQuitarSeleccion.Click
+        Using ctx As New Contexto
+            Try
+                Dim result As DialogResult = MsgBox("¿Eliminar precios del cliente (esta acción no se puede revertir)?", MsgBoxStyle.YesNo, "Precios")
+                If result = DialogResult.No Then
+                    Return
+                End If
+                If txtCodigo.Text.Trim.Length <= 0 Then
+                    MsgBox("No se ha especificado el cliente, intente nuevamente", MsgBoxStyle.Information, "Precios")
+                    txtCodigo.Focus()
+                    Return
+                End If
+                Dim buscarPreciosCliente = (From p In ctx.Precios Where p.Codcliente = txtCodigo.Text Select p).ToList
+                If buscarPreciosCliente.Count <= 0 Then
+                    MsgBox("El cliente actual no tiene precios a eliminar", MsgBoxStyle.Information, "Precios")
+                    Return
+                End If
+                ctx.Precios.DeleteAllOnSubmit(buscarPreciosCliente)
+                ctx.SubmitChanges()
+            Catch ex As Exception
+                MsgBox("No se pudo completar la operación debido a un error interno: " & ex.Message, MsgBoxStyle.Critical, "Error precios")
+            End Try
+        End Using
     End Sub
 End Class
