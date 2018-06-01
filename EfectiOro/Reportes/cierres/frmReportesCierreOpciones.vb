@@ -23,6 +23,10 @@ Public Class frmReportesCierreOpciones
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        If dgvCliente.Rows.Count <= 0 Then
+            MsgBox("NO ha filtrado un cliente para buscar datos, intente nuevamente", MsgBoxStyle.Information, "Buscar")
+            Return
+        End If
         Using ctx As New Contexto
             Try
                 Dim row As DataGridViewRow = dgvCliente.CurrentRow
@@ -30,6 +34,10 @@ Public Class frmReportesCierreOpciones
                 Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
                                                               Where cp.Codcliente = codcliente And cp.Fecha >= txtDesde.Value And cp.Fecha <= txtHasta.Value
                                                               Select cp).ToList
+                If listaCierres.Count <= 0 Then
+                    MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
+                    Return
+                End If
                 Dim listaDetaCierres As List(Of DetaCierre) = (From cp In ctx.DetaCierre
                                                                Where cp.Fecha >= txtDesde.Value And cp.Fecha <= txtHasta.Value
                                                                Select cp).ToList
