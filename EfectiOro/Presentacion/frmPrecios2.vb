@@ -201,6 +201,7 @@ Public Class frmPrecios2
             'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
             If listaCierreClientes.Count > 0 Then
                 Dim onzasDisponibles As Decimal = listaCierreClientes.Sum(Function(p) p.SaldoOnzas)
+                calculoPrecioBaseMatriz.Clear()
                 onzasUsadas.Clear()
                 For Each dato As CierrePrecios In listaCierreClientes
                     If onzas_ingresar > Decimal.Zero Then
@@ -227,8 +228,7 @@ Public Class frmPrecios2
                                     dgvPrecios.Rows.Add(linea, quilate, precio, gramos)
                                     'onzas usadas para el precio
                                     dato.SaldoOnzas = onzas_ingresar
-                                    onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
-                                    listaCierresUsadosPrecios.Add(dato)
+                                    onzasUsadas.Add(dato.CodCierre, onzas_ingresar)
                                     listaCierresUsadosPrecios.Add(dato)
                                     onzasUsadasLinea.Add(linea, listaCierresUsadosPrecios)
                                     linea = linea + 1
@@ -244,7 +244,7 @@ Public Class frmPrecios2
                                 calculo = ServiciosBasicos.redondearMenos(calculo)
                                 calculoPrecioBaseMatriz.Add(calculo)
                                 onzas_ingresar = Decimal.Subtract(onzas_ingresar, dato.SaldoOnzas)
-                                onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
+                                onzasUsadas.Add(dato.CodCierre, dato.SaldoOnzas)
                                 listaCierresUsadosPrecios.Add(dato)
                             Else
                                 Dim precio As Decimal = Decimal.Zero
@@ -264,7 +264,7 @@ Public Class frmPrecios2
                                 _onzasDiferencias.Add(dato.CodCierre, onzas_diferencia)
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
                                 dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos)
-                                onzasUsadas.Add(dato.CodCierre, Decimal.Zero)
+                                onzasUsadas.Add(dato.CodCierre, onzas_ingresar)
                                 'onzas usadas para el precio
                                 dato.SaldoOnzas = onzas_ingresar
                                 listaCierresUsadosPrecios.Add(dato)
