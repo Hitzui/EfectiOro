@@ -317,13 +317,13 @@ Public Class DaoCompras
                     Dim listaDetaCierres As New List(Of DetaCierre)
                     For Each dato As CierrePrecios In listaPreciosaCerrar
                         Dim detaCierre As New DetaCierre
-                        Dim find = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
+                        Dim find As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
                         detaCierre.Onzas = find.SaldoOnzas
-                        find.SaldoOnzas = dato.SaldoOnzas
+                        find.SaldoOnzas = Decimal.Round(dato.SaldoOnzas, 3)
                         detaCierre.Codcierre = dato.CodCierre
                         detaCierre.Fecha = Now
                         detaCierre.Numcompra = compra.Numcompra
-                        detaCierre.Saldo = dato.SaldoOnzas
+                        detaCierre.Saldo = Decimal.Round(dato.SaldoOnzas, 3)
                         If dato.SaldoOnzas = Decimal.Zero Then
                             find.Status = False
                         End If

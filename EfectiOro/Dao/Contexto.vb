@@ -4382,7 +4382,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="onzas", Storage:="_onzas", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="onzas", Storage:="_onzas", DbType:="decimal(12,3) NOT NULL")>
         Public Property Onzas() As Decimal
             Get
                 Return Me._onzas
@@ -4397,7 +4397,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="saldo", Storage:="_saldo", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="saldo", Storage:="_saldo", DbType:="decimal(12,3) NOT NULL")>
         Public Property Saldo() As Decimal
             Get
                 Return Me._saldo
@@ -6311,7 +6311,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="saldo_onzas", Storage:="_saldoOnzas", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="saldo_onzas", Storage:="_saldoOnzas", DbType:="decimal(12,3) NOT NULL")>
         Public Property SaldoOnzas() As Decimal
             Get
                 Return Me._saldoOnzas
