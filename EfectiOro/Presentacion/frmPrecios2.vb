@@ -251,16 +251,17 @@ Public Class frmPrecios2
                                 Dim pb As Decimal = Decimal.Zero
                                 If Decimal.Equals(onzas_ingresar, temp_onzas) = False Then
                                     pb = dato.PrecioBase * onzas_ingresar
-                                    pb = ServiciosBasicos.redondearMenos(pb)
+                                    'pb = ServiciosBasicos.redondearMenos(pb)
                                     Dim sum_pb As Decimal = calculoPrecioBaseMatriz.Sum()
-                                    sum_pb = ServiciosBasicos.redondearMenos(sum_pb)
+                                    'sum_pb = ServiciosBasicos.redondearMenos(sum_pb)
                                     Dim tempPrecioBase As Decimal = (pb + sum_pb) / temp_onzas
-                                    tempPrecioBase = ServiciosBasicos.redondearMenos(tempPrecioBase)
+                                    'tempPrecioBase = ServiciosBasicos.redondearMenos(tempPrecioBase)
+                                    tempPrecioBase = Decimal.Round(tempPrecioBase, 2)
                                     precio = tempPrecioBase * quilate
                                 Else
                                     precio = dato.PrecioBase * quilate
                                 End If
-                                precio = ServiciosBasicos.redondearMenos(precio)
+                                'precio = ServiciosBasicos.redondearMenos(precio)
                                 _onzasDiferencias.Add(dato.CodCierre, onzas_diferencia)
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
                                 dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos)
@@ -273,11 +274,11 @@ Public Class frmPrecios2
                                 onzas_ingresar = Decimal.Zero
                             End If
                         End Try
-                        txtQuilate.Clear()
-                        txtGramos.Clear()
-                        txtQuilate.Focus()
                     End If
                 Next
+                txtQuilate.Clear()
+                txtGramos.Clear()
+                txtQuilate.Focus()
                 If onzas_ingresar > Decimal.Zero Then
                     If onzasUsadas.Count > 0 Then
                         For Each valor In onzasUsadas
