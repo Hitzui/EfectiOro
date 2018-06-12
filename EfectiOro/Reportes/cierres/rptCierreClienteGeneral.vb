@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class rptCierrePreciosClientesGeneral
+Public Class rptCierreClienteGeneral
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class rptCierrePreciosClientesGeneral
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "rptCierrePreciosClientesGeneral.rpt"
+            Return "rptCierreClienteGeneral.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class rptCierrePreciosClientesGeneral
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "EfectiOro.rptCierrePreciosClientesGeneral.rpt"
+            Return "EfectiOro.rptCierreClienteGeneral.rpt"
         End Get
         Set
             'Do nothing
@@ -70,7 +70,7 @@ Public Class rptCierrePreciosClientesGeneral
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(2)
         End Get
@@ -78,7 +78,7 @@ Public Class rptCierrePreciosClientesGeneral
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section4() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(3)
         End Get
@@ -86,25 +86,9 @@ Public Class rptCierrePreciosClientesGeneral
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(4)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section4() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(5)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
     Public ReadOnly Property Section5() As CrystalDecisions.CrystalReports.Engine.Section
         Get
-            Return Me.ReportDefinition.Sections(6)
+            Return Me.ReportDefinition.Sections(4)
         End Get
     End Property
     
@@ -126,7 +110,7 @@ Public Class rptCierrePreciosClientesGeneral
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedrptCierrePreciosClientesGeneral
+Public Class CachedrptCierreClienteGeneral
     Inherits Component
     Implements ICachedReport
     
@@ -168,7 +152,7 @@ Public Class CachedrptCierrePreciosClientesGeneral
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As rptCierrePreciosClientesGeneral = New rptCierrePreciosClientesGeneral()
+        Dim rpt As rptCierreClienteGeneral = New rptCierreClienteGeneral()
         rpt.Site = Me.Site
         Return rpt
     End Function

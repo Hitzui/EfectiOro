@@ -21,6 +21,7 @@ Partial Class frmReportesCierreOpciones
     Private Sub InitializeComponent()
         Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtHasta = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -31,9 +32,11 @@ Partial Class frmReportesCierreOpciones
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtFiltro = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.cmbSaldos = New System.Windows.Forms.ComboBox()
         Me.radSaldos = New System.Windows.Forms.RadioButton()
         Me.btnBuscar = New Infragistics.Win.Misc.UltraButton()
         Me.btnVolver = New Infragistics.Win.Misc.UltraButton()
+        Me.UltraButton1 = New Infragistics.Win.Misc.UltraButton()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,7 +50,7 @@ Partial Class frmReportesCierreOpciones
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(603, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(741, 25)
         '
         'GroupBox1
         '
@@ -57,7 +60,7 @@ Partial Class frmReportesCierreOpciones
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 31)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(200, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(271, 100)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Rango de fecha"
@@ -103,9 +106,9 @@ Partial Class frmReportesCierreOpciones
         Me.GroupBox2.Controls.Add(Me.dgvCliente)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.txtFiltro)
-        Me.GroupBox2.Location = New System.Drawing.Point(219, 32)
+        Me.GroupBox2.Location = New System.Drawing.Point(289, 28)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(372, 280)
+        Me.GroupBox2.Size = New System.Drawing.Size(440, 284)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Cliente"
@@ -114,9 +117,9 @@ Partial Class frmReportesCierreOpciones
         '
         Me.dgvCliente.BackgroundColor = System.Drawing.Color.White
         Me.dgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCliente.Location = New System.Drawing.Point(6, 41)
+        Me.dgvCliente.Location = New System.Drawing.Point(6, 47)
         Me.dgvCliente.Name = "dgvCliente"
-        Me.dgvCliente.Size = New System.Drawing.Size(360, 233)
+        Me.dgvCliente.Size = New System.Drawing.Size(428, 233)
         Me.dgvCliente.TabIndex = 5
         '
         'Label3
@@ -131,30 +134,42 @@ Partial Class frmReportesCierreOpciones
         '
         'txtFiltro
         '
-        Me.txtFiltro.Location = New System.Drawing.Point(100, 15)
+        Me.txtFiltro.Location = New System.Drawing.Point(100, 16)
         Me.txtFiltro.Name = "txtFiltro"
-        Me.txtFiltro.Size = New System.Drawing.Size(259, 20)
+        Me.txtFiltro.Size = New System.Drawing.Size(334, 20)
         Me.txtFiltro.TabIndex = 0
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.cmbSaldos)
         Me.GroupBox3.Controls.Add(Me.radSaldos)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 138)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(200, 174)
+        Me.GroupBox3.Size = New System.Drawing.Size(271, 174)
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Opciones"
+        '
+        'cmbSaldos
+        '
+        Me.cmbSaldos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSaldos.FormattingEnabled = True
+        Me.cmbSaldos.Items.AddRange(New Object() {"General Por Cliente", "General todos", "Detallado por cliente", "Detallado todos"})
+        Me.cmbSaldos.Location = New System.Drawing.Point(101, 28)
+        Me.cmbSaldos.Name = "cmbSaldos"
+        Me.cmbSaldos.Size = New System.Drawing.Size(164, 21)
+        Me.cmbSaldos.TabIndex = 1
+        Me.cmbSaldos.Visible = False
         '
         'radSaldos
         '
         Me.radSaldos.AutoSize = True
         Me.radSaldos.Location = New System.Drawing.Point(15, 28)
         Me.radSaldos.Name = "radSaldos"
-        Me.radSaldos.Size = New System.Drawing.Size(124, 17)
+        Me.radSaldos.Size = New System.Drawing.Size(79, 17)
         Me.radSaldos.TabIndex = 0
         Me.radSaldos.TabStop = True
-        Me.radSaldos.Text = "Saldo cierres general"
+        Me.radSaldos.Text = "Con Saldos"
         Me.radSaldos.UseVisualStyleBackColor = True
         '
         'btnBuscar
@@ -165,7 +180,7 @@ Partial Class frmReportesCierreOpciones
         Me.btnBuscar.Appearance = Appearance1
         Me.btnBuscar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnBuscar.ImageSize = New System.Drawing.Size(48, 48)
-        Me.btnBuscar.Location = New System.Drawing.Point(184, 318)
+        Me.btnBuscar.Location = New System.Drawing.Point(300, 318)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(75, 49)
         Me.btnBuscar.TabIndex = 4
@@ -179,16 +194,32 @@ Partial Class frmReportesCierreOpciones
         Me.btnVolver.Appearance = Appearance2
         Me.btnVolver.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnVolver.ImageSize = New System.Drawing.Size(48, 48)
-        Me.btnVolver.Location = New System.Drawing.Point(428, 318)
+        Me.btnVolver.Location = New System.Drawing.Point(654, 318)
         Me.btnVolver.Name = "btnVolver"
         Me.btnVolver.Size = New System.Drawing.Size(75, 49)
         Me.btnVolver.TabIndex = 5
         Me.btnVolver.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
+        'UltraButton1
+        '
+        Appearance3.Image = Global.EfectiOro.My.Resources.Resources.USER_MALE_REMOVE
+        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Left
+        Appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.UltraButton1.Appearance = Appearance3
+        Me.UltraButton1.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.UltraButton1.ImageSize = New System.Drawing.Size(36, 36)
+        Me.UltraButton1.Location = New System.Drawing.Point(12, 318)
+        Me.UltraButton1.Name = "UltraButton1"
+        Me.UltraButton1.Size = New System.Drawing.Size(170, 49)
+        Me.UltraButton1.TabIndex = 6
+        Me.UltraButton1.Text = "Quitar seleccion cliente"
+        Me.UltraButton1.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
         'frmReportesCierreOpciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(603, 379)
+        Me.ClientSize = New System.Drawing.Size(741, 379)
+        Me.Controls.Add(Me.UltraButton1)
         Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.btnBuscar)
         Me.Controls.Add(Me.GroupBox3)
@@ -200,6 +231,7 @@ Partial Class frmReportesCierreOpciones
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         Me.Controls.SetChildIndex(Me.btnBuscar, 0)
         Me.Controls.SetChildIndex(Me.btnVolver, 0)
+        Me.Controls.SetChildIndex(Me.UltraButton1, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -223,4 +255,6 @@ Partial Class frmReportesCierreOpciones
     Friend WithEvents radSaldos As RadioButton
     Friend WithEvents btnBuscar As Infragistics.Win.Misc.UltraButton
     Friend WithEvents btnVolver As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents cmbSaldos As ComboBox
+    Friend WithEvents UltraButton1 As Infragistics.Win.Misc.UltraButton
 End Class
