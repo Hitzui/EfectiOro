@@ -226,6 +226,20 @@ Public Class DaoCompras
             verMaestroCaja.Entrada = buscarCompra.Efectivo
             verMaestroCaja.Salida = 0
             Try
+                'revisamos si tiene cierre de precios y revertimos las onzas usadas en dicha compra
+                Dim buscarCierres = (From cp As CierrePrecios In ctx.CierrePrecios Join dc As DetaCierre In ctx.DetaCierre On cp.CodCierre Equals dc.Codcierre
+                                     Where dc.Numcompra = numeroCompra Select New With {cp.CodCierre, .Onzas = dc.Onzas - dc.Saldo}).ToList
+                For Each dato In buscarCierres
+                    Dim findCierre As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
+                    findCierre.SaldoOnzas = Decimal.Add(findCierre.SaldoOnzas, dato.Onzas)
+                Next
+                Dim buscarDetaCierre = (From dc In ctx.DetaCierre Where dc.Numcompra = numeroCompra).ToList
+                ctx.DetaCierre.DeleteAllOnSubmit(buscarDetaCierre)
+                ctx.SubmitChanges()
+            Catch ex As Exception
+                'no tiene cierre la compra seleccionada
+            End Try
+            Try
                 'si la compra tiene un monto en adelanto
                 'creamos un adelanto con ese monto
                 If buscarCompra.Adelantos > 0 Then
@@ -325,6 +339,7 @@ Public Class DaoCompras
                             detaCierre.Fecha = Now
                             detaCierre.Numcompra = compra.Numcompra
                             detaCierre.Saldo = Decimal.Round(dato.SaldoOnzas, 3)
+                            detaCierre.Cantidad = Decimal.Subtract(detaCierre.Onzas, detaCierre.Saldo)
                             If dato.SaldoOnzas = Decimal.Zero Then
                                 find.Status = False
                             End If

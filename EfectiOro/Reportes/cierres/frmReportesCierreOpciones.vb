@@ -76,7 +76,7 @@ Public Class frmReportesCierreOpciones
                                 Return
                             End If
                             Dim listaDetaCierres As List(Of DetaCierre) = (From cp In ctx.DetaCierre
-                                                                           Where cp.Fecha >= txtDesde.Value And cp.Fecha <= txtHasta.Value
+                                                                           Where cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
                                                                            Select cp).ToList
                             Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Where cli.Codcliente = codcliente Select cli).ToList
                             Dim report As New rptCierrePreciosClientesGeneral
@@ -101,6 +101,7 @@ Public Class frmReportesCierreOpciones
     Private Sub radSaldos_CheckedChanged(sender As Object, e As EventArgs) Handles radSaldos.CheckedChanged
         If radSaldos.Checked Then
             cmbSaldos.Visible = True
+            cmbSaldos.SelectedIndex = 0
         Else
             cmbSaldos.Visible = False
         End If

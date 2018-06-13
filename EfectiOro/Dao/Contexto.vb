@@ -4302,8 +4302,9 @@ Namespace Database
             Return (Me.Numcompra.Equals(other.Numcompra))
         End Function
     End Class
-    <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detacierre")> _
+    <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detacierre")>
     Partial Public Class DetaCierre
+        Implements IEquatable(Of DetaCierre)
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
         Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
@@ -4314,6 +4315,8 @@ Namespace Database
         Private _numcompra As String
         '[onzas] [decimal](12, 2) NOT NULL,
         Private _onzas As Decimal
+        '[cantidad] [decimal](12, 2) NOT NULL,
+        Private _cantidad As Decimal
         '[saldo] [decimal](12, 2) NOT NULL,
         Private _saldo As Decimal
         '[fecha] [date] NOT NULL,
@@ -4337,6 +4340,10 @@ Namespace Database
         End Sub
         Partial Private Sub OnOnzasChanged()
         End Sub
+        Partial Private Sub OnCantidadChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnCantidadChanged()
+        End Sub
         Partial Private Sub OnSaldoChanging(value As Decimal)
         End Sub
         Partial Private Sub OnSaldoChanged()
@@ -4352,7 +4359,7 @@ Namespace Database
             OnCreated()
         End Sub
 
-        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int NOT NULL", IsPrimaryKey:=True)> _
+        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int NOT NULL", IsPrimaryKey:=True)>
         Public Property Codcierre() As Integer
             Get
                 Return Me._codcierre
@@ -4367,7 +4374,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="numcompra", Storage:="_numcompra", DbType:="varchar(20) NOT NULL", IsPrimaryKey:=True)> _
+        <Column(Name:="numcompra", Storage:="_numcompra", DbType:="varchar(20) NOT NULL", IsPrimaryKey:=True)>
         Public Property Numcompra() As String
             Get
                 Return Me._numcompra
@@ -4394,6 +4401,21 @@ Namespace Database
                     Me._onzas = value
                     Me.SendPropertyChanged("Onzas")
                     Me.OnOnzasChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="cantidad", Storage:="_cantidad", DbType:="decimal(12,3) NOT NULL")>
+        Public Property Cantidad() As Decimal
+            Get
+                Return Me._cantidad
+            End Get
+            Set(value As Decimal)
+                If (Decimal.Equals(_cantidad, value) = False) Then
+                    Me.OnCantidadChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._cantidad = value
+                    Me.SendPropertyChanged("Cantidad")
+                    Me.OnCantidadChanged()
                 End If
             End Set
         End Property
@@ -4445,6 +4467,13 @@ Namespace Database
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
             End If
         End Sub
+        Public Overloads Function Equals(other As DetaCierre) As Boolean _
+        Implements IEquatable(Of DetaCierre).Equals
+            If other Is Nothing Then
+                Return False
+            End If
+            Return (Me.Numcompra.Equals(other.Numcompra))
+        End Function
     End Class
     <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detacaja")> _
     Partial Public Class Detacaja
