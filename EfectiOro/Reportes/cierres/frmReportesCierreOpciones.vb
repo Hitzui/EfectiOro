@@ -47,7 +47,7 @@ Public Class frmReportesCierreOpciones
                         Dim row As DataGridViewRow = dgvCliente.CurrentRow
                         Dim codcliente As String = row.Cells(0).Value
                         Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
-                                                                      Where cp.Codcliente = codcliente And cp.Fecha >= txtDesde.Value And cp.Fecha <= txtHasta.Value
+                                                                      Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
                                                                       Select cp).ToList
                         If listaCierres.Count <= 0 Then
                             MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
@@ -69,7 +69,7 @@ Public Class frmReportesCierreOpciones
                             Dim row As DataGridViewRow = dgvCliente.CurrentRow
                             Dim codcliente As String = row.Cells(0).Value
                             Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
-                                                                          Where cp.Codcliente = codcliente And cp.Fecha >= txtDesde.Value And cp.Fecha <= txtHasta.Value
+                                                                          Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
                                                                           Select cp).ToList
                             If listaCierres.Count <= 0 Then
                                 MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")

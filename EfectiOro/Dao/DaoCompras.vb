@@ -313,23 +313,25 @@ Public Class DaoCompras
                     deta.Codagencia = compra.Codagencia
                     ctx.Det_compra.InsertOnSubmit(deta)
                 Next
-                If listaPreciosaCerrar.Count > 0 Then
-                    Dim listaDetaCierres As New List(Of DetaCierre)
-                    For Each dato As CierrePrecios In listaPreciosaCerrar
-                        Dim detaCierre As New DetaCierre
-                        Dim find As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
-                        detaCierre.Onzas = find.SaldoOnzas
-                        find.SaldoOnzas = Decimal.Round(dato.SaldoOnzas, 3)
-                        detaCierre.Codcierre = dato.CodCierre
-                        detaCierre.Fecha = Now
-                        detaCierre.Numcompra = compra.Numcompra
-                        detaCierre.Saldo = Decimal.Round(dato.SaldoOnzas, 3)
-                        If dato.SaldoOnzas = Decimal.Zero Then
-                            find.Status = False
-                        End If
-                        listaDetaCierres.Add(detaCierre)
-                    Next
-                    ctx.DetaCierre.InsertAllOnSubmit(listaDetaCierres)
+                If listaPreciosaCerrar IsNot Nothing Then
+                    If listaPreciosaCerrar.Count > 0 Then
+                        Dim listaDetaCierres As New List(Of DetaCierre)
+                        For Each dato As CierrePrecios In listaPreciosaCerrar
+                            Dim detaCierre As New DetaCierre
+                            Dim find As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
+                            detaCierre.Onzas = find.SaldoOnzas
+                            find.SaldoOnzas = Decimal.Round(dato.SaldoOnzas, 3)
+                            detaCierre.Codcierre = dato.CodCierre
+                            detaCierre.Fecha = Now
+                            detaCierre.Numcompra = compra.Numcompra
+                            detaCierre.Saldo = Decimal.Round(dato.SaldoOnzas, 3)
+                            If dato.SaldoOnzas = Decimal.Zero Then
+                                find.Status = False
+                            End If
+                            listaDetaCierres.Add(detaCierre)
+                        Next
+                        ctx.DetaCierre.InsertAllOnSubmit(listaDetaCierres)
+                    End If
                 End If
                 Dim saldo = Decimal.Zero
                 Me.actualizarIDCompra()

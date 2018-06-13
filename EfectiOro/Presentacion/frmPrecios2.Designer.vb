@@ -190,6 +190,7 @@ Partial Class frmPrecios2
         Me.btnQuitar.Size = New System.Drawing.Size(66, 45)
         Me.btnQuitar.TabIndex = 15
         Me.btnQuitar.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        Me.btnQuitar.Visible = False
         '
         'Label6
         '
