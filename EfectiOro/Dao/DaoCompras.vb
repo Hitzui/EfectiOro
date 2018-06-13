@@ -232,6 +232,7 @@ Public Class DaoCompras
                 For Each dato In buscarCierres
                     Dim findCierre As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
                     findCierre.SaldoOnzas = Decimal.Add(findCierre.SaldoOnzas, dato.Onzas)
+                    findCierre.Status = True
                 Next
                 Dim buscarDetaCierre = (From dc In ctx.DetaCierre Where dc.Numcompra = numeroCompra).ToList
                 ctx.DetaCierre.DeleteAllOnSubmit(buscarDetaCierre)
