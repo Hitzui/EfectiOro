@@ -228,10 +228,10 @@ Public Class DaoCompras
             Try
                 'revisamos si tiene cierre de precios y revertimos las onzas usadas en dicha compra
                 Dim buscarCierres = (From cp As CierrePrecios In ctx.CierrePrecios Join dc As DetaCierre In ctx.DetaCierre On cp.CodCierre Equals dc.Codcierre
-                                     Where dc.Numcompra = numeroCompra Select New With {cp.CodCierre, .Onzas = dc.Onzas - dc.Saldo}).ToList
+                                     Where dc.Numcompra = numeroCompra Select cp.CodCierre, dc.Cantidad).ToList
                 For Each dato In buscarCierres
                     Dim findCierre As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
-                    findCierre.SaldoOnzas = Decimal.Add(findCierre.SaldoOnzas, dato.Onzas)
+                    findCierre.SaldoOnzas = Decimal.Add(findCierre.SaldoOnzas, dato.Cantidad)
                     findCierre.Status = True
                 Next
                 Dim buscarDetaCierre = (From dc In ctx.DetaCierre Where dc.Numcompra = numeroCompra).ToList

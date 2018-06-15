@@ -6161,7 +6161,7 @@ Namespace Database
             End If
         End Sub
     End Class
-    <Table(Name:="dbo.cierre_precios")> _
+    <Table(Name:="dbo.cierre_precios")>
     Partial Public Class CierrePrecios
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -6235,7 +6235,7 @@ Namespace Database
         Partial Private Sub OnMargenChanged()
         End Sub
 #End Region
-        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int NOT NULL", IsPrimaryKey:=True, IsDbGenerated:=True)> _
+        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int NOT NULL", IsPrimaryKey:=True, IsDbGenerated:=True)>
         Public Property CodCierre() As Integer
             Get
                 Return Me._codcierre
@@ -6250,7 +6250,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="codcliente", Storage:="_codCliente", DbType:="varchar(20) NOT NULL")> _
+        <Column(Name:="codcliente", Storage:="_codCliente", DbType:="varchar(20) NOT NULL")>
         Public Property Codcliente() As String
             Get
                 Return Me._codCliente
@@ -6265,7 +6265,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="status", Storage:="_status", DbType:="bit NOT NULL")> _
+        <Column(Name:="status", Storage:="_status", DbType:="bit NOT NULL")>
         Public Property Status() As Boolean
             Get
                 Return Me._status
@@ -6280,7 +6280,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="onzas_finas", Storage:="_onzasFinas", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="onzas_finas", Storage:="_onzasFinas", DbType:="decimal(12,3) NOT NULL")>
         Public Property OnzasFinas() As Decimal
             Get
                 Return Me._onzasFinas
@@ -6295,7 +6295,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="gramos_finos", Storage:="_gramosFinos", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="gramos_finos", Storage:="_gramosFinos", DbType:="decimal(12,2) NOT NULL")>
         Public Property GramosFinos() As Decimal
             Get
                 Return Me._gramosFinos
@@ -6310,7 +6310,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="precio_oro", Storage:="_precioOro", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="precio_oro", Storage:="_precioOro", DbType:="decimal(12,2) NOT NULL")>
         Public Property PrecioOro() As Decimal
             Get
                 Return Me._precioOro
@@ -6325,7 +6325,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="precio_base", Storage:="_precioBase", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="precio_base", Storage:="_precioBase", DbType:="decimal(12,2) NOT NULL")>
         Public Property PrecioBase() As Decimal
             Get
                 Return Me._precioBase
@@ -6370,7 +6370,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="margen", Storage:="_margen", DbType:="decimal(12,2) NOT NULL")> _
+        <Column(Name:="margen", Storage:="_margen", DbType:="decimal(12,2) NOT NULL")>
         Public Property Margen() As Decimal
             Get
                 Return Me._margen
@@ -6459,7 +6459,7 @@ Namespace Database
         End Sub
 
 
-        <Column(Name:="kilate", Storage:="_Kilate", DbType:="Decimal(12,3) NOT NULL", IsPrimaryKey:=True)>
+        <Column(Name:="kilate", Storage:="_Kilate", DbType:="Decimal(12,2) NOT NULL", IsPrimaryKey:=True)>
         Public Property Kilate() As Decimal
             Get
                 Return Me._Kilate
@@ -6476,7 +6476,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="precio", Storage:="_Precio", DbType:="Decimal(12,3) NOT NULL")>
+        <Column(Name:="precio", Storage:="_Precio", DbType:="Decimal(12,2) NOT NULL")>
         Public Property Precio() As Decimal
             Get
                 Return Me._Precio
