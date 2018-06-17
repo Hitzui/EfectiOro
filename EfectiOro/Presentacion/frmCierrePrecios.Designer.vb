@@ -21,11 +21,12 @@ Partial Class frmCierrePrecios
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCierrePrecios))
         Me.grpCliente = New System.Windows.Forms.GroupBox()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
@@ -61,6 +62,7 @@ Partial Class frmCierrePrecios
         Me.colPrecioBase = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tip = New System.Windows.Forms.ToolTip(Me.components)
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.btnCerrarPrecio = New Infragistics.Win.Misc.UltraButton()
         Me.grpCliente.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDatos.SuspendLayout()
@@ -261,6 +263,7 @@ Partial Class frmCierrePrecios
         '
         'grpButtons
         '
+        Me.grpButtons.Controls.Add(Me.btnCerrarPrecio)
         Me.grpButtons.Controls.Add(Me.btnCancelar)
         Me.grpButtons.Controls.Add(Me.btnEliminar)
         Me.grpButtons.Controls.Add(Me.btnEditar)
@@ -274,8 +277,8 @@ Partial Class frmCierrePrecios
         '
         'btnCancelar
         '
-        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.cancel02
-        Me.btnCancelar.Appearance = Appearance2
+        Appearance3.Image = Global.EfectiOro.My.Resources.Resources.cancel02
+        Me.btnCancelar.Appearance = Appearance3
         Me.btnCancelar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnCancelar.ImageSize = New System.Drawing.Size(38, 38)
         Me.btnCancelar.Location = New System.Drawing.Point(277, 20)
@@ -287,8 +290,8 @@ Partial Class frmCierrePrecios
         '
         'btnEliminar
         '
-        Appearance3.Image = Global.EfectiOro.My.Resources.Resources.trash
-        Me.btnEliminar.Appearance = Appearance3
+        Appearance4.Image = Global.EfectiOro.My.Resources.Resources.trash
+        Me.btnEliminar.Appearance = Appearance4
         Me.btnEliminar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnEliminar.ImageSize = New System.Drawing.Size(38, 38)
         Me.btnEliminar.Location = New System.Drawing.Point(210, 20)
@@ -300,8 +303,8 @@ Partial Class frmCierrePrecios
         '
         'btnEditar
         '
-        Appearance4.Image = Global.EfectiOro.My.Resources.Resources.edit01
-        Me.btnEditar.Appearance = Appearance4
+        Appearance5.Image = Global.EfectiOro.My.Resources.Resources.edit01
+        Me.btnEditar.Appearance = Appearance5
         Me.btnEditar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnEditar.ImageSize = New System.Drawing.Size(38, 38)
         Me.btnEditar.Location = New System.Drawing.Point(143, 20)
@@ -313,8 +316,8 @@ Partial Class frmCierrePrecios
         '
         'btnGuardar
         '
-        Appearance5.Image = Global.EfectiOro.My.Resources.Resources.save01
-        Me.btnGuardar.Appearance = Appearance5
+        Appearance6.Image = Global.EfectiOro.My.Resources.Resources.save01
+        Me.btnGuardar.Appearance = Appearance6
         Me.btnGuardar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnGuardar.ImageSize = New System.Drawing.Size(38, 38)
         Me.btnGuardar.Location = New System.Drawing.Point(76, 20)
@@ -326,8 +329,8 @@ Partial Class frmCierrePrecios
         '
         'btnNuevo
         '
-        Appearance6.Image = Global.EfectiOro.My.Resources.Resources.new01
-        Me.btnNuevo.Appearance = Appearance6
+        Appearance7.Image = Global.EfectiOro.My.Resources.Resources.new01
+        Me.btnNuevo.Appearance = Appearance7
         Me.btnNuevo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnNuevo.ImageSize = New System.Drawing.Size(38, 38)
         Me.btnNuevo.Location = New System.Drawing.Point(9, 20)
@@ -414,6 +417,20 @@ Partial Class frmCierrePrecios
         Me.erp.ContainerControl = Me
         Me.erp.Icon = CType(resources.GetObject("erp.Icon"), System.Drawing.Icon)
         '
+        'btnCerrarPrecio
+        '
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.cerrar_precio
+        Me.btnCerrarPrecio.Appearance = Appearance2
+        Me.btnCerrarPrecio.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.btnCerrarPrecio.Enabled = False
+        Me.btnCerrarPrecio.ImageSize = New System.Drawing.Size(38, 38)
+        Me.btnCerrarPrecio.Location = New System.Drawing.Point(345, 19)
+        Me.btnCerrarPrecio.Name = "btnCerrarPrecio"
+        Me.btnCerrarPrecio.Size = New System.Drawing.Size(50, 50)
+        Me.btnCerrarPrecio.TabIndex = 5
+        Me.tip.SetToolTip(Me.btnCerrarPrecio, Title)
+        Me.btnCerrarPrecio.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
         'frmCierrePrecios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -476,4 +493,5 @@ Partial Class frmCierrePrecios
     Friend WithEvents btnCalcular As Infragistics.Win.Misc.UltraButton
     Friend WithEvents colFecha As DataGridViewTextBoxColumn
     Friend WithEvents colPrecioBase As DataGridViewTextBoxColumn
+    Friend WithEvents btnCerrarPrecio As Infragistics.Win.Misc.UltraButton
 End Class

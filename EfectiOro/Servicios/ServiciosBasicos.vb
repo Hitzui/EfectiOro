@@ -261,7 +261,7 @@ Module ServiciosBasicos
             Dim Input As Decimal
             Dim Output As Decimal
             Input = Decimal.Round(var, 3)
-            Output = Input - (Input Mod 0.005)
+            Output = Input - (Input Mod 0.55)
             Return Output
         Catch ex As Exception
             Return var

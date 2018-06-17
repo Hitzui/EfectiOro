@@ -1294,6 +1294,7 @@
     <None Include="Resources\delete01.png" />
     <None Include="Resources\cancel02.png" />
     <None Include="Resources\trash.png" />
+    <None Include="Resources\cerrar_precio.png" />
     <Content Include="Servicios\log4net.assembly.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

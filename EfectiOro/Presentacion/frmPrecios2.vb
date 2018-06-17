@@ -223,7 +223,7 @@ Public Class frmPrecios2
                                     onzasUsadas.Add(dato.CodCierre, findOnzas)
                                     listaCierresUsadosPrecios.Add(dato)
                                 Else
-                                    _onzasDiferencias.Item(dato.CodCierre) = onzas_diferencia
+                                    _onzasDiferencias.Item(dato.CodCierre) = Decimal.Round(onzas_diferencia, 4)
                                     Dim pb As Decimal = _preciosBaseCierres.Item(dato.CodCierre)
                                     'pb = ServiciosBasicos.redondearMenos(pb)
                                     Dim precio As Decimal = pb * quilate
@@ -300,9 +300,12 @@ Public Class frmPrecios2
                 Dim porcentajeRmc As Decimal = 0.994
                 Dim daoTipoCambio = DataContext.daoTipoCambio
                 tipoCambio = daoTipoCambio.buscarDato(Now).Tipocambio1
-                precioBase = (1 - (margen / 100)) * (1 - merma) * porcentajeRmc * (precioOro - 0.5) * tipoCambio / 31.1035 / 24
-                precioBase = Decimal.Round(precioBase, 1)
+                margen = Decimal.Divide(margen, 100)
+                precioBase = (1 - margen) * (1 - merma) * porcentajeRmc * (precioOro - 0.5) * tipoCambio / 31.1035 / 24
+                precioBase = Decimal.Round(precioBase, 2)
                 precio = quilate * precioBase
+                precio = Decimal.Round(precio, 2)
+                precio = redondearMenos(precio)
                 dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 0), gramos)
                 linea = linea + 1
                 txtQuilate.Clear()

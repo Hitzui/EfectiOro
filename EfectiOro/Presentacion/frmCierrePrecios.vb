@@ -1,6 +1,7 @@
 ﻿Imports EfectiOro.Database
 
 Public Class frmCierrePrecios
+    Private Const Title As String = "Cerrar precio"
     Private aux As Integer
     Private _datosCierreCliente As Integer
     Private _cierreSeleccionado As Integer
@@ -47,6 +48,7 @@ Public Class frmCierrePrecios
                              Where cp.Codcliente = txtCodigo.Text And cp.SaldoOnzas > 0 And cp.Status = True
                              Select cp).ToList
                 _datosCierreCliente = datos.Count
+                btnCerrarPrecio.Enabled = True
                 For Each valor As CierrePrecios In datos
                     dgvCierresCliente.Rows.Add(valor.CodCierre, valor.PrecioOro, valor.OnzasFinas, valor.SaldoOnzas, valor.Fecha, valor.PrecioBase)
                 Next
@@ -109,7 +111,7 @@ Public Class frmCierrePrecios
         End Try
     End Sub
 
-    
+
     Private Sub txtOnzas_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtOnzas.KeyPress
         NumeroDec(e, txtOnzas)
     End Sub
@@ -218,6 +220,7 @@ Public Class frmCierrePrecios
         If dgvCliente.Visible = True Then
             dgvCliente.Visible = False
         End If
+        btnCerrarPrecio.Enabled = False
         erp.Clear()
         dgvCierresCliente.Rows.Clear()
     End Sub
@@ -238,6 +241,7 @@ Public Class frmCierrePrecios
         txtNombre.Focus()
         dgvCierresCliente.Enabled = True
         If _datosCierreCliente > 0 Then
+            btnCerrarPrecio.Enabled = True
             Me.dgvCierresCliente.Rows(0).Selected = True
         End If
     End Sub
@@ -308,7 +312,7 @@ Public Class frmCierrePrecios
                     Case 1
                         'guardar nuevo registro
                         Dim cierre_precio As New CierrePrecios
-                        cierre_precio.CodCliente = codigo
+                        cierre_precio.Codcliente = codigo
                         cierre_precio.Fecha = Now
                         cierre_precio.GramosFinos = gramos
                         cierre_precio.OnzasFinas = onzas
@@ -409,5 +413,25 @@ Public Class frmCierrePrecios
             Case Keys.Enter
                 btnGuardar.Focus()
         End Select
+    End Sub
+
+    Private Sub btnCerrarPrecio_Click(sender As Object, e As EventArgs) Handles btnCerrarPrecio.Click
+        Using ctx As New Contexto
+            Try
+                Dim row As DataGridViewRow = dgvCierresCliente.CurrentRow
+                Dim codcierre As Integer = Convert.ToInt32(row.Cells("colCodigo").Value)
+                Dim buscar = (From c In ctx.CierrePrecios Where c.CodCierre = codcierre And c.Status = True Select c).Single
+                Dim result As DialogResult = MsgBox("¿Seguro desea cerrar el precio seleccionado, esta acción no se puede revertir?", MsgBoxStyle.YesNo, Title)
+                If result = DialogResult.No Then
+                    Return
+                End If
+                buscar.Status = False
+                ctx.SubmitChanges()
+                MsgBox("Se ha cerrado el precio seleccionado", MsgBoxStyle.Information, Title)
+                btnCancelar_Click(sender, e)
+            Catch ex As Exception
+                MsgBox("Se produjo un error al intentar cerrar el precio" & vbCr & ex.Message, MsgBoxStyle.Information, Title)
+            End Try
+        End Using
     End Sub
 End Class
