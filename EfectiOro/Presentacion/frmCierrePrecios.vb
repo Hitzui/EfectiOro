@@ -376,6 +376,7 @@ Public Class frmCierrePrecios
                             btnCancelar_Click(sender, e)
                         End If
                 End Select
+                btnNuevo.Focus()
             Catch ex As Exception
                 MsgBox("Se produjo un error al guardar los datos: " & ex.Message, MsgBoxStyle.Critical, "Error al guardar")
             End Try
