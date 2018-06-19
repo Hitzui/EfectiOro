@@ -227,7 +227,7 @@ Public Class DaoCompras
             verMaestroCaja.Salida = 0
             Try
                 'revisamos si tiene cierre de precios y revertimos las onzas usadas en dicha compra
-                Dim buscarCierres = (From cp As CierrePrecios In ctx.CierrePrecios Join dc As DetaCierre In ctx.DetaCierre On cp.CodCierre Equals dc.Codcierre
+                Dim buscarCierres = (From cp As CierrePrecios In ctx.CierrePrecios Join dc As Detacierre In ctx.DetaCierre On cp.CodCierre Equals dc.Codcierre
                                      Where dc.Numcompra = numeroCompra Select cp.CodCierre, dc.Cantidad).ToList
                 For Each dato In buscarCierres
                     Dim findCierre As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
@@ -328,27 +328,55 @@ Public Class DaoCompras
                     deta.Codagencia = compra.Codagencia
                     ctx.Det_compra.InsertOnSubmit(deta)
                 Next
-                If listaPreciosaCerrar IsNot Nothing Then
-                    If listaPreciosaCerrar.Count > 0 Then
-                        Dim listaDetaCierres As New List(Of DetaCierre)
-                        For Each dato As CierrePrecios In listaPreciosaCerrar
-                            Dim detaCierre As New DetaCierre
-                            Dim find As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
-                            detaCierre.Onzas = find.SaldoOnzas
-                            find.SaldoOnzas = Decimal.Round(dato.SaldoOnzas, 3)
-                            detaCierre.Codcierre = dato.CodCierre
-                            detaCierre.Fecha = Now
-                            detaCierre.Numcompra = compra.Numcompra
-                            detaCierre.Saldo = Decimal.Round(dato.SaldoOnzas, 3)
-                            detaCierre.Cantidad = Decimal.Subtract(detaCierre.Onzas, detaCierre.Saldo)
-                            If dato.SaldoOnzas = Decimal.Zero Then
-                                find.Status = False
+                Try
+                    'buscamos los cierres q se usaron para establecer los precios
+                    'en la tabla temporal de precios para proceder a guardarlos
+                    Dim buscar_cierres = (From tmp In ctx.TmpPrecios Where tmp.Codcliente = compra.Codcliente Select tmp).ToList
+                    Dim listaDetaCierres As New List(Of Detacierre)
+                    If buscar_cierres.Count > 0 Then
+                        For Each dato As TmpPrecios In buscar_cierres
+                            Dim cierre As CierrePrecios = (From c In ctx.CierrePrecios Where c.CodCierre = dato.Codcierre Select c).Single
+                            Dim detacierre As New Detacierre
+                            Dim xsaldo As Decimal = Decimal.Subtract(cierre.SaldoOnzas, dato.Cantidad)
+                            detacierre.Codcierre = dato.Codcierre
+                            detacierre.Cantidad = dato.Cantidad
+                            detacierre.Onzas = cierre.SaldoOnzas
+                            detacierre.Saldo = xsaldo
+                            detacierre.Fecha = Now
+                            detacierre.Numcompra = compra.Numcompra
+                            cierre.SaldoOnzas = xsaldo
+                            If dato.Cantidad = Decimal.Zero Then
+                                cierre.Status = False
                             End If
-                            listaDetaCierres.Add(detaCierre)
+                            listaDetaCierres.Add(detacierre)
                         Next
                         ctx.DetaCierre.InsertAllOnSubmit(listaDetaCierres)
+                        ctx.TmpPrecios.DeleteAllOnSubmit(buscar_cierres)
                     End If
-                End If
+                Catch ex As Exception
+                    'no hay cierres para el cliente especificado
+                End Try
+                'If listaPreciosaCerrar IsNot Nothing Then
+                '    If listaPreciosaCerrar.Count > 0 Then
+                '        Dim listaDetaCierres As New List(Of Detacierre)
+                '        For Each dato As CierrePrecios In listaPreciosaCerrar
+                '            Dim detaCierre As New Detacierre
+                '            Dim find As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
+                '            detaCierre.Onzas = find.SaldoOnzas
+                '            find.SaldoOnzas = Decimal.Round(dato.SaldoOnzas, 3)
+                '            detaCierre.Codcierre = dato.CodCierre
+                '            detaCierre.Fecha = Now
+                '            detaCierre.Numcompra = compra.Numcompra
+                '            detaCierre.Saldo = Decimal.Round(dato.SaldoOnzas, 3)
+                '            detaCierre.Cantidad = Decimal.Subtract(detaCierre.Onzas, detaCierre.Saldo)
+                '            If dato.SaldoOnzas = Decimal.Zero Then
+                '                find.Status = False
+                '            End If
+                '            listaDetaCierres.Add(detaCierre)
+                '        Next
+                '        ctx.DetaCierre.InsertAllOnSubmit(listaDetaCierres)
+                '    End If
+                'End If
                 Dim saldo = Decimal.Zero
                 Me.actualizarIDCompra()
                 ctx.Detacaja.InsertOnSubmit(dcaja)

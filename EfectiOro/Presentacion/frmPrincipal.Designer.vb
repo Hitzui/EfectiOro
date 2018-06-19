@@ -78,6 +78,7 @@ Partial Class frmPrincipal
         Me.panelCentral = New System.Windows.Forms.Panel()
         Me.status = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.toolPreciosCierres = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.panelLateral.SuspendLayout()
         Me.status.SuspendLayout()
@@ -194,7 +195,7 @@ Partial Class frmPrincipal
         '
         'MantenimientoToolStripMenuItem
         '
-        Me.MantenimientoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComprasToolStripMenuItem, Me.TipoDeCambioToolStripMenuItem, Me.GenerarDescargueToolStripMenuItem, Me.PreciosKilateToolStripMenuItem, Me.CajaToolStripMenuItem, Me.EstadisticaToolStripMenuItem, Me.GenerarDescarguePorCompraToolStripMenuItem, Me.ReservarOroToolStripMenuItem})
+        Me.MantenimientoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComprasToolStripMenuItem, Me.TipoDeCambioToolStripMenuItem, Me.GenerarDescargueToolStripMenuItem, Me.PreciosKilateToolStripMenuItem, Me.CajaToolStripMenuItem, Me.EstadisticaToolStripMenuItem, Me.GenerarDescarguePorCompraToolStripMenuItem, Me.ReservarOroToolStripMenuItem, Me.toolPreciosCierres})
         Me.MantenimientoToolStripMenuItem.ForeColor = System.Drawing.Color.White
         Me.MantenimientoToolStripMenuItem.Image = Global.EfectiOro.My.Resources.Resources.surveys
         Me.MantenimientoToolStripMenuItem.Name = "MantenimientoToolStripMenuItem"
@@ -278,31 +279,31 @@ Partial Class frmPrincipal
         'DeComprasToolStripMenuItem
         '
         Me.DeComprasToolStripMenuItem.Name = "DeComprasToolStripMenuItem"
-        Me.DeComprasToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.DeComprasToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.DeComprasToolStripMenuItem.Text = "De compras"
         '
         'DeClientesToolStripMenuItem
         '
         Me.DeClientesToolStripMenuItem.Name = "DeClientesToolStripMenuItem"
-        Me.DeClientesToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.DeClientesToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.DeClientesToolStripMenuItem.Text = "De clientes"
         '
         'DeDescarguesToolStripMenuItem
         '
         Me.DeDescarguesToolStripMenuItem.Name = "DeDescarguesToolStripMenuItem"
-        Me.DeDescarguesToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.DeDescarguesToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.DeDescarguesToolStripMenuItem.Text = "De descargues"
         '
         'DeCajasToolStripMenuItem
         '
         Me.DeCajasToolStripMenuItem.Name = "DeCajasToolStripMenuItem"
-        Me.DeCajasToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.DeCajasToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.DeCajasToolStripMenuItem.Text = "De cajas"
         '
         'CierrePreciosToolStripMenuItem
         '
         Me.CierrePreciosToolStripMenuItem.Name = "CierrePreciosToolStripMenuItem"
-        Me.CierrePreciosToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.CierrePreciosToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.CierrePreciosToolStripMenuItem.Text = "Cierre precios"
         '
         'AcercaDeToolStripMenuItem
@@ -326,6 +327,7 @@ Partial Class frmPrincipal
         Me.ImageList1.Images.SetKeyName(7, "Usercard_01.png")
         Me.ImageList1.Images.SetKeyName(8, "cash_register.png")
         Me.ImageList1.Images.SetKeyName(9, "cash_register2.png")
+        Me.ImageList1.Images.SetKeyName(10, "money_plus.png")
         '
         'panelLateral
         '
@@ -487,6 +489,13 @@ Partial Class frmPrincipal
         Me.lblStatus.Size = New System.Drawing.Size(141, 19)
         Me.lblStatus.Text = "ToolStripStatusLabel1"
         '
+        'toolPreciosCierres
+        '
+        Me.toolPreciosCierres.Image = Global.EfectiOro.My.Resources.Resources.dollar_red
+        Me.toolPreciosCierres.Name = "toolPreciosCierres"
+        Me.toolPreciosCierres.Size = New System.Drawing.Size(270, 24)
+        Me.toolPreciosCierres.Text = "Precios Cierres"
+        '
         'frmPrincipal
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -557,4 +566,5 @@ Partial Class frmPrincipal
     Friend WithEvents status As System.Windows.Forms.StatusStrip
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents CierrePreciosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents toolPreciosCierres As ToolStripMenuItem
 End Class

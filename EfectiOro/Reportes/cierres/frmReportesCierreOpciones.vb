@@ -75,7 +75,7 @@ Public Class frmReportesCierreOpciones
                                 MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
                                 Return
                             End If
-                            Dim listaDetaCierres As List(Of DetaCierre) = (From cp In ctx.DetaCierre
+                            Dim listaDetaCierres As List(Of Detacierre) = (From cp In ctx.DetaCierre
                                                                            Where cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
                                                                            Select cp).ToList
                             Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Where cli.Codcliente = codcliente Select cli).ToList

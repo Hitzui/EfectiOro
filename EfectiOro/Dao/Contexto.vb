@@ -231,9 +231,14 @@ Namespace Database
                 Return Me.GetTable(Of Adelantos)()
             End Get
         End Property
-        Public ReadOnly Property DetaCierre() As System.Data.Linq.Table(Of DetaCierre)
+        Public ReadOnly Property DetaCierre() As System.Data.Linq.Table(Of Detacierre)
             Get
-                Return Me.GetTable(Of DetaCierre)()
+                Return Me.GetTable(Of Detacierre)()
+            End Get
+        End Property
+        Public ReadOnly Property TmpPrecios() As System.Data.Linq.Table(Of TmpPrecios)
+            Get
+                Return Me.GetTable(Of TmpPrecios)()
             End Get
         End Property
         Public ReadOnly Property CierrePrecios() As System.Data.Linq.Table(Of CierrePrecios)
@@ -422,14 +427,14 @@ Namespace Database
                 Return Me.GetTable(Of Vdetacaja)()
             End Get
         End Property
-        <FunctionAttribute(Name:="dbo.anularCompra")> _
+        <FunctionAttribute(Name:="dbo.anularCompra")>
         Public Function AnularCompra(<Parameter(DbType:="VarChar(20)")> ByVal numeroCompra As String, <Parameter(DbType:="VarChar(20)")> ByVal agencia As String) As <Parameter(DbType:="Int")> Integer
             Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), numeroCompra, agencia)
             Return CType(result.ReturnValue, Integer)
         End Function
-        
+
     End Class
-    <Table(name:="[dbo].[Listado]")>
+    <Table(Name:="[dbo].[Listado]")>
     Public Class Liquidacion
         '[Solicitud]
         '[Ranking]
@@ -858,7 +863,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detaReserva")> _
+    <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detaReserva")>
     Partial Public Class DetaReserva
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -920,7 +925,7 @@ Namespace Database
             OnCreated()
         End Sub
 
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idreserva", DbType:="Int NOT NULL", IsPrimaryKey:=True)> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idreserva", DbType:="Int NOT NULL", IsPrimaryKey:=True)>
         Public Property idreserva() As Integer
             Get
                 Return Me._idreserva
@@ -937,7 +942,7 @@ Namespace Database
             End Set
         End Property
 
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_linea", DbType:="Int NOT NULL", IsPrimaryKey:=True)> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_linea", DbType:="Int NOT NULL", IsPrimaryKey:=True)>
         Public Property linea() As Integer
             Get
                 Return Me._linea
@@ -954,7 +959,7 @@ Namespace Database
             End Set
         End Property
 
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha", DbType:="Date NOT NULL")> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha", DbType:="Date NOT NULL")>
         Public Property fecha() As Date
             Get
                 Return Me._fecha
@@ -971,7 +976,7 @@ Namespace Database
             End Set
         End Property
 
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_entregadas", DbType:="Decimal(12,3)")> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_entregadas", DbType:="Decimal(12,3)")>
         Public Property entregadas() As Decimal
             Get
                 Return Me._entregadas
@@ -987,7 +992,7 @@ Namespace Database
             End Set
         End Property
 
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_diferencia", DbType:="Decimal(12,3)")> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_diferencia", DbType:="Decimal(12,3)")>
         Public Property diferencia() As Decimal
             Get
                 Return Me._diferencia
@@ -1003,7 +1008,7 @@ Namespace Database
             End Set
         End Property
 
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_usuario", DbType:="VarChar(50)")> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_usuario", DbType:="VarChar(50)")>
         Public Property usuario() As String
             Get
                 Return Me._usuario
@@ -1018,7 +1023,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_hora", DbType:="VarChar(50)")> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_hora", DbType:="VarChar(50)")>
         Public Property hora() As String
             Get
                 Return Me._hora
@@ -1053,7 +1058,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.adelantos")> _
+    <Table(Name:="dbo.adelantos")>
     Partial Public Class Adelantos
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -1159,7 +1164,7 @@ Namespace Database
         ''' <remarks></remarks>
         Public Property nombreCliente As String
 
-        <Column(Name:="idsalida", Storage:="_Idsalida", DbType:="VarChar(20) Not NULL", CanBeNull:=False, IsPrimaryKey:=True)> _
+        <Column(Name:="idsalida", Storage:="_Idsalida", DbType:="VarChar(20) Not NULL", CanBeNull:=False, IsPrimaryKey:=True)>
         Public Property Idsalida() As String
             Get
                 Return Me._Idsalida
@@ -1175,7 +1180,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Codcliente() As String
             Get
                 Return Me._Codcliente
@@ -1191,7 +1196,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(MAX) NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(MAX) NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)>
         Public Property Numcompra() As String
             Get
                 Return Me._Numcompra
@@ -1207,7 +1212,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")> _
+        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")>
         Public Property Fecha() As Date
             Get
                 Return Me._Fecha
@@ -1224,7 +1229,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="monto", Storage:="_Monto", DbType:="Decimal(18,2)")> _
+        <Column(Name:="monto", Storage:="_Monto", DbType:="Decimal(18,2)")>
         Public Property Monto() As Decimal
             Get
                 Return Me._Monto
@@ -1240,7 +1245,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="saldo", Storage:="_Saldo", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="saldo", Storage:="_Saldo", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Saldo() As Decimal
             Get
                 Return Me._Saldo
@@ -1257,7 +1262,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="efectivo", Storage:="_Efectivo", DbType:="Decimal(18,2)")> _
+        <Column(Name:="efectivo", Storage:="_Efectivo", DbType:="Decimal(18,2)")>
         Public Property Efectivo() As Decimal
             Get
                 Return Me._Efectivo
@@ -1273,7 +1278,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="cheque", Storage:="_Cheque", DbType:="Decimal(18,2)")> _
+        <Column(Name:="cheque", Storage:="_Cheque", DbType:="Decimal(18,2)")>
         Public Property Cheque() As Decimal
             Get
                 Return Me._Cheque
@@ -1289,7 +1294,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="transferencia", Storage:="_Transferencia", DbType:="Decimal(18,2)")> _
+        <Column(Name:="transferencia", Storage:="_Transferencia", DbType:="Decimal(18,2)")>
         Public Property Transferencia() As Decimal
             Get
                 Return Me._Transferencia
@@ -1305,7 +1310,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10)")> _
+        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10)")>
         Public Property Codcaja() As String
             Get
                 Return Me._Codcaja
@@ -1321,7 +1326,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="usuario", Storage:="_Usuario", DbType:="VarChar(50)")> _
+        <Column(Name:="usuario", Storage:="_Usuario", DbType:="VarChar(50)")>
         Public Property Usuario() As String
             Get
                 Return Me._Usuario
@@ -1337,7 +1342,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="monto_letras", Storage:="_Monto_letras", DbType:="VarChar(MAX)", UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="monto_letras", Storage:="_Monto_letras", DbType:="VarChar(MAX)", UpdateCheck:=UpdateCheck.Never)>
         Public Property Monto_letras() As String
             Get
                 Return Me._Monto_letras
@@ -1353,7 +1358,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="hora", Storage:="_Hora", DbType:="VarChar(50)")> _
+        <Column(Name:="hora", Storage:="_Hora", DbType:="VarChar(50)")>
         Public Property Hora() As String
             Get
                 Return Me._Hora
@@ -1388,7 +1393,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.Agencia")> _
+    <Table(Name:="dbo.Agencia")>
     Partial Public Class Agencia
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -1444,7 +1449,7 @@ Namespace Database
             OnCreated()
         End Sub
 
-        <Column(Name:="codagencia", Storage:="_Codagencia", DbType:="VarChar(10) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)> _
+        <Column(Name:="codagencia", Storage:="_Codagencia", DbType:="VarChar(10) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)>
         Public Property Codagencia() As String
             Get
                 Return Me._Codagencia
@@ -1460,7 +1465,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nomagencia", Storage:="_Nomagencia", DbType:="VarChar(150) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="nomagencia", Storage:="_Nomagencia", DbType:="VarChar(150) NOT NULL", CanBeNull:=False)>
         Public Property Nomagencia() As String
             Get
                 Return Me._Nomagencia
@@ -1476,7 +1481,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="diragencia", Storage:="_Diragencia", DbType:="VarChar(MAX) NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="diragencia", Storage:="_Diragencia", DbType:="VarChar(MAX) NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)>
         Public Property Diragencia() As String
             Get
                 Return Me._Diragencia
@@ -1492,7 +1497,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="disagencia", Storage:="_Disagencia", DbType:="VarChar(100) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="disagencia", Storage:="_Disagencia", DbType:="VarChar(100) NOT NULL", CanBeNull:=False)>
         Public Property Disagencia() As String
             Get
                 Return Me._Disagencia
@@ -1508,7 +1513,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="telagencia", Storage:="_Telagencia", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="telagencia", Storage:="_Telagencia", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Telagencia() As String
             Get
                 Return Me._Telagencia
@@ -1523,7 +1528,7 @@ Namespace Database
                 End If
             End Set
         End Property
-        <Column(Name:="numcompra", Storage:="_numcompra", DbType:="int", CanBeNull:=False)> _
+        <Column(Name:="numcompra", Storage:="_numcompra", DbType:="int", CanBeNull:=False)>
         Public Property Numcompra() As Integer
             Get
                 Return Me._numcompra
@@ -1558,7 +1563,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.caja")> _
+    <Table(Name:="dbo.caja")>
     Partial Public Class Caja
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -1590,7 +1595,7 @@ Namespace Database
             OnCreated()
         End Sub
 
-        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)> _
+        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)>
         Public Property Codcaja() As String
             Get
                 Return Me._Codcaja
@@ -1606,7 +1611,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="descripcion", Storage:="_Descripcion", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="descripcion", Storage:="_Descripcion", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Descripcion() As String
             Get
                 Return Me._Descripcion
@@ -1641,7 +1646,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.Cliente")> _
+    <Table(Name:="dbo.Cliente")>
     Partial Public Class Cliente
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -1829,7 +1834,7 @@ Namespace Database
             OnCreated()
         End Sub
 
-        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)> _
+        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)>
         Public Property Codcliente() As String
             Get
                 Return Me._Codcliente
@@ -1845,7 +1850,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nombres", Storage:="_Nombres", DbType:="VarChar(35) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="nombres", Storage:="_Nombres", DbType:="VarChar(35) NOT NULL", CanBeNull:=False)>
         Public Property Nombres() As String
             Get
                 Return Me._Nombres
@@ -1861,7 +1866,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="apellidos", Storage:="_Apellidos", DbType:="VarChar(50)")> _
+        <Column(Name:="apellidos", Storage:="_Apellidos", DbType:="VarChar(50)")>
         Public Property Apellidos() As String
             Get
                 Return Me._Apellidos
@@ -1877,7 +1882,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="numcedula", Storage:="_Numcedula", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="numcedula", Storage:="_Numcedula", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Numcedula() As String
             Get
                 Return Me._Numcedula
@@ -1893,7 +1898,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_emision", Storage:="_F_emision", DbType:="Date")> _
+        <Column(Name:="f_emision", Storage:="_F_emision", DbType:="Date")>
         Public Property F_emision() As Date
             Get
                 Return Me._F_emision
@@ -1909,7 +1914,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_vencimiento", Storage:="_F_vencimiento", DbType:="Date")> _
+        <Column(Name:="f_vencimiento", Storage:="_F_vencimiento", DbType:="Date")>
         Public Property F_vencimiento() As Date
             Get
                 Return Me._F_vencimiento
@@ -1925,7 +1930,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="direccion", Storage:="_Direccion", DbType:="Text NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="direccion", Storage:="_Direccion", DbType:="Text NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)>
         Public Property Direccion() As String
             Get
                 Return Me._Direccion
@@ -1941,7 +1946,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_nacimiento", Storage:="_F_nacimiento", DbType:="Date")> _
+        <Column(Name:="f_nacimiento", Storage:="_F_nacimiento", DbType:="Date")>
         Public Property F_nacimiento() As Date
             Get
                 Return Me._F_nacimiento
@@ -1957,7 +1962,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="estadocivil", Storage:="_Estadocivil", DbType:="VarChar(20)")> _
+        <Column(Name:="estadocivil", Storage:="_Estadocivil", DbType:="VarChar(20)")>
         Public Property Estadocivil() As String
             Get
                 Return Me._Estadocivil
@@ -1973,7 +1978,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="ciudad", Storage:="_Ciudad", DbType:="VarChar(50)")> _
+        <Column(Name:="ciudad", Storage:="_Ciudad", DbType:="VarChar(50)")>
         Public Property Ciudad() As String
             Get
                 Return Me._Ciudad
@@ -1989,7 +1994,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="telefono", Storage:="_Telefono", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="telefono", Storage:="_Telefono", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Telefono() As String
             Get
                 Return Me._Telefono
@@ -2005,7 +2010,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="celular", Storage:="_Celular", DbType:="VarChar(50)")> _
+        <Column(Name:="celular", Storage:="_Celular", DbType:="VarChar(50)")>
         Public Property Celular() As String
             Get
                 Return Me._Celular
@@ -2021,7 +2026,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="email", Storage:="_Email", DbType:="VarChar(50)")> _
+        <Column(Name:="email", Storage:="_Email", DbType:="VarChar(50)")>
         Public Property Email() As String
             Get
                 Return Me._Email
@@ -2037,7 +2042,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_ingreso", Storage:="_F_ingreso", DbType:="Date")> _
+        <Column(Name:="f_ingreso", Storage:="_F_ingreso", DbType:="Date")>
         Public Property F_ingreso() As Date
             Get
                 Return Me._F_ingreso
@@ -2053,7 +2058,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="ocupacion", Storage:="_Ocupacion", DbType:="VarChar(50)")> _
+        <Column(Name:="ocupacion", Storage:="_Ocupacion", DbType:="VarChar(50)")>
         Public Property Ocupacion() As String
             Get
                 Return Me._Ocupacion
@@ -2069,7 +2074,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="direccion_negocio", Storage:="_Direccion_negocio", DbType:="Text", UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="direccion_negocio", Storage:="_Direccion_negocio", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>
         Public Property Direccion_negocio() As String
             Get
                 Return Me._Direccion_negocio
@@ -2085,7 +2090,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="tiempo_neg", Storage:="_Tiempo_neg", DbType:="VarChar(50)")> _
+        <Column(Name:="tiempo_neg", Storage:="_Tiempo_neg", DbType:="VarChar(50)")>
         Public Property Tiempo_neg() As String
             Get
                 Return Me._Tiempo_neg
@@ -2101,7 +2106,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="otra_ae", Storage:="_Otra_ae", DbType:="VarChar(50)")> _
+        <Column(Name:="otra_ae", Storage:="_Otra_ae", DbType:="VarChar(50)")>
         Public Property Otra_ae() As String
             Get
                 Return Me._Otra_ae
@@ -2117,7 +2122,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="desc_otra", Storage:="_Desc_otra", DbType:="Text", UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="desc_otra", Storage:="_Desc_otra", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>
         Public Property Desc_otra() As String
             Get
                 Return Me._Desc_otra
@@ -2133,7 +2138,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nom_cuenta", Storage:="_Nom_cuenta", DbType:="VarChar(50)")> _
+        <Column(Name:="nom_cuenta", Storage:="_Nom_cuenta", DbType:="VarChar(50)")>
         Public Property Nom_cuenta() As String
             Get
                 Return Me._Nom_cuenta
@@ -2149,7 +2154,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="num_cuenta", Storage:="_Num_cuenta", DbType:="VarChar(50)")> _
+        <Column(Name:="num_cuenta", Storage:="_Num_cuenta", DbType:="VarChar(50)")>
         Public Property Num_cuenta() As String
             Get
                 Return Me._Num_cuenta
@@ -2165,7 +2170,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nom_banco", Storage:="_Nom_banco", DbType:="VarChar(50)")> _
+        <Column(Name:="nom_banco", Storage:="_Nom_banco", DbType:="VarChar(50)")>
         Public Property Nom_banco() As String
             Get
                 Return Me._Nom_banco
@@ -2181,7 +2186,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="monto_mensual", Storage:="_Monto_mensual", DbType:="Money")> _
+        <Column(Name:="monto_mensual", Storage:="_Monto_mensual", DbType:="Money")>
         Public Property Monto_mensual() As Decimal
             Get
                 Return Me._Monto_mensual
@@ -2197,7 +2202,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="total_operaciones", Storage:="_Total_operaciones", DbType:="Decimal(12,3)")> _
+        <Column(Name:="total_operaciones", Storage:="_Total_operaciones", DbType:="Decimal(12,3)")>
         Public Property Total_operaciones() As Decimal
             Get
                 Return Me._Total_operaciones
@@ -2213,7 +2218,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="actua_por", Storage:="_Actua_por", DbType:="VarChar(50)")> _
+        <Column(Name:="actua_por", Storage:="_Actua_por", DbType:="VarChar(50)")>
         Public Property Actua_por() As String
             Get
                 Return Me._Actua_por
@@ -2229,7 +2234,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nombre_tercero", Storage:="_Nombre_tercero", DbType:="VarChar(100)")> _
+        <Column(Name:="nombre_tercero", Storage:="_Nombre_tercero", DbType:="VarChar(100)")>
         Public Property Nombre_tercero() As String
             Get
                 Return Me._Nombre_tercero
@@ -2245,7 +2250,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="direccion_tercero", Storage:="_Direccion_tercero", DbType:="Text", UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="direccion_tercero", Storage:="_Direccion_tercero", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>
         Public Property Direccion_tercero() As String
             Get
                 Return Me._Direccion_tercero
@@ -2261,7 +2266,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="pica", Storage:="_Pica", DbType:="Int")> _
+        <Column(Name:="pica", Storage:="_Pica", DbType:="Int")>
         Public Property Pica() As Integer
             Get
                 Return Me._Pica
@@ -2296,7 +2301,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.ClientePica")> _
+    <Table(Name:="dbo.ClientePica")>
     Partial Public Class ClientePica
 
         Private _Codcliente As String
@@ -2367,7 +2372,7 @@ Namespace Database
             MyBase.New()
         End Sub
 
-        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Codcliente() As String
             Get
                 Return Me._Codcliente
@@ -2379,7 +2384,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nombres", Storage:="_Nombres", DbType:="VarChar(35) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="nombres", Storage:="_Nombres", DbType:="VarChar(35) NOT NULL", CanBeNull:=False)>
         Public Property Nombres() As String
             Get
                 Return Me._Nombres
@@ -2391,7 +2396,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="apellidos", Storage:="_Apellidos", DbType:="VarChar(50)")> _
+        <Column(Name:="apellidos", Storage:="_Apellidos", DbType:="VarChar(50)")>
         Public Property Apellidos() As String
             Get
                 Return Me._Apellidos
@@ -2403,7 +2408,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="numcedula", Storage:="_Numcedula", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="numcedula", Storage:="_Numcedula", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Numcedula() As String
             Get
                 Return Me._Numcedula
@@ -2415,7 +2420,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_emision", Storage:="_F_emision", DbType:="Date")> _
+        <Column(Name:="f_emision", Storage:="_F_emision", DbType:="Date")>
         Public Property F_emision() As Date
             Get
                 Return Me._F_emision
@@ -2427,7 +2432,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_vencimiento", Storage:="_F_vencimiento", DbType:="Date")> _
+        <Column(Name:="f_vencimiento", Storage:="_F_vencimiento", DbType:="Date")>
         Public Property F_vencimiento() As Date
             Get
                 Return Me._F_vencimiento
@@ -2439,7 +2444,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="direccion", Storage:="_Direccion", DbType:="Text NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="direccion", Storage:="_Direccion", DbType:="Text NOT NULL", CanBeNull:=False, UpdateCheck:=UpdateCheck.Never)>
         Public Property Direccion() As String
             Get
                 Return Me._Direccion
@@ -2451,7 +2456,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_nacimiento", Storage:="_F_nacimiento", DbType:="Date")> _
+        <Column(Name:="f_nacimiento", Storage:="_F_nacimiento", DbType:="Date")>
         Public Property F_nacimiento() As Date
             Get
                 Return Me._F_nacimiento
@@ -2463,7 +2468,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="estadocivil", Storage:="_Estadocivil", DbType:="VarChar(20)")> _
+        <Column(Name:="estadocivil", Storage:="_Estadocivil", DbType:="VarChar(20)")>
         Public Property Estadocivil() As String
             Get
                 Return Me._Estadocivil
@@ -2475,7 +2480,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="ciudad", Storage:="_Ciudad", DbType:="VarChar(50)")> _
+        <Column(Name:="ciudad", Storage:="_Ciudad", DbType:="VarChar(50)")>
         Public Property Ciudad() As String
             Get
                 Return Me._Ciudad
@@ -2487,7 +2492,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="telefono", Storage:="_Telefono", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="telefono", Storage:="_Telefono", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Telefono() As String
             Get
                 Return Me._Telefono
@@ -2499,7 +2504,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="celular", Storage:="_Celular", DbType:="VarChar(50)")> _
+        <Column(Name:="celular", Storage:="_Celular", DbType:="VarChar(50)")>
         Public Property Celular() As String
             Get
                 Return Me._Celular
@@ -2511,7 +2516,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="email", Storage:="_Email", DbType:="VarChar(50)")> _
+        <Column(Name:="email", Storage:="_Email", DbType:="VarChar(50)")>
         Public Property Email() As String
             Get
                 Return Me._Email
@@ -2523,7 +2528,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="f_ingreso", Storage:="_F_ingreso", DbType:="Date")> _
+        <Column(Name:="f_ingreso", Storage:="_F_ingreso", DbType:="Date")>
         Public Property F_ingreso() As Date
             Get
                 Return Me._F_ingreso
@@ -2535,7 +2540,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="ocupacion", Storage:="_Ocupacion", DbType:="VarChar(50)")> _
+        <Column(Name:="ocupacion", Storage:="_Ocupacion", DbType:="VarChar(50)")>
         Public Property Ocupacion() As String
             Get
                 Return Me._Ocupacion
@@ -2547,7 +2552,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="direccion_negocio", Storage:="_Direccion_negocio", DbType:="Text", UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="direccion_negocio", Storage:="_Direccion_negocio", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>
         Public Property Direccion_negocio() As String
             Get
                 Return Me._Direccion_negocio
@@ -2559,7 +2564,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="tiempo_neg", Storage:="_Tiempo_neg", DbType:="VarChar(50)")> _
+        <Column(Name:="tiempo_neg", Storage:="_Tiempo_neg", DbType:="VarChar(50)")>
         Public Property Tiempo_neg() As String
             Get
                 Return Me._Tiempo_neg
@@ -2571,7 +2576,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="otra_ae", Storage:="_Otra_ae", DbType:="VarChar(50)")> _
+        <Column(Name:="otra_ae", Storage:="_Otra_ae", DbType:="VarChar(50)")>
         Public Property Otra_ae() As String
             Get
                 Return Me._Otra_ae
@@ -2583,7 +2588,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="desc_otra", Storage:="_Desc_otra", DbType:="Text", UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="desc_otra", Storage:="_Desc_otra", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>
         Public Property Desc_otra() As String
             Get
                 Return Me._Desc_otra
@@ -2595,7 +2600,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nom_cuenta", Storage:="_Nom_cuenta", DbType:="VarChar(50)")> _
+        <Column(Name:="nom_cuenta", Storage:="_Nom_cuenta", DbType:="VarChar(50)")>
         Public Property Nom_cuenta() As String
             Get
                 Return Me._Nom_cuenta
@@ -2607,7 +2612,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="num_cuenta", Storage:="_Num_cuenta", DbType:="VarChar(50)")> _
+        <Column(Name:="num_cuenta", Storage:="_Num_cuenta", DbType:="VarChar(50)")>
         Public Property Num_cuenta() As String
             Get
                 Return Me._Num_cuenta
@@ -2619,7 +2624,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nom_banco", Storage:="_Nom_banco", DbType:="VarChar(50)")> _
+        <Column(Name:="nom_banco", Storage:="_Nom_banco", DbType:="VarChar(50)")>
         Public Property Nom_banco() As String
             Get
                 Return Me._Nom_banco
@@ -2631,7 +2636,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="monto_mensual", Storage:="_Monto_mensual", DbType:="Money")> _
+        <Column(Name:="monto_mensual", Storage:="_Monto_mensual", DbType:="Money")>
         Public Property Monto_mensual() As Decimal
             Get
                 Return Me._Monto_mensual
@@ -2643,7 +2648,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="total_operaciones", Storage:="_Total_operaciones", DbType:="Decimal(12,3)")> _
+        <Column(Name:="total_operaciones", Storage:="_Total_operaciones", DbType:="Decimal(12,3)")>
         Public Property Total_operaciones() As Decimal
             Get
                 Return Me._Total_operaciones
@@ -2655,7 +2660,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="actua_por", Storage:="_Actua_por", DbType:="VarChar(50)")> _
+        <Column(Name:="actua_por", Storage:="_Actua_por", DbType:="VarChar(50)")>
         Public Property Actua_por() As String
             Get
                 Return Me._Actua_por
@@ -2667,7 +2672,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nombre_tercero", Storage:="_Nombre_tercero", DbType:="VarChar(100)")> _
+        <Column(Name:="nombre_tercero", Storage:="_Nombre_tercero", DbType:="VarChar(100)")>
         Public Property Nombre_tercero() As String
             Get
                 Return Me._Nombre_tercero
@@ -2679,7 +2684,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="direccion_tercero", Storage:="_Direccion_tercero", DbType:="Text", UpdateCheck:=UpdateCheck.Never)> _
+        <Column(Name:="direccion_tercero", Storage:="_Direccion_tercero", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>
         Public Property Direccion_tercero() As String
             Get
                 Return Me._Direccion_tercero
@@ -2691,7 +2696,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="pica", Storage:="_Pica", DbType:="Int")> _
+        <Column(Name:="pica", Storage:="_Pica", DbType:="Int")>
         Public Property Pica() As Integer
             Get
                 Return Me._Pica
@@ -2703,7 +2708,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="nombre_entidad", Storage:="_Nombre_entidad", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="nombre_entidad", Storage:="_Nombre_entidad", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Nombre_entidad() As String
             Get
                 Return Me._Nombre_entidad
@@ -2715,7 +2720,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="tipo_relacion", Storage:="_Tipo_relacion", DbType:="VarChar(50)")> _
+        <Column(Name:="tipo_relacion", Storage:="_Tipo_relacion", DbType:="VarChar(50)")>
         Public Property Tipo_relacion() As String
             Get
                 Return Me._Tipo_relacion
@@ -2727,7 +2732,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="tiempo_mantener", Storage:="_Tiempo_mantener", DbType:="VarChar(50)")> _
+        <Column(Name:="tiempo_mantener", Storage:="_Tiempo_mantener", DbType:="VarChar(50)")>
         Public Property Tiempo_mantener() As String
             Get
                 Return Me._Tiempo_mantener
@@ -2739,7 +2744,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="ingreso_mensual", Storage:="_Ingreso_mensual", DbType:="Money")> _
+        <Column(Name:="ingreso_mensual", Storage:="_Ingreso_mensual", DbType:="Money")>
         Public Property Ingreso_mensual() As Decimal
             Get
                 Return Me._Ingreso_mensual
@@ -2752,7 +2757,7 @@ Namespace Database
         End Property
     End Class
 
-    <Table(Name:="dbo.compras")> _
+    <Table(Name:="dbo.compras")>
     Partial Public Class Compras
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -2897,7 +2902,7 @@ Namespace Database
             OnCreated()
         End Sub
 
-        <Column(Name:="codagencia", Storage:="_Codagencia", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codagencia", Storage:="_Codagencia", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
         Public Property Codagencia() As String
             Get
                 Return Me._Codagencia
@@ -2913,7 +2918,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)> _
+        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)>
         Public Property Numcompra() As String
             Get
                 Return Me._Numcompra
@@ -2929,7 +2934,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Codcliente() As String
             Get
                 Return Me._Codcliente
@@ -2945,7 +2950,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
         Public Property Codcaja() As String
             Get
                 Return Me._Codcaja
@@ -2961,7 +2966,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="peso", Storage:="_Peso", DbType:="Decimal(11,2) NOT NULL")> _
+        <Column(Name:="peso", Storage:="_Peso", DbType:="Decimal(11,2) NOT NULL")>
         Public Property Peso() As Decimal
             Get
                 Return Me._Peso
@@ -2978,7 +2983,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codmoneda", Storage:="_Codmoneda", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codmoneda", Storage:="_Codmoneda", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
         Public Property Codmoneda() As String
             Get
                 Return Me._Codmoneda
@@ -2994,7 +2999,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="total", Storage:="_Total", DbType:="Decimal(15,2) NOT NULL")> _
+        <Column(Name:="total", Storage:="_Total", DbType:="Decimal(15,2) NOT NULL")>
         Public Property Total() As Decimal
             Get
                 Return Me._Total
@@ -3011,7 +3016,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")> _
+        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")>
         Public Property Fecha() As Date
             Get
                 Return Me._Fecha
@@ -3028,7 +3033,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codestado", Storage:="_Codestado", DbType:="Int NOT NULL")> _
+        <Column(Name:="codestado", Storage:="_Codestado", DbType:="Int NOT NULL")>
         Public Property Codestado() As Integer
             Get
                 Return Me._Codestado
@@ -3045,7 +3050,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="usuario", Storage:="_Usuario", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="usuario", Storage:="_Usuario", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Usuario() As String
             Get
                 Return Me._Usuario
@@ -3061,7 +3066,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="hora", Storage:="_Hora", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="hora", Storage:="_Hora", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Hora() As String
             Get
                 Return Me._Hora
@@ -3077,7 +3082,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="forma_pago", Storage:="_Forma_pago", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="forma_pago", Storage:="_Forma_pago", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Forma_pago() As String
             Get
                 Return Me._Forma_pago
@@ -3093,7 +3098,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgnumdes", Storage:="_Dgnumdes", DbType:="Int NOT NULL")> _
+        <Column(Name:="dgnumdes", Storage:="_Dgnumdes", DbType:="Int NOT NULL")>
         Public Property Dgnumdes() As Integer
             Get
                 Return Me._Dgnumdes
@@ -3110,7 +3115,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="efectivo", Storage:="_Efectivo", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="efectivo", Storage:="_Efectivo", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Efectivo() As Decimal
             Get
                 Return Me._Efectivo
@@ -3127,7 +3132,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="cheque", Storage:="_Cheque", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="cheque", Storage:="_Cheque", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Cheque() As Decimal
             Get
                 Return Me._Cheque
@@ -3144,7 +3149,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="transferencia", Storage:="_Transferencia", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="transferencia", Storage:="_Transferencia", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Transferencia() As Decimal
             Get
                 Return Me._Transferencia
@@ -3161,7 +3166,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="por_cobrar", Storage:="_Por_cobrar", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="por_cobrar", Storage:="_Por_cobrar", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Por_cobrar() As Decimal
             Get
                 Return Me._Por_cobrar
@@ -3178,7 +3183,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="por_pagar", Storage:="_Por_pagar", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="por_pagar", Storage:="_Por_pagar", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Por_pagar() As Decimal
             Get
                 Return Me._Por_pagar
@@ -3195,7 +3200,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="adelantos", Storage:="_Adelantos", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="adelantos", Storage:="_Adelantos", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Adelantos() As Decimal
             Get
                 Return Me._Adelantos
@@ -3265,7 +3270,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.compras_adelantos")> _
+    <Table(Name:="dbo.compras_adelantos")>
     Partial Public Class Compras_adelantos
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -3368,7 +3373,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)> _
+        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)>
         Public Property Numcompra() As String
             Get
                 Return Me._Numcompra
@@ -3384,7 +3389,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="idadelanto", Storage:="_Idadelanto", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)> _
+        <Column(Name:="idadelanto", Storage:="_Idadelanto", DbType:="VarChar(20) NOT NULL", CanBeNull:=False, IsPrimaryKey:=True)>
         Public Property Idadelanto() As String
             Get
                 Return Me._Idadelanto
@@ -3400,7 +3405,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20)")> _
+        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20)")>
         Public Property Codcliente() As String
             Get
                 Return Me._Codcliente
@@ -3416,7 +3421,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="sinicial", Storage:="_Sinicial", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="sinicial", Storage:="_Sinicial", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Sinicial() As Decimal
             Get
                 Return Me._Sinicial
@@ -3433,7 +3438,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="monto", Storage:="_Monto", DbType:="Decimal(18,3) NOT NULL")> _
+        <Column(Name:="monto", Storage:="_Monto", DbType:="Decimal(18,3) NOT NULL")>
         Public Property Monto() As Decimal
             Get
                 Return Me._Monto
@@ -3450,7 +3455,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="sfinal", Storage:="_Sfinal", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="sfinal", Storage:="_Sfinal", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Sfinal() As Decimal
             Get
                 Return Me._Sfinal
@@ -3467,7 +3472,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")> _
+        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")>
         Public Property Fecha() As Date
             Get
                 Return Me._Fecha
@@ -3484,7 +3489,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
         Public Property Codcaja() As String
             Get
                 Return Me._Codcaja
@@ -3500,7 +3505,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="usuario", Storage:="_Usuario", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="usuario", Storage:="_Usuario", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Usuario() As String
             Get
                 Return Me._Usuario
@@ -3516,7 +3521,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="hora", Storage:="_Hora", DbType:="Time(0) NOT NULL")> _
+        <Column(Name:="hora", Storage:="_Hora", DbType:="Time(0) NOT NULL")>
         Public Property Hora() As System.TimeSpan
             Get
                 Return Me._Hora
@@ -3552,7 +3557,7 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.compras_operador")> _
+    <Table(Name:="dbo.compras_operador")>
     Partial Public Class Compras_operador
 
         Private _Nombre As String
@@ -3583,7 +3588,7 @@ Namespace Database
             MyBase.New()
         End Sub
 
-        <Column(Name:="nombre", Storage:="_Nombre", DbType:="VarChar(100) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="nombre", Storage:="_Nombre", DbType:="VarChar(100) NOT NULL", CanBeNull:=False)>
         Public Property Nombre() As String
             Get
                 Return Me._Nombre
@@ -3595,7 +3600,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Numcompra() As String
             Get
                 Return Me._Numcompra
@@ -3607,7 +3612,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")> _
+        <Column(Name:="fecha", Storage:="_Fecha", DbType:="Date NOT NULL")>
         Public Property Fecha() As Date
             Get
                 Return Me._Fecha
@@ -3620,7 +3625,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="peso_total", Storage:="_Peso_total", DbType:="Decimal(11,2) NOT NULL")> _
+        <Column(Name:="peso_total", Storage:="_Peso_total", DbType:="Decimal(11,2) NOT NULL")>
         Public Property Peso_total() As Decimal
             Get
                 Return Me._Peso_total
@@ -3633,7 +3638,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="total", Storage:="_Total", DbType:="Decimal(15,2) NOT NULL")> _
+        <Column(Name:="total", Storage:="_Total", DbType:="Decimal(15,2) NOT NULL")>
         Public Property Total() As Decimal
             Get
                 Return Me._Total
@@ -3646,7 +3651,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codcaja", Storage:="_Codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
         Public Property Codcaja() As String
             Get
                 Return Me._Codcaja
@@ -3658,7 +3663,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="hora", Storage:="_Hora", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="hora", Storage:="_Hora", DbType:="VarChar(50) NOT NULL", CanBeNull:=False)>
         Public Property Hora() As String
             Get
                 Return Me._Hora
@@ -3670,7 +3675,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="kilate", Storage:="_Kilate", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="kilate", Storage:="_Kilate", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Kilate() As String
             Get
                 Return Me._Kilate
@@ -3682,7 +3687,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="peso", Storage:="_Peso", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="peso", Storage:="_Peso", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Peso() As Decimal
             Get
                 Return Me._Peso
@@ -3695,7 +3700,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="importe", Storage:="_Importe", DbType:="Decimal(18,2)")> _
+        <Column(Name:="importe", Storage:="_Importe", DbType:="Decimal(18,2)")>
         Public Property Importe() As Decimal
             Get
                 Return Me._Importe
@@ -3707,7 +3712,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="preciok", Storage:="_Preciok", DbType:="Decimal(18,2) NOT NULL")> _
+        <Column(Name:="preciok", Storage:="_Preciok", DbType:="Decimal(18,2) NOT NULL")>
         Public Property Preciok() As Decimal
             Get
                 Return Me._Preciok
@@ -3720,7 +3725,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=False)>
         Public Property Codcliente() As String
             Get
                 Return Me._Codcliente
@@ -3733,7 +3738,7 @@ Namespace Database
         End Property
     End Class
 
-    <Table(Name:="dbo.descargues")> _
+    <Table(Name:="dbo.descargues")>
     Partial Public Class Descargues
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
@@ -3813,7 +3818,7 @@ Namespace Database
             OnCreated()
         End Sub
 
-        <Column(Name:="dgcodage", Storage:="_Dgcodage", DbType:="Char(4) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="dgcodage", Storage:="_Dgcodage", DbType:="Char(4) NOT NULL", CanBeNull:=False)>
         Public Property Dgcodage() As String
             Get
                 Return Me._Dgcodage
@@ -3829,7 +3834,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgcodcaj", Storage:="_Dgcodcaj", DbType:="Char(7) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="dgcodcaj", Storage:="_Dgcodcaj", DbType:="Char(7) NOT NULL", CanBeNull:=False)>
         Public Property Dgcodcaj() As String
             Get
                 Return Me._Dgcodcaj
@@ -3845,7 +3850,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgusuari", Storage:="_Dgusuari", DbType:="Char(10) NOT NULL", CanBeNull:=False)> _
+        <Column(Name:="dgusuari", Storage:="_Dgusuari", DbType:="Char(10) NOT NULL", CanBeNull:=False)>
         Public Property Dgusuari() As String
             Get
                 Return Me._Dgusuari
@@ -3861,7 +3866,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgnumdes", Storage:="_Dgnumdes", DbType:="Int NOT NULL", IsPrimaryKey:=True)> _
+        <Column(Name:="dgnumdes", Storage:="_Dgnumdes", DbType:="Int NOT NULL", IsPrimaryKey:=True)>
         Public Property Dgnumdes() As Integer
             Get
                 Return Me._Dgnumdes
@@ -3878,7 +3883,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgcancom", Storage:="_Dgcancom", DbType:="Int NOT NULL")> _
+        <Column(Name:="dgcancom", Storage:="_Dgcancom", DbType:="Int NOT NULL")>
         Public Property Dgcancom() As Integer
             Get
                 Return Me._Dgcancom
@@ -3895,7 +3900,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgpesbrt", Storage:="_Dgpesbrt", DbType:="Decimal(11,2) NOT NULL")> _
+        <Column(Name:="dgpesbrt", Storage:="_Dgpesbrt", DbType:="Decimal(11,2) NOT NULL")>
         Public Property Dgpesbrt() As Decimal
             Get
                 Return Me._Dgpesbrt
@@ -3912,7 +3917,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgpesntt", Storage:="_Dgpesntt", DbType:="Decimal(11,2) NOT NULL")> _
+        <Column(Name:="dgpesntt", Storage:="_Dgpesntt", DbType:="Decimal(11,2) NOT NULL")>
         Public Property Dgpesntt() As Decimal
             Get
                 Return Me._Dgpesntt
@@ -3929,7 +3934,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgimptcom", Storage:="_Dgimptcom", DbType:="Decimal(11,2) NOT NULL")> _
+        <Column(Name:="dgimptcom", Storage:="_Dgimptcom", DbType:="Decimal(11,2) NOT NULL")>
         Public Property Dgimptcom() As Decimal
             Get
                 Return Me._Dgimptcom
@@ -3946,7 +3951,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgfecdes", Storage:="_Dgfecdes", DbType:="Date NOT NULL")> _
+        <Column(Name:="dgfecdes", Storage:="_Dgfecdes", DbType:="Date NOT NULL")>
         Public Property Dgfecdes() As Date
             Get
                 Return Me._Dgfecdes
@@ -3963,7 +3968,7 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="dgfecgen", Storage:="_Dgfecgen", DbType:="Date NOT NULL")> _
+        <Column(Name:="dgfecgen", Storage:="_Dgfecgen", DbType:="Date NOT NULL")>
         Public Property Dgfecgen() As Date
             Get
                 Return Me._Dgfecgen
@@ -4302,9 +4307,162 @@ Namespace Database
             Return (Me.Numcompra.Equals(other.Numcompra))
         End Function
     End Class
+    <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tmpprecio")>
+    Partial Public Class TmpPrecios
+        Implements IEquatable(Of TmpPrecios)
+        Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+        Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+
+        '[codcierre] [int] NOT NULL,
+        Private _codcierre As Integer
+        '[linea] [tinyint] NOT NULL,
+        Private _linea As Integer
+        '[codcliente] [varchar(20)] NOT NULL,
+        Private _codcliente As String
+        '[cantidad] [decimal](12, 2) NOT NULL,
+        Private _cantidad As Decimal
+        '[fecha] [date] NOT NULL,
+        Private _fecha As DateTime
+#Region "Definiciones de métodos de extensibilidad"
+        Partial Private Sub OnLoaded()
+        End Sub
+        Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+        End Sub
+        Partial Private Sub OnCreated()
+        End Sub
+        Partial Private Sub OnCodcierreChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnCodcierreChanged()
+        End Sub
+        Partial Private Sub OnLineaChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnLineaChanged()
+        End Sub
+        Partial Private Sub OnCodclienteChanging(value As String)
+        End Sub
+        Partial Private Sub OnCodclienteChanged()
+        End Sub
+        Partial Private Sub OnCantidadChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnCantidadChanged()
+        End Sub
+        Partial Private Sub OnFechaChanging(value As Date)
+        End Sub
+        Partial Private Sub OnFechaChanged()
+        End Sub
+#End Region
+
+        Public Sub New()
+            MyBase.New()
+            OnCreated()
+        End Sub
+
+        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int NOT NULL", IsPrimaryKey:=True)>
+        Public Property Codcierre() As Integer
+            Get
+                Return Me._codcierre
+            End Get
+            Set(value As Integer)
+                If ((Me._codcierre = value) = False) Then
+                    Me.OnCodcierreChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codcierre = value
+                    Me.SendPropertyChanged("Codcierre")
+                    Me.OnCodcierreChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="linea", Storage:="_linea", DbType:="tinyint NOT NULL", IsPrimaryKey:=True)>
+        Public Property Linea() As Integer
+            Get
+                Return Me._linea
+            End Get
+            Set(value As Integer)
+                If ((Me._linea = value) = False) Then
+                    Me.OnLineaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._linea = value
+                    Me.SendPropertyChanged("Linea")
+                    Me.OnLineaChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="codcliente", Storage:="_codcliente", DbType:="varchar(20) NOT NULL")>
+        Public Property Codcliente() As String
+            Get
+                Return Me._codcliente
+            End Get
+            Set(value As String)
+                If (String.Equals(_codcliente, value) = False) Then
+                    Me.OnCodclienteChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codcliente = value
+                    Me.SendPropertyChanged("Codcliente")
+                    Me.OnCodclienteChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="cantidad", Storage:="_cantidad", DbType:="decimal(12,3) NOT NULL")>
+        Public Property Cantidad() As Decimal
+            Get
+                Return Me._cantidad
+            End Get
+            Set(value As Decimal)
+                If (Decimal.Equals(_cantidad, value) = False) Then
+                    Me.OnCantidadChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._cantidad = value
+                    Me.SendPropertyChanged("Cantidad")
+                    Me.OnCantidadChanged()
+                End If
+            End Set
+        End Property
+
+        <Column(Name:="fecha", Storage:="_fecha", DbType:="datetime NOT NULL")>
+        Public Property Fecha() As DateTime
+            Get
+                Return Me._fecha
+            End Get
+            Set(value As DateTime)
+                If (DateTime.Equals(_fecha, value) = False) Then
+                    Me.OnFechaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._fecha = value
+                    Me.SendPropertyChanged("Fecha")
+                    Me.OnFechaChanged()
+                End If
+            End Set
+        End Property
+
+        Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+        Protected Overridable Sub SendPropertyChanging()
+            If ((Me.PropertyChangingEvent Is Nothing) _
+                        = False) Then
+                RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+            End If
+        End Sub
+
+        Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+            If ((Me.PropertyChangedEvent Is Nothing) _
+                        = False) Then
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+
+        Public Overloads Function Equals(other As TmpPrecios) As Boolean Implements IEquatable(Of TmpPrecios).Equals
+            If other Is Nothing Then
+                Return False
+            End If
+            Return (Me.Codcierre.Equals(other.Codcierre))
+        End Function
+    End Class
+
     <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detacierre")>
-    Partial Public Class DetaCierre
-        Implements IEquatable(Of DetaCierre)
+    Partial Public Class Detacierre
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
         Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
@@ -4440,7 +4598,7 @@ Namespace Database
                 Return Me._fecha
             End Get
             Set(value As DateTime)
-                If (DateTime.Equals(_saldo, value) = False) Then
+                If (DateTime.Equals(_fecha, value) = False) Then
                     Me.OnFechaChanging(value)
                     Me.SendPropertyChanging()
                     Me._fecha = value
@@ -4467,14 +4625,8 @@ Namespace Database
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
             End If
         End Sub
-        Public Overloads Function Equals(other As DetaCierre) As Boolean _
-        Implements IEquatable(Of DetaCierre).Equals
-            If other Is Nothing Then
-                Return False
-            End If
-            Return (Me.Numcompra.Equals(other.Numcompra))
-        End Function
     End Class
+
     <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detacaja")> _
     Partial Public Class Detacaja
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged

@@ -210,8 +210,12 @@ Public Class frmPrecios2
                         Try
                             Dim findOnzas = _onzasDiferencias.Item(dato.CodCierre)
                             If findOnzas > 0 Then
+                                Dim temporal_onzas As Decimal = findOnzas
+                                temporal_onzas = redondearMenos(findOnzas, 0.005)
+                                Dim temporal_onzas_ingresar As Decimal = redondearMenos(onzas_ingresar, 0.005)
+                                Dim difrencias_temporales As Decimal = Decimal.Subtract(temporal_onzas, temporal_onzas_ingresar)
                                 onzas_diferencia = Decimal.Subtract(findOnzas, onzas_ingresar)
-                                If onzas_diferencia < Decimal.Zero Then
+                                If difrencias_temporales < Decimal.Zero Then
                                     _onzasDiferencias.Item(dato.CodCierre) = Decimal.Zero
                                     Dim calculo As Decimal = dato.PrecioBase * findOnzas
                                     'calculo = ServiciosBasicos.redondearMenos(calculo)
@@ -485,20 +489,28 @@ Public Class frmPrecios2
                     datos.Gramos = Convert.ToDecimal(row.Cells("colGramos").Value)
                     guardarDatos.Add(datos)
                 Next
+                Dim tmpPrecios As New List(Of TmpPrecios)
                 If _onzasDiferencias.Count > 0 Then
                     If _listaCierresUsar.Count > 0 Then
                         _listaCierresUsar.Clear()
                     End If
+                    linea = 0
                     For Each dato In _onzasDiferencias
                         Dim cierre As New CierrePrecios
+                        Dim tmp_precios As New TmpPrecios
+                        tmp_precios.Codcierre = dato.Key
+                        tmp_precios.Cantidad = dato.Value
+                        tmp_precios.Codcliente = txtCodigo.Text
+                        tmp_precios.Fecha = Now
+                        tmp_precios.Linea = linea + 1
                         cierre.CodCierre = dato.Key
                         cierre.SaldoOnzas = dato.Value
                         cierre.Codcliente = txtCodigo.Text
-                        'Dim find = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.Key Select cp).Single
-                        'find.SaldoOnzas = dato.Value
+                        tmpPrecios.Add(tmp_precios)
                         _listaCierresUsar.Add(cierre)
                     Next
                 End If
+                ctx.TmpPrecios.InsertAllOnSubmit(tmpPrecios)
                 ctx.Precios.InsertAllOnSubmit(guardarDatos)
                 ctx.SubmitChanges()
                 guardo = True

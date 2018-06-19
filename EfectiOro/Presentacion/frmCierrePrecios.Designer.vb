@@ -21,12 +21,12 @@ Partial Class frmCierrePrecios
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCierrePrecios))
         Me.grpCliente = New System.Windows.Forms.GroupBox()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
@@ -47,6 +47,7 @@ Partial Class frmCierrePrecios
         Me.txtOnzas = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.grpButtons = New System.Windows.Forms.GroupBox()
+        Me.btnCerrarPrecio = New Infragistics.Win.Misc.UltraButton()
         Me.btnCancelar = New Infragistics.Win.Misc.UltraButton()
         Me.btnEliminar = New Infragistics.Win.Misc.UltraButton()
         Me.btnEditar = New Infragistics.Win.Misc.UltraButton()
@@ -62,7 +63,6 @@ Partial Class frmCierrePrecios
         Me.colPrecioBase = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tip = New System.Windows.Forms.ToolTip(Me.components)
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.btnCerrarPrecio = New Infragistics.Win.Misc.UltraButton()
         Me.grpCliente.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDatos.SuspendLayout()
@@ -275,6 +275,20 @@ Partial Class frmCierrePrecios
         Me.grpButtons.TabIndex = 4
         Me.grpButtons.TabStop = False
         '
+        'btnCerrarPrecio
+        '
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.cerrar_precio
+        Me.btnCerrarPrecio.Appearance = Appearance2
+        Me.btnCerrarPrecio.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.btnCerrarPrecio.Enabled = False
+        Me.btnCerrarPrecio.ImageSize = New System.Drawing.Size(38, 38)
+        Me.btnCerrarPrecio.Location = New System.Drawing.Point(345, 19)
+        Me.btnCerrarPrecio.Name = "btnCerrarPrecio"
+        Me.btnCerrarPrecio.Size = New System.Drawing.Size(50, 50)
+        Me.btnCerrarPrecio.TabIndex = 5
+        Me.tip.SetToolTip(Me.btnCerrarPrecio, "Cerrar precio seleccionado")
+        Me.btnCerrarPrecio.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
         'btnCancelar
         '
         Appearance3.Image = Global.EfectiOro.My.Resources.Resources.cancel02
@@ -416,20 +430,6 @@ Partial Class frmCierrePrecios
         '
         Me.erp.ContainerControl = Me
         Me.erp.Icon = CType(resources.GetObject("erp.Icon"), System.Drawing.Icon)
-        '
-        'btnCerrarPrecio
-        '
-        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.cerrar_precio
-        Me.btnCerrarPrecio.Appearance = Appearance2
-        Me.btnCerrarPrecio.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Me.btnCerrarPrecio.Enabled = False
-        Me.btnCerrarPrecio.ImageSize = New System.Drawing.Size(38, 38)
-        Me.btnCerrarPrecio.Location = New System.Drawing.Point(345, 19)
-        Me.btnCerrarPrecio.Name = "btnCerrarPrecio"
-        Me.btnCerrarPrecio.Size = New System.Drawing.Size(50, 50)
-        Me.btnCerrarPrecio.TabIndex = 5
-        Me.tip.SetToolTip(Me.btnCerrarPrecio, Title)
-        Me.btnCerrarPrecio.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
         'frmCierrePrecios
         '

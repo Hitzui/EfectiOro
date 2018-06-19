@@ -16,6 +16,7 @@
         Me.PreciosKilateToolStripMenuItem.Enabled = precios
         Me.btnPrecios.Visible = precios
         Me.AdelantosAClientesToolStripMenuItem.Enabled = adelanto
+        toolPreciosCierres.Enabled = compra
         frmAdelantos.chekEfectivo.Enabled = adelantoEfectivo
         frmAdelantos.chekCheque.Enabled = adelantoOtros
         frmAdelantos.chekTransferencia.Enabled = adelantoOtros
@@ -243,5 +244,9 @@
 
     Private Sub CierrePreciosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CierrePreciosToolStripMenuItem.Click
         ServiciosBasicos.agregarAlPanel(frmReportesCierreOpciones, Me.panelCentral)
+    End Sub
+
+    Private Sub toolPreciosCierres_Click(sender As Object, e As EventArgs) Handles toolPreciosCierres.Click
+        agregarAlPanel(frmPrecios2, panelCentral)
     End Sub
 End Class
