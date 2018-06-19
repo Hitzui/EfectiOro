@@ -64,6 +64,15 @@ Partial Class frmPrecios2
         Me.colPrecioBase = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colMargen = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.lblOnzasDisponibles = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.lblOnzasIn = New System.Windows.Forms.ToolStripLabel()
+        Me.lblOnzasIngresar = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
+        Me.lblOnzasDiferencia = New System.Windows.Forms.ToolStripLabel()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -72,6 +81,7 @@ Partial Class frmPrecios2
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.dgvCierrePrecios, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
@@ -436,10 +446,67 @@ Partial Class frmPrecios2
         '
         Me.toolTip.ToolTipTitle = "EfectiOro"
         '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.lblOnzasDisponibles, Me.ToolStripSeparator1, Me.lblOnzasIn, Me.lblOnzasIngresar, Me.ToolStripSeparator2, Me.ToolStripLabel2, Me.lblOnzasDiferencia})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 437)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(980, 25)
+        Me.ToolStrip1.TabIndex = 6
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(106, 22)
+        Me.ToolStripLabel1.Text = "Onzas Disponibles:"
+        '
+        'lblOnzasDisponibles
+        '
+        Me.lblOnzasDisponibles.Name = "lblOnzasDisponibles"
+        Me.lblOnzasDisponibles.Size = New System.Drawing.Size(28, 22)
+        Me.lblOnzasDisponibles.Text = "0.00"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'lblOnzasIn
+        '
+        Me.lblOnzasIn.Name = "lblOnzasIn"
+        Me.lblOnzasIn.Size = New System.Drawing.Size(101, 22)
+        Me.lblOnzasIn.Text = "Onzas ingresadas:"
+        '
+        'lblOnzasIngresar
+        '
+        Me.lblOnzasIngresar.Name = "lblOnzasIngresar"
+        Me.lblOnzasIngresar.Size = New System.Drawing.Size(28, 22)
+        Me.lblOnzasIngresar.Text = "0.00"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripLabel2
+        '
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(98, 22)
+        Me.ToolStripLabel2.Text = "Diferencia Onzas:"
+        '
+        'lblOnzasDiferencia
+        '
+        Me.lblOnzasDiferencia.Name = "lblOnzasDiferencia"
+        Me.lblOnzasDiferencia.Size = New System.Drawing.Size(28, 22)
+        Me.lblOnzasDiferencia.Text = "0.00"
+        '
         'frmPrecios2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(980, 440)
+        Me.ClientSize = New System.Drawing.Size(980, 462)
+        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.dgvCliente)
         Me.Controls.Add(Me.GroupBox2)
@@ -452,6 +519,7 @@ Partial Class frmPrecios2
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.dgvCliente, 0)
         Me.Controls.SetChildIndex(Me.GroupBox4, 0)
+        Me.Controls.SetChildIndex(Me.ToolStrip1, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).EndInit()
@@ -462,7 +530,10 @@ Partial Class frmPrecios2
         CType(Me.erp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.dgvCierrePrecios, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
@@ -502,4 +573,13 @@ Partial Class frmPrecios2
     Friend WithEvents colPrecioBase As DataGridViewTextBoxColumn
     Friend WithEvents colMargen As DataGridViewTextBoxColumn
     Friend WithEvents toolTip As ToolTip
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents lblOnzasDisponibles As ToolStripLabel
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents lblOnzasIn As ToolStripLabel
+    Friend WithEvents lblOnzasIngresar As ToolStripLabel
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents ToolStripLabel2 As ToolStripLabel
+    Friend WithEvents lblOnzasDiferencia As ToolStripLabel
 End Class

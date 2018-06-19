@@ -4,6 +4,18 @@ Public Class frmPrecios2
     Private _codcliente As String
     Private _nombreCliente As String
     ''' <summary>
+    ''' La diferencia de onzas, al ingresar al grid, de forma informativa, no se guarda el valor
+    ''' </summary>
+    Private dif_onzas As Decimal = Decimal.Zero
+    ''' <summary>
+    ''' Vemos cuantas onzas disponibles tiene, para mostrar al usuarios
+    ''' </summary>
+    Dim onzasDisponibles As Decimal = Decimal.Zero
+    ''' <summary>
+    ''' Esto para mostrar las onzas que se estan ingresando, en el tooltip, de forma informativa, no se usa para guardar
+    ''' </summary>
+    Private onzas_acumuladas As Decimal = Decimal.Zero
+    ''' <summary>
     ''' Esta variable es para saber si guardo algun dato
     ''' </summary>
     Private guardo As Boolean
@@ -11,6 +23,9 @@ Public Class frmPrecios2
     ''' Linea que indica en que posicion se encuetra el precio
     ''' </summary>
     Private linea As Integer = 1
+    ''' <summary>
+    ''' Esto es para el calculo del precio cuando se usa mas de un cierre, una multiplicacion de matriz 1 x 1
+    ''' </summary>
     Private calculoPrecioBaseMatriz As List(Of Decimal)
     ''' <summary>
     ''' Precio bases de los cierres usados para las onzas a ingresar
@@ -35,9 +50,11 @@ Public Class frmPrecios2
     ''' <remarks></remarks>
     Public Shared _listaCierresUsar As List(Of CierrePrecios)
     ''' <summary>
-    ''' Esto para cuando las onzas a ingresar son mayores a las disponibles, entonces se can
+    ''' Esto para cuando las onzas a ingresar son mayores a las disponibles, entonces se cancela el ingreso y se regresan las onzas usadas a su respectivo cierre
     ''' </summary>
     Private onzasUsadas As Dictionary(Of Integer, Decimal)
+
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -104,6 +121,8 @@ Public Class frmPrecios2
             Try
                 dgvCierrePrecios.Rows.Clear()
                 listaCierreClientes = (From cp In ctx.CierrePrecios Where cp.Codcliente = _codcliente And cp.Status = True And cp.SaldoOnzas > 0 Select cp).ToList
+                onzasDisponibles = listaCierreClientes.Sum(Function(c) c.SaldoOnzas)
+                lblOnzasDisponibles.Text = onzasDisponibles
                 For Each valor In listaCierreClientes
                     dgvCierrePrecios.Rows.Add(True, valor.CodCierre, valor.SaldoOnzas, valor.PrecioOro, valor.PrecioBase, valor.Margen)
                 Next
@@ -202,7 +221,12 @@ Public Class frmPrecios2
             Dim temp_onzas As Decimal = onzas_ingresar
             'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
             If listaCierreClientes.Count > 0 Then
-                Dim onzasDisponibles As Decimal = listaCierreClientes.Sum(Function(p) p.SaldoOnzas)
+                onzas_acumuladas = Decimal.Add(onzas_acumuladas, onzas_ingresar)
+                onzas_acumuladas = redondearMenos(onzas_acumuladas, 0.0005)
+                lblOnzasIngresar.Text = Decimal.Round(onzas_acumuladas, 3)
+                dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
+                dif_onzas = redondearMenos(dif_onzas, 0.0005)
+                lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
                 calculoPrecioBaseMatriz.Clear()
                 onzasUsadas.Clear()
                 For Each dato As CierrePrecios In listaCierreClientes
@@ -456,6 +480,11 @@ Public Class frmPrecios2
         calculoPrecioBaseMatriz.Clear()
         dgvPrecios.Rows.Clear()
         dgvCierrePrecios.Rows.Clear()
+        lblOnzasDiferencia.Text = "0.00"
+        lblOnzasDisponibles.Text = "0.00"
+        lblOnzasIngresar.Text = "0.00"
+        onzas_acumuladas = Decimal.Zero
+        onzasDisponibles = Decimal.Zero
         enableGrupos(False)
         enableButtons(True, False, False)
         clearText()
@@ -549,11 +578,19 @@ Public Class frmPrecios2
                 Dim codigo As Integer = Convert.ToInt32(row.Cells("colCodcierre").Value)
                 Dim cierre_precio As CierrePrecios = dao.findCierrePrecio(codigo)
                 If Convert.ToBoolean(cellSeleccion.Value) = True Then
+                    onzasDisponibles = Decimal.Add(onzasDisponibles, cierre_precio.SaldoOnzas)
+                    dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
+                    dif_onzas = redondearMenos(dif_onzas, 0.0005)
                     listaCierreClientes.Add(cierre_precio)
                 Else
                     Dim find = listaCierreClientes.Find(Function(d) d.CodCierre = cierre_precio.CodCierre)
+                    onzasDisponibles = Decimal.Subtract(onzasDisponibles, cierre_precio.SaldoOnzas)
+                    dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
+                    dif_onzas = redondearMenos(dif_onzas, 0.0005)
                     listaCierreClientes.Remove(find)
                 End If
+                lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
+                lblOnzasDisponibles.Text = Decimal.Round(onzasDisponibles, 3)
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Warning")
