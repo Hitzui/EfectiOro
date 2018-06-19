@@ -339,12 +339,12 @@ Public Class DaoCompras
                             Dim detacierre As New Detacierre
                             Dim xsaldo As Decimal = Decimal.Subtract(cierre.SaldoOnzas, dato.Cantidad)
                             detacierre.Codcierre = dato.Codcierre
-                            detacierre.Cantidad = dato.Cantidad
+                            detacierre.Cantidad = xsaldo
                             detacierre.Onzas = cierre.SaldoOnzas
-                            detacierre.Saldo = xsaldo
+                            detacierre.Saldo = dato.Cantidad
                             detacierre.Fecha = Now
                             detacierre.Numcompra = compra.Numcompra
-                            cierre.SaldoOnzas = xsaldo
+                            cierre.SaldoOnzas = dato.Cantidad
                             If dato.Cantidad = Decimal.Zero Then
                                 cierre.Status = False
                             End If

@@ -211,8 +211,11 @@ Public Class frmPrecios2
                             Dim findOnzas = _onzasDiferencias.Item(dato.CodCierre)
                             If findOnzas > 0 Then
                                 Dim temporal_onzas As Decimal = findOnzas
+                                'esta variable es para almecenar las onzas encontradas para luego comparar
                                 temporal_onzas = redondearMenos(findOnzas, 0.005)
                                 Dim temporal_onzas_ingresar As Decimal = redondearMenos(onzas_ingresar, 0.005)
+                                'restamos las variables temporales con 4 decimales
+                                'con un redondeo hacia abajo
                                 Dim difrencias_temporales As Decimal = Decimal.Subtract(temporal_onzas, temporal_onzas_ingresar)
                                 onzas_diferencia = Decimal.Subtract(findOnzas, onzas_ingresar)
                                 If difrencias_temporales < Decimal.Zero Then
@@ -227,7 +230,7 @@ Public Class frmPrecios2
                                     onzasUsadas.Add(dato.CodCierre, findOnzas)
                                     listaCierresUsadosPrecios.Add(dato)
                                 Else
-                                    _onzasDiferencias.Item(dato.CodCierre) = Decimal.Round(onzas_diferencia, 4)
+                                    _onzasDiferencias.Item(dato.CodCierre) = Decimal.Round(onzas_diferencia, 3) 'Decimal.Round(onzas_diferencia, 4)
                                     Dim pb As Decimal = _preciosBaseCierres.Item(dato.CodCierre)
                                     'pb = ServiciosBasicos.redondearMenos(pb)
                                     Dim precio As Decimal = pb * quilate
@@ -243,8 +246,15 @@ Public Class frmPrecios2
                                 End If
                             End If
                         Catch ex As Exception
+                            Dim temporal_onzas As Decimal = dato.SaldoOnzas
+                            'esta variable es para almecenar las onzas encontradas para luego comparar
+                            temporal_onzas = redondearMenos(dato.SaldoOnzas, 0.005)
+                            Dim temporal_onzas_ingresar As Decimal = redondearMenos(onzas_ingresar, 0.005)
+                            'restamos las variables temporales con 4 decimales
+                            'con un redondeo hacia abajo
+                            Dim difrencias_temporales As Decimal = Decimal.Subtract(dato.SaldoOnzas, temporal_onzas_ingresar)
                             onzas_diferencia = Decimal.Subtract(dato.SaldoOnzas, onzas_ingresar)
-                            If onzas_diferencia < Decimal.Zero Then
+                            If difrencias_temporales < Decimal.Zero Then
                                 _onzasDiferencias.Add(dato.CodCierre, Decimal.Zero)
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
                                 Dim calculo As Decimal = dato.PrecioBase * dato.SaldoOnzas
@@ -267,11 +277,13 @@ Public Class frmPrecios2
                                     precio = tempPrecioBase * quilate
                                 Else
                                     precio = dato.PrecioBase * quilate
+                                    precio = redondearMenos(precio, 0.005)
                                 End If
                                 'precio = ServiciosBasicos.redondearMenos(precio)
-                                _onzasDiferencias.Add(dato.CodCierre, onzas_diferencia)
+                                _onzasDiferencias.Add(dato.CodCierre, Decimal.Round(onzas_diferencia, 3))
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
-                                dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos)
+                                precio = Decimal.Round(precio, 2)
+                                dgvPrecios.Rows.Add(linea, quilate, precio, gramos)
                                 onzasUsadas.Add(dato.CodCierre, onzas_ingresar)
                                 'onzas usadas para el precio
                                 dato.SaldoOnzas = onzas_ingresar
@@ -494,7 +506,7 @@ Public Class frmPrecios2
                     If _listaCierresUsar.Count > 0 Then
                         _listaCierresUsar.Clear()
                     End If
-                    linea = 0
+                    linea = 1
                     For Each dato In _onzasDiferencias
                         Dim cierre As New CierrePrecios
                         Dim tmp_precios As New TmpPrecios
@@ -502,12 +514,13 @@ Public Class frmPrecios2
                         tmp_precios.Cantidad = dato.Value
                         tmp_precios.Codcliente = txtCodigo.Text
                         tmp_precios.Fecha = Now
-                        tmp_precios.Linea = linea + 1
+                        tmp_precios.Linea = linea
                         cierre.CodCierre = dato.Key
                         cierre.SaldoOnzas = dato.Value
                         cierre.Codcliente = txtCodigo.Text
                         tmpPrecios.Add(tmp_precios)
                         _listaCierresUsar.Add(cierre)
+                        linea += 1
                     Next
                 End If
                 ctx.TmpPrecios.InsertAllOnSubmit(tmpPrecios)
