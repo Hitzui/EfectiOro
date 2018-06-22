@@ -32,6 +32,8 @@ Partial Class frmReportesCierreOpciones
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtFiltro = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.cmbTodos = New System.Windows.Forms.ComboBox()
+        Me.radGeneral = New System.Windows.Forms.RadioButton()
         Me.cmbSaldos = New System.Windows.Forms.ComboBox()
         Me.radSaldos = New System.Windows.Forms.RadioButton()
         Me.btnBuscar = New Infragistics.Win.Misc.UltraButton()
@@ -141,6 +143,8 @@ Partial Class frmReportesCierreOpciones
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.cmbTodos)
+        Me.GroupBox3.Controls.Add(Me.radGeneral)
         Me.GroupBox3.Controls.Add(Me.cmbSaldos)
         Me.GroupBox3.Controls.Add(Me.radSaldos)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 138)
@@ -149,6 +153,28 @@ Partial Class frmReportesCierreOpciones
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Opciones"
+        '
+        'cmbTodos
+        '
+        Me.cmbTodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTodos.FormattingEnabled = True
+        Me.cmbTodos.Items.AddRange(New Object() {"Por Cliente", "Todos los clientes"})
+        Me.cmbTodos.Location = New System.Drawing.Point(101, 55)
+        Me.cmbTodos.Name = "cmbTodos"
+        Me.cmbTodos.Size = New System.Drawing.Size(164, 21)
+        Me.cmbTodos.TabIndex = 3
+        Me.cmbTodos.Visible = False
+        '
+        'radGeneral
+        '
+        Me.radGeneral.AutoSize = True
+        Me.radGeneral.Location = New System.Drawing.Point(6, 56)
+        Me.radGeneral.Name = "radGeneral"
+        Me.radGeneral.Size = New System.Drawing.Size(89, 17)
+        Me.radGeneral.TabIndex = 2
+        Me.radGeneral.TabStop = True
+        Me.radGeneral.Text = "Todos cierres"
+        Me.radGeneral.UseVisualStyleBackColor = True
         '
         'cmbSaldos
         '
@@ -164,7 +190,7 @@ Partial Class frmReportesCierreOpciones
         'radSaldos
         '
         Me.radSaldos.AutoSize = True
-        Me.radSaldos.Location = New System.Drawing.Point(15, 28)
+        Me.radSaldos.Location = New System.Drawing.Point(6, 29)
         Me.radSaldos.Name = "radSaldos"
         Me.radSaldos.Size = New System.Drawing.Size(79, 17)
         Me.radSaldos.TabIndex = 0
@@ -257,4 +283,6 @@ Partial Class frmReportesCierreOpciones
     Friend WithEvents btnVolver As Infragistics.Win.Misc.UltraButton
     Friend WithEvents cmbSaldos As ComboBox
     Friend WithEvents UltraButton1 As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents cmbTodos As ComboBox
+    Friend WithEvents radGeneral As RadioButton
 End Class

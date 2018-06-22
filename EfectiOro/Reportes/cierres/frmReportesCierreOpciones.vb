@@ -38,6 +38,7 @@ Public Class frmReportesCierreOpciones
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Using ctx As New Contexto
             If radSaldos.Checked = True Then
+                'Reporte con saldos
                 Select Case cmbSaldos.SelectedIndex
                     Case 0
                         'general por cliente
@@ -47,7 +48,8 @@ Public Class frmReportesCierreOpciones
                         Dim row As DataGridViewRow = dgvCliente.CurrentRow
                         Dim codcliente As String = row.Cells(0).Value
                         Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
-                                                                      Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                      Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date _
+                                                                      And cp.Fecha.Date <= txtHasta.Value.Date And cp.Status = True
                                                                       Select cp).ToList
                         If listaCierres.Count <= 0 Then
                             MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
@@ -60,6 +62,19 @@ Public Class frmReportesCierreOpciones
                         ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
                     Case 1
                         'general todos
+                        Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
+                                                                      Where cp.Fecha.Date >= txtDesde.Value.Date _
+                                                                      And cp.Fecha.Date <= txtHasta.Value.Date And cp.Status = True
+                                                                      Select cp).ToList
+                        If listaCierres.Count <= 0 Then
+                            MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
+                            Return
+                        End If
+                        Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Select cli).ToList
+                        Dim report As New rptCierreTodos
+                        report.Database.Tables(0).SetDataSource(listaCierres)
+                        report.Database.Tables(1).SetDataSource(listaCliente)
+                        ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
                     Case 2
                         'detallado por cliente
                         Try
@@ -69,7 +84,8 @@ Public Class frmReportesCierreOpciones
                             Dim row As DataGridViewRow = dgvCliente.CurrentRow
                             Dim codcliente As String = row.Cells(0).Value
                             Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
-                                                                          Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                          Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date _
+                                                                              And cp.Fecha.Date <= txtHasta.Value.Date And cp.Status = True
                                                                           Select cp).ToList
                             If listaCierres.Count <= 0 Then
                                 MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
@@ -89,6 +105,50 @@ Public Class frmReportesCierreOpciones
                         Catch ex As Exception
                             MsgBox("Error al crear el reporte, revise la siguiente información: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
                         End Try
+
+                    Case Else
+                        Exit Select
+                End Select
+            End If
+            If radGeneral.Checked Then
+                'reporte con y sin saldos, todos
+                Select Case cmbTodos.SelectedIndex
+                    Case 0
+                        'general por cliente
+                        If validarSelecionCliente() = False Then
+                            Return
+                        End If
+                        Dim row As DataGridViewRow = dgvCliente.CurrentRow
+                        Dim codcliente As String = row.Cells(0).Value
+                        Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
+                                                                      Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date _
+                                                                      And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                      Select cp).ToList
+                        If listaCierres.Count <= 0 Then
+                            MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
+                            Return
+                        End If
+                        Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Where cli.Codcliente = codcliente Select cli).ToList
+                        Dim report As New rptCierreClienteGeneral
+                        report.Database.Tables(0).SetDataSource(listaCierres)
+                        report.Database.Tables(1).SetDataSource(listaCliente)
+                        ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
+                    Case 1
+                        'general todos
+                        Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
+                                                                      Where cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                      Select cp).ToList
+                        If listaCierres.Count <= 0 Then
+                            MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
+                            Return
+                        End If
+                        Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Select cli).ToList
+                        Dim report As New rptCierreTodos
+                        report.Database.Tables(0).SetDataSource(listaCierres)
+                        report.Database.Tables(1).SetDataSource(listaCliente)
+                        ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
+                    Case Else
+                        Exit Select
                 End Select
             End If
         End Using
@@ -119,5 +179,14 @@ Public Class frmReportesCierreOpciones
     Private Sub UltraButton1_Click(sender As Object, e As EventArgs) Handles UltraButton1.Click
         _clienteSeleccionado = String.Empty
         MsgBox("Se ha quitado la selección de cliente actual", MsgBoxStyle.Information, "Reportes de Cierre")
+    End Sub
+
+    Private Sub radGeneral_CheckedChanged(sender As Object, e As EventArgs) Handles radGeneral.CheckedChanged
+        If radGeneral.Checked Then
+            cmbTodos.Visible = True
+            cmbTodos.SelectedIndex = 0
+        Else
+            cmbTodos.Visible = False
+        End If
     End Sub
 End Class
