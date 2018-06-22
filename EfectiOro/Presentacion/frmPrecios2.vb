@@ -1,6 +1,7 @@
 ﻿Imports EfectiOro.Database
 
 Public Class frmPrecios2
+    Private Const Title As String = "Precios"
     Private _codcliente As String
     Private _nombreCliente As String
     ''' <summary>
@@ -128,7 +129,7 @@ Public Class frmPrecios2
                 Next
                 Dim preciosCliente = (From p In ctx.Precios Where p.Codcliente = _codcliente Select p).ToList
                 If preciosCliente.Count > 0 Then
-                    MsgBox("El cliente actual tiene precios establecidos, eliminelos para poder continuar", MsgBoxStyle.Information, "Precios")
+                    MsgBox("El cliente actual tiene precios establecidos, eliminelos para poder continuar", MsgBoxStyle.Information, Title)
                 End If
             Catch ex As Exception
 
@@ -178,7 +179,7 @@ Public Class frmPrecios2
         Dim gramos As Decimal = Decimal.Zero
         Dim dao = DataContext.daoPrecioKilate
         If txtCodigo.Text.Trim.Length <= 0 Then
-            MsgBox("Debe especificar el cliente para continuar", MsgBoxStyle.Information, "Cierre precios")
+            MsgBox("Debe especificar el cliente para continuar", MsgBoxStyle.Information, Title)
             txtNombre.Focus()
             Return
         End If
@@ -492,7 +493,7 @@ Public Class frmPrecios2
 
     Private Sub btnQuitar_Click(sender As Object, e As EventArgs) Handles btnQuitar.Click
         Try
-            Dim result As DialogResult = MsgBox("¿Seguro desea quitar el item seleccionado de la lista?", MsgBoxStyle.YesNo, "Precios")
+            Dim result As DialogResult = MsgBox("¿Seguro desea quitar el item seleccionado de la lista?", MsgBoxStyle.YesNo, Title)
             If result = Windows.Forms.DialogResult.No Then
                 Return
             End If
@@ -516,7 +517,7 @@ Public Class frmPrecios2
                     MsgBox("No hay datos a guardar, por favor intente nuevamente", MsgBoxStyle.Information, "Guarar")
                     Return
                 End If
-                Dim result As DialogResult = MsgBox("¿Guardar los datos de precios del cliente?", MsgBoxStyle.YesNo, "Precios")
+                Dim result As DialogResult = MsgBox("¿Guardar los datos de precios del cliente?", MsgBoxStyle.YesNo, title)
                 If result = Windows.Forms.DialogResult.No Then
                     Return
                 End If
@@ -600,22 +601,25 @@ Public Class frmPrecios2
     Private Sub btnQuitarSeleccion_Click(sender As Object, e As EventArgs) Handles btnQuitarSeleccion.Click
         Using ctx As New Contexto
             Try
-                Dim result As DialogResult = MsgBox("¿Eliminar precios del cliente (esta acción no se puede revertir)?", MsgBoxStyle.YesNo, "Precios")
+                Dim result As DialogResult = MsgBox("¿Eliminar precios del cliente (esta acción no se puede revertir)?", MsgBoxStyle.YesNo, Title)
                 If result = DialogResult.No Then
                     Return
                 End If
                 If txtCodigo.Text.Trim.Length <= 0 Then
-                    MsgBox("No se ha especificado el cliente, intente nuevamente", MsgBoxStyle.Information, "Precios")
+                    MsgBox("No se ha especificado el cliente, intente nuevamente", MsgBoxStyle.Information, Title)
                     txtCodigo.Focus()
                     Return
                 End If
                 Dim buscarPreciosCliente = (From p In ctx.Precios Where p.Codcliente = txtCodigo.Text Select p).ToList
+                Dim buscarTempPrecios = (From tmp In ctx.TmpPrecios Where tmp.Codcliente = txtCodigo.Text Select tmp).ToList
                 If buscarPreciosCliente.Count <= 0 Then
-                    MsgBox("El cliente actual no tiene precios a eliminar", MsgBoxStyle.Information, "Precios")
+                    MsgBox("El cliente actual no tiene precios a eliminar", MsgBoxStyle.Information, Title)
                     Return
                 End If
                 ctx.Precios.DeleteAllOnSubmit(buscarPreciosCliente)
+                ctx.TmpPrecios.DeleteAllOnSubmit(buscarTempPrecios)
                 ctx.SubmitChanges()
+                MsgBox("Se han limpiado los precios del cliente seleccionado, ahora puede proceder a establecer nuevos precios", MsgBoxStyle.Information, Title)
             Catch ex As Exception
                 MsgBox("No se pudo completar la operación debido a un error interno: " & ex.Message, MsgBoxStyle.Critical, "Error precios")
             End Try

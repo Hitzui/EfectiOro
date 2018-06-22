@@ -227,15 +227,14 @@ Public Class DaoCompras
             verMaestroCaja.Salida = 0
             Try
                 'revisamos si tiene cierre de precios y revertimos las onzas usadas en dicha compra
-                Dim buscarCierres = (From cp As CierrePrecios In ctx.CierrePrecios Join dc As Detacierre In ctx.DetaCierre On cp.CodCierre Equals dc.Codcierre
-                                     Where dc.Numcompra = numeroCompra Select cp.CodCierre, dc.Cantidad).ToList
+                Dim buscarCierres = (From dc As Detacierre In ctx.DetaCierre
+                                     Where dc.Numcompra = numeroCompra And dc.Codagencia = buscarCompra.Codagencia Select dc).ToList
                 For Each dato In buscarCierres
                     Dim findCierre As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
                     findCierre.SaldoOnzas = Decimal.Add(findCierre.SaldoOnzas, dato.Cantidad)
                     findCierre.Status = True
                 Next
-                Dim buscarDetaCierre = (From dc In ctx.DetaCierre Where dc.Numcompra = numeroCompra).ToList
-                ctx.DetaCierre.DeleteAllOnSubmit(buscarDetaCierre)
+                ctx.DetaCierre.DeleteAllOnSubmit(buscarCierres)
                 ctx.SubmitChanges()
             Catch ex As Exception
                 'no tiene cierre la compra seleccionada
@@ -344,6 +343,7 @@ Public Class DaoCompras
                             detacierre.Saldo = dato.Cantidad
                             detacierre.Fecha = Now
                             detacierre.Numcompra = compra.Numcompra
+                            detacierre.Codagencia = compra.Codagencia
                             cierre.SaldoOnzas = dato.Cantidad
                             If dato.Cantidad = Decimal.Zero Then
                                 cierre.Status = False

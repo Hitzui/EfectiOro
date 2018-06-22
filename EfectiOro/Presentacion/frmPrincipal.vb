@@ -52,16 +52,7 @@
         Dim ctlMDI As MdiClient
         ' Loop through all of the form's controls looking
         ' for the control of type MdiClient.
-        For Each ctl In Me.Controls
-            Try
-                ' Attempt to cast the control to type MdiClient.
-                ctlMDI = CType(ctl, MdiClient)
-                ' Set the BackColor of the MdiClient control.
-                ctlMDI.BackColor = Me.BackColor
-            Catch exc As InvalidCastException
-                ' Catch and ignore the error if casting failed.
-            End Try
-        Next
+
         Select Case usuarioLog.Nivel
             Case 1, 2
                 If Now.Day = 15 Or Now.Day = 30 Then

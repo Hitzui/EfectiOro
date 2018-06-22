@@ -4479,6 +4479,9 @@ Namespace Database
         Private _saldo As Decimal
         '[fecha] [date] NOT NULL,
         Private _fecha As DateTime
+        '[codagencia] [varchar(10)] NOT NULL,
+        Private _codagencia As String
+
 #Region "Definiciones de métodos de extensibilidad"
         Partial Private Sub OnLoaded()
         End Sub
@@ -4509,6 +4512,10 @@ Namespace Database
         Partial Private Sub OnFechaChanging(value As Date)
         End Sub
         Partial Private Sub OnFechaChanged()
+        End Sub
+        Partial Private Sub OnCodagenciaChanging(value As String)
+        End Sub
+        Partial Private Sub OnCodagenciaChanged()
         End Sub
 #End Region
 
@@ -4604,6 +4611,21 @@ Namespace Database
                     Me._fecha = value
                     Me.SendPropertyChanged("Fecha")
                     Me.OnFechaChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="codagencia", Storage:="_codagencia", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
+        Public Property Codagencia() As String
+            Get
+                Return Me._codagencia
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._codagencia, value) = False) Then
+                    Me.OnCodagenciaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codagencia = value
+                    Me.SendPropertyChanged("Codagencia")
+                    Me.OnCodagenciaChanged()
                 End If
             End Set
         End Property

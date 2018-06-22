@@ -25,10 +25,14 @@ Partial Class frmUPM
         '
         Me.btnClose.FlatAppearance.BorderSize = 0
         '
+        'lblTitulo
+        '
+        Me.lblTitulo.Size = New System.Drawing.Size(585, 25)
+        '
         'frmUPM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(558, 331)
+        Me.ClientSize = New System.Drawing.Size(585, 370)
         Me.Name = "frmUPM"
         Me.ResumeLayout(False)
 

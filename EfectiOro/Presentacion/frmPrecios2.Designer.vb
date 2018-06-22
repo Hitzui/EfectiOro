@@ -327,7 +327,7 @@ Partial Class frmPrecios2
         Me.btnQuitarSeleccion.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnQuitarSeleccion.Enabled = False
         Me.btnQuitarSeleccion.ImageSize = New System.Drawing.Size(48, 48)
-        Me.btnQuitarSeleccion.Location = New System.Drawing.Point(262, 19)
+        Me.btnQuitarSeleccion.Location = New System.Drawing.Point(408, 19)
         Me.btnQuitarSeleccion.Name = "btnQuitarSeleccion"
         Me.btnQuitarSeleccion.Size = New System.Drawing.Size(60, 60)
         Me.btnQuitarSeleccion.TabIndex = 20
