@@ -226,6 +226,11 @@ Namespace Database
                 Return Me.GetTable(Of Upm)()
             End Get
         End Property
+        Public ReadOnly Property Detaupm() As Table(Of Detaupm)
+            Get
+                Return Me.GetTable(Of Detaupm)()
+            End Get
+        End Property
         Public ReadOnly Property Liquidacion() As System.Data.Linq.Table(Of Liquidacion)
             Get
                 Return Me.GetTable(Of Liquidacion)()
@@ -7942,6 +7947,99 @@ Namespace Database
             End If
         End Sub
 
+    End Class
+    <Table(Name:="dbo.detaupm")>
+    Partial Public Class Detaupm
+        Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+        Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+#Region "Extensibility Method Definitions"
+        Partial Private Sub OnLoaded()
+        End Sub
+        Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+        End Sub
+        Partial Private Sub OnCreated()
+        End Sub
+        Partial Private Sub OnCodupmChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnCodupmChanged()
+        End Sub
+        Partial Private Sub OnCodcierreChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnCodcierreChanged()
+        End Sub
+        Partial Private Sub OnOnzasChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnOnzasChanged()
+        End Sub
+#End Region
+#Region "Campos"
+        Private _codupm As Integer
+        <Column(Name:="codupm", Storage:="_codupm", DbType:="int not null", IsPrimaryKey:=True)>
+        Public Property Codupm() As Integer
+            Get
+                Return _codupm
+            End Get
+            Set(ByVal value As Integer)
+                If (Me._codupm = value) = False Then
+                    Me.OnCodupmChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codupm = value
+                    Me.SendPropertyChanged("Codupm")
+                    Me.OnCodupmChanged()
+                End If
+            End Set
+        End Property
+        Private _codcierre As Integer
+        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int not null", IsPrimaryKey:=True)>
+        Public Property Codcierre() As Integer
+            Get
+                Return _codcierre
+            End Get
+            Set(ByVal value As Integer)
+                If (Me._codcierre = value) = False Then
+                    Me.OnCodcierreChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codcierre = value
+                    Me.SendPropertyChanged("Codcierre")
+                    Me.OnCodcierreChanged()
+                End If
+            End Set
+        End Property
+        Private _onzas As Decimal
+        <Column(Name:="onzas", Storage:="_onzas", DbType:="decimal(12,3) not null")>
+        Public Property Onzas() As Decimal
+            Get
+                Return _onzas
+            End Get
+            Set(ByVal value As Decimal)
+                If _onzas.Equals(value) = False Then
+                    Me.OnOnzasChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._onzas = value
+                    Me.SendPropertyChanged("Onzas")
+                    Me.OnOnzasChanged()
+                End If
+            End Set
+        End Property
+#End Region
+
+        Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+        Protected Overridable Sub SendPropertyChanging()
+            If ((Me.PropertyChangingEvent Is Nothing) _
+               = False) Then
+                RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+            End If
+        End Sub
+        Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+            If ((Me.PropertyChangedEvent Is Nothing) _
+               = False) Then
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
     End Class
     <Table(Name:="dbo.descargueByCompra")> _
     Partial Public Class DescargueByCompra

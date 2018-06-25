@@ -1256,6 +1256,7 @@
     <None Include="My Project\DataSources\EfectiOro.Database.Adelantos1.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Agencia.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Caja.datasource" />
+    <None Include="My Project\DataSources\EfectiOro.Database.CierrePrecios.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Cliente.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Compras.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Contexto.datasource" />
