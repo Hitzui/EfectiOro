@@ -144,6 +144,7 @@ Public Class frmCierrePrecios
                 txtOnzas.Focus()
                 Return
             Else
+                erp.SetError(txtOnzas, "")
                 onzas = Convert.ToDecimal(txtOnzas.Text)
                 txtGramos.Text = Convert.ToString(onzas * 31.1035)
             End If

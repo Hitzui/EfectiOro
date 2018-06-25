@@ -240,4 +240,8 @@
     Private Sub toolPreciosCierres_Click(sender As Object, e As EventArgs) Handles toolPreciosCierres.Click
         agregarAlPanel(frmPrecios2, panelCentral)
     End Sub
+
+    Private Sub UPMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UPMToolStripMenuItem.Click
+        agregarAlPanel(frmUPM, panelCentral)
+    End Sub
 End Class

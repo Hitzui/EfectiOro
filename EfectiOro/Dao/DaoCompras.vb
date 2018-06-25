@@ -485,7 +485,7 @@ Public Class DaoCompras
                      Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
                      Where c.Numcompra = numero_compra And c.Codestado <> 0 And dc.Numcompra = numero_compra And dc.Codagencia = _agencia
                      Order By cli.Nombres
-                     Select c.Numcompra, cli.Numcedula, dc.Descripcion, c.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion,
+                     Select c.Codagencia, c.Numcompra, cli.Numcedula, dc.Descripcion, c.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion,
                     c.Adelantos, c.Transferencia, c.Cheque, c.Efectivo, c.Por_pagar,
                     dc.Kilate, dc.Peso, dc.Preciok, dc.Importe, c.Total, c.Fecha, c.Usuario, c.Saldo_adelanto).ToList()
                 If lisGeneral.Count <= 0 Then
@@ -497,6 +497,7 @@ Public Class DaoCompras
                 For Each dato In lisGeneral
                     Dim vista As New ViewCompras
                     suma += dato.Total
+                    vista.Codagencia = dato.Codagencia
                     vista.Numcompra = dato.Numcompra
                     vista.Codcliente = dato.Codcliente
                     vista.Numcedula = dato.Numcedula

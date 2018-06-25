@@ -1276,6 +1276,7 @@
     <None Include="My Project\DataSources\EfectiOro.Database.Rubros_caja.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.TipoCambio.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.TipoPreciosPagados.datasource" />
+    <None Include="My Project\DataSources\EfectiOro.Database.Upm.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Usuario.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

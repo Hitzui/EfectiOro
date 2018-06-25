@@ -1142,19 +1142,26 @@ Public Class frmCompras
                 Case Keys.Enter
                     Me.txtCheque.Focus()
             End Select
+            Return
         End If
         If Me.txtPorpagar.Visible = False Then
             Select Case e.KeyValue
                 Case Keys.Enter
                     Me.txtPorpagar.Focus()
             End Select
+            Return
         End If
         If Me.txtTransferencia.Visible = False Then
             Select Case e.KeyValue
                 Case Keys.Enter
                     Me.btnGuardar.Focus()
             End Select
+            Return
         End If
+        Select Case e.KeyValue
+            Case Keys.Enter
+                btnGuardar.Focus()
+        End Select
     End Sub
 
     Private Sub btnGuardar_Enter(sender As Object, e As EventArgs) Handles btnGuardar.Enter
@@ -1215,6 +1222,13 @@ Public Class frmCompras
         Select Case e.KeyValue
             Case Keys.Enter
                 txtPeso.Focus()
+        End Select
+    End Sub
+
+    Private Sub txtTransferencia_KeyDown(sender As Object, e As KeyEventArgs) Handles txtTransferencia.KeyDown
+        Select Case e.KeyValue
+            Case Keys.Enter
+                btnGuardar.Focus()
         End Select
     End Sub
 End Class

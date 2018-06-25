@@ -88,7 +88,6 @@ Public Class frmRptClientes
     Private Sub frmRptClientes_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         lblTitulo.Text = "Generar reporte de clientes"
         btnClose.Visible = False
-        'Me.llenarGrid()
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnSalir.Click
@@ -541,13 +540,29 @@ Public Class frmRptClientes
     End Sub
 
     Private Sub txtFiltrar_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFiltrar.TextChanged
-        Me.llenarGridPorClienteAdo()
+        Using ctx As New Contexto
+            Try
+                If radPornombre.Checked Then
+                    Dim buscarCliente = (From cli In ctx.Cliente Where cli.Nombres.Contains(txtFiltrar.Text) Select cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Numcedula).ToList
+                    dgvFiltrar.DataSource = buscarCliente
+                ElseIf radPorcedula.Checked Then
+                    Dim buscarCliente = (From cli In ctx.Cliente Where cli.Numcedula.Contains(txtFiltrar.Text) Select cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Numcedula).ToList
+                    dgvFiltrar.DataSource = buscarCliente
+                ElseIf radPorcodigo.Checked Then
+                    Dim buscarCliente = (From cli In ctx.Cliente Where cli.Codcliente.Contains(txtFiltrar.Text) Select cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Numcedula).ToList
+                    dgvFiltrar.DataSource = buscarCliente
+                ElseIf radApellido.Checked Then
+                    Dim buscarCliente = (From cli In ctx.Cliente Where cli.Apellidos.Contains(txtFiltrar.Text) Select cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Numcedula).ToList
+                    dgvFiltrar.DataSource = buscarCliente
+                End If
+            Catch ex As Exception
+                MsgBox("Se produjo un error al buscar el cliente: " & ex.Message, MsgBoxStyle.Information, "Error")
+            End Try
+        End Using
     End Sub
 
     Private Sub radPornombre_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles radPornombre.CheckedChanged
         If radPornombre.Checked Then
-            'Me.llenarGridFiltrarPorCliente()
-            'Me.llenarGridPorClienteAdo()
             txtFiltrar.Focus()
         End If
     End Sub
@@ -558,32 +573,15 @@ Public Class frmRptClientes
     End Sub
     Private Sub radPorcedula_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles radPorcedula.CheckedChanged
         If radPorcedula.Checked Then
-            'Me.llenarGridFiltrarPorCliente()
-            'Me.llenarGridPorClienteAdo()
             txtFiltrar.Focus()
         End If
     End Sub
 
     Private Sub radPorcodigo_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles radPorcodigo.CheckedChanged
         If radPorcodigo.Checked Then
-            'Me.llenarGridFiltrarPorCliente()
-            'Me.llenarGridPorClienteAdo()
             txtFiltrar.Focus()
         End If
     End Sub
-
-    'Private Sub tabCliente_SelectedTabChanged(sender As System.Object, e As SelectedTabChangedEventArgs)
-    '    Select Case e.Tab.Key
-    '        Case "Generales"
-    '        Case "Detallado"
-    '            Me.txtFiltrar.Clear()
-    '            tablaCliente = Me.llenarDataTable()
-    '            If dgvFiltrar.Rows.Count <= 0 Then
-    '                Me.dgvFiltrar.DataSource = tablaCliente
-    '            End If
-    '            txtFiltrar.Focus()
-    '    End Select
-    'End Sub
 
     Private Sub btnBuscardet_Click(sender As System.Object, e As System.EventArgs) Handles btnBuscardet.Click
         Using ctx As New Contexto
