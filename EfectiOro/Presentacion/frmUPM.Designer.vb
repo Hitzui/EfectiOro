@@ -38,6 +38,7 @@ Partial Class frmUPM
         Me.colStatus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.sourceUPM = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chkStatus = New System.Windows.Forms.CheckBox()
         Me.txtFecha = New System.Windows.Forms.DateTimePicker()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtPrecio = New System.Windows.Forms.TextBox()
@@ -209,6 +210,7 @@ Partial Class frmUPM
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.chkStatus)
         Me.GroupBox1.Controls.Add(Me.txtFecha)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.txtPrecio)
@@ -223,6 +225,19 @@ Partial Class frmUPM
         Me.GroupBox1.Size = New System.Drawing.Size(221, 263)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
+        '
+        'chkStatus
+        '
+        Me.chkStatus.AutoSize = True
+        Me.chkStatus.Checked = True
+        Me.chkStatus.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkStatus.Enabled = False
+        Me.chkStatus.Location = New System.Drawing.Point(80, 188)
+        Me.chkStatus.Name = "chkStatus"
+        Me.chkStatus.Size = New System.Drawing.Size(103, 17)
+        Me.chkStatus.TabIndex = 8
+        Me.chkStatus.Text = "Estado del UPM"
+        Me.chkStatus.UseVisualStyleBackColor = True
         '
         'txtFecha
         '
@@ -725,4 +740,5 @@ Partial Class frmUPM
     Friend WithEvents PrecioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents FechaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents StatusDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents chkStatus As CheckBox
 End Class

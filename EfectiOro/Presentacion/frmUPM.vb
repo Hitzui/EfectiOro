@@ -73,9 +73,11 @@ Public Class frmUPM
             Case 0
                 habilitarCampos(True)
                 habilitarBotones(False, True, False, False, True)
-                LimpiarCampos()
                 dgvUpmDatos.Enabled = False
                 dgvUpmDatos.ClearSelection()
+                LimpiarCampos()
+                chkStatus.Checked = True
+                chkStatus.Enabled = False
             Case 1
                 dgvCierres.Enabled = True
                 habilitarBotones(False, True, False, False, True)
@@ -111,6 +113,7 @@ Public Class frmUPM
                 habilitarBotones(False, True, False, False, True)
                 LimpiarCampos()
                 dgvUpmDatos.Enabled = True
+                chkStatus.Enabled = True
             Case 1
                 dgvCierres.Enabled = True
                 Using ctx As New Contexto
@@ -118,6 +121,11 @@ Public Class frmUPM
                         Dim rowUpm As DataGridViewRow = dgvUPM.CurrentRow
                         Dim codupm As Integer = Convert.ToInt32(rowUpm.Cells("colCodupmRegistro").Value)
                         Dim findDetaUpm = (From deta In ctx.Detaupm Where deta.Codupm = codupm Select deta).ToList
+                        'esta lista es para recuperar el codigo de cierre q no corresponda a ningun upm ya establecido
+                        Dim listaCodigoUPM As List(Of Integer) = (From d In ctx.Detaupm Where Not d.Codupm = codupm Select d.Codcierre).ToList
+                        Dim listaCierrePrecios = (From cp In ctx.CierrePrecios Where Not listaCodigoUPM.Contains(cp.CodCierre) And cp.Status = True Select cp)
+                        bsCierres.DataSource = listaCierrePrecios
+                        sourcecierre.DataSource = bsCierres
                         For Each dato As Detaupm In findDetaUpm
                             For Each row As DataGridViewRow In dgvCierres.Rows
                                 If dato.Codcierre = Convert.ToInt32(row.Cells("colCodCierre").Value) Then
@@ -142,6 +150,7 @@ Public Class frmUPM
                 habilitarBotones(False, True, False, False, True)
                 LimpiarCampos()
                 dgvUpmDatos.Enabled = True
+                chkStatus.Enabled = False
             Case 1
                 dgvCierres.Enabled = False
                 Using ctx As New Contexto
@@ -172,6 +181,7 @@ Public Class frmUPM
                 habilitarCampos(False)
                 habilitarBotones(True, False, True, True, False)
                 LimpiarCampos()
+                chkStatus.Enabled = False
             Case 1
                 dgvUPM.Enabled = True
                 dgvCierres.Enabled = False
@@ -234,6 +244,7 @@ Public Class frmUPM
                                 findUpm.Precio = precio
                                 findUpm.Onzas = onzas
                                 findUpm.Codigo = codigo
+                                findUpm.Status = chkStatus.Checked
                                 ctx.SubmitChanges()
                                 MsgBox("Se han guardado los datos del UPM, de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
                                 btnCancelar_Click(sender, e)
@@ -252,8 +263,64 @@ Public Class frmUPM
                                 btnCancelar_Click(sender, e)
                         End Select
 #End Region
+#Region "Asociación de UPM con cierre de precios"
                     Case 1
-                        'seleccion de datos upm y cierre de precio
+                        Dim rowUPM As DataGridViewRow = dgvUPM.CurrentRow
+                        Dim codupm As Integer = Convert.ToInt32(rowUPM.Cells("colCodupmRegistro").Value)
+                        Dim buscarDetaUPM = (From deta In ctx.Detaupm Where deta.Codupm = codupm Select deta).ToList
+                        Select Case aux
+                            Case 1
+                                'guardar registro
+                                If buscarDetaUPM.Count > 0 Then
+                                    MsgBox("El codigo del UPM ya tiene cierre de precios asociados, intente nuevamente", MsgBoxStyle.Information, _tituloMensaje)
+                                    Return
+                                End If
+                                Dim listaDetaUpm As New List(Of Detaupm)
+                                For Each rowCierre As DataGridViewRow In dgvCierres.Rows
+                                    If rowCierre.Cells("colSeleccionar").Value = True Then
+                                        Dim codcierre As Integer = Convert.ToInt32(rowCierre.Cells("colCodCierre").Value)
+                                        Dim buscarCierre As CierrePrecios = (From cierre In ctx.CierrePrecios Where cierre.CodCierre = codcierre Select cierre).Single
+                                        Dim detaupm As New Detaupm With {
+                                            .Codupm = codupm,
+                                            .Codcierre = buscarCierre.CodCierre,
+                                            .Onzas = buscarCierre.OnzasFinas
+                                        }
+                                        listaDetaUpm.Add(detaupm)
+                                    End If
+                                Next
+                                ctx.Detaupm.InsertAllOnSubmit(listaDetaUpm)
+                                ctx.SubmitChanges()
+                                MsgBox("Se han guardado los datos seleccionados de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
+                                btnCancelar_Click(sender, e)
+                            Case 2
+                                'edicion de upm y cierre de precios
+                                ctx.Detaupm.DeleteAllOnSubmit(buscarDetaUPM)
+                                Dim listaDetaUpm As New List(Of Detaupm)
+                                For Each rowCierre As DataGridViewRow In dgvCierres.Rows
+                                    If rowCierre.Cells("colSeleccionar").Value = True Then
+                                        Dim codcierre As Integer = Convert.ToInt32(rowCierre.Cells("colCodCierre").Value)
+                                        Dim buscarCierre As CierrePrecios = (From cierre In ctx.CierrePrecios Where cierre.CodCierre = codcierre Select cierre).Single
+                                        Dim detaupm As New Detaupm With {
+                                            .Codupm = codupm,
+                                            .Codcierre = buscarCierre.CodCierre,
+                                            .Onzas = buscarCierre.OnzasFinas
+                                        }
+                                        listaDetaUpm.Add(detaupm)
+                                    End If
+                                Next
+                                ctx.Detaupm.InsertAllOnSubmit(listaDetaUpm)
+                                ctx.SubmitChanges()
+                                MsgBox("Se han guardado los datos seleccionados de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
+                                btnCancelar_Click(sender, e)
+                            Case 3
+                                'eliminar registro
+                                ctx.Detaupm.DeleteAllOnSubmit(buscarDetaUPM)
+                                ctx.SubmitChanges()
+                                MsgBox("Se han eliminado los datos seleccionados de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
+                                btnCancelar_Click(sender, e)
+                        End Select
+#End Region
+
                 End Select
 
             Catch ex As Exception
@@ -350,6 +417,7 @@ Public Class frmUPM
             txtPrecio.Text = row.Cells("colPrecio").Value
             txtOnzas.Text = row.Cells("colOnzas").Value
             txtFecha.Value = row.Cells("colFecha").Value
+            chkStatus.Checked = Convert.ToBoolean(row.Cells("colStatus").Value)
         Catch ex As Exception
         End Try
     End Sub
