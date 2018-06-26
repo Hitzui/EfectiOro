@@ -20,12 +20,12 @@ Partial Class frmUPM
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance8 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance9 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance10 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance11 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance12 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.tabUPM = New System.Windows.Forms.TabControl()
         Me.tabDatos = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -513,9 +513,9 @@ Partial Class frmUPM
         '
         'btnSalir
         '
-        Appearance7.Image = Global.EfectiOro.My.Resources.Resources.HOME
-        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
-        Me.btnSalir.Appearance = Appearance7
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.HOME
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Me.btnSalir.Appearance = Appearance1
         Me.btnSalir.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnSalir.ImageSize = New System.Drawing.Size(40, 40)
         Me.btnSalir.Location = New System.Drawing.Point(530, 19)
@@ -527,9 +527,9 @@ Partial Class frmUPM
         '
         'btnCancelar
         '
-        Appearance8.Image = Global.EfectiOro.My.Resources.Resources.cancel02
-        Appearance8.ImageHAlign = Infragistics.Win.HAlign.Center
-        Me.btnCancelar.Appearance = Appearance8
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.cancel02
+        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
+        Me.btnCancelar.Appearance = Appearance2
         Me.btnCancelar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnCancelar.Enabled = False
         Me.btnCancelar.ImageSize = New System.Drawing.Size(40, 40)
@@ -542,9 +542,9 @@ Partial Class frmUPM
         '
         'btnEliminar
         '
-        Appearance9.Image = Global.EfectiOro.My.Resources.Resources.trash
-        Appearance9.ImageHAlign = Infragistics.Win.HAlign.Center
-        Me.btnEliminar.Appearance = Appearance9
+        Appearance3.Image = Global.EfectiOro.My.Resources.Resources.trash
+        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Center
+        Me.btnEliminar.Appearance = Appearance3
         Me.btnEliminar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnEliminar.ImageSize = New System.Drawing.Size(40, 40)
         Me.btnEliminar.Location = New System.Drawing.Point(258, 19)
@@ -556,9 +556,9 @@ Partial Class frmUPM
         '
         'btnEditar
         '
-        Appearance10.Image = Global.EfectiOro.My.Resources.Resources.edit01
-        Appearance10.ImageHAlign = Infragistics.Win.HAlign.Center
-        Me.btnEditar.Appearance = Appearance10
+        Appearance4.Image = Global.EfectiOro.My.Resources.Resources.edit01
+        Appearance4.ImageHAlign = Infragistics.Win.HAlign.Center
+        Me.btnEditar.Appearance = Appearance4
         Me.btnEditar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnEditar.ImageSize = New System.Drawing.Size(40, 40)
         Me.btnEditar.Location = New System.Drawing.Point(179, 19)
@@ -570,9 +570,9 @@ Partial Class frmUPM
         '
         'btnGuardar
         '
-        Appearance11.Image = Global.EfectiOro.My.Resources.Resources.save01
-        Appearance11.ImageHAlign = Infragistics.Win.HAlign.Center
-        Me.btnGuardar.Appearance = Appearance11
+        Appearance5.Image = Global.EfectiOro.My.Resources.Resources.save01
+        Appearance5.ImageHAlign = Infragistics.Win.HAlign.Center
+        Me.btnGuardar.Appearance = Appearance5
         Me.btnGuardar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnGuardar.Enabled = False
         Me.btnGuardar.ImageSize = New System.Drawing.Size(40, 40)
@@ -585,9 +585,9 @@ Partial Class frmUPM
         '
         'btnNuevo
         '
-        Appearance12.Image = Global.EfectiOro.My.Resources.Resources.add01
-        Appearance12.ImageHAlign = Infragistics.Win.HAlign.Center
-        Me.btnNuevo.Appearance = Appearance12
+        Appearance6.Image = Global.EfectiOro.My.Resources.Resources.add01
+        Appearance6.ImageHAlign = Infragistics.Win.HAlign.Center
+        Me.btnNuevo.Appearance = Appearance6
         Me.btnNuevo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnNuevo.ImageSize = New System.Drawing.Size(40, 40)
         Me.btnNuevo.Location = New System.Drawing.Point(21, 19)

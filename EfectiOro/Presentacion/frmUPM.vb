@@ -7,6 +7,7 @@ Public Class frmUPM
     Private listaCierresSeleccionados As List(Of CierrePrecios)
     Private onzas_cierres As Decimal = Decimal.Zero
     Private onzas_upm As Decimal = Decimal.Zero
+    Private bsCierres As New BindingSource
 
     Public Sub New()
 
@@ -36,7 +37,6 @@ Public Class frmUPM
                 Dim datosUpm = (From upm In ctx.UPM Where upm.Status = True Select upm).ToList
                 bs.DataSource = datosUpm
                 sourceUPM.DataSource = bs
-                Dim bsCierres As New BindingSource
                 Dim datosCierre = (From cierre In ctx.CierrePrecios Where cierre.Status = True Select cierre).ToList
                 bsCierres.DataSource = datosCierre
                 sourcecierre.DataSource = bsCierres
@@ -84,6 +84,11 @@ Public Class frmUPM
                         Dim rowUpm As DataGridViewRow = dgvUPM.CurrentRow
                         Dim codupm As Integer = Convert.ToInt32(rowUpm.Cells("colCodupmRegistro").Value)
                         Dim findDetaUpm = (From deta In ctx.Detaupm Where deta.Codupm = codupm Select deta).ToList
+                        Dim buscarUPMCodcierres = (From d In ctx.Detaupm Select d.Codcierre).ToList
+                        Dim cierres = (From c In ctx.CierrePrecios Where c.Status = True Select c).ToList
+                        cierres = (From c In cierres Where Not buscarUPMCodcierres.Contains(c.CodCierre) Select c).ToList
+                        bsCierres.DataSource = cierres
+                        sourcecierre.DataSource = bsCierres
                         If findDetaUpm.Count > 0 Then
                             MsgBox("La seleccion de UPM ya tiene cierre de precios establecidos, si desea editar eliga la opción indicada.", MsgBoxStyle.Information, _tituloMensaje)
                             btnCancelar_Click(sender, e)
@@ -187,6 +192,7 @@ Public Class frmUPM
         Using ctx As New Contexto
             Try
                 Select Case tabUPM.SelectedIndex
+#Region "ingreso y modificaciones de UPM"
                     Case 0
                         'registro de datos
                         Dim codigo As String = txtCodigoUPM.Text
@@ -217,6 +223,14 @@ Public Class frmUPM
                                 'editar datos
                                 Dim row As DataGridViewRow = dgvUpmDatos.CurrentRow
                                 Dim findUpm As Upm = (From upm In ctx.UPM Where upm.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select upm).Single
+                                Dim detaupm = (From deta In ctx.Detaupm Where deta.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select deta).ToList
+                                If detaupm.Count > 0 Then
+                                    Dim deta_onzas As Decimal = detaupm.Sum(Function(d) d.Onzas)
+                                    If onzas < deta_onzas Then
+                                        MsgBox("No puede editar el UPM, ya que las onzas establecidas son menores respecto a los cierres viculados a este UPM", MsgBoxStyle.Information, _tituloMensaje)
+                                        Return
+                                    End If
+                                End If
                                 findUpm.Precio = precio
                                 findUpm.Onzas = onzas
                                 findUpm.Codigo = codigo
@@ -227,11 +241,17 @@ Public Class frmUPM
                                 'eliminar datos
                                 Dim row As DataGridViewRow = dgvUpmDatos.CurrentRow
                                 Dim findUpm As Upm = (From upm In ctx.UPM Where upm.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select upm).Single
+                                Dim detaupm = (From deta In ctx.Detaupm Where deta.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select deta).ToList
+                                If detaupm.Count > 0 Then
+                                    MsgBox("No puede elminar el UPM actual ya que esta vinculado con cierre de precios", MsgBoxStyle.Information, _tituloMensaje)
+                                    Return
+                                End If
                                 ctx.UPM.DeleteOnSubmit(findUpm)
                                 ctx.SubmitChanges()
                                 MsgBox("Se han eliminado los datos del UPM, de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
                                 btnCancelar_Click(sender, e)
                         End Select
+#End Region
                     Case 1
                         'seleccion de datos upm y cierre de precio
                 End Select
@@ -279,16 +299,6 @@ Public Class frmUPM
         erp.SetError(txtPrecio, "")
     End Sub
 
-    Private Sub dgvUpmDatos_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvUpmDatos.RowEnter
-        Try
-            Dim row As DataGridViewRow = dgvUpmDatos.CurrentRow
-            txtCodigoUPM.Text = row.Cells("colCodigo").Value
-            txtPrecio.Text = row.Cells("colPrecio").Value
-            txtOnzas.Text = row.Cells("colOnzas").Value
-            txtFecha.Value = row.Cells("colFecha").Value
-        Catch ex As Exception
-        End Try
-    End Sub
 
     Private Sub tabUPM_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tabUPM.SelectedIndexChanged
         cargarDatos()
@@ -330,6 +340,17 @@ Public Class frmUPM
             lblOnzasUPM.Text = onzasUPM.ToString("#,##0.000")
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub dgvUpmDatos_SelectionChanged(sender As Object, e As EventArgs) Handles dgvUpmDatos.SelectionChanged
+        Try
+            Dim row As DataGridViewRow = dgvUpmDatos.CurrentRow
+            txtCodigoUPM.Text = row.Cells("colCodigo").Value
+            txtPrecio.Text = row.Cells("colPrecio").Value
+            txtOnzas.Text = row.Cells("colOnzas").Value
+            txtFecha.Value = row.Cells("colFecha").Value
+        Catch ex As Exception
         End Try
     End Sub
 End Class
