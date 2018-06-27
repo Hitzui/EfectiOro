@@ -7,7 +7,9 @@ Public Class DaoPreciosKilates
     Public Function listaPreciosCliente(codcliente As String) As List(Of Precios) Implements IDaoPreciosKilates.listaPreciosCliente
         Try
             Using ctx As New Contexto
-                Dim datos = (From p In ctx.Precios Where p.Codcliente = codcliente Select p).ToList
+                Dim config As New ConfiguracionGeneral
+                Dim agencia As String = config.getAgencia
+                Dim datos = (From p In ctx.Precios Where p.Codcliente = codcliente And p.Codagencia = agencia Select p).ToList
                 If datos.Count > 0 Then
                     Return datos
                 Else
@@ -23,7 +25,9 @@ Public Class DaoPreciosKilates
     Public Function preciosClientes(codcliente As String) As List(Of Precios) Implements IDaoPreciosKilates.preciosClientes
         Using ctx As New Contexto
             Try
-                Return ctx.Precios.Where(Function(p) p.Codcliente = codcliente).ToList
+                Dim config As New ConfiguracionGeneral
+                Dim agencia As String = config.getAgencia
+                Return ctx.Precios.Where(Function(p) p.Codcliente = codcliente And p.Codagencia = agencia).ToList
             Catch ex As Exception
                 _error = ex.Message
                 Return Nothing

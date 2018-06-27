@@ -332,7 +332,7 @@ Public Class DaoCompras
                 Try
                     'buscamos los cierres q se usaron para establecer los precios
                     'en la tabla temporal de precios para proceder a guardarlos
-                    Dim buscar_cierres = (From tmp In ctx.TmpPrecios Where tmp.Codcliente = compra.Codcliente Select tmp).ToList
+                    Dim buscar_cierres = (From tmp In ctx.TmpPrecios Where tmp.Codcliente = compra.Codcliente And tmp.Codagencia = compra.Codagencia Select tmp).ToList
                     Dim listaDetaCierres As New List(Of Detacierre)
                     If buscar_cierres.Count > 0 Then
                         For Each dato As TmpPrecios In buscar_cierres

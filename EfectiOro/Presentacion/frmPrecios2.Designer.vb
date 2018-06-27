@@ -20,8 +20,8 @@ Partial Class frmPrecios2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
@@ -45,10 +45,6 @@ Partial Class frmPrecios2
         Me.txtQuilate = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dgvPrecios = New System.Windows.Forms.DataGridView()
-        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colQuilate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colGramos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btnQuitarSeleccion = New Infragistics.Win.Misc.UltraButton()
         Me.btnCancelar = New Infragistics.Win.Misc.UltraButton()
@@ -73,6 +69,11 @@ Partial Class frmPrecios2
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.lblOnzasDiferencia = New System.Windows.Forms.ToolStripLabel()
+        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colQuilate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colGramos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colAgencia = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -155,7 +156,6 @@ Partial Class frmPrecios2
         '
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.txtGramos)
-        Me.GroupBox2.Controls.Add(Me.btnQuitar)
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Controls.Add(Me.txtMargen)
         Me.GroupBox2.Controls.Add(Me.Label5)
@@ -174,7 +174,7 @@ Partial Class frmPrecios2
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(377, 10)
+        Me.Label4.Location = New System.Drawing.Point(307, 10)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(54, 15)
         Me.Label4.TabIndex = 17
@@ -182,20 +182,20 @@ Partial Class frmPrecios2
         '
         'txtGramos
         '
-        Me.txtGramos.Location = New System.Drawing.Point(380, 28)
+        Me.txtGramos.Location = New System.Drawing.Point(306, 28)
         Me.txtGramos.Name = "txtGramos"
-        Me.txtGramos.Size = New System.Drawing.Size(113, 20)
+        Me.txtGramos.Size = New System.Drawing.Size(88, 20)
         Me.txtGramos.TabIndex = 16
         '
         'btnQuitar
         '
-        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.PAGE_REMOVE
-        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnQuitar.Appearance = Appearance1
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.PAGE_REMOVE
+        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnQuitar.Appearance = Appearance2
         Me.btnQuitar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnQuitar.ImageSize = New System.Drawing.Size(32, 32)
-        Me.btnQuitar.Location = New System.Drawing.Point(427, 116)
+        Me.btnQuitar.Location = New System.Drawing.Point(310, 19)
         Me.btnQuitar.Name = "btnQuitar"
         Me.btnQuitar.Size = New System.Drawing.Size(66, 45)
         Me.btnQuitar.TabIndex = 15
@@ -206,7 +206,7 @@ Partial Class frmPrecios2
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(249, 10)
+        Me.Label6.Location = New System.Drawing.Point(204, 10)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(85, 15)
         Me.Label6.TabIndex = 14
@@ -214,16 +214,16 @@ Partial Class frmPrecios2
         '
         'txtMargen
         '
-        Me.txtMargen.Location = New System.Drawing.Point(252, 28)
+        Me.txtMargen.Location = New System.Drawing.Point(207, 28)
         Me.txtMargen.Name = "txtMargen"
-        Me.txtMargen.Size = New System.Drawing.Size(113, 20)
+        Me.txtMargen.Size = New System.Drawing.Size(88, 20)
         Me.txtMargen.TabIndex = 13
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(121, 10)
+        Me.Label5.Location = New System.Drawing.Point(105, 10)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(86, 15)
         Me.Label5.TabIndex = 12
@@ -231,22 +231,22 @@ Partial Class frmPrecios2
         '
         'txtPrecioOro
         '
-        Me.txtPrecioOro.Location = New System.Drawing.Point(124, 28)
+        Me.txtPrecioOro.Location = New System.Drawing.Point(108, 28)
         Me.txtPrecioOro.Name = "txtPrecioOro"
-        Me.txtPrecioOro.Size = New System.Drawing.Size(113, 20)
+        Me.txtPrecioOro.Size = New System.Drawing.Size(88, 20)
         Me.txtPrecioOro.TabIndex = 11
         '
         'btnAgregar
         '
-        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.money_plus
-        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnAgregar.Appearance = Appearance2
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.money_plus
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnAgregar.Appearance = Appearance1
         Me.btnAgregar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnAgregar.ImageSize = New System.Drawing.Size(32, 32)
-        Me.btnAgregar.Location = New System.Drawing.Point(427, 65)
+        Me.btnAgregar.Location = New System.Drawing.Point(420, 12)
         Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(66, 45)
+        Me.btnAgregar.Size = New System.Drawing.Size(48, 36)
         Me.btnAgregar.TabIndex = 10
         Me.btnAgregar.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
@@ -254,7 +254,7 @@ Partial Class frmPrecios2
         '
         Me.txtQuilate.Location = New System.Drawing.Point(9, 28)
         Me.txtQuilate.Name = "txtQuilate"
-        Me.txtQuilate.Size = New System.Drawing.Size(100, 20)
+        Me.txtQuilate.Size = New System.Drawing.Size(88, 20)
         Me.txtQuilate.TabIndex = 7
         '
         'Label3
@@ -274,42 +274,19 @@ Partial Class frmPrecios2
         Me.dgvPrecios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvPrecios.BackgroundColor = System.Drawing.Color.White
         Me.dgvPrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPrecios.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colLinea, Me.colQuilate, Me.colPrecio, Me.colGramos})
+        Me.dgvPrecios.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colLinea, Me.colQuilate, Me.colPrecio, Me.colGramos, Me.colAgencia})
         Me.dgvPrecios.Location = New System.Drawing.Point(6, 54)
         Me.dgvPrecios.Name = "dgvPrecios"
         Me.dgvPrecios.ReadOnly = True
         Me.dgvPrecios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPrecios.Size = New System.Drawing.Size(415, 182)
+        Me.dgvPrecios.Size = New System.Drawing.Size(480, 182)
         Me.dgvPrecios.TabIndex = 5
-        '
-        'colLinea
-        '
-        Me.colLinea.HeaderText = "Linea"
-        Me.colLinea.Name = "colLinea"
-        Me.colLinea.ReadOnly = True
-        '
-        'colQuilate
-        '
-        Me.colQuilate.HeaderText = "Quilate"
-        Me.colQuilate.Name = "colQuilate"
-        Me.colQuilate.ReadOnly = True
-        '
-        'colPrecio
-        '
-        Me.colPrecio.HeaderText = "Precio"
-        Me.colPrecio.Name = "colPrecio"
-        Me.colPrecio.ReadOnly = True
-        '
-        'colGramos
-        '
-        Me.colGramos.HeaderText = "Gramos"
-        Me.colGramos.Name = "colGramos"
-        Me.colGramos.ReadOnly = True
         '
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.btnQuitarSeleccion)
         Me.GroupBox3.Controls.Add(Me.btnCancelar)
+        Me.GroupBox3.Controls.Add(Me.btnQuitar)
         Me.GroupBox3.Controls.Add(Me.btnGuardar)
         Me.GroupBox3.Controls.Add(Me.btnNuevo)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 343)
@@ -502,6 +479,36 @@ Partial Class frmPrecios2
         Me.lblOnzasDiferencia.Size = New System.Drawing.Size(28, 22)
         Me.lblOnzasDiferencia.Text = "0.00"
         '
+        'colLinea
+        '
+        Me.colLinea.HeaderText = "Linea"
+        Me.colLinea.Name = "colLinea"
+        Me.colLinea.ReadOnly = True
+        '
+        'colQuilate
+        '
+        Me.colQuilate.HeaderText = "Quilate"
+        Me.colQuilate.Name = "colQuilate"
+        Me.colQuilate.ReadOnly = True
+        '
+        'colPrecio
+        '
+        Me.colPrecio.HeaderText = "Precio"
+        Me.colPrecio.Name = "colPrecio"
+        Me.colPrecio.ReadOnly = True
+        '
+        'colGramos
+        '
+        Me.colGramos.HeaderText = "Gramos"
+        Me.colGramos.Name = "colGramos"
+        Me.colGramos.ReadOnly = True
+        '
+        'colAgencia
+        '
+        Me.colAgencia.HeaderText = "Sucursal"
+        Me.colAgencia.Name = "colAgencia"
+        Me.colAgencia.ReadOnly = True
+        '
         'frmPrecios2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -562,10 +569,6 @@ Partial Class frmPrecios2
     Friend WithEvents Label4 As Label
     Friend WithEvents txtGramos As TextBox
     Friend WithEvents btnQuitarSeleccion As Infragistics.Win.Misc.UltraButton
-    Friend WithEvents colLinea As DataGridViewTextBoxColumn
-    Friend WithEvents colQuilate As DataGridViewTextBoxColumn
-    Friend WithEvents colPrecio As DataGridViewTextBoxColumn
-    Friend WithEvents colGramos As DataGridViewTextBoxColumn
     Friend WithEvents colSeleccionar As DataGridViewCheckBoxColumn
     Friend WithEvents colCodcierre As DataGridViewTextBoxColumn
     Friend WithEvents colOnzas As DataGridViewTextBoxColumn
@@ -582,4 +585,9 @@ Partial Class frmPrecios2
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents ToolStripLabel2 As ToolStripLabel
     Friend WithEvents lblOnzasDiferencia As ToolStripLabel
+    Friend WithEvents colLinea As DataGridViewTextBoxColumn
+    Friend WithEvents colQuilate As DataGridViewTextBoxColumn
+    Friend WithEvents colPrecio As DataGridViewTextBoxColumn
+    Friend WithEvents colGramos As DataGridViewTextBoxColumn
+    Friend WithEvents colAgencia As DataGridViewComboBoxColumn
 End Class

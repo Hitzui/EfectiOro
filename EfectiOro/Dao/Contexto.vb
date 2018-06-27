@@ -4334,6 +4334,8 @@ Namespace Database
         Private _cantidad As Decimal
         '[fecha] [date] NOT NULL,
         Private _fecha As DateTime
+        '[codagencia] [varchar(10)] NULL,
+        Private _codagencia As String
 #Region "Definiciones de métodos de extensibilidad"
         Partial Private Sub OnLoaded()
         End Sub
@@ -4360,6 +4362,10 @@ Namespace Database
         Partial Private Sub OnFechaChanging(value As Date)
         End Sub
         Partial Private Sub OnFechaChanged()
+        End Sub
+        Partial Private Sub OnCodagenciaChanging(value As String)
+        End Sub
+        Partial Private Sub OnCodagenciaChanged()
         End Sub
 #End Region
 
@@ -4410,6 +4416,21 @@ Namespace Database
                     Me._codcliente = value
                     Me.SendPropertyChanged("Codcliente")
                     Me.OnCodclienteChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="codagencia", Storage:="_codagencia", DbType:="varchar(10) NULL")>
+        Public Property Codagencia() As String
+            Get
+                Return Me._codagencia
+            End Get
+            Set(value As String)
+                If (String.Equals(_codagencia, value) = False) Then
+                    Me.OnCodagenciaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codagencia = value
+                    Me.SendPropertyChanged("Codagencia")
+                    Me.OnCodagenciaChanged()
                 End If
             End Set
         End Property
@@ -6608,6 +6629,7 @@ Namespace Database
 
         Private _Codcliente As String
 
+        Private _codagencia As String
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub
@@ -6634,6 +6656,10 @@ Namespace Database
         Partial Private Sub OnCodclienteChanging(value As String)
         End Sub
         Partial Private Sub OnCodclienteChanged()
+        End Sub
+        Partial Private Sub OnCodagenciaChanging(value As String)
+        End Sub
+        Partial Private Sub OnCodagenciaChanged()
         End Sub
 #End Region
 
@@ -6720,6 +6746,21 @@ Namespace Database
                     Me._Codcliente = value
                     Me.SendPropertyChanged("Codcliente")
                     Me.OnCodclienteChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="codagencia", Storage:="_codagencia", DbType:="varchar(10) NULL")>
+        Public Property Codagencia() As String
+            Get
+                Return Me._codagencia
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._codagencia, value) = False) Then
+                    Me.OnCodagenciaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codagencia = value
+                    Me.SendPropertyChanged("Codagencia")
+                    Me.OnCodagenciaChanged()
                 End If
             End Set
         End Property
