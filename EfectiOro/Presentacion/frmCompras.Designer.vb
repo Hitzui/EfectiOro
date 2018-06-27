@@ -85,21 +85,41 @@ Partial Class frmCompras
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.dgvFiltrarCliente = New System.Windows.Forms.DataGridView()
-        Me.colCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colApellidos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDireccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClienteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.dgvBuscar_compra = New System.Windows.Forms.DataGridView()
-        Me.colNumerocompra = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colCodigocliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colApellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDireccionCli = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelBuscar_compra = New System.Windows.Forms.Panel()
         Me.txtFiltrar_compra = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.cmbEstado = New System.Windows.Forms.ComboBox()
+        Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colApellidos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumcedulaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FemisionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FvencimientoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDireccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FnacimientoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EstadocivilDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CiudadDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TelefonoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CelularDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmailDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FingresoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OcupacionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DireccionnegocioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TiemponegDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OtraaeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DescotraDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NomcuentaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumcuentaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombancoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MontomensualDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotaloperacionesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ActuaporDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreterceroDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DireccionterceroDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PicaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelHeader.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -112,6 +132,7 @@ Partial Class frmCompras
         Me.grupoDetalle.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         CType(Me.dgvFiltrarCliente, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ClienteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvBuscar_compra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelBuscar_compra.SuspendLayout()
@@ -757,44 +778,22 @@ Partial Class frmCompras
         '
         Me.dgvFiltrarCliente.AllowUserToAddRows = False
         Me.dgvFiltrarCliente.AllowUserToDeleteRows = False
+        Me.dgvFiltrarCliente.AutoGenerateColumns = False
         Me.dgvFiltrarCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgvFiltrarCliente.BackgroundColor = System.Drawing.Color.White
         Me.dgvFiltrarCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvFiltrarCliente.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colCodigo, Me.colNombre, Me.colApellidos, Me.colDireccion})
+        Me.dgvFiltrarCliente.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colCodcliente, Me.colNombre, Me.colApellidos, Me.NumcedulaDataGridViewTextBoxColumn, Me.FemisionDataGridViewTextBoxColumn, Me.FvencimientoDataGridViewTextBoxColumn, Me.colDireccion, Me.FnacimientoDataGridViewTextBoxColumn, Me.EstadocivilDataGridViewTextBoxColumn, Me.CiudadDataGridViewTextBoxColumn, Me.TelefonoDataGridViewTextBoxColumn, Me.CelularDataGridViewTextBoxColumn, Me.EmailDataGridViewTextBoxColumn, Me.FingresoDataGridViewTextBoxColumn, Me.OcupacionDataGridViewTextBoxColumn, Me.DireccionnegocioDataGridViewTextBoxColumn, Me.TiemponegDataGridViewTextBoxColumn, Me.OtraaeDataGridViewTextBoxColumn, Me.DescotraDataGridViewTextBoxColumn, Me.NomcuentaDataGridViewTextBoxColumn, Me.NumcuentaDataGridViewTextBoxColumn, Me.NombancoDataGridViewTextBoxColumn, Me.MontomensualDataGridViewTextBoxColumn, Me.TotaloperacionesDataGridViewTextBoxColumn, Me.ActuaporDataGridViewTextBoxColumn, Me.NombreterceroDataGridViewTextBoxColumn, Me.DireccionterceroDataGridViewTextBoxColumn, Me.PicaDataGridViewTextBoxColumn})
+        Me.dgvFiltrarCliente.DataSource = Me.ClienteBindingSource
         Me.dgvFiltrarCliente.Location = New System.Drawing.Point(36, 176)
         Me.dgvFiltrarCliente.Name = "dgvFiltrarCliente"
         Me.dgvFiltrarCliente.ReadOnly = True
         Me.dgvFiltrarCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvFiltrarCliente.Size = New System.Drawing.Size(440, 10)
+        Me.dgvFiltrarCliente.Size = New System.Drawing.Size(440, 27)
         Me.dgvFiltrarCliente.TabIndex = 8
         '
-        'colCodigo
+        'ClienteBindingSource
         '
-        Me.colCodigo.HeaderText = "Codigo"
-        Me.colCodigo.Name = "colCodigo"
-        Me.colCodigo.ReadOnly = True
-        Me.colCodigo.Width = 65
-        '
-        'colNombre
-        '
-        Me.colNombre.HeaderText = "Nombres"
-        Me.colNombre.Name = "colNombre"
-        Me.colNombre.ReadOnly = True
-        Me.colNombre.Width = 74
-        '
-        'colApellidos
-        '
-        Me.colApellidos.HeaderText = "Apellidos"
-        Me.colApellidos.Name = "colApellidos"
-        Me.colApellidos.ReadOnly = True
-        Me.colApellidos.Width = 74
-        '
-        'colDireccion
-        '
-        Me.colDireccion.HeaderText = "Direccion"
-        Me.colDireccion.Name = "colDireccion"
-        Me.colDireccion.ReadOnly = True
-        Me.colDireccion.Width = 77
+        Me.ClienteBindingSource.DataSource = GetType(EfectiOro.Database.Cliente)
         '
         'erp
         '
@@ -807,48 +806,12 @@ Partial Class frmCompras
         Me.dgvBuscar_compra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgvBuscar_compra.BackgroundColor = System.Drawing.Color.White
         Me.dgvBuscar_compra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBuscar_compra.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colNumerocompra, Me.colCodigocliente, Me.colNombres, Me.colApellido, Me.colDireccionCli})
         Me.dgvBuscar_compra.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvBuscar_compra.Location = New System.Drawing.Point(0, 20)
         Me.dgvBuscar_compra.Name = "dgvBuscar_compra"
         Me.dgvBuscar_compra.ReadOnly = True
         Me.dgvBuscar_compra.Size = New System.Drawing.Size(387, 25)
         Me.dgvBuscar_compra.TabIndex = 9
-        '
-        'colNumerocompra
-        '
-        Me.colNumerocompra.HeaderText = "Numero compra"
-        Me.colNumerocompra.Name = "colNumerocompra"
-        Me.colNumerocompra.ReadOnly = True
-        Me.colNumerocompra.Width = 98
-        '
-        'colCodigocliente
-        '
-        Me.colCodigocliente.HeaderText = "Codigo cliente"
-        Me.colCodigocliente.Name = "colCodigocliente"
-        Me.colCodigocliente.ReadOnly = True
-        Me.colCodigocliente.Width = 91
-        '
-        'colNombres
-        '
-        Me.colNombres.HeaderText = "Nombres"
-        Me.colNombres.Name = "colNombres"
-        Me.colNombres.ReadOnly = True
-        Me.colNombres.Width = 74
-        '
-        'colApellido
-        '
-        Me.colApellido.HeaderText = "Apellidos"
-        Me.colApellido.Name = "colApellido"
-        Me.colApellido.ReadOnly = True
-        Me.colApellido.Width = 74
-        '
-        'colDireccionCli
-        '
-        Me.colDireccionCli.HeaderText = "Direccion"
-        Me.colDireccionCli.Name = "colDireccionCli"
-        Me.colDireccionCli.ReadOnly = True
-        Me.colDireccionCli.Width = 77
         '
         'panelBuscar_compra
         '
@@ -887,6 +850,254 @@ Partial Class frmCompras
         Me.cmbEstado.Name = "cmbEstado"
         Me.cmbEstado.Size = New System.Drawing.Size(136, 21)
         Me.cmbEstado.TabIndex = 12
+        '
+        'colCodcliente
+        '
+        Me.colCodcliente.DataPropertyName = "Codcliente"
+        Me.colCodcliente.HeaderText = "Codigo"
+        Me.colCodcliente.Name = "colCodcliente"
+        Me.colCodcliente.ReadOnly = True
+        Me.colCodcliente.Width = 65
+        '
+        'colNombre
+        '
+        Me.colNombre.DataPropertyName = "Nombres"
+        Me.colNombre.HeaderText = "Nombres"
+        Me.colNombre.Name = "colNombre"
+        Me.colNombre.ReadOnly = True
+        Me.colNombre.Width = 74
+        '
+        'colApellidos
+        '
+        Me.colApellidos.DataPropertyName = "Apellidos"
+        Me.colApellidos.HeaderText = "Apellidos"
+        Me.colApellidos.Name = "colApellidos"
+        Me.colApellidos.ReadOnly = True
+        Me.colApellidos.Width = 74
+        '
+        'NumcedulaDataGridViewTextBoxColumn
+        '
+        Me.NumcedulaDataGridViewTextBoxColumn.DataPropertyName = "Numcedula"
+        Me.NumcedulaDataGridViewTextBoxColumn.HeaderText = "Numcedula"
+        Me.NumcedulaDataGridViewTextBoxColumn.Name = "NumcedulaDataGridViewTextBoxColumn"
+        Me.NumcedulaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NumcedulaDataGridViewTextBoxColumn.Visible = False
+        Me.NumcedulaDataGridViewTextBoxColumn.Width = 86
+        '
+        'FemisionDataGridViewTextBoxColumn
+        '
+        Me.FemisionDataGridViewTextBoxColumn.DataPropertyName = "F_emision"
+        Me.FemisionDataGridViewTextBoxColumn.HeaderText = "F_emision"
+        Me.FemisionDataGridViewTextBoxColumn.Name = "FemisionDataGridViewTextBoxColumn"
+        Me.FemisionDataGridViewTextBoxColumn.ReadOnly = True
+        Me.FemisionDataGridViewTextBoxColumn.Visible = False
+        Me.FemisionDataGridViewTextBoxColumn.Width = 79
+        '
+        'FvencimientoDataGridViewTextBoxColumn
+        '
+        Me.FvencimientoDataGridViewTextBoxColumn.DataPropertyName = "F_vencimiento"
+        Me.FvencimientoDataGridViewTextBoxColumn.HeaderText = "F_vencimiento"
+        Me.FvencimientoDataGridViewTextBoxColumn.Name = "FvencimientoDataGridViewTextBoxColumn"
+        Me.FvencimientoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.FvencimientoDataGridViewTextBoxColumn.Visible = False
+        Me.FvencimientoDataGridViewTextBoxColumn.Width = 101
+        '
+        'DireccionDataGridViewTextBoxColumn
+        '
+        Me.colDireccion.DataPropertyName = "Direccion"
+        Me.colDireccion.HeaderText = "Direccion"
+        Me.colDireccion.Name = "colDireccion"
+        Me.colDireccion.ReadOnly = True
+        Me.colDireccion.Width = 77
+        '
+        'FnacimientoDataGridViewTextBoxColumn
+        '
+        Me.FnacimientoDataGridViewTextBoxColumn.DataPropertyName = "F_nacimiento"
+        Me.FnacimientoDataGridViewTextBoxColumn.HeaderText = "F_nacimiento"
+        Me.FnacimientoDataGridViewTextBoxColumn.Name = "FnacimientoDataGridViewTextBoxColumn"
+        Me.FnacimientoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.FnacimientoDataGridViewTextBoxColumn.Visible = False
+        Me.FnacimientoDataGridViewTextBoxColumn.Width = 95
+        '
+        'EstadocivilDataGridViewTextBoxColumn
+        '
+        Me.EstadocivilDataGridViewTextBoxColumn.DataPropertyName = "Estadocivil"
+        Me.EstadocivilDataGridViewTextBoxColumn.HeaderText = "Estadocivil"
+        Me.EstadocivilDataGridViewTextBoxColumn.Name = "EstadocivilDataGridViewTextBoxColumn"
+        Me.EstadocivilDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EstadocivilDataGridViewTextBoxColumn.Visible = False
+        Me.EstadocivilDataGridViewTextBoxColumn.Width = 83
+        '
+        'CiudadDataGridViewTextBoxColumn
+        '
+        Me.CiudadDataGridViewTextBoxColumn.DataPropertyName = "Ciudad"
+        Me.CiudadDataGridViewTextBoxColumn.HeaderText = "Ciudad"
+        Me.CiudadDataGridViewTextBoxColumn.Name = "CiudadDataGridViewTextBoxColumn"
+        Me.CiudadDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CiudadDataGridViewTextBoxColumn.Visible = False
+        Me.CiudadDataGridViewTextBoxColumn.Width = 65
+        '
+        'TelefonoDataGridViewTextBoxColumn
+        '
+        Me.TelefonoDataGridViewTextBoxColumn.DataPropertyName = "Telefono"
+        Me.TelefonoDataGridViewTextBoxColumn.HeaderText = "Telefono"
+        Me.TelefonoDataGridViewTextBoxColumn.Name = "TelefonoDataGridViewTextBoxColumn"
+        Me.TelefonoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TelefonoDataGridViewTextBoxColumn.Visible = False
+        Me.TelefonoDataGridViewTextBoxColumn.Width = 74
+        '
+        'CelularDataGridViewTextBoxColumn
+        '
+        Me.CelularDataGridViewTextBoxColumn.DataPropertyName = "Celular"
+        Me.CelularDataGridViewTextBoxColumn.HeaderText = "Celular"
+        Me.CelularDataGridViewTextBoxColumn.Name = "CelularDataGridViewTextBoxColumn"
+        Me.CelularDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CelularDataGridViewTextBoxColumn.Visible = False
+        Me.CelularDataGridViewTextBoxColumn.Width = 64
+        '
+        'EmailDataGridViewTextBoxColumn
+        '
+        Me.EmailDataGridViewTextBoxColumn.DataPropertyName = "Email"
+        Me.EmailDataGridViewTextBoxColumn.HeaderText = "Email"
+        Me.EmailDataGridViewTextBoxColumn.Name = "EmailDataGridViewTextBoxColumn"
+        Me.EmailDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EmailDataGridViewTextBoxColumn.Visible = False
+        Me.EmailDataGridViewTextBoxColumn.Width = 57
+        '
+        'FingresoDataGridViewTextBoxColumn
+        '
+        Me.FingresoDataGridViewTextBoxColumn.DataPropertyName = "F_ingreso"
+        Me.FingresoDataGridViewTextBoxColumn.HeaderText = "F_ingreso"
+        Me.FingresoDataGridViewTextBoxColumn.Name = "FingresoDataGridViewTextBoxColumn"
+        Me.FingresoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.FingresoDataGridViewTextBoxColumn.Visible = False
+        Me.FingresoDataGridViewTextBoxColumn.Width = 78
+        '
+        'OcupacionDataGridViewTextBoxColumn
+        '
+        Me.OcupacionDataGridViewTextBoxColumn.DataPropertyName = "Ocupacion"
+        Me.OcupacionDataGridViewTextBoxColumn.HeaderText = "Ocupacion"
+        Me.OcupacionDataGridViewTextBoxColumn.Name = "OcupacionDataGridViewTextBoxColumn"
+        Me.OcupacionDataGridViewTextBoxColumn.ReadOnly = True
+        Me.OcupacionDataGridViewTextBoxColumn.Visible = False
+        Me.OcupacionDataGridViewTextBoxColumn.Width = 84
+        '
+        'DireccionnegocioDataGridViewTextBoxColumn
+        '
+        Me.DireccionnegocioDataGridViewTextBoxColumn.DataPropertyName = "Direccion_negocio"
+        Me.DireccionnegocioDataGridViewTextBoxColumn.HeaderText = "Direccion_negocio"
+        Me.DireccionnegocioDataGridViewTextBoxColumn.Name = "DireccionnegocioDataGridViewTextBoxColumn"
+        Me.DireccionnegocioDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DireccionnegocioDataGridViewTextBoxColumn.Visible = False
+        Me.DireccionnegocioDataGridViewTextBoxColumn.Width = 121
+        '
+        'TiemponegDataGridViewTextBoxColumn
+        '
+        Me.TiemponegDataGridViewTextBoxColumn.DataPropertyName = "Tiempo_neg"
+        Me.TiemponegDataGridViewTextBoxColumn.HeaderText = "Tiempo_neg"
+        Me.TiemponegDataGridViewTextBoxColumn.Name = "TiemponegDataGridViewTextBoxColumn"
+        Me.TiemponegDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TiemponegDataGridViewTextBoxColumn.Visible = False
+        Me.TiemponegDataGridViewTextBoxColumn.Width = 91
+        '
+        'OtraaeDataGridViewTextBoxColumn
+        '
+        Me.OtraaeDataGridViewTextBoxColumn.DataPropertyName = "Otra_ae"
+        Me.OtraaeDataGridViewTextBoxColumn.HeaderText = "Otra_ae"
+        Me.OtraaeDataGridViewTextBoxColumn.Name = "OtraaeDataGridViewTextBoxColumn"
+        Me.OtraaeDataGridViewTextBoxColumn.ReadOnly = True
+        Me.OtraaeDataGridViewTextBoxColumn.Visible = False
+        Me.OtraaeDataGridViewTextBoxColumn.Width = 70
+        '
+        'DescotraDataGridViewTextBoxColumn
+        '
+        Me.DescotraDataGridViewTextBoxColumn.DataPropertyName = "Desc_otra"
+        Me.DescotraDataGridViewTextBoxColumn.HeaderText = "Desc_otra"
+        Me.DescotraDataGridViewTextBoxColumn.Name = "DescotraDataGridViewTextBoxColumn"
+        Me.DescotraDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DescotraDataGridViewTextBoxColumn.Visible = False
+        Me.DescotraDataGridViewTextBoxColumn.Width = 81
+        '
+        'NomcuentaDataGridViewTextBoxColumn
+        '
+        Me.NomcuentaDataGridViewTextBoxColumn.DataPropertyName = "Nom_cuenta"
+        Me.NomcuentaDataGridViewTextBoxColumn.HeaderText = "Nom_cuenta"
+        Me.NomcuentaDataGridViewTextBoxColumn.Name = "NomcuentaDataGridViewTextBoxColumn"
+        Me.NomcuentaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NomcuentaDataGridViewTextBoxColumn.Visible = False
+        Me.NomcuentaDataGridViewTextBoxColumn.Width = 93
+        '
+        'NumcuentaDataGridViewTextBoxColumn
+        '
+        Me.NumcuentaDataGridViewTextBoxColumn.DataPropertyName = "Num_cuenta"
+        Me.NumcuentaDataGridViewTextBoxColumn.HeaderText = "Num_cuenta"
+        Me.NumcuentaDataGridViewTextBoxColumn.Name = "NumcuentaDataGridViewTextBoxColumn"
+        Me.NumcuentaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NumcuentaDataGridViewTextBoxColumn.Visible = False
+        Me.NumcuentaDataGridViewTextBoxColumn.Width = 93
+        '
+        'NombancoDataGridViewTextBoxColumn
+        '
+        Me.NombancoDataGridViewTextBoxColumn.DataPropertyName = "Nom_banco"
+        Me.NombancoDataGridViewTextBoxColumn.HeaderText = "Nom_banco"
+        Me.NombancoDataGridViewTextBoxColumn.Name = "NombancoDataGridViewTextBoxColumn"
+        Me.NombancoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NombancoDataGridViewTextBoxColumn.Visible = False
+        Me.NombancoDataGridViewTextBoxColumn.Width = 90
+        '
+        'MontomensualDataGridViewTextBoxColumn
+        '
+        Me.MontomensualDataGridViewTextBoxColumn.DataPropertyName = "Monto_mensual"
+        Me.MontomensualDataGridViewTextBoxColumn.HeaderText = "Monto_mensual"
+        Me.MontomensualDataGridViewTextBoxColumn.Name = "MontomensualDataGridViewTextBoxColumn"
+        Me.MontomensualDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MontomensualDataGridViewTextBoxColumn.Visible = False
+        Me.MontomensualDataGridViewTextBoxColumn.Width = 107
+        '
+        'TotaloperacionesDataGridViewTextBoxColumn
+        '
+        Me.TotaloperacionesDataGridViewTextBoxColumn.DataPropertyName = "Total_operaciones"
+        Me.TotaloperacionesDataGridViewTextBoxColumn.HeaderText = "Total_operaciones"
+        Me.TotaloperacionesDataGridViewTextBoxColumn.Name = "TotaloperacionesDataGridViewTextBoxColumn"
+        Me.TotaloperacionesDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TotaloperacionesDataGridViewTextBoxColumn.Visible = False
+        Me.TotaloperacionesDataGridViewTextBoxColumn.Width = 120
+        '
+        'ActuaporDataGridViewTextBoxColumn
+        '
+        Me.ActuaporDataGridViewTextBoxColumn.DataPropertyName = "Actua_por"
+        Me.ActuaporDataGridViewTextBoxColumn.HeaderText = "Actua_por"
+        Me.ActuaporDataGridViewTextBoxColumn.Name = "ActuaporDataGridViewTextBoxColumn"
+        Me.ActuaporDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ActuaporDataGridViewTextBoxColumn.Visible = False
+        Me.ActuaporDataGridViewTextBoxColumn.Width = 81
+        '
+        'NombreterceroDataGridViewTextBoxColumn
+        '
+        Me.NombreterceroDataGridViewTextBoxColumn.DataPropertyName = "Nombre_tercero"
+        Me.NombreterceroDataGridViewTextBoxColumn.HeaderText = "Nombre_tercero"
+        Me.NombreterceroDataGridViewTextBoxColumn.Name = "NombreterceroDataGridViewTextBoxColumn"
+        Me.NombreterceroDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NombreterceroDataGridViewTextBoxColumn.Visible = False
+        Me.NombreterceroDataGridViewTextBoxColumn.Width = 108
+        '
+        'DireccionterceroDataGridViewTextBoxColumn
+        '
+        Me.DireccionterceroDataGridViewTextBoxColumn.DataPropertyName = "Direccion_tercero"
+        Me.DireccionterceroDataGridViewTextBoxColumn.HeaderText = "Direccion_tercero"
+        Me.DireccionterceroDataGridViewTextBoxColumn.Name = "DireccionterceroDataGridViewTextBoxColumn"
+        Me.DireccionterceroDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DireccionterceroDataGridViewTextBoxColumn.Visible = False
+        Me.DireccionterceroDataGridViewTextBoxColumn.Width = 116
+        '
+        'PicaDataGridViewTextBoxColumn
+        '
+        Me.PicaDataGridViewTextBoxColumn.DataPropertyName = "Pica"
+        Me.PicaDataGridViewTextBoxColumn.HeaderText = "Pica"
+        Me.PicaDataGridViewTextBoxColumn.Name = "PicaDataGridViewTextBoxColumn"
+        Me.PicaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PicaDataGridViewTextBoxColumn.Visible = False
+        Me.PicaDataGridViewTextBoxColumn.Width = 53
         '
         'frmCompras
         '
@@ -930,6 +1141,7 @@ Partial Class frmCompras
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
         CType(Me.dgvFiltrarCliente, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ClienteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvBuscar_compra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelBuscar_compra.ResumeLayout(False)
@@ -979,20 +1191,16 @@ Partial Class frmCompras
     Friend WithEvents txtEfectivo As System.Windows.Forms.TextBox
     Friend WithEvents ToolTip As System.Windows.Forms.ToolTip
     Friend WithEvents dgvFiltrarCliente As System.Windows.Forms.DataGridView
-    Friend WithEvents colCodigo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colApellidos As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colDireccion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents erp As System.Windows.Forms.ErrorProvider
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents txtTotal As System.Windows.Forms.TextBox
     Friend WithEvents dgvBuscar_compra As System.Windows.Forms.DataGridView
     Friend WithEvents panelBuscar_compra As System.Windows.Forms.Panel
     Friend WithEvents colNumerocompra As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colCodigocliente As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colNombres As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colApellido As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colDireccionCli As System.Windows.Forms.DataGridViewTextBoxColumn
+    'Friend WithEvents colCodigocliente As System.Windows.Forms.DataGridViewTextBoxColumn
+    'Friend WithEvents colNombres As System.Windows.Forms.DataGridViewTextBoxColumn
+    'Friend WithEvents colApellido As System.Windows.Forms.DataGridViewTextBoxColumn
+    'Friend WithEvents colDireccionCli As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colLinea As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDescripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colPeso As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1014,4 +1222,33 @@ Partial Class frmCompras
     Private WithEvents btnCerrarcompra As Button
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents cmbPrecios2 As Infragistics.Win.UltraWinGrid.UltraCombo
+    Friend WithEvents ClienteBindingSource As BindingSource
+    Friend WithEvents colCodcliente As DataGridViewTextBoxColumn
+    Friend WithEvents colNombre As DataGridViewTextBoxColumn
+    Friend WithEvents colApellidos As DataGridViewTextBoxColumn
+    Friend WithEvents NumcedulaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents FemisionDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents FvencimientoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents colDireccion As DataGridViewTextBoxColumn
+    Friend WithEvents FnacimientoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents EstadocivilDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CiudadDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TelefonoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CelularDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents EmailDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents FingresoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents OcupacionDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DireccionnegocioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TiemponegDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents OtraaeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DescotraDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NomcuentaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NumcuentaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NombancoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents MontomensualDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TotaloperacionesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ActuaporDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NombreterceroDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DireccionterceroDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PicaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class

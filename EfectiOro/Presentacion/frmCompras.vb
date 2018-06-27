@@ -2,8 +2,10 @@
 Imports EfectiOro.Database
 
 Public Class frmCompras
+    Private Const tituloError As String = "Error"
 
 #Region "Properties"
+    Private bsCliente As New BindingSource
     Private auxiliar As Integer
     Private _compraActual As Compras
     Dim daoCliente As IDaoCliente
@@ -27,7 +29,7 @@ Public Class frmCompras
             Return _detalleComprasActual
         End Get
     End Property
-    Private _clienteActual
+    Private _clienteActual As Cliente
     Public ReadOnly Property ClienteActual As Cliente
         Get
             Return _clienteActual
@@ -100,11 +102,13 @@ Public Class frmCompras
     Sub filtrarCliente()
         Try
             'Dim dao = DataContext.daoCliente
-            Dim listar As List(Of Cliente) = daoCliente.recuperarPorNombre(txtNomcliente.Text)
-            dgvFiltrarCliente.Rows.Clear()
-            For Each cli As Cliente In listar
-                dgvFiltrarCliente.Rows.Add(cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion)
-            Next
+            Dim listar As List(Of Cliente) = daoCliente.filtrarPorNombre(txtNomcliente.Text)
+            bsCliente.DataSource = listar
+            ClienteBindingSource.DataSource = bsCliente
+            'dgvFiltrarCliente.Rows.Clear()
+            'For Each cli As Cliente In listar
+            '    dgvFiltrarCliente.Rows.Add(cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion)
+            'Next
         Catch ex As Exception
             MsgBox("Error al intentar filtrar los datos, producido por: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
@@ -216,6 +220,13 @@ Public Class frmCompras
         btnEditar.Enabled = editar
         btnBuscar.Enabled = buscar
         btnImprimir.Enabled = imprimir
+    End Sub
+    Sub habilitarCampos(opcion As Boolean)
+        txtCodcliente.Enabled = opcion
+        txtNomcliente.Enabled = opcion
+        txtApecliente.Enabled = opcion
+        txtDircliente.Enabled = opcion
+
     End Sub
     Sub habilitarGrupos(cliente As Boolean, item As Boolean, lista As Boolean, detalle As Boolean)
         grupoCliente.Enabled = cliente
@@ -449,10 +460,8 @@ Public Class frmCompras
     Private Sub txtCodcliente_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtCodcliente.TextChanged
         'Dim dao = DataContext.daoCliente
         Dim listar As List(Of Cliente) = daoCliente.filtrarPorCodigo(txtCodcliente.Text)
-        dgvFiltrarCliente.Rows.Clear()
-        For Each cli As Cliente In listar
-            dgvFiltrarCliente.Rows.Add(cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion)
-        Next
+        bsCliente.DataSource = listar
+        ClienteBindingSource.DataSource = bsCliente
         If txtCodcliente.TextLength > 0 Then
             erp.SetError(txtCodcliente, "")
         End If
@@ -461,10 +470,8 @@ Public Class frmCompras
     Private Sub txtApecliente_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtApecliente.TextChanged
         ' Dim dao = DataContext.daoCliente
         Dim listar As List(Of Cliente) = daoCliente.filtrarPorApellido(txtApecliente.Text)
-        dgvFiltrarCliente.Rows.Clear()
-        For Each cli As Cliente In listar
-            dgvFiltrarCliente.Rows.Add(cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion)
-        Next
+        bsCliente.DataSource = listar
+        ClienteBindingSource.DataSource = bsCliente
     End Sub
 
     Private Sub txtCodcliente_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles txtCodcliente.KeyDown
@@ -504,23 +511,27 @@ Public Class frmCompras
         End Select
     End Sub
     Private Sub dgvFiltrarCliente_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles dgvFiltrarCliente.KeyDown
-        Select Case e.KeyValue
-            Case Keys.Enter
-                'Dim dao = DataContext.daoCliente
-                Dim row As DataGridViewRow = dgvFiltrarCliente.CurrentRow
-                txtCodcliente.Text = row.Cells(0).Value
-                Me.revisarAdelanto(txtCodcliente.Text)
-                txtNomcliente.Text = row.Cells(1).Value
-                txtApecliente.Text = row.Cells(2).Value
-                txtDircliente.Text = row.Cells(3).Value
-                _clienteActual = daoCliente.findById(row.Cells(0).Value)
-                dgvFiltrarCliente.Visible = False
-                llenarComboKilate()
-                cmbPrecios2.Focus()
-            Case Keys.Escape
-                dgvFiltrarCliente.Visible = False
-                cmbPrecios2.Focus()
-        End Select
+        Try
+            Select Case e.KeyValue
+                Case Keys.Enter
+                    'Dim dao = DataContext.daoCliente
+                    Dim row As DataGridViewRow = dgvFiltrarCliente.CurrentRow
+                    _clienteActual = daoCliente.findById(row.Cells("colCodcliente").Value)
+                    txtCodcliente.Text = _clienteActual.Codcliente
+                    txtNomcliente.Text = _clienteActual.Nombres
+                    txtApecliente.Text = _clienteActual.Apellidos
+                    txtDircliente.Text = _clienteActual.Direccion
+                    Me.revisarAdelanto(_clienteActual.Codcliente)
+                    dgvFiltrarCliente.Visible = False
+                    llenarComboKilate()
+                    cmbPrecios2.Focus()
+                Case Keys.Escape
+                    dgvFiltrarCliente.Visible = False
+                    cmbPrecios2.Focus()
+            End Select
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, tituloError)
+        End Try
     End Sub
 
     Private Sub cmbDescripcion_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs)
@@ -634,7 +645,7 @@ Public Class frmCompras
         Me.cmbEstado.Enabled = True
         Me.cmbEstado.SelectedIndex = 1
         Me.btnCerrarcompra.Enabled = False
-        Me.filtrarCliente()
+        'Me.filtrarCliente()
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
@@ -659,7 +670,7 @@ Public Class frmCompras
         Me.erp.Clear()
         Me.btnAnular.Enabled = False
         Me.checEfectivo.Enabled = True
-        Me.filtrarCliente()
+        'Me.filtrarCliente()
         Me.compraEncontrada = False
         Me.btnCerrarcompra.Enabled = True
         Me.txtFecha.Value = Now
@@ -1231,4 +1242,6 @@ Public Class frmCompras
                 btnGuardar.Focus()
         End Select
     End Sub
+
+
 End Class

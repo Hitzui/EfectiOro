@@ -164,8 +164,7 @@ Public Class DaoCliente
     Public Function filtrarPorNombre(ByVal nombre As String) As List(Of Cliente) Implements IDaoCliente.filtrarPorNombre
         Try
             Dim var = (From c In contexto.Cliente
-                       Where System.Data.Linq.SqlClient.SqlMethods.Like(c.Nombres, "%" & nombre & "%")
-                       Order By c.Nombres Ascending
+                       Where c.Nombres.Contains(nombre)
                        Order By c.Nombres Ascending
                        Select c).ToList()
             Return var
@@ -176,7 +175,7 @@ Public Class DaoCliente
     Public Function filtrarPorCodigo(ByVal codigo As String) As List(Of Cliente) Implements IDaoCliente.filtrarPorCodigo
         Try
             Dim var = (From c In contexto.Cliente
-                       Where System.Data.Linq.SqlClient.SqlMethods.Like(c.Codcliente, "%" & codigo & "%")
+                       Where c.Codcliente.Contains(codigo)
                        Order By c.Nombres Ascending
                        Select c).ToList()
             Return var
@@ -188,7 +187,7 @@ Public Class DaoCliente
     Public Function filtrarPorApelldio(ByVal apellido As String) As List(Of Cliente) Implements IDaoCliente.filtrarPorApellido
         Try
             Dim var = (From c In contexto.Cliente
-                       Where System.Data.Linq.SqlClient.SqlMethods.Like(c.Apellidos, "%" & apellido & "%")
+                       Where c.Apellidos.Contains(apellido)
                        Order By c.Nombres Ascending
                        Select c).ToList()
             Return var

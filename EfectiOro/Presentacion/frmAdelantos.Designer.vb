@@ -50,16 +50,11 @@ Partial Class frmAdelantos
         Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.panelTitulo.SuspendLayout()
         Me.grupoRegistrar.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(554, 25)
         '
         'btnClose
         '
@@ -69,7 +64,7 @@ Partial Class frmAdelantos
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(529, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(554, 25)
         '
         'grupoRegistrar
         '
@@ -286,7 +281,7 @@ Partial Class frmAdelantos
         '
         Me.btnSalir.FlatAppearance.BorderSize = 0
         Me.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSalir.ImageIndex = 0
+        Me.btnSalir.ImageIndex = 5
         Me.btnSalir.ImageList = Me.ImageList1
         Me.btnSalir.Location = New System.Drawing.Point(445, 10)
         Me.btnSalir.Name = "btnSalir"
@@ -304,6 +299,7 @@ Partial Class frmAdelantos
         Me.ImageList1.Images.SetKeyName(2, "ADD_PAGE.PNG")
         Me.ImageList1.Images.SetKeyName(3, "filesave.png")
         Me.ImageList1.Images.SetKeyName(4, "grafica.png")
+        Me.ImageList1.Images.SetKeyName(5, "HOME.PNG")
         '
         'btnAdelantos
         '
@@ -369,10 +365,8 @@ Partial Class frmAdelantos
         Me.Controls.Add(Me.grupoRegistrar)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmAdelantos"
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.grupoRegistrar, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.grupoRegistrar.ResumeLayout(False)
         Me.grupoRegistrar.PerformLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).EndInit()

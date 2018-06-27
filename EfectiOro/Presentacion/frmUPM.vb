@@ -176,21 +176,17 @@ Public Class frmUPM
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-        Select Case tabUPM.SelectedIndex
-            Case 0
-                habilitarCampos(False)
-                habilitarBotones(True, False, True, True, False)
-                LimpiarCampos()
-                chkStatus.Enabled = False
-            Case 1
-                dgvUPM.Enabled = True
-                dgvCierres.Enabled = False
-                lblOnzasUPM.Text = "(0.00)"
-                lblOnzasCierre.Text = "(0.00)"
-                onzas_cierres = Decimal.Zero
-                onzas_upm = Decimal.Zero
-                habilitarBotones(True, False, True, True, False)
-        End Select
+        habilitarCampos(False)
+        habilitarBotones(True, False, True, True, False)
+        LimpiarCampos()
+        chkStatus.Enabled = False
+        dgvUPM.Enabled = True
+        dgvCierres.Enabled = False
+        lblOnzasUPM.Text = "(0.00)"
+        lblOnzasCierre.Text = "(0.00)"
+        onzas_cierres = Decimal.Zero
+        onzas_upm = Decimal.Zero
+        habilitarBotones(True, False, True, True, False)
         cargarDatos()
     End Sub
 

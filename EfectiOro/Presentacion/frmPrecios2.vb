@@ -147,7 +147,8 @@ Public Class frmPrecios2
     Private Sub txtNombre_TextChanged_1(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
         Try
             Using ctx As New Contexto
-                Dim buscar = (From c In ctx.Cliente Where c.Nombres.Contains(txtNombre.Text) Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula).ToList
+                Dim buscar = (From c In ctx.Cliente Where c.Nombres.Contains(txtNombre.Text) OrElse c.Apellidos.Contains(txtNombre.Text)
+                              Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula).ToList
                 dgvCliente.DataSource = buscar
             End Using
         Catch ex As Exception

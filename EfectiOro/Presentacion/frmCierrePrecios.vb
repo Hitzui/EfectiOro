@@ -77,7 +77,8 @@ Public Class frmCierrePrecios
                 If dgvCliente.Visible = False Then
                     dgvCliente.Visible = True
                 End If
-                Dim buscar = (From cli In ctx.Cliente Where cli.Nombres.Contains(txtNombre.Text) Select cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Numcedula).ToList
+                Dim buscar = (From cli In ctx.Cliente Where cli.Nombres.Contains(txtNombre.Text) OrElse cli.Apellidos.Contains(txtNombre.Text)
+                              Select cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Numcedula).ToList
                 dgvCliente.DataSource = buscar
             Catch ex As Exception
 
