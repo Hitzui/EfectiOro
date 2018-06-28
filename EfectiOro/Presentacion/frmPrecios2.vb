@@ -176,11 +176,6 @@ Public Class frmPrecios2
     End Sub
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
-        Dim daoAgencia = DataContext.daoAgencia
-        Dim listaAgencias = daoAgencia.findAll()
-        colAgencia.DataSource = listaAgencias
-        colAgencia.DataPropertyName = "CodAgencia"
-        colAgencia.DisplayMember = "Nomagencia"
         Dim quilate, precioOro, margen As Decimal
         Dim gramos As Decimal = Decimal.Zero
         Dim dao = DataContext.daoPrecioKilate
@@ -266,7 +261,7 @@ Public Class frmPrecios2
                                     'pb = ServiciosBasicos.redondearMenos(pb)
                                     Dim precio As Decimal = pb * quilate
                                     'precio = ServiciosBasicos.redondearMenos(precio)
-                                    dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos, "A001")
+                                    dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos)
                                     'onzas usadas para el precio
                                     dato.SaldoOnzas = onzas_ingresar
                                     onzasUsadas.Add(dato.CodCierre, onzas_ingresar)
@@ -314,7 +309,7 @@ Public Class frmPrecios2
                                 _onzasDiferencias.Add(dato.CodCierre, Decimal.Round(onzas_diferencia, 3))
                                 _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
                                 precio = Decimal.Round(precio, 2)
-                                dgvPrecios.Rows.Add(linea, quilate, precio, gramos, "A001")
+                                dgvPrecios.Rows.Add(linea, quilate, precio, gramos)
                                 onzasUsadas.Add(dato.CodCierre, onzas_ingresar)
                                 'onzas usadas para el precio
                                 dato.SaldoOnzas = onzas_ingresar
@@ -353,7 +348,7 @@ Public Class frmPrecios2
                 precio = quilate * precioBase
                 precio = Decimal.Round(precio, 2)
                 precio = redondearMenos(precio)
-                dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 0), gramos, "A001")
+                dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 0), gramos)
                 linea = linea + 1
                 txtQuilate.Clear()
                 txtGramos.Clear()
@@ -456,6 +451,7 @@ Public Class frmPrecios2
         btnCancelar.Enabled = cancelar
         btnQuitarSeleccion.Enabled = cancelar
     End Sub
+
     Private Sub frmPrecios2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblTitulo.Text = "Establecer Precios"
         enableGrupos(False)
@@ -523,7 +519,7 @@ Public Class frmPrecios2
                     MsgBox("No hay datos a guardar, por favor intente nuevamente", MsgBoxStyle.Information, "Guarar")
                     Return
                 End If
-                Dim result As DialogResult = MsgBox("¿Guardar los datos de precios del cliente?", MsgBoxStyle.YesNo, title)
+                Dim result As DialogResult = MsgBox("¿Guardar los datos de precios del cliente?", MsgBoxStyle.YesNo, Title)
                 If result = Windows.Forms.DialogResult.No Then
                     Return
                 End If
@@ -553,7 +549,6 @@ Public Class frmPrecios2
                         tmp_precios.Codcliente = txtCodigo.Text
                         tmp_precios.Fecha = Now
                         tmp_precios.Linea = linea
-                        tmp_precios.Codagencia = agencia
                         cierre.CodCierre = dato.Key
                         cierre.SaldoOnzas = dato.Value
                         cierre.Codcliente = txtCodigo.Text
@@ -634,4 +629,5 @@ Public Class frmPrecios2
             End Try
         End Using
     End Sub
+
 End Class

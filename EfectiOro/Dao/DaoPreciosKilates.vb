@@ -9,7 +9,7 @@ Public Class DaoPreciosKilates
             Using ctx As New Contexto
                 Dim config As New ConfiguracionGeneral
                 Dim agencia As String = config.getAgencia
-                Dim datos = (From p In ctx.Precios Where p.Codcliente = codcliente And p.Codagencia = agencia Select p).ToList
+                Dim datos = (From p In ctx.Precios Where p.Codcliente = codcliente Select p).ToList
                 If datos.Count > 0 Then
                     Return datos
                 Else
@@ -27,7 +27,7 @@ Public Class DaoPreciosKilates
             Try
                 Dim config As New ConfiguracionGeneral
                 Dim agencia As String = config.getAgencia
-                Return ctx.Precios.Where(Function(p) p.Codcliente = codcliente And p.Codagencia = agencia).ToList
+                Return ctx.Precios.Where(Function(p) p.Codcliente = codcliente).ToList
             Catch ex As Exception
                 _error = ex.Message
                 Return Nothing
