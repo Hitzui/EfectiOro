@@ -423,12 +423,17 @@ Public Class frmCierrePrecios
             Try
                 Dim row As DataGridViewRow = dgvCierresCliente.CurrentRow
                 Dim codcierre As Integer = Convert.ToInt32(row.Cells("colCodigo").Value)
+                Dim config As New ConfiguracionGeneral
+                Dim agencia As String = config.getAgencia
                 Dim buscar = (From c In ctx.CierrePrecios Where c.CodCierre = codcierre And c.Status = True Select c).Single
                 Dim result As DialogResult = MsgBox("¿Seguro desea cerrar el precio seleccionado, esta acción no se puede revertir?", MsgBoxStyle.YesNo, Title)
                 If result = DialogResult.No Then
                     Return
                 End If
+                Dim deta As New Detacierre With {.Codcierre = buscar.CodCierre, .Codagencia = agencia, .Fecha = Date.Now, .Cantidad = buscar.SaldoOnzas, .Numcompra = "0", .Onzas = buscar.SaldoOnzas, .Saldo = Decimal.Zero}
                 buscar.Status = False
+                buscar.SaldoOnzas = Decimal.Zero
+                ctx.DetaCierre.InsertOnSubmit(deta)
                 ctx.SubmitChanges()
                 MsgBox("Se ha cerrado el precio seleccionado", MsgBoxStyle.Information, Title)
                 btnCancelar_Click(sender, e)

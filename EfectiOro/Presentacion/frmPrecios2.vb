@@ -223,6 +223,15 @@ Public Class frmPrecios2
             Dim temp_onzas As Decimal = onzas_ingresar
             'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
             If listaCierreClientes.Count > 0 Then
+                'aqui validamos cuantas onzas tiene acumuladas y si le permite ingresar mas
+                If _onzasDiferencias.Count > 0 Then
+                    Dim sum_onzas = _onzasDiferencias.Sum(Function(p) p.Value)
+                    Dim ver_onzas = Decimal.Subtract(onzas_ingresar, sum_onzas)
+                    If ver_onzas > Decimal.Zero Then
+                        MsgBox("No hay onzas disponibles para ingresar, intente nuevamente." & vbCr & "Diferencias en Onzas: " & ver_onzas.ToString("#,##0.000"), MsgBoxStyle.Information, "Mensaje")
+                        Return
+                    End If
+                End If
                 onzas_acumuladas = Decimal.Add(onzas_acumuladas, onzas_ingresar)
                 onzas_acumuladas = redondearMenos(onzas_acumuladas, 0.0005)
                 lblOnzasIngresar.Text = Decimal.Round(onzas_acumuladas, 3)
