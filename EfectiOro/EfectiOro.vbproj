@@ -544,6 +544,12 @@
       <DependentUpon>rptCierreClienteGeneral.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\cierres\rptCierreClientesTodos.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCierreClientesTodos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\cierres\rptCierrePreciosClientesGeneral.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1041,6 +1047,10 @@
     <EmbeddedResource Include="Reportes\cierres\rptCierreClienteGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCierreClienteGeneral.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\cierres\rptCierreClientesTodos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCierreClientesTodos.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\cierres\rptCierrePreciosClientesGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

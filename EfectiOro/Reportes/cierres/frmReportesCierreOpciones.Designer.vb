@@ -158,7 +158,7 @@ Partial Class frmReportesCierreOpciones
         '
         Me.cmbTodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTodos.FormattingEnabled = True
-        Me.cmbTodos.Items.AddRange(New Object() {"Por Cliente", "Todos los clientes"})
+        Me.cmbTodos.Items.AddRange(New Object() {"Por Cliente", "Detallado Cliente", "Todos los clientes", "Detallado Todos"})
         Me.cmbTodos.Location = New System.Drawing.Point(101, 55)
         Me.cmbTodos.Name = "cmbTodos"
         Me.cmbTodos.Size = New System.Drawing.Size(164, 21)
@@ -180,7 +180,7 @@ Partial Class frmReportesCierreOpciones
         '
         Me.cmbSaldos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSaldos.FormattingEnabled = True
-        Me.cmbSaldos.Items.AddRange(New Object() {"General Por Cliente", "General todos", "Detallado por cliente", "Detallado todos"})
+        Me.cmbSaldos.Items.AddRange(New Object() {"General Por Cliente", "General todos", "Detallado por cliente"})
         Me.cmbSaldos.Location = New System.Drawing.Point(101, 28)
         Me.cmbSaldos.Name = "cmbSaldos"
         Me.cmbSaldos.Size = New System.Drawing.Size(164, 21)

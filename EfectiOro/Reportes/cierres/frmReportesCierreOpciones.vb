@@ -105,7 +105,6 @@ Public Class frmReportesCierreOpciones
                         Catch ex As Exception
                             MsgBox("Error al crear el reporte, revise la siguiente información: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
                         End Try
-
                     Case Else
                         Exit Select
                 End Select
@@ -134,6 +133,37 @@ Public Class frmReportesCierreOpciones
                         report.Database.Tables(1).SetDataSource(listaCliente)
                         ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
                     Case 1
+                        'detallado por cliente
+                        Try
+                            If validarSelecionCliente() = False Then
+                                Return
+                            End If
+                            Dim row As DataGridViewRow = dgvCliente.CurrentRow
+                            Dim codcliente As String = row.Cells(0).Value
+                            Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
+                                                                          Where cp.Codcliente = codcliente And cp.Fecha.Date >= txtDesde.Value.Date _
+                                                                              And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                          Select cp).ToList
+                            If listaCierres.Count <= 0 Then
+                                MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
+                                Return
+                            End If
+                            Dim listaDetaCierres As List(Of Detacierre) = (From cp In ctx.DetaCierre
+                                                                           Where cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                           Order By cp.Fecha Ascending
+                                                                           Select cp).ToList
+                            Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Where cli.Codcliente = codcliente Select cli).ToList
+                            Dim report As New rptCierrePreciosClientesGeneral
+                            report.Database.Tables(0).SetDataSource(listaCliente)
+                            report.Database.Tables(1).SetDataSource(listaCierres)
+                            report.Database.Tables(2).SetDataSource(listaDetaCierres)
+                            ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
+                            'frmReporteCierre.reportViewer.ReportSource = report
+                            'frmReporteCierre.Show()
+                        Catch ex As Exception
+                            MsgBox("Error al crear el reporte, revise la siguiente información: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
+                        End Try
+                    Case 2
                         'general todos
                         Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
                                                                       Where cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
@@ -147,6 +177,31 @@ Public Class frmReportesCierreOpciones
                         report.Database.Tables(0).SetDataSource(listaCierres)
                         report.Database.Tables(1).SetDataSource(listaCliente)
                         ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
+                    Case 3
+                        'detallado por cliente
+                        Try
+                            Dim listaCierres As List(Of CierrePrecios) = (From cp In ctx.CierrePrecios
+                                                                          Where cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                          Select cp).ToList
+                            If listaCierres.Count <= 0 Then
+                                MsgBox("No hay datos a mostar segun el rango de fechas indicada, intente nuevamente", MsgBoxStyle.Information, "Buscar")
+                                Return
+                            End If
+                            Dim listaDetaCierres As List(Of Detacierre) = (From cp In ctx.DetaCierre
+                                                                           Where cp.Fecha.Date >= txtDesde.Value.Date And cp.Fecha.Date <= txtHasta.Value.Date
+                                                                           Order By cp.Fecha Ascending
+                                                                           Select cp).ToList
+                            Dim listaCliente As List(Of Cliente) = (From cli In ctx.Cliente Select cli).ToList
+                            Dim report As New rptCierreClientesTodos
+                            report.Database.Tables(0).SetDataSource(listaCierres)
+                            report.Database.Tables(1).SetDataSource(listaCliente)
+                            report.Database.Tables(2).SetDataSource(listaDetaCierres)
+                            ParametrosCrystal(txtDesde.Value, txtHasta.Value, frm:=frmReporteCierre, rpt:=report)
+                            'frmReporteCierre.reportViewer.ReportSource = report
+                            'frmReporteCierre.Show()
+                        Catch ex As Exception
+                            MsgBox("Error al crear el reporte, revise la siguiente información: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
+                        End Try
                     Case Else
                         Exit Select
                 End Select

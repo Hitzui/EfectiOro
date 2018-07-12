@@ -20,12 +20,13 @@ Partial Class frmPrecios2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance8 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance9 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance10 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance11 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance12 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrecios2))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
@@ -44,8 +45,13 @@ Partial Class frmPrecios2
         Me.txtQuilate = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dgvPrecios = New System.Windows.Forms.DataGridView()
-        Me.btnQuitar = New Infragistics.Win.Misc.UltraButton()
+        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colQuilate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colGramos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.btnSalir = New Infragistics.Win.Misc.UltraButton()
+        Me.btnRefrescarCierres = New Infragistics.Win.Misc.UltraButton()
         Me.btnQuitarSeleccion = New Infragistics.Win.Misc.UltraButton()
         Me.btnCancelar = New Infragistics.Win.Misc.UltraButton()
         Me.btnGuardar = New Infragistics.Win.Misc.UltraButton()
@@ -69,10 +75,6 @@ Partial Class frmPrecios2
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.lblOnzasDiferencia = New System.Windows.Forms.ToolStripLabel()
-        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colQuilate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colGramos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -222,10 +224,10 @@ Partial Class frmPrecios2
         '
         'btnAgregar
         '
-        Appearance7.Image = Global.EfectiOro.My.Resources.Resources.money_plus
-        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnAgregar.Appearance = Appearance7
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.money_plus
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnAgregar.Appearance = Appearance1
         Me.btnAgregar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnAgregar.ImageSize = New System.Drawing.Size(32, 32)
         Me.btnAgregar.Location = New System.Drawing.Point(420, 12)
@@ -265,44 +267,85 @@ Partial Class frmPrecios2
         Me.dgvPrecios.Size = New System.Drawing.Size(480, 182)
         Me.dgvPrecios.TabIndex = 5
         '
-        'btnQuitar
+        'colLinea
         '
-        Appearance8.Image = Global.EfectiOro.My.Resources.Resources.PAGE_REMOVE
-        Appearance8.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance8.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnQuitar.Appearance = Appearance8
-        Me.btnQuitar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Me.btnQuitar.ImageSize = New System.Drawing.Size(32, 32)
-        Me.btnQuitar.Location = New System.Drawing.Point(310, 19)
-        Me.btnQuitar.Name = "btnQuitar"
-        Me.btnQuitar.Size = New System.Drawing.Size(66, 45)
-        Me.btnQuitar.TabIndex = 15
-        Me.btnQuitar.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
-        Me.btnQuitar.Visible = False
+        Me.colLinea.HeaderText = "Linea"
+        Me.colLinea.Name = "colLinea"
+        Me.colLinea.ReadOnly = True
+        '
+        'colQuilate
+        '
+        Me.colQuilate.HeaderText = "Quilate"
+        Me.colQuilate.Name = "colQuilate"
+        Me.colQuilate.ReadOnly = True
+        '
+        'colPrecio
+        '
+        Me.colPrecio.HeaderText = "Precio"
+        Me.colPrecio.Name = "colPrecio"
+        Me.colPrecio.ReadOnly = True
+        '
+        'colGramos
+        '
+        Me.colGramos.HeaderText = "Gramos"
+        Me.colGramos.Name = "colGramos"
+        Me.colGramos.ReadOnly = True
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.btnSalir)
+        Me.GroupBox3.Controls.Add(Me.btnRefrescarCierres)
         Me.GroupBox3.Controls.Add(Me.btnQuitarSeleccion)
         Me.GroupBox3.Controls.Add(Me.btnCancelar)
-        Me.GroupBox3.Controls.Add(Me.btnQuitar)
         Me.GroupBox3.Controls.Add(Me.btnGuardar)
         Me.GroupBox3.Controls.Add(Me.btnNuevo)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 343)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(500, 85)
+        Me.GroupBox3.Size = New System.Drawing.Size(953, 85)
         Me.GroupBox3.TabIndex = 4
         Me.GroupBox3.TabStop = False
         '
+        'btnSalir
+        '
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.HOME
+        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnSalir.Appearance = Appearance2
+        Me.btnSalir.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.btnSalir.ImageSize = New System.Drawing.Size(48, 48)
+        Me.btnSalir.Location = New System.Drawing.Point(887, 19)
+        Me.btnSalir.Name = "btnSalir"
+        Me.btnSalir.Size = New System.Drawing.Size(60, 60)
+        Me.btnSalir.TabIndex = 22
+        Me.toolTip.SetToolTip(Me.btnSalir, "Restablecer precios del cliente")
+        Me.btnSalir.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'btnRefrescarCierres
+        '
+        Appearance3.Image = Global.EfectiOro.My.Resources.Resources._48
+        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnRefrescarCierres.Appearance = Appearance3
+        Me.btnRefrescarCierres.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.btnRefrescarCierres.Enabled = False
+        Me.btnRefrescarCierres.ImageSize = New System.Drawing.Size(48, 48)
+        Me.btnRefrescarCierres.Location = New System.Drawing.Point(566, 19)
+        Me.btnRefrescarCierres.Name = "btnRefrescarCierres"
+        Me.btnRefrescarCierres.Size = New System.Drawing.Size(60, 60)
+        Me.btnRefrescarCierres.TabIndex = 21
+        Me.toolTip.SetToolTip(Me.btnRefrescarCierres, "Restablecer precios del cliente")
+        Me.btnRefrescarCierres.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
         'btnQuitarSeleccion
         '
-        Appearance9.Image = Global.EfectiOro.My.Resources.Resources.refresh01
-        Appearance9.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance9.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnQuitarSeleccion.Appearance = Appearance9
+        Appearance4.Image = Global.EfectiOro.My.Resources.Resources.refresh01
+        Appearance4.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance4.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnQuitarSeleccion.Appearance = Appearance4
         Me.btnQuitarSeleccion.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnQuitarSeleccion.Enabled = False
         Me.btnQuitarSeleccion.ImageSize = New System.Drawing.Size(48, 48)
-        Me.btnQuitarSeleccion.Location = New System.Drawing.Point(408, 19)
+        Me.btnQuitarSeleccion.Location = New System.Drawing.Point(256, 19)
         Me.btnQuitarSeleccion.Name = "btnQuitarSeleccion"
         Me.btnQuitarSeleccion.Size = New System.Drawing.Size(60, 60)
         Me.btnQuitarSeleccion.TabIndex = 20
@@ -311,13 +354,13 @@ Partial Class frmPrecios2
         '
         'btnCancelar
         '
-        Appearance10.Image = Global.EfectiOro.My.Resources.Resources.cancel01
-        Appearance10.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance10.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnCancelar.Appearance = Appearance10
+        Appearance5.Image = Global.EfectiOro.My.Resources.Resources.cancel01
+        Appearance5.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance5.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnCancelar.Appearance = Appearance5
         Me.btnCancelar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnCancelar.ImageSize = New System.Drawing.Size(48, 48)
-        Me.btnCancelar.Location = New System.Drawing.Point(182, 19)
+        Me.btnCancelar.Location = New System.Drawing.Point(178, 19)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(60, 60)
         Me.btnCancelar.TabIndex = 15
@@ -325,13 +368,13 @@ Partial Class frmPrecios2
         '
         'btnGuardar
         '
-        Appearance11.Image = Global.EfectiOro.My.Resources.Resources.SAVE
-        Appearance11.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance11.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnGuardar.Appearance = Appearance11
+        Appearance6.Image = Global.EfectiOro.My.Resources.Resources.SAVE
+        Appearance6.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance6.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnGuardar.Appearance = Appearance6
         Me.btnGuardar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnGuardar.ImageSize = New System.Drawing.Size(48, 48)
-        Me.btnGuardar.Location = New System.Drawing.Point(104, 19)
+        Me.btnGuardar.Location = New System.Drawing.Point(100, 19)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(60, 60)
         Me.btnGuardar.TabIndex = 14
@@ -339,10 +382,10 @@ Partial Class frmPrecios2
         '
         'btnNuevo
         '
-        Appearance12.Image = Global.EfectiOro.My.Resources.Resources.add01
-        Appearance12.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance12.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnNuevo.Appearance = Appearance12
+        Appearance7.Image = Global.EfectiOro.My.Resources.Resources.add01
+        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnNuevo.Appearance = Appearance7
         Me.btnNuevo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnNuevo.ImageSize = New System.Drawing.Size(48, 48)
         Me.btnNuevo.Location = New System.Drawing.Point(22, 19)
@@ -361,7 +404,7 @@ Partial Class frmPrecios2
         Me.GroupBox4.Controls.Add(Me.dgvCierrePrecios)
         Me.GroupBox4.Location = New System.Drawing.Point(518, 31)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(450, 397)
+        Me.GroupBox4.Size = New System.Drawing.Size(450, 306)
         Me.GroupBox4.TabIndex = 5
         Me.GroupBox4.TabStop = False
         '
@@ -377,7 +420,7 @@ Partial Class frmPrecios2
         Me.dgvCierrePrecios.Location = New System.Drawing.Point(3, 16)
         Me.dgvCierrePrecios.Name = "dgvCierrePrecios"
         Me.dgvCierrePrecios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvCierrePrecios.Size = New System.Drawing.Size(444, 378)
+        Me.dgvCierrePrecios.Size = New System.Drawing.Size(444, 287)
         Me.dgvCierrePrecios.TabIndex = 0
         '
         'colSeleccionar
@@ -477,30 +520,6 @@ Partial Class frmPrecios2
         Me.lblOnzasDiferencia.Size = New System.Drawing.Size(28, 22)
         Me.lblOnzasDiferencia.Text = "0.00"
         '
-        'colLinea
-        '
-        Me.colLinea.HeaderText = "Linea"
-        Me.colLinea.Name = "colLinea"
-        Me.colLinea.ReadOnly = True
-        '
-        'colQuilate
-        '
-        Me.colQuilate.HeaderText = "Quilate"
-        Me.colQuilate.Name = "colQuilate"
-        Me.colQuilate.ReadOnly = True
-        '
-        'colPrecio
-        '
-        Me.colPrecio.HeaderText = "Precio"
-        Me.colPrecio.Name = "colPrecio"
-        Me.colPrecio.ReadOnly = True
-        '
-        'colGramos
-        '
-        Me.colGramos.HeaderText = "Gramos"
-        Me.colGramos.Name = "colGramos"
-        Me.colGramos.ReadOnly = True
-        '
         'frmPrecios2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -555,7 +574,6 @@ Partial Class frmPrecios2
     Friend WithEvents txtMargen As System.Windows.Forms.TextBox
     Friend WithEvents btnCancelar As Infragistics.Win.Misc.UltraButton
     Friend WithEvents btnGuardar As Infragistics.Win.Misc.UltraButton
-    Friend WithEvents btnQuitar As Infragistics.Win.Misc.UltraButton
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents dgvCierrePrecios As System.Windows.Forms.DataGridView
     Friend WithEvents Label4 As Label
@@ -581,4 +599,6 @@ Partial Class frmPrecios2
     Friend WithEvents colQuilate As DataGridViewTextBoxColumn
     Friend WithEvents colPrecio As DataGridViewTextBoxColumn
     Friend WithEvents colGramos As DataGridViewTextBoxColumn
+    Friend WithEvents btnSalir As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents btnRefrescarCierres As Infragistics.Win.Misc.UltraButton
 End Class
