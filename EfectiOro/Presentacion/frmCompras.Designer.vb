@@ -21,9 +21,9 @@ Partial Class frmCompras
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCompras))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.panelHeader = New System.Windows.Forms.Panel()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btnCerrarcompra = New System.Windows.Forms.Button()
@@ -85,13 +85,6 @@ Partial Class frmCompras
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.dgvFiltrarCliente = New System.Windows.Forms.DataGridView()
-        Me.ClienteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.dgvBuscar_compra = New System.Windows.Forms.DataGridView()
-        Me.panelBuscar_compra = New System.Windows.Forms.Panel()
-        Me.txtFiltrar_compra = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.cmbEstado = New System.Windows.Forms.ComboBox()
         Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colApellidos = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -120,6 +113,18 @@ Partial Class frmCompras
         Me.NombreterceroDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DireccionterceroDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PicaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClienteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.dgvBuscar_compra = New System.Windows.Forms.DataGridView()
+        Me.colNumcompraBuscar = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colCodclienteBuscar = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colNombreBuscar = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colApellidosBuscar = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDireccionBuscar = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.panelBuscar_compra = New System.Windows.Forms.Panel()
+        Me.txtFiltrar_compra = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.cmbEstado = New System.Windows.Forms.ComboBox()
         Me.panelHeader.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -383,6 +388,7 @@ Partial Class frmCompras
         '
         'txtApecliente
         '
+        Me.txtApecliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtApecliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtApecliente.Location = New System.Drawing.Point(314, 37)
         Me.txtApecliente.Name = "txtApecliente"
@@ -401,6 +407,7 @@ Partial Class frmCompras
         '
         'txtNomcliente
         '
+        Me.txtNomcliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtNomcliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNomcliente.Location = New System.Drawing.Point(156, 37)
         Me.txtNomcliente.Name = "txtNomcliente"
@@ -566,14 +573,14 @@ Partial Class frmCompras
         Me.dgvCompras.AllowUserToDeleteRows = False
         Me.dgvCompras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvCompras.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Orange
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvCompras.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Orange
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvCompras.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCompras.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colLinea, Me.colDescripcion, Me.colPeso, Me.colPrecio, Me.colImporte})
         Me.dgvCompras.Dock = System.Windows.Forms.DockStyle.Fill
@@ -598,17 +605,17 @@ Partial Class frmCompras
         '
         'colPeso
         '
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Format = "N2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle5
         Me.colPeso.HeaderText = "Peso"
         Me.colPeso.Name = "colPeso"
         '
         'colPrecio
         '
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Format = "N2"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle6
         Me.colPrecio.HeaderText = "Precio"
         Me.colPrecio.Name = "colPrecio"
         '
@@ -791,66 +798,6 @@ Partial Class frmCompras
         Me.dgvFiltrarCliente.Size = New System.Drawing.Size(440, 27)
         Me.dgvFiltrarCliente.TabIndex = 8
         '
-        'ClienteBindingSource
-        '
-        Me.ClienteBindingSource.DataSource = GetType(EfectiOro.Database.Cliente)
-        '
-        'erp
-        '
-        Me.erp.ContainerControl = Me
-        '
-        'dgvBuscar_compra
-        '
-        Me.dgvBuscar_compra.AllowUserToAddRows = False
-        Me.dgvBuscar_compra.AllowUserToDeleteRows = False
-        Me.dgvBuscar_compra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.dgvBuscar_compra.BackgroundColor = System.Drawing.Color.White
-        Me.dgvBuscar_compra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBuscar_compra.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvBuscar_compra.Location = New System.Drawing.Point(0, 20)
-        Me.dgvBuscar_compra.Name = "dgvBuscar_compra"
-        Me.dgvBuscar_compra.ReadOnly = True
-        Me.dgvBuscar_compra.Size = New System.Drawing.Size(387, 25)
-        Me.dgvBuscar_compra.TabIndex = 9
-        '
-        'panelBuscar_compra
-        '
-        Me.panelBuscar_compra.Controls.Add(Me.dgvBuscar_compra)
-        Me.panelBuscar_compra.Controls.Add(Me.txtFiltrar_compra)
-        Me.panelBuscar_compra.Location = New System.Drawing.Point(11, 70)
-        Me.panelBuscar_compra.Name = "panelBuscar_compra"
-        Me.panelBuscar_compra.Size = New System.Drawing.Size(387, 45)
-        Me.panelBuscar_compra.TabIndex = 10
-        Me.panelBuscar_compra.Visible = False
-        '
-        'txtFiltrar_compra
-        '
-        Me.txtFiltrar_compra.Dock = System.Windows.Forms.DockStyle.Top
-        Me.txtFiltrar_compra.Location = New System.Drawing.Point(0, 0)
-        Me.txtFiltrar_compra.Name = "txtFiltrar_compra"
-        Me.txtFiltrar_compra.Size = New System.Drawing.Size(387, 20)
-        Me.txtFiltrar_compra.TabIndex = 11
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(431, 492)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(104, 13)
-        Me.Label12.TabIndex = 11
-        Me.Label12.Text = "Estado de la compra"
-        '
-        'cmbEstado
-        '
-        Me.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbEstado.Enabled = False
-        Me.cmbEstado.FormattingEnabled = True
-        Me.cmbEstado.Items.AddRange(New Object() {"Vigente", "Cerrado"})
-        Me.cmbEstado.Location = New System.Drawing.Point(541, 491)
-        Me.cmbEstado.Name = "cmbEstado"
-        Me.cmbEstado.Size = New System.Drawing.Size(136, 21)
-        Me.cmbEstado.TabIndex = 12
-        '
         'colCodcliente
         '
         Me.colCodcliente.DataPropertyName = "Codcliente"
@@ -902,7 +849,7 @@ Partial Class frmCompras
         Me.FvencimientoDataGridViewTextBoxColumn.Visible = False
         Me.FvencimientoDataGridViewTextBoxColumn.Width = 101
         '
-        'DireccionDataGridViewTextBoxColumn
+        'colDireccion
         '
         Me.colDireccion.DataPropertyName = "Direccion"
         Me.colDireccion.HeaderText = "Direccion"
@@ -1099,6 +1046,103 @@ Partial Class frmCompras
         Me.PicaDataGridViewTextBoxColumn.Visible = False
         Me.PicaDataGridViewTextBoxColumn.Width = 53
         '
+        'ClienteBindingSource
+        '
+        Me.ClienteBindingSource.DataSource = GetType(EfectiOro.Database.Cliente)
+        '
+        'erp
+        '
+        Me.erp.ContainerControl = Me
+        '
+        'dgvBuscar_compra
+        '
+        Me.dgvBuscar_compra.AllowUserToAddRows = False
+        Me.dgvBuscar_compra.AllowUserToDeleteRows = False
+        Me.dgvBuscar_compra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.dgvBuscar_compra.BackgroundColor = System.Drawing.Color.White
+        Me.dgvBuscar_compra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvBuscar_compra.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colNumcompraBuscar, Me.colCodclienteBuscar, Me.colNombreBuscar, Me.colApellidosBuscar, Me.colDireccionBuscar})
+        Me.dgvBuscar_compra.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvBuscar_compra.Location = New System.Drawing.Point(0, 20)
+        Me.dgvBuscar_compra.Name = "dgvBuscar_compra"
+        Me.dgvBuscar_compra.ReadOnly = True
+        Me.dgvBuscar_compra.Size = New System.Drawing.Size(387, 25)
+        Me.dgvBuscar_compra.TabIndex = 9
+        '
+        'colNumcompraBuscar
+        '
+        Me.colNumcompraBuscar.HeaderText = "N° Compra"
+        Me.colNumcompraBuscar.Name = "colNumcompraBuscar"
+        Me.colNumcompraBuscar.ReadOnly = True
+        Me.colNumcompraBuscar.Width = 83
+        '
+        'colCodclienteBuscar
+        '
+        Me.colCodclienteBuscar.HeaderText = "Cod Cliente"
+        Me.colCodclienteBuscar.Name = "colCodclienteBuscar"
+        Me.colCodclienteBuscar.ReadOnly = True
+        Me.colCodclienteBuscar.Width = 86
+        '
+        'colNombreBuscar
+        '
+        Me.colNombreBuscar.HeaderText = "Nombres"
+        Me.colNombreBuscar.Name = "colNombreBuscar"
+        Me.colNombreBuscar.ReadOnly = True
+        Me.colNombreBuscar.Width = 74
+        '
+        'colApellidosBuscar
+        '
+        Me.colApellidosBuscar.HeaderText = "Apellidos"
+        Me.colApellidosBuscar.Name = "colApellidosBuscar"
+        Me.colApellidosBuscar.ReadOnly = True
+        Me.colApellidosBuscar.Width = 74
+        '
+        'colDireccionBuscar
+        '
+        Me.colDireccionBuscar.HeaderText = "Direccion"
+        Me.colDireccionBuscar.Name = "colDireccionBuscar"
+        Me.colDireccionBuscar.ReadOnly = True
+        Me.colDireccionBuscar.Width = 77
+        '
+        'panelBuscar_compra
+        '
+        Me.panelBuscar_compra.Controls.Add(Me.dgvBuscar_compra)
+        Me.panelBuscar_compra.Controls.Add(Me.txtFiltrar_compra)
+        Me.panelBuscar_compra.Location = New System.Drawing.Point(11, 70)
+        Me.panelBuscar_compra.Name = "panelBuscar_compra"
+        Me.panelBuscar_compra.Size = New System.Drawing.Size(387, 45)
+        Me.panelBuscar_compra.TabIndex = 10
+        Me.panelBuscar_compra.Visible = False
+        '
+        'txtFiltrar_compra
+        '
+        Me.txtFiltrar_compra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtFiltrar_compra.Dock = System.Windows.Forms.DockStyle.Top
+        Me.txtFiltrar_compra.Location = New System.Drawing.Point(0, 0)
+        Me.txtFiltrar_compra.Name = "txtFiltrar_compra"
+        Me.txtFiltrar_compra.Size = New System.Drawing.Size(387, 20)
+        Me.txtFiltrar_compra.TabIndex = 11
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(431, 492)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(104, 13)
+        Me.Label12.TabIndex = 11
+        Me.Label12.Text = "Estado de la compra"
+        '
+        'cmbEstado
+        '
+        Me.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbEstado.Enabled = False
+        Me.cmbEstado.FormattingEnabled = True
+        Me.cmbEstado.Items.AddRange(New Object() {"Vigente", "Cerrado"})
+        Me.cmbEstado.Location = New System.Drawing.Point(541, 491)
+        Me.cmbEstado.Name = "cmbEstado"
+        Me.cmbEstado.Size = New System.Drawing.Size(136, 21)
+        Me.cmbEstado.TabIndex = 12
+        '
         'frmCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1251,4 +1295,9 @@ Partial Class frmCompras
     Friend WithEvents NombreterceroDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DireccionterceroDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PicaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents colNumcompraBuscar As DataGridViewTextBoxColumn
+    Friend WithEvents colCodclienteBuscar As DataGridViewTextBoxColumn
+    Friend WithEvents colNombreBuscar As DataGridViewTextBoxColumn
+    Friend WithEvents colApellidosBuscar As DataGridViewTextBoxColumn
+    Friend WithEvents colDireccionBuscar As DataGridViewTextBoxColumn
 End Class

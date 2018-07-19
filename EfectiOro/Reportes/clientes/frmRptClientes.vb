@@ -238,12 +238,12 @@ Public Class frmRptClientes
                         Dim buscarAdelanto As New List(Of Adelantos)
                         Dim buscarCliente As New List(Of Cliente)
                         buscarAdelanto = (From a In ctx.Adelantos
-                                              Where a.Fecha >= txtDesdegen.Value And a.Fecha <= txtHastagen.Value
-                                              Order By a.Fecha Ascending
-                                              Select a).ToList
+                                          Where a.Fecha >= txtDesdegen.Value And a.Fecha <= txtHastagen.Value
+                                          Order By a.Fecha Ascending
+                                          Select a).ToList
                         buscarCliente = (From c In ctx.Cliente
-                                             Order By c.Nombres Ascending
-                                             Select c).ToList
+                                         Order By c.Nombres Ascending
+                                         Select c).ToList
                         If CodigoClienteSeleccionado.Length > 0 Then
                             buscarAdelanto = buscarAdelanto.Where(Function(c) c.Codcliente = CodigoClienteSeleccionado).ToList
                             buscarCliente = buscarCliente.Where(Function(c) c.Codcliente = CodigoClienteSeleccionado).ToList
@@ -257,6 +257,19 @@ Public Class frmRptClientes
                         frmReportes.Show()
                     Catch ex As Exception
 
+                    End Try
+                End If
+                If cmbAdelantosPendientes.SelectedIndex = 4 Then
+                    'forma en la que se aplico el adelanto
+                    'reporte detallado
+                    Try
+                        Dim query = (From a In ctx.Adelantos Where a.Fecha >= txtDesdegen.Value And a.Fecha <= txtHastagen.Value Select a.Numcompra).AsEnumerable
+                        Dim caracteres As String() = {"; ", "-", "."}
+                        Dim numeroCompras = query.Where(Function(f) f.Length > 5).SelectMany(Function(f) f.Split(caracteres, StringSplitOptions.RemoveEmptyEntries)).Distinct.ToList
+                        Dim compras = (From c In ctx.Compras Where numeroCompras.Contains(c.Numcompra) And c.Adelantos > 0 Select c).ToList
+                        Dim value As Int16 = 0
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
                     End Try
                 End If
             End If

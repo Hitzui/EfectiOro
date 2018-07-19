@@ -1,14 +1,18 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.Linq.SqlClient
+Imports System.Data.SqlClient
 Imports EfectiOro.Database
 
 Public Class frmCompras
     Private Const tituloError As String = "Error"
+    Private Const Title As String = "Error"
 
 #Region "Properties"
+    Dim config As New ConfiguracionGeneral
+    Dim agencia As String
     Private bsCliente As New BindingSource
     Private auxiliar As Integer
     Private _compraActual As Compras
-    Dim daoCliente As IDaoCliente
+    'Dim daoCliente As IDaoCliente
     Private _preciosSeleccionados As List(Of Precios)
     Public ReadOnly Property precio_seleccionado() As List(Of Precios)
         Get
@@ -47,7 +51,6 @@ Public Class frmCompras
     Public verAdelanto As List(Of Adelantos)
     Private Property compraEncontrada As Boolean
     Public Sub New()
-        daoCliente = New DaoCliente
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
@@ -55,6 +58,7 @@ Public Class frmCompras
         Me.verAdelanto = New List(Of Adelantos)
         Me.totalGeneral = 0D
         _preciosSeleccionados = New List(Of Precios)
+        agencia = config.getAgencia
     End Sub
 #End Region
 #Region "Imprimir compra"
@@ -83,15 +87,11 @@ Public Class frmCompras
                 ' 1 = Vigente
                 ' 2 = Cerrada
                 ' 3 = Descargada
-                Dim config As New ConfiguracionGeneral
-                Dim _agencia As String = config.getAgencia
-                Dim filtrar = (From cli In ctx.Cliente Join c In ctx.Compras On cli.Codcliente Equals c.Codcliente
-                               Where System.Data.Linq.SqlClient.SqlMethods.Like(c.Numcompra, "%" & txtNumcompra.Text & "%") _
-                               And c.Codagencia = _agencia And c.Codestado >= 1 And c.Codestado <= 2
-                               Order By c.Numcompra Ascending
-                               Select c.Numcompra, cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion).ToList()
+                Dim filtrar = (From c In ctx.Compras Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
+                               Where c.Codestado = 1 Or c.Codestado = 2 Order By Convert.ToInt32(c.Numcompra) Ascending
+                               Select c.Numcompra, cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion, c.Codagencia).ToList()
                 dgvBuscar_compra.Rows.Clear()
-                For Each dato In filtrar
+                For Each dato In filtrar.Where(Function(c) c.Codagencia = agencia And c.Numcompra.Contains(txtNumcompra.Text)).ToList()
                     Me.dgvBuscar_compra.Rows.Add(dato.Numcompra, dato.Codcliente, dato.Nombres, dato.Apellidos, dato.Direccion)
                 Next
             Catch ex As Exception
@@ -101,14 +101,10 @@ Public Class frmCompras
     End Sub
     Sub filtrarCliente()
         Try
-            'Dim dao = DataContext.daoCliente
+            Dim daoCliente = DataContext.daoCliente
             Dim listar As List(Of Cliente) = daoCliente.filtrarPorNombre(txtNomcliente.Text)
             bsCliente.DataSource = listar
             ClienteBindingSource.DataSource = bsCliente
-            'dgvFiltrarCliente.Rows.Clear()
-            'For Each cli As Cliente In listar
-            '    dgvFiltrarCliente.Rows.Add(cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion)
-            'Next
         Catch ex As Exception
             MsgBox("Error al intentar filtrar los datos, producido por: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
@@ -458,8 +454,8 @@ Public Class frmCompras
     End Sub
 
     Private Sub txtCodcliente_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtCodcliente.TextChanged
-        'Dim dao = DataContext.daoCliente
-        Dim listar As List(Of Cliente) = daoCliente.filtrarPorCodigo(txtCodcliente.Text)
+        Dim dao = DataContext.daoCliente
+        Dim listar As List(Of Cliente) = dao.filtrarPorCodigo(txtCodcliente.Text)
         bsCliente.DataSource = listar
         ClienteBindingSource.DataSource = bsCliente
         If txtCodcliente.TextLength > 0 Then
@@ -468,8 +464,8 @@ Public Class frmCompras
     End Sub
 
     Private Sub txtApecliente_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtApecliente.TextChanged
-        ' Dim dao = DataContext.daoCliente
-        Dim listar As List(Of Cliente) = daoCliente.filtrarPorApellido(txtApecliente.Text)
+        Dim dao = DataContext.daoCliente
+        Dim listar As List(Of Cliente) = dao.filtrarPorApellido(txtApecliente.Text)
         bsCliente.DataSource = listar
         ClienteBindingSource.DataSource = bsCliente
     End Sub
@@ -514,9 +510,9 @@ Public Class frmCompras
         Try
             Select Case e.KeyValue
                 Case Keys.Enter
-                    'Dim dao = DataContext.daoCliente
+                    Dim dao = DataContext.daoCliente
                     Dim row As DataGridViewRow = dgvFiltrarCliente.CurrentRow
-                    _clienteActual = daoCliente.findById(row.Cells("colCodcliente").Value)
+                    _clienteActual = dao.findById(row.Cells("colCodcliente").Value)
                     txtCodcliente.Text = _clienteActual.Codcliente
                     txtNomcliente.Text = _clienteActual.Nombres
                     txtApecliente.Text = _clienteActual.Apellidos
@@ -949,8 +945,6 @@ Public Class frmCompras
     Sub buscarCompra()
         Using ctx As New Contexto
             Try
-                Dim config As New ConfiguracionGeneral
-                Dim agencia As String = config.getAgencia
                 Dim dao = DataContext.daoCompras
                 Dim row As DataGridViewRow = dgvBuscar_compra.CurrentRow
                 Me.txtNumcompra.Text = Convert.ToString(row.Cells(0).Value)
@@ -1036,14 +1030,20 @@ Public Class frmCompras
 
     Private Sub txtFiltrar_compra_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFiltrar_compra.TextChanged
         Using ctx As New Contexto
-            Dim filtrar = (From cli In ctx.Cliente Join c In ctx.Compras On cli.Codcliente Equals c.Codcliente
-                           Where System.Data.Linq.SqlClient.SqlMethods.Like(cli.Nombres, "%" & Me.txtFiltrar_compra.Text & "%")
-                           Order By c.Numcompra Ascending
-                           Select c.Numcompra, cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion).ToList()
-            dgvBuscar_compra.Rows.Clear()
-            For Each dato In filtrar
-                Me.dgvBuscar_compra.Rows.Add(dato.Numcompra, dato.Codcliente, dato.Nombres, dato.Apellidos, dato.Direccion)
-            Next
+            Try
+                Dim config As New ConfiguracionGeneral
+                Dim agencia As String = config.getAgencia
+                Dim filtrar = (From c In ctx.Compras Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
+                               Where c.Codestado = 1 Or c.Codestado = 2
+                               Order By Convert.ToInt32(c.Numcompra) Ascending
+                               Select c.Numcompra, cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion, c.Codagencia).ToList()
+                dgvBuscar_compra.Rows.Clear()
+                For Each dato In filtrar.Where(Function(c) c.Nombres.Contains(txtFiltrar_compra.Text) And c.Codagencia = agencia).ToList
+                    Me.dgvBuscar_compra.Rows.Add(dato.Numcompra, dato.Codcliente, dato.Nombres, dato.Apellidos, dato.Direccion)
+                Next
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Critical, tituloError)
+            End Try
         End Using
     End Sub
 
@@ -1090,7 +1090,7 @@ Public Class frmCompras
             Return
         End If
         Dim result As DialogResult = MsgBox("¿Anular la compra seleccionada?", MsgBoxStyle.YesNo, "Anular compra")
-        If result = Windows.Forms.DialogResult.No Then
+        If result = DialogResult.No Then
             Return
         End If
         Dim dao = DataContext.daoCompras

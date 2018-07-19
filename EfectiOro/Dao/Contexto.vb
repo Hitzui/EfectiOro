@@ -3308,6 +3308,8 @@ Namespace Database
 
         Private _Hora As System.TimeSpan
 
+        Private _codagencia As String
+
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub
@@ -3358,6 +3360,10 @@ Namespace Database
         Partial Private Sub OnHoraChanging(value As System.TimeSpan)
         End Sub
         Partial Private Sub OnHoraChanged()
+        End Sub
+        Partial Private Sub OnCodagenciaChanging(value As String)
+        End Sub
+        Partial Private Sub OnCodagenciaChanged()
         End Sub
 #End Region
 
@@ -3544,6 +3550,21 @@ Namespace Database
                     Me._Hora = value
                     Me.SendPropertyChanged("Hora")
                     Me.OnHoraChanged()
+                End If
+            End Set
+        End Property
+        <Column(Name:="codagencia", Storage:="_codagencia", DbType:="VarChar(10)", CanBeNull:=True)>
+        Public Property Codagencia() As String
+            Get
+                Return Me._codagencia
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._codagencia, value) = False) Then
+                    Me.OnCodagenciaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codagencia = value
+                    Me.SendPropertyChanged("Codagencia")
+                    Me.OnCodagenciaChanged()
                 End If
             End Set
         End Property

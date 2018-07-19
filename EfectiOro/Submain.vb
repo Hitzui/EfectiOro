@@ -20,7 +20,6 @@ Public Class Submain
         'MsgBox("Longitud del texto: " & dao.codCliente().Length)
         login.ShowDialog()
         If login.DialogResult = DialogResult.OK Then
-
             If frmPrincipal.Created Then
                 Return
             End If

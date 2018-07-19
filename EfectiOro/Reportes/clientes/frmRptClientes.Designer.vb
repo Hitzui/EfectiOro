@@ -56,17 +56,12 @@ Partial Class frmRptClientes
         Me.radPorcedula = New System.Windows.Forms.RadioButton()
         Me.radPornombre = New System.Windows.Forms.RadioButton()
         Me.fillDataTable = New System.ComponentModel.BackgroundWorker()
-        Me.panelTitulo.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.dgvFiltrar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(719, 25)
         '
         'btnClose
         '
@@ -75,7 +70,7 @@ Partial Class frmRptClientes
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(694, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(719, 25)
         '
         'GroupBox2
         '
@@ -186,7 +181,7 @@ Partial Class frmRptClientes
         '
         Me.cmbAdelantosPendientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbAdelantosPendientes.FormattingEnabled = True
-        Me.cmbAdelantosPendientes.Items.AddRange(New Object() {"Con saldos Detallado", "Con saldos Consolidado", "Detallado cliente", "General cliente"})
+        Me.cmbAdelantosPendientes.Items.AddRange(New Object() {"Con saldos Detallado", "Con saldos Consolidado", "Detallado cliente", "General cliente", "Aplicacion Detallado"})
         Me.cmbAdelantosPendientes.Location = New System.Drawing.Point(255, 132)
         Me.cmbAdelantosPendientes.Name = "cmbAdelantosPendientes"
         Me.cmbAdelantosPendientes.Size = New System.Drawing.Size(160, 21)
@@ -463,9 +458,7 @@ Partial Class frmRptClientes
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         Me.Controls.SetChildIndex(Me.GroupBox4, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)

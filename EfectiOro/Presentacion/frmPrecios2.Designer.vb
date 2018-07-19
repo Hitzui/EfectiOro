@@ -317,7 +317,7 @@ Partial Class frmPrecios2
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(60, 60)
         Me.btnSalir.TabIndex = 22
-        Me.toolTip.SetToolTip(Me.btnSalir, "Restablecer precios del cliente")
+        Me.toolTip.SetToolTip(Me.btnSalir, "Salir")
         Me.btnSalir.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
         'btnRefrescarCierres
@@ -333,7 +333,7 @@ Partial Class frmPrecios2
         Me.btnRefrescarCierres.Name = "btnRefrescarCierres"
         Me.btnRefrescarCierres.Size = New System.Drawing.Size(60, 60)
         Me.btnRefrescarCierres.TabIndex = 21
-        Me.toolTip.SetToolTip(Me.btnRefrescarCierres, "Restablecer precios del cliente")
+        Me.toolTip.SetToolTip(Me.btnRefrescarCierres, "Volver a cargar cierre de precios")
         Me.btnRefrescarCierres.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
         'btnQuitarSeleccion

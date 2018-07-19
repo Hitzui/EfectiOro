@@ -405,6 +405,7 @@ Public Class DaoCompras
                             comprasAdelantos.Idadelanto = idsalida
                             comprasAdelantos.Numcompra = compra.Numcompra
                             comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
+                            comprasAdelantos.Codagencia = compra.Codagencia
                             'Saldo inicial es el monto con el que esta al momento
                             comprasAdelantos.Sinicial = dato.Saldo
                             If saldo > adelanto Then
@@ -428,7 +429,7 @@ Public Class DaoCompras
                             If findAdelanto.Numcompra.Length <= 0 Then
                                 findAdelanto.Numcompra = compra.Codagencia & "-" & compra.Numcompra
                             Else
-                                findAdelanto.Numcompra = findAdelanto.Numcompra & "; " & compra.Codagencia & "." & compra.Numcompra
+                                findAdelanto.Numcompra = findAdelanto.Numcompra & "; " & compra.Codagencia & "-" & compra.Numcompra
                             End If
                             ctx.Compras_adelantos.InsertOnSubmit(comprasAdelantos)
                         End If

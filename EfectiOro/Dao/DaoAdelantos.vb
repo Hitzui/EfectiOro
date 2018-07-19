@@ -48,6 +48,8 @@ Public Class DaoAdelantos
 
     Public Function crearAdelanto(adelanto As Database.Adelantos) As Boolean Implements IDaoAdelantos.crearAdelanto
         Try
+            Dim config As New ConfiguracionGeneral
+            Dim agencia = config.getAgencia
             Using ctx As New Contexto
                 Dim comprasAdelantos As New Compras_adelantos
                 comprasAdelantos.Numcompra = String.Empty
@@ -60,6 +62,7 @@ Public Class DaoAdelantos
                 comprasAdelantos.Sinicial = 0
                 comprasAdelantos.Sfinal = adelanto.Monto
                 comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
+                comprasAdelantos.Codagencia = agencia
                 ctx.Compras_adelantos.InsertOnSubmit(comprasAdelantos)
                 ctx.Adelantos.InsertOnSubmit(adelanto)
                 ctx.SubmitChanges()
