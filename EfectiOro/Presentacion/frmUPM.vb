@@ -79,6 +79,10 @@ Public Class frmUPM
                 chkStatus.Checked = True
                 chkStatus.Enabled = False
             Case 1
+                If dgvUPM.Rows.Count <= 0 Then
+                    MsgBox("No hay UPM disponibles para poder realizar dicha operacion, ingrese un UPM para poder continuar", MsgBoxStyle.Information, "UPM")
+                    Return
+                End If
                 dgvCierres.Enabled = True
                 habilitarBotones(False, True, False, False, True)
                 Using ctx As New Contexto
@@ -220,7 +224,7 @@ Public Class frmUPM
                         Select Case aux
                             Case 1
                                 'guardar datos
-                                Dim _upm As New Upm With {.Codigo = codigo, .Onzas = onzas, .Precio = precio, .Fecha = txtFecha.Value, .Status = True}
+                                Dim _upm As New Upm With {.Codigo = codigo, .Onzas = onzas, .Saldo = onzas, .Precio = precio, .Fecha = txtFecha.Value, .Status = True}
                                 ctx.UPM.InsertOnSubmit(_upm)
                                 ctx.SubmitChanges()
                                 MsgBox("Se han guardado los datos del UPM, de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
@@ -316,9 +320,7 @@ Public Class frmUPM
                                 btnCancelar_Click(sender, e)
                         End Select
 #End Region
-
                 End Select
-
             Catch ex As Exception
                 MsgBox("Se produjo un error al intentar guardar: " & ex.Message, MsgBoxStyle.Critical, _tituloMensaje)
             End Try

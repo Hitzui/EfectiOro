@@ -336,6 +336,8 @@ Public Class DaoCompras
                     Dim listaDetaCierres As New List(Of Detacierre)
                     If buscar_cierres.Count > 0 Then
                         For Each dato As TmpPrecios In buscar_cierres
+                            Dim buscarDetaUPM = (From deta In ctx.Detaupm Where deta.Codcierre = dato.Codcierre).Single
+                            Dim buscarUPM = (From upm In ctx.UPM Where buscarDetaUPM.Codupm = upm.Codupm Select upm).Single
                             Dim cierre As CierrePrecios = (From c In ctx.CierrePrecios Where c.CodCierre = dato.Codcierre Select c).Single
                             Dim detacierre As New Detacierre
                             Dim xsaldo As Decimal = Decimal.Subtract(cierre.SaldoOnzas, dato.Cantidad)
@@ -347,6 +349,16 @@ Public Class DaoCompras
                             detacierre.Numcompra = compra.Numcompra
                             detacierre.Codagencia = compra.Codagencia
                             cierre.SaldoOnzas = dato.Cantidad
+                            If buscarUPM.Status = True Then
+                                If buscarUPM.Saldo <= xsaldo Then
+                                    buscarUPM.Saldo = Decimal.Zero
+                                Else
+                                    buscarUPM.Saldo = Decimal.Subtract(buscarUPM.Saldo, xsaldo)
+                                End If
+                            End If
+                            If buscarUPM.Saldo <= Decimal.Zero Then
+                                buscarUPM.Status = False
+                            End If
                             If dato.Cantidad = Decimal.Zero Then
                                 cierre.Status = False
                             End If

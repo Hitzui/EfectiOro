@@ -7,7 +7,7 @@ Imports System.ComponentModel
 Imports System.Threading
 
 Public Class frmRptClientes
-
+    Private Const tituloError As String = "Error"
     Private daoCliente As IDaoCliente
     Private demoThread As Thread = Nothing
     ''' <summary>
@@ -32,7 +32,7 @@ Public Class frmRptClientes
                 da.Fill(dt)
                 Return dt
             Catch ex As Exception
-                MsgBox("Error al recuperar los clientes: " & ex.Message, MsgBoxStyle.Critical, "Error")
+                MsgBox("Error al recuperar los clientes: " & ex.Message, MsgBoxStyle.Critical, tituloError)
                 Return Nothing
             Finally
                 con.Close()
@@ -44,28 +44,28 @@ Public Class frmRptClientes
             Using ctx As New Contexto
                 If radPornombre.Checked Then
                     Dim buscar = (From c In ctx.Cliente Where c.Nombres.Contains(txtFiltrar.Text)
-                          Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
+                                  Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
                     dgvFiltrar.DataSource = buscar
                 ElseIf radPorcedula.Checked Then
                     Dim buscar = (From c In ctx.Cliente Where c.Numcedula.Contains(txtFiltrar.Text)
-                          Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
+                                  Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
                     dgvFiltrar.DataSource = buscar
                 ElseIf radPorcodigo.Checked Then
                     Dim buscar = (From c In ctx.Cliente Where c.Codcliente.Contains(txtFiltrar.Text)
-                          Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
+                                  Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
                     dgvFiltrar.DataSource = buscar
                 ElseIf radApellido.Checked Then
                     Dim buscar = (From c In ctx.Cliente Where c.Apellidos.Contains(txtFiltrar.Text)
-                          Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
+                                  Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula, c.Direccion).ToList
                     dgvFiltrar.DataSource = buscar
                 End If
             End Using
         Catch ex As Exception
-            MsgBox("Error al recuperar los clientes: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Error al recuperar los clientes: " & ex.Message, MsgBoxStyle.Critical, tituloError)
         End Try
     End Sub
-   
-    Private recuperarClientesDatos As Func(Of Contexto, IQueryable(Of Cliente)) = _
+
+    Private recuperarClientesDatos As Func(Of Contexto, IQueryable(Of Cliente)) =
         CompiledQuery.Compile(Function(ctx As Contexto) _
                                   From c In ctx.Cliente Select c)
 
@@ -142,8 +142,8 @@ Public Class frmRptClientes
                     'adelantos con saldos
                     Try
                         Dim buscarAdelantos = (From a In ctx.Adelantos
-                                                Where a.Saldo > 0
-                                                Order By a.Fecha Ascending Select a).ToList()
+                                               Where a.Saldo > 0
+                                               Order By a.Fecha Ascending Select a).ToList()
                         Dim buscarClientes = (From cli In ctx.Cliente Order By cli.Nombres Ascending Select cli).ToList
                         If CodigoClienteSeleccionado.Length > 0 Then
                             buscarAdelantos = buscarAdelantos.Where(Function(c) c.Codcliente = CodigoClienteSeleccionado).ToList
@@ -269,7 +269,7 @@ Public Class frmRptClientes
                         Dim compras = (From c In ctx.Compras Where numeroCompras.Contains(c.Numcompra) And c.Adelantos > 0 Select c).ToList
                         Dim value As Int16 = 0
                     Catch ex As Exception
-                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, tituloError)
                     End Try
                 End If
             End If
@@ -294,11 +294,11 @@ Public Class frmRptClientes
                     Dim variacionCliente As New List(Of VVariacionesCliente)
                     Dim buscar = (From cli In ctx.Cliente
                                   Join c In ctx.Compras On cli.Codcliente Equals c.Codcliente
-                                 Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And cli.Monto_mensual > 1 _
-                                 Order By c.Fecha Ascending
-                                 Group By cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Monto_mensual _
+                                  Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And cli.Monto_mensual > 1
+                                  Order By c.Fecha Ascending
+                                  Group By cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Monto_mensual
                                  Into MontoMensual = Sum(c.Total), Cantcompras = Count()
-                                 Select Codcliente, Nombres, Apellidos, Monto = (Monto_mensual * tipoCambio), MontoMensual,
+                                  Select Codcliente, Nombres, Apellidos, Monto = (Monto_mensual * tipoCambio), MontoMensual,
                                  Variacion = (MontoMensual / (Monto_mensual * tipoCambio)) * 100, Cantcompras Order By Nombres).ToList()
                     If CodigoClienteSeleccionado.Length > 0 Then
                         buscar = buscar.Where(Function(c) c.Codcliente = CodigoClienteSeleccionado).ToList
@@ -324,18 +324,18 @@ Public Class frmRptClientes
                     frmReportes.viewer.ReportSource = report
                     frmReportes.Show()
                 Catch ex As Exception
-                    MsgBox("Error al dividir por cero. Revise la información del cliente para mostrar sus variaciones" & vbCr & ex.Message, MsgBoxStyle.Exclamation, "Error")
+                    MsgBox("Error al dividir por cero. Revise la información del cliente para mostrar sus variaciones" & vbCr & ex.Message, MsgBoxStyle.Exclamation, tituloError)
                 End Try
             End If
             If radTransaccionesEfectivo.Checked Then
                 If Me.cmbTransacciones.SelectedIndex = 0 Then
                     'Transacciones en general
                     Dim buscar = (From cli In ctx.Cliente Join c In ctx.Compras On cli.Codcliente Equals c.Codcliente
-                              Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And c.Codestado <> 3 _
-                              Group cli, c By cli.Nombres, cli.Apellidos, cli.Codcliente
+                                  Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And c.Codestado <> 3
+                                  Group cli, c By cli.Nombres, cli.Apellidos, cli.Codcliente
                               Into Total = Sum(c.Total), Transacciones = Count(), Peso = Sum(c.Peso)
-                              Order By Nombres Ascending
-                              Select Codcliente, Nombres, Apellidos, Total, Transacciones, Peso).ToList()
+                                  Order By Nombres Ascending
+                                  Select Codcliente, Nombres, Apellidos, Total, Transacciones, Peso).ToList()
                     If String.IsNullOrEmpty(CodigoClienteSeleccionado) = False Then
                         buscar = buscar.Where(Function(c) c.Codcliente = CodigoClienteSeleccionado).ToList
                     End If
@@ -364,14 +364,14 @@ Public Class frmRptClientes
                     valor = Convert.ToDecimal(InputBox("Especifique una cantidad: ", "Rango", "10000")) * tipoCambio
                     'MsgBox("Valor: " & valor, MsgBoxStyle.OkCancel, "Valor")
                     Dim buscar = (From c In ctx.Compras
-                             Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
-                             Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And _
-                             SqlMethods.Like(cli.Codcliente, "%" & Me.CodigoClienteSeleccionado & "%") And _
+                                  Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
+                                  Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And
+                             SqlMethods.Like(cli.Codcliente, "%" & Me.CodigoClienteSeleccionado & "%") And
                              c.Efectivo > valor Group By cli.Codcliente, cli.Nombres, cli.Apellidos Into g = Group
-                             Order By Nombres Ascending
-                             Select Codcliente, Nombres, Apellidos, Efectivo = g.Sum(Function(p) p.c.Efectivo),
-                             Transferencia = g.Sum(Function(p) p.c.Transferencia), Cheque = g.Sum(Function(p) p.c.Cheque), _
-                             Adelantos = g.Sum(Function(p) p.c.Adelantos), Total = g.Sum(Function(p) p.c.Total), _
+                                  Order By Nombres Ascending
+                                  Select Codcliente, Nombres, Apellidos, Efectivo = g.Sum(Function(p) p.c.Efectivo),
+                             Transferencia = g.Sum(Function(p) p.c.Transferencia), Cheque = g.Sum(Function(p) p.c.Cheque),
+                             Adelantos = g.Sum(Function(p) p.c.Adelantos), Total = g.Sum(Function(p) p.c.Total),
                              Transacciones = g.Count(Function(p) p.c.Numcompra))
                     Dim listaTransacciones As New List(Of TransaccionEfectivo)
                     For Each dato In buscar
@@ -401,14 +401,14 @@ Public Class frmRptClientes
                     Dim valor As Decimal
                     valor = Convert.ToDecimal(InputBox("Especifique una cantidad: ", "Rango", "10000")) * tipoCambio
                     Dim buscar = (From c In ctx.Compras
-                             Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
-                             Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And _
+                                  Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
+                                  Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And
                              SqlMethods.Like(cli.Codcliente, "%" & Me.CodigoClienteSeleccionado & "%")
-                             Group By cli.Codcliente, cli.Nombres, cli.Apellidos, c.Numcompra Into g = Group
-                             Order By Nombres Ascending
-                             Select Codcliente, Nombres, Apellidos, Numcompra, Efectivo = g.Sum(Function(p) p.c.Efectivo),
-                             Transferencia = g.Sum(Function(p) p.c.Transferencia), Cheque = g.Sum(Function(p) p.c.Cheque), _
-                             Adelantos = g.Sum(Function(p) p.c.Adelantos), _
+                                  Group By cli.Codcliente, cli.Nombres, cli.Apellidos, c.Numcompra Into g = Group
+                                  Order By Nombres Ascending
+                                  Select Codcliente, Nombres, Apellidos, Numcompra, Efectivo = g.Sum(Function(p) p.c.Efectivo),
+                             Transferencia = g.Sum(Function(p) p.c.Transferencia), Cheque = g.Sum(Function(p) p.c.Cheque),
+                             Adelantos = g.Sum(Function(p) p.c.Adelantos),
                              Total = g.Sum(Function(p) p.c.Total), Peso = g.Sum(Function(p) p.c.Peso))
                     Dim listaTransacciones As New List(Of TransaccionEfectivo)
                     For Each dato In buscar
@@ -486,36 +486,36 @@ Public Class frmRptClientes
                 Dim listaClientes As List(Of Cliente) = (From cli In ctx.Cliente
                                                          Where cli.Codcliente = Me.CodigoClienteSeleccionado
                                                          Select cli).ToList()
-                Dim verAdelantosCliente As List(Of Adelantos) = (From a In ctx.Adelantos _
-                                                                 Where a.Codcliente = Me.CodigoClienteSeleccionado _
+                Dim verAdelantosCliente As List(Of Adelantos) = (From a In ctx.Adelantos
+                                                                 Where a.Codcliente = Me.CodigoClienteSeleccionado
                                                                  Select a).ToList
                 Select Case Me.cmbReembolsos.SelectedIndex
                     Case 0
                         'historico de reembolsos
                         buscar = (From ca In ctx.Compras_adelantos
-                                  Where ca.Codcliente = Me.CodigoClienteSeleccionado And _
+                                  Where ca.Codcliente = Me.CodigoClienteSeleccionado And
                                   ca.Fecha >= Me.txtDesdegen.Value And ca.Fecha <= Me.txtHastagen.Value
                                   Select ca).ToList()
                     Case 1
                         'reembolsos mayores a cero
                         buscar = (From ca In ctx.Compras_adelantos
                                   Let saldo = (From a In ctx.Adelantos Where a.Idsalida = ca.Idadelanto Select a.Saldo).First
-                                    Where ca.Codcliente = Me.CodigoClienteSeleccionado And saldo > 0D _
+                                  Where ca.Codcliente = Me.CodigoClienteSeleccionado And saldo > 0D _
                                     And ca.Fecha >= Me.txtDesdegen.Value And ca.Fecha <= Me.txtHastagen.Value
-                                    Order By ca.Fecha Descending Select ca).ToList()
+                                  Order By ca.Fecha Descending Select ca).ToList()
                     Case 2
                         'especifico por numero de adelanto
                         Dim numAdelanto As String
                         numAdelanto = InputBox("Especifique un adelanto para ver su detalle: ", "Número de adelanto", "")
                         buscar = (From ca In ctx.Compras_adelantos
-                                  Where ca.Codcliente = Me.CodigoClienteSeleccionado And _
+                                  Where ca.Codcliente = Me.CodigoClienteSeleccionado And
                                   ca.Idadelanto = numAdelanto Order By ca.Fecha Ascending Select ca).ToList()
                     Case 3
                         'consolidado de aplicacion de adelantos
-                        buscar = (From ca In ctx.Compras_adelantos _
+                        buscar = (From ca In ctx.Compras_adelantos
                                   Where ca.Codcliente = Me.CodigoClienteSeleccionado _
-                                  And ca.Fecha >= Me.txtDesdegen.Value And ca.Fecha <= Me.txtHastagen.Value _
-                                 Order By ca.Idadelanto Descending, ca.Fecha Ascending Select ca).ToList()
+                                  And ca.Fecha >= Me.txtDesdegen.Value And ca.Fecha <= Me.txtHastagen.Value
+                                  Order By ca.Idadelanto Descending, ca.Fecha Ascending Select ca).ToList()
                         Dim xSaldo As Decimal = 0D
                         For Each dato In verAdelantosCliente
                             If dato.Saldo > 0 Then
@@ -569,7 +569,7 @@ Public Class frmRptClientes
                     dgvFiltrar.DataSource = buscarCliente
                 End If
             Catch ex As Exception
-                MsgBox("Se produjo un error al buscar el cliente: " & ex.Message, MsgBoxStyle.Information, "Error")
+                MsgBox("Se produjo un error al buscar el cliente: " & ex.Message, MsgBoxStyle.Information, tituloError)
             End Try
         End Using
     End Sub
@@ -678,7 +678,7 @@ Public Class frmRptClientes
         Try
             tablaCliente = Me.llenarDataTable()
         Catch ex As Exception
-            MsgBox("no se pudo llenar el grid devido al siguiente error: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("no se pudo llenar el grid devido al siguiente error: " & ex.Message, MsgBoxStyle.Critical, tituloError)
         End Try
     End Sub
     Private Sub llenarGrid()

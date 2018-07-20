@@ -7831,6 +7831,10 @@ Namespace Database
         End Sub
         Partial Private Sub OnOnzasChanged()
         End Sub
+        Partial Private Sub OnSaldoChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnSaldoChanged()
+        End Sub
         Partial Private Sub OnPrecioChanging(value As Decimal)
         End Sub
         Partial Private Sub OnPrecioChanged()
@@ -7893,6 +7897,23 @@ Namespace Database
                     Me._onzas = value
                     Me.SendPropertyChanged("Onzas")
                     Me.OnOnzasChanged()
+                End If
+            End Set
+        End Property
+        '[onzas] [decimal](12, 3) Not NULL,
+        Private _saldo As Decimal
+        <Column(Name:="saldo", Storage:="_saldo", DbType:="decimal(12,3) not null", CanBeNull:=False)>
+        Public Property Saldo() As Decimal
+            Get
+                Return _saldo
+            End Get
+            Set(ByVal value As Decimal)
+                If Decimal.Equals(_saldo, value) = False Then
+                    Me.OnSaldoChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._saldo = value
+                    Me.SendPropertyChanged("Saldo")
+                    Me.OnSaldoChanged()
                 End If
             End Set
         End Property
