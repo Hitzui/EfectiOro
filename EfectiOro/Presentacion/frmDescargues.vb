@@ -1,4 +1,5 @@
 ﻿Imports EfectiOro.Database
+Imports Infragistics.Win.UltraWinGrid
 
 Public Class frmDescargues
 
@@ -7,15 +8,7 @@ Public Class frmDescargues
     'especificamos el patron de busqueda, para que busque por todos
     'al seleccionar en el combobox se filtrara segun lo seleccionado.
     Private _agencia As String = "%%"
-    Private _comprasSeleccionadas As List(Of String)
-    Public Property copmrasSeleccionadas() As List(Of String)
-        Get
-            Return _comprasSeleccionadas
-        End Get
-        Set(ByVal value As List(Of String))
-            _comprasSeleccionadas = value
-        End Set
-    End Property
+    Public Property comprasSeleccionadas() As List(Of Compras)
     Private Sub btnClose_Click(sender As System.Object, e As System.EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
@@ -68,7 +61,7 @@ Public Class frmDescargues
         ServiciosBasicos.colorearGrid(dgvVerlotes)
         pesoT = 0
         importeT = 0
-        _comprasSeleccionadas = New List(Of String)
+        comprasSeleccionadas = New List(Of Compras)
         cargarSucursales()
     End Sub
 
@@ -78,9 +71,10 @@ Public Class frmDescargues
         If chkFiltrar.CheckState = CheckState.Checked Then
             _agencia = cmbFiltrarSucursal.SelectedValue
         Else
-            _agencia = "%%"
+            _agencia = String.Empty
         End If
-        _comprasSeleccionadas.Clear()
+        comprasSeleccionadas.Clear()
+        chekTodos.CheckState = False
         Dim dao = DataContext.daoDescargues
         Dim listarDescargues As New List(Of Compras)
         listarDescargues = dao.generarLote(txtFechaHasta.Value, _agencia)
@@ -107,7 +101,7 @@ Public Class frmDescargues
         If result = Windows.Forms.DialogResult.No Then
             Return
         End If
-        If _comprasSeleccionadas.Count <= 0 Then
+        If comprasSeleccionadas.Count <= 0 Then
             MsgBox("No se puede guardar el lote, no se han seleccionado compras.",
                    MsgBoxStyle.Information, "Generar lote")
             Return
@@ -126,23 +120,21 @@ Public Class frmDescargues
         descargue.Dgcodcaj = caja
         descargue.Dgpesbrt = pesoT
         descargue.Dgpesntt = pesoT
-        descargue.Dgcancom = _comprasSeleccionadas.Count
+        descargue.Dgcancom = comprasSeleccionadas.Count
         descargue.Dgimptcom = importeT
         descargue.Dgfecdes = Now
         descargue.Dgusuari = DataContext.usuarioLog.Usuario1
         descargue.Dgfecgen = txtFechaHasta.Value
         If dao.guardarLoteGenerado(descargue) Then
-            For Each numcompra As String In _comprasSeleccionadas
-                Dim compra As New Compras
-                compra.Numcompra = numcompra
+            For Each compra As Compras In comprasSeleccionadas
                 compra.Codestado = 3 'indicado descargado
                 compra.Dgnumdes = descargue.Dgnumdes
-                daoCompra.actualizarCompraDescargue(compra, _agencia)
+                daoCompra.actualizarCompraDescargue(compra, compra.Codagencia)
             Next
             MsgBox("Se guardó el lote actual en el sistema", MsgBoxStyle.Information, "Guardar lote")
             ComprasBindingSource.Clear()
             dgvGenerar.DataSource = ComprasBindingSource
-            _comprasSeleccionadas.Clear()
+            comprasSeleccionadas.Clear()
             chekTodos.Visible = False
             txtFechaHasta.Value = Now
             lblPesototal.Text = "0.00"
@@ -286,23 +278,27 @@ Public Class frmDescargues
 
     End Sub
 
-    Private Sub dgvGenerar_CellChange(sender As Object, e As Infragistics.Win.UltraWinGrid.CellEventArgs) Handles dgvGenerar.CellChange
+    Private Sub dgvGenerar_CellChange(sender As Object, e As CellEventArgs) Handles dgvGenerar.CellChange
         Try
+            Dim dao = DataContext.daoCompras
             Dim opcion As Boolean = Boolean.Parse(e.Cell.Text)
-            Dim row = e.Cell.Row()
-            Dim rowNumcompra = row.Cells.Item(1).Value
-            Dim rowPeso = row.Cells.Item("Peso").Value
-            Dim rowTotal = row.Cells.Item("Total").Value
+            Dim row As UltraGridRow = e.Cell.Row()
+            Dim rowNumcompra As String = row.Cells.Item("Numcompra").Text
+            Dim rowPeso As Decimal = Convert.ToDecimal(row.Cells.Item("Peso").Value)
+            Dim rowSucursal = row.Cells.Item("Codagencia").Text
+            Dim rowTotal As Decimal = Convert.ToDecimal(row.Cells.Item("Total").Value)
+            Dim compra As Compras = dao.findCompraById(rowNumcompra, rowSucursal)
             If opcion = True Then
-                If _comprasSeleccionadas.Contains(rowNumcompra) = False Then
-                    _comprasSeleccionadas.Add(rowNumcompra)
+                If comprasSeleccionadas.Where(Function(f) f.Numcompra = compra.Numcompra).Count = 0 Then
+                    comprasSeleccionadas.Add(compra)
                     pesoT += rowPeso
                     importeT += rowTotal
                 End If
             Else
-                If _comprasSeleccionadas.Count > 0 Then
-                    If _comprasSeleccionadas.Contains(rowNumcompra) = True Then
-                        _comprasSeleccionadas.Remove(rowNumcompra)
+                If comprasSeleccionadas.Count > 0 Then
+                    If comprasSeleccionadas.Where(Function(f) f.Numcompra = compra.Numcompra).Count = 1 Then
+                        Dim find = comprasSeleccionadas.Find(Function(f) f.Numcompra = compra.Numcompra)
+                        comprasSeleccionadas.Remove(find)
                         pesoT -= rowPeso
                         importeT -= rowTotal
                     End If
@@ -310,7 +306,7 @@ Public Class frmDescargues
             End If
             lblPesototal.Text = pesoT.ToString("#,###,###.00")
             lblImportetotal.Text = importeT.ToString("#,###,###.00")
-            lblCantidadcompras.Text = _comprasSeleccionadas.Count
+            lblCantidadcompras.Text = comprasSeleccionadas.Count
             'Revisamos los valores ingresado
             'For Each valor As String In _comprasSeleccionadas
             '    Debug.WriteLine("Compra en la lista: " & valor)
@@ -322,27 +318,26 @@ Public Class frmDescargues
 
 
     Private Sub chekTodos_CheckedChanged(sender As Object, e As EventArgs) Handles chekTodos.CheckedChanged
+        comprasSeleccionadas.Clear()
         If chekTodos.Checked Then
             If dgvGenerar.Rows.Count <= 0 Then
                 MsgBox("No ha datos en la grilla", MsgBoxStyle.Information, "Seleccionar todo")
                 Return
             End If
+            Dim dao = DataContext.daoCompras
+            Dim value = dgvGenerar.Rows.Select(Function(f) f.ListObject).AsEnumerable.Cast(Of Compras)
+            comprasSeleccionadas.AddRange(value)
             For Each row In dgvGenerar.Rows
                 row.Cells.Item("colSeleccionar").Value = "True"
-                Dim rowPeso = row.Cells.Item("Peso").Value
-                Dim rowTotal = row.Cells.Item("Total").Value
-                Dim rowNumcompra = row.Cells.Item("Numcompra").Value
-                If _comprasSeleccionadas.Contains(rowNumcompra) = False Then
-                    _comprasSeleccionadas.Add(rowNumcompra)
-                    pesoT += rowPeso
-                    importeT += rowTotal
-                End If
+                Dim rowPeso As Decimal = row.Cells.Item("Peso").Value
+                Dim rowTotal As Decimal = row.Cells.Item("Total").Value
+                pesoT += rowPeso
+                importeT += rowTotal
             Next
             lblPesototal.Text = pesoT.ToString("#,###,###.00")
             lblImportetotal.Text = importeT.ToString("#,###,###.00")
-            lblCantidadcompras.Text = _comprasSeleccionadas.Count
+            lblCantidadcompras.Text = comprasSeleccionadas.Count
         Else
-            _comprasSeleccionadas.Clear()
             For Each row In dgvGenerar.Rows
                 row.Cells.Item("colSeleccionar").Value = "False"
             Next
@@ -351,7 +346,7 @@ Public Class frmDescargues
         End If
         lblPesototal.Text = pesoT.ToString("#,###,###.00")
         lblImportetotal.Text = importeT.ToString("#,###,###.00")
-        lblCantidadcompras.Text = _comprasSeleccionadas.Count
+        lblCantidadcompras.Text = comprasSeleccionadas.Count
     End Sub
 
 

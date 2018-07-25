@@ -452,12 +452,6 @@
       <DependentUpon>rptAdelantos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reportes\adelantos\rptAdelantosDetalladoBalance.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptAdelantosDetalladoBalance.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reportes\adelantos\rptAdelantosGeneral.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -999,10 +993,6 @@
     <EmbeddedResource Include="Reportes\adelantos\rptAdelantos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptAdelantos.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\adelantos\rptAdelantosDetalladoBalance.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptAdelantosDetalladoBalance.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\adelantos\rptAdelantosGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

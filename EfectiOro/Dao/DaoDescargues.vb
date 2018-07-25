@@ -41,7 +41,7 @@ Public Class DaoDescargues
             End Try
         End Using
     End Function
-    Public Function generarLote(fecha As Date, agencia As String) As System.Collections.Generic.List(Of Database.Compras) Implements IDaoDescargues.generarLote
+    Public Function generarLote(fecha As Date, agencia As String) As List(Of Compras) Implements IDaoDescargues.generarLote
         Using ctx As New Contexto
             Try
                 'estados de la compra:

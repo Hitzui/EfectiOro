@@ -113,14 +113,10 @@ Public Class DaoCompras
             End Try
         End Using
     End Function
-    Public Function actualizarCompraDescargue(compra As Compras, agencia As String) As Boolean Implements IDaoCompras.actualizarCompraDescargue
+    Public Function actualizarCompraDescargue(compra As Database.Compras, agencia As String) As Boolean Implements IDaoCompras.actualizarCompraDescargue
         Using ctx As New Contexto
             Try
-                Dim find = (From c In ctx.Compras Where c.Numcompra = compra.Numcompra And c.Codagencia = compra.Codagencia Select c).Single()
-                Dim detaCompra = (From dc In ctx.Det_compra Where dc.Numcompra = compra.Numcompra And dc.Codagencia = compra.Codagencia).ToList
-                For Each dato As Det_compra In detaCompra
-                    dato.Numdescargue = compra.Dgnumdes
-                Next
+                Dim find = (From c In ctx.Compras Where c.Numcompra = compra.Numcompra And SqlMethods.Like(c.Codagencia, agencia) Select c).Single()
                 find.Codestado = compra.Codestado
                 find.Dgnumdes = compra.Dgnumdes
                 ctx.SubmitChanges()
@@ -351,7 +347,6 @@ Public Class DaoCompras
                             detacierre.Numcompra = compra.Numcompra
                             detacierre.Codagencia = compra.Codagencia
                             cierre.SaldoOnzas = dato.Cantidad
-                            'si el cierre queda en zero entonces estado seria false
                             If dato.Cantidad = Decimal.Zero Then
                                 cierre.Status = False
                             End If
@@ -410,7 +405,6 @@ Public Class DaoCompras
                             comprasAdelantos.Idadelanto = idsalida
                             comprasAdelantos.Numcompra = compra.Numcompra
                             comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
-                            comprasAdelantos.Codagencia = compra.Codagencia
                             'Saldo inicial es el monto con el que esta al momento
                             comprasAdelantos.Sinicial = dato.Saldo
                             If saldo > adelanto Then
@@ -434,7 +428,7 @@ Public Class DaoCompras
                             If findAdelanto.Numcompra.Length <= 0 Then
                                 findAdelanto.Numcompra = compra.Codagencia & "-" & compra.Numcompra
                             Else
-                                findAdelanto.Numcompra = findAdelanto.Numcompra & "; " & compra.Codagencia & "-" & compra.Numcompra
+                                findAdelanto.Numcompra = findAdelanto.Numcompra & "; " & compra.Codagencia & "." & compra.Numcompra
                             End If
                             ctx.Compras_adelantos.InsertOnSubmit(comprasAdelantos)
                         End If

@@ -151,7 +151,6 @@ Partial Class frmDescargues
         Me.tabCentral = New System.Windows.Forms.TabControl()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.DescarguesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.panelTitulo.SuspendLayout()
         Me.pageGenerar.SuspendLayout()
         CType(Me.chekTodos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvGenerar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,10 +169,6 @@ Partial Class frmDescargues
         CType(Me.DescarguesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(805, 25)
-        '
         'btnClose
         '
         Me.btnClose.FlatAppearance.BorderSize = 0
@@ -181,7 +176,7 @@ Partial Class frmDescargues
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(780, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(805, 25)
         '
         'UltraTab1
         '
@@ -248,26 +243,26 @@ Partial Class frmDescargues
         Appearance1.BorderColor2 = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.dgvGenerar.DisplayLayout.Appearance = Appearance1
         Me.dgvGenerar.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns
+        UltraGridColumn1.Header.Caption = "Sucursal"
         UltraGridColumn1.Header.VisiblePosition = 1
-        UltraGridColumn1.Hidden = True
-        UltraGridColumn2.CellActivation = Infragistics.Win.UltraWinGrid.Activation.ActivateOnly
+        UltraGridColumn1.Width = 89
+        UltraGridColumn2.Header.Caption = "No compra"
         UltraGridColumn2.Header.VisiblePosition = 2
-        UltraGridColumn2.Width = 132
+        UltraGridColumn2.Width = 118
+        UltraGridColumn3.Header.Caption = "Cod cliente"
         UltraGridColumn3.Header.VisiblePosition = 3
         UltraGridColumn3.Hidden = True
+        UltraGridColumn4.Header.Caption = "Caja"
         UltraGridColumn4.Header.VisiblePosition = 4
         UltraGridColumn4.Hidden = True
-        UltraGridColumn5.CellActivation = Infragistics.Win.UltraWinGrid.Activation.ActivateOnly
         UltraGridColumn5.Header.VisiblePosition = 5
-        UltraGridColumn5.Width = 112
+        UltraGridColumn5.Width = 99
         UltraGridColumn6.Header.VisiblePosition = 6
         UltraGridColumn6.Hidden = True
-        UltraGridColumn7.CellActivation = Infragistics.Win.UltraWinGrid.Activation.ActivateOnly
         UltraGridColumn7.Header.VisiblePosition = 7
-        UltraGridColumn7.Width = 207
-        UltraGridColumn8.CellActivation = Infragistics.Win.UltraWinGrid.Activation.ActivateOnly
+        UltraGridColumn7.Width = 184
         UltraGridColumn8.Header.VisiblePosition = 8
-        UltraGridColumn8.Width = 119
+        UltraGridColumn8.Width = 106
         UltraGridColumn9.Header.VisiblePosition = 9
         UltraGridColumn9.Hidden = True
         UltraGridColumn10.Header.VisiblePosition = 10
@@ -292,15 +287,16 @@ Partial Class frmDescargues
         UltraGridColumn19.Hidden = True
         UltraGridColumn20.Header.VisiblePosition = 20
         UltraGridColumn20.Hidden = True
+        UltraGridColumn22.Header.Caption = "Saldo adelanto"
         UltraGridColumn22.Header.VisiblePosition = 21
-        UltraGridColumn22.Width = 95
+        UltraGridColumn22.Width = 84
         UltraGridColumn21.DataType = GetType(Boolean)
         UltraGridColumn21.DefaultCellValue = False
         UltraGridColumn21.Header.Caption = "Seleccionar"
         UltraGridColumn21.Header.VisiblePosition = 0
         ConditionValueAppearance1.ApplyAllMatchingConditions = False
         UltraGridColumn21.ValueBasedAppearance = ConditionValueAppearance1
-        UltraGridColumn21.Width = 89
+        UltraGridColumn21.Width = 74
         UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn1, UltraGridColumn2, UltraGridColumn3, UltraGridColumn4, UltraGridColumn5, UltraGridColumn6, UltraGridColumn7, UltraGridColumn8, UltraGridColumn9, UltraGridColumn10, UltraGridColumn11, UltraGridColumn12, UltraGridColumn13, UltraGridColumn14, UltraGridColumn15, UltraGridColumn16, UltraGridColumn17, UltraGridColumn18, UltraGridColumn19, UltraGridColumn20, UltraGridColumn22, UltraGridColumn21})
         Me.dgvGenerar.DisplayLayout.BandsSerializer.Add(UltraGridBand1)
         Me.dgvGenerar.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.[False]
@@ -309,8 +305,11 @@ Partial Class frmDescargues
         Me.dgvGenerar.DisplayLayout.Override.AllowRowFiltering = Infragistics.Win.DefaultableBoolean.[True]
         Me.dgvGenerar.DisplayLayout.Override.FilterClearButtonLocation = Infragistics.Win.UltraWinGrid.FilterClearButtonLocation.Row
         Me.dgvGenerar.DisplayLayout.Override.FilterOperatorDefaultValue = Infragistics.Win.UltraWinGrid.FilterOperatorDefaultValue.Equals
+        Me.dgvGenerar.DisplayLayout.Override.RowSizing = Infragistics.Win.UltraWinGrid.RowSizing.AutoFree
         Me.dgvGenerar.DisplayLayout.Override.SelectTypeCell = Infragistics.Win.UltraWinGrid.SelectType.[Single]
         Me.dgvGenerar.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.[Single]
+        Me.dgvGenerar.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.[True]
+        Me.dgvGenerar.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand
         Me.dgvGenerar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvGenerar.Location = New System.Drawing.Point(11, 58)
         Me.dgvGenerar.Name = "dgvGenerar"
@@ -1223,9 +1222,7 @@ Partial Class frmDescargues
         Me.ClientSize = New System.Drawing.Size(805, 507)
         Me.Controls.Add(Me.tabCentral)
         Me.Name = "frmDescargues"
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.tabCentral, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.pageGenerar.ResumeLayout(False)
         Me.pageGenerar.PerformLayout()
         CType(Me.chekTodos, System.ComponentModel.ISupportInitialize).EndInit()
