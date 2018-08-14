@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmUPM
     Inherits EfectiOro.frmPersonalizado
 
     'Form invalida a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class frmUPM
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
@@ -26,6 +26,10 @@ Partial Class frmUPM
         Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance8 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance9 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance10 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.tabUPM = New System.Windows.Forms.TabControl()
         Me.tabDatos = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -47,29 +51,6 @@ Partial Class frmUPM
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtCodigoUPM = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.tabRegistro = New System.Windows.Forms.TabPage()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.dgvCierres = New System.Windows.Forms.DataGridView()
-        Me.colSeleccionar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colCodCierre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CodclienteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StatusDataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.OnzasFinasDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GramosFinosDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioOroDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioBaseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SaldoOnzasDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MargenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.sourcecierre = New System.Windows.Forms.BindingSource(Me.components)
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.dgvUPM = New System.Windows.Forms.DataGridView()
-        Me.colCodupmRegistro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CodigoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OnzasDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StatusDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnSalir = New Infragistics.Win.Misc.UltraButton()
         Me.btnCancelar = New Infragistics.Win.Misc.UltraButton()
@@ -77,28 +58,47 @@ Partial Class frmUPM
         Me.btnEditar = New Infragistics.Win.Misc.UltraButton()
         Me.btnGuardar = New Infragistics.Win.Misc.UltraButton()
         Me.btnNuevo = New Infragistics.Win.Misc.UltraButton()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.lblOnzasUPM2 = New System.Windows.Forms.ToolStripLabel()
-        Me.lblOnzasUPM = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.lblOnzasCierre = New System.Windows.Forms.ToolStripLabel()
+        Me.tabRegistro = New System.Windows.Forms.TabPage()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.lblOnzas = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.btnOnzas = New Infragistics.Win.Misc.UltraButton()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.lblOnzasUPM = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.btnCalcularOnzasUPM = New Infragistics.Win.Misc.UltraButton()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.lblOnzasCierres = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.btnCalcularOnzasCierres = New Infragistics.Win.Misc.UltraButton()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.lblSumOnzasCompras = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.btnCalcularOnzasCompra = New Infragistics.Win.Misc.UltraButton()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.txtHasta = New System.Windows.Forms.DateTimePicker()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtDesde = New System.Windows.Forms.DateTimePicker()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.sourcecierre = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabUPM.SuspendLayout()
         Me.tabDatos.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.dgvUpmDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.sourceUPM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        Me.tabRegistro.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
-        CType(Me.dgvCierres, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sourcecierre, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox4.SuspendLayout()
-        CType(Me.dgvUPM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
+        Me.tabRegistro.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sourcecierre, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnClose
@@ -113,11 +113,12 @@ Partial Class frmUPM
         '
         Me.tabUPM.Controls.Add(Me.tabDatos)
         Me.tabUPM.Controls.Add(Me.tabRegistro)
+        Me.tabUPM.Controls.Add(Me.TabPage1)
         Me.tabUPM.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tabUPM.Location = New System.Drawing.Point(0, 25)
         Me.tabUPM.Name = "tabUPM"
         Me.tabUPM.SelectedIndex = 0
-        Me.tabUPM.Size = New System.Drawing.Size(620, 295)
+        Me.tabUPM.Size = New System.Drawing.Size(620, 402)
         Me.tabUPM.TabIndex = 1
         '
         'tabDatos
@@ -125,10 +126,11 @@ Partial Class frmUPM
         Me.tabDatos.AutoScroll = True
         Me.tabDatos.Controls.Add(Me.GroupBox3)
         Me.tabDatos.Controls.Add(Me.GroupBox1)
+        Me.tabDatos.Controls.Add(Me.GroupBox2)
         Me.tabDatos.Location = New System.Drawing.Point(4, 22)
         Me.tabDatos.Name = "tabDatos"
         Me.tabDatos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabDatos.Size = New System.Drawing.Size(612, 269)
+        Me.tabDatos.Size = New System.Drawing.Size(612, 376)
         Me.tabDatos.TabIndex = 0
         Me.tabDatos.Text = "Datos UPM"
         Me.tabDatos.UseVisualStyleBackColor = True
@@ -139,7 +141,7 @@ Partial Class frmUPM
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox3.Location = New System.Drawing.Point(224, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(385, 263)
+        Me.GroupBox3.Size = New System.Drawing.Size(385, 288)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
         '
@@ -158,7 +160,7 @@ Partial Class frmUPM
         Me.dgvUpmDatos.Location = New System.Drawing.Point(3, 16)
         Me.dgvUpmDatos.Name = "dgvUpmDatos"
         Me.dgvUpmDatos.ReadOnly = True
-        Me.dgvUpmDatos.Size = New System.Drawing.Size(379, 244)
+        Me.dgvUpmDatos.Size = New System.Drawing.Size(379, 269)
         Me.dgvUpmDatos.TabIndex = 0
         '
         'colCodupm
@@ -222,7 +224,7 @@ Partial Class frmUPM
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Left
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(221, 263)
+        Me.GroupBox1.Size = New System.Drawing.Size(221, 288)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         '
@@ -308,209 +310,6 @@ Partial Class frmUPM
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Codigo UPM:"
         '
-        'tabRegistro
-        '
-        Me.tabRegistro.Controls.Add(Me.GroupBox5)
-        Me.tabRegistro.Controls.Add(Me.GroupBox4)
-        Me.tabRegistro.Location = New System.Drawing.Point(4, 22)
-        Me.tabRegistro.Name = "tabRegistro"
-        Me.tabRegistro.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabRegistro.Size = New System.Drawing.Size(612, 269)
-        Me.tabRegistro.TabIndex = 1
-        Me.tabRegistro.Text = "Registro UPM"
-        Me.tabRegistro.UseVisualStyleBackColor = True
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.dgvCierres)
-        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox5.Location = New System.Drawing.Point(272, 3)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(337, 263)
-        Me.GroupBox5.TabIndex = 1
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Cierre onzas"
-        '
-        'dgvCierres
-        '
-        Me.dgvCierres.AllowUserToAddRows = False
-        Me.dgvCierres.AllowUserToDeleteRows = False
-        Me.dgvCierres.AutoGenerateColumns = False
-        Me.dgvCierres.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.dgvCierres.BackgroundColor = System.Drawing.Color.White
-        Me.dgvCierres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCierres.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSeleccionar, Me.colCodCierre, Me.CodclienteDataGridViewTextBoxColumn, Me.StatusDataGridViewCheckBoxColumn1, Me.OnzasFinasDataGridViewTextBoxColumn, Me.GramosFinosDataGridViewTextBoxColumn, Me.PrecioOroDataGridViewTextBoxColumn, Me.PrecioBaseDataGridViewTextBoxColumn, Me.SaldoOnzasDataGridViewTextBoxColumn, Me.FechaDataGridViewTextBoxColumn1, Me.MargenDataGridViewTextBoxColumn})
-        Me.dgvCierres.DataSource = Me.sourcecierre
-        Me.dgvCierres.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvCierres.Enabled = False
-        Me.dgvCierres.Location = New System.Drawing.Point(3, 16)
-        Me.dgvCierres.Name = "dgvCierres"
-        Me.dgvCierres.Size = New System.Drawing.Size(331, 244)
-        Me.dgvCierres.TabIndex = 1
-        '
-        'colSeleccionar
-        '
-        Me.colSeleccionar.HeaderText = "Seleccionar"
-        Me.colSeleccionar.Name = "colSeleccionar"
-        Me.colSeleccionar.Width = 69
-        '
-        'colCodCierre
-        '
-        Me.colCodCierre.DataPropertyName = "CodCierre"
-        Me.colCodCierre.HeaderText = "Codigo"
-        Me.colCodCierre.Name = "colCodCierre"
-        Me.colCodCierre.ReadOnly = True
-        Me.colCodCierre.Width = 65
-        '
-        'CodclienteDataGridViewTextBoxColumn
-        '
-        Me.CodclienteDataGridViewTextBoxColumn.DataPropertyName = "Codcliente"
-        Me.CodclienteDataGridViewTextBoxColumn.HeaderText = "Cod cliente"
-        Me.CodclienteDataGridViewTextBoxColumn.Name = "CodclienteDataGridViewTextBoxColumn"
-        Me.CodclienteDataGridViewTextBoxColumn.ReadOnly = True
-        Me.CodclienteDataGridViewTextBoxColumn.Width = 85
-        '
-        'StatusDataGridViewCheckBoxColumn1
-        '
-        Me.StatusDataGridViewCheckBoxColumn1.DataPropertyName = "Status"
-        Me.StatusDataGridViewCheckBoxColumn1.HeaderText = "Status"
-        Me.StatusDataGridViewCheckBoxColumn1.Name = "StatusDataGridViewCheckBoxColumn1"
-        Me.StatusDataGridViewCheckBoxColumn1.Visible = False
-        Me.StatusDataGridViewCheckBoxColumn1.Width = 43
-        '
-        'OnzasFinasDataGridViewTextBoxColumn
-        '
-        Me.OnzasFinasDataGridViewTextBoxColumn.DataPropertyName = "OnzasFinas"
-        Me.OnzasFinasDataGridViewTextBoxColumn.HeaderText = "Onzas"
-        Me.OnzasFinasDataGridViewTextBoxColumn.Name = "OnzasFinasDataGridViewTextBoxColumn"
-        Me.OnzasFinasDataGridViewTextBoxColumn.ReadOnly = True
-        Me.OnzasFinasDataGridViewTextBoxColumn.Width = 62
-        '
-        'GramosFinosDataGridViewTextBoxColumn
-        '
-        Me.GramosFinosDataGridViewTextBoxColumn.DataPropertyName = "GramosFinos"
-        Me.GramosFinosDataGridViewTextBoxColumn.HeaderText = "GramosFinos"
-        Me.GramosFinosDataGridViewTextBoxColumn.Name = "GramosFinosDataGridViewTextBoxColumn"
-        Me.GramosFinosDataGridViewTextBoxColumn.Visible = False
-        Me.GramosFinosDataGridViewTextBoxColumn.Width = 93
-        '
-        'PrecioOroDataGridViewTextBoxColumn
-        '
-        Me.PrecioOroDataGridViewTextBoxColumn.DataPropertyName = "PrecioOro"
-        Me.PrecioOroDataGridViewTextBoxColumn.HeaderText = "PrecioOro"
-        Me.PrecioOroDataGridViewTextBoxColumn.Name = "PrecioOroDataGridViewTextBoxColumn"
-        Me.PrecioOroDataGridViewTextBoxColumn.Visible = False
-        Me.PrecioOroDataGridViewTextBoxColumn.Width = 79
-        '
-        'PrecioBaseDataGridViewTextBoxColumn
-        '
-        Me.PrecioBaseDataGridViewTextBoxColumn.DataPropertyName = "PrecioBase"
-        Me.PrecioBaseDataGridViewTextBoxColumn.HeaderText = "PrecioBase"
-        Me.PrecioBaseDataGridViewTextBoxColumn.Name = "PrecioBaseDataGridViewTextBoxColumn"
-        Me.PrecioBaseDataGridViewTextBoxColumn.Visible = False
-        Me.PrecioBaseDataGridViewTextBoxColumn.Width = 86
-        '
-        'SaldoOnzasDataGridViewTextBoxColumn
-        '
-        Me.SaldoOnzasDataGridViewTextBoxColumn.DataPropertyName = "SaldoOnzas"
-        Me.SaldoOnzasDataGridViewTextBoxColumn.HeaderText = "SaldoOnzas"
-        Me.SaldoOnzasDataGridViewTextBoxColumn.Name = "SaldoOnzasDataGridViewTextBoxColumn"
-        Me.SaldoOnzasDataGridViewTextBoxColumn.Visible = False
-        Me.SaldoOnzasDataGridViewTextBoxColumn.Width = 89
-        '
-        'FechaDataGridViewTextBoxColumn1
-        '
-        Me.FechaDataGridViewTextBoxColumn1.DataPropertyName = "Fecha"
-        Me.FechaDataGridViewTextBoxColumn1.HeaderText = "Fecha"
-        Me.FechaDataGridViewTextBoxColumn1.Name = "FechaDataGridViewTextBoxColumn1"
-        Me.FechaDataGridViewTextBoxColumn1.Visible = False
-        Me.FechaDataGridViewTextBoxColumn1.Width = 62
-        '
-        'MargenDataGridViewTextBoxColumn
-        '
-        Me.MargenDataGridViewTextBoxColumn.DataPropertyName = "Margen"
-        Me.MargenDataGridViewTextBoxColumn.HeaderText = "Margen"
-        Me.MargenDataGridViewTextBoxColumn.Name = "MargenDataGridViewTextBoxColumn"
-        Me.MargenDataGridViewTextBoxColumn.Visible = False
-        Me.MargenDataGridViewTextBoxColumn.Width = 68
-        '
-        'sourcecierre
-        '
-        Me.sourcecierre.DataSource = GetType(EfectiOro.Database.CierrePrecios)
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.Controls.Add(Me.dgvUPM)
-        Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(269, 263)
-        Me.GroupBox4.TabIndex = 0
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "UPM"
-        '
-        'dgvUPM
-        '
-        Me.dgvUPM.AllowUserToAddRows = False
-        Me.dgvUPM.AllowUserToDeleteRows = False
-        Me.dgvUPM.AutoGenerateColumns = False
-        Me.dgvUPM.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvUPM.BackgroundColor = System.Drawing.Color.White
-        Me.dgvUPM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvUPM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colCodupmRegistro, Me.CodigoDataGridViewTextBoxColumn, Me.OnzasDataGridViewTextBoxColumn, Me.PrecioDataGridViewTextBoxColumn, Me.FechaDataGridViewTextBoxColumn, Me.StatusDataGridViewCheckBoxColumn})
-        Me.dgvUPM.DataSource = Me.sourceUPM
-        Me.dgvUPM.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvUPM.Location = New System.Drawing.Point(3, 16)
-        Me.dgvUPM.Name = "dgvUPM"
-        Me.dgvUPM.ReadOnly = True
-        Me.dgvUPM.Size = New System.Drawing.Size(263, 244)
-        Me.dgvUPM.TabIndex = 0
-        '
-        'colCodupmRegistro
-        '
-        Me.colCodupmRegistro.DataPropertyName = "Codupm"
-        Me.colCodupmRegistro.HeaderText = "Codupm"
-        Me.colCodupmRegistro.Name = "colCodupmRegistro"
-        Me.colCodupmRegistro.ReadOnly = True
-        '
-        'CodigoDataGridViewTextBoxColumn
-        '
-        Me.CodigoDataGridViewTextBoxColumn.DataPropertyName = "Codigo"
-        Me.CodigoDataGridViewTextBoxColumn.HeaderText = "Codigo"
-        Me.CodigoDataGridViewTextBoxColumn.Name = "CodigoDataGridViewTextBoxColumn"
-        Me.CodigoDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'OnzasDataGridViewTextBoxColumn
-        '
-        Me.OnzasDataGridViewTextBoxColumn.DataPropertyName = "Onzas"
-        Me.OnzasDataGridViewTextBoxColumn.HeaderText = "Onzas"
-        Me.OnzasDataGridViewTextBoxColumn.Name = "OnzasDataGridViewTextBoxColumn"
-        Me.OnzasDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'PrecioDataGridViewTextBoxColumn
-        '
-        Me.PrecioDataGridViewTextBoxColumn.DataPropertyName = "Precio"
-        Me.PrecioDataGridViewTextBoxColumn.HeaderText = "Precio"
-        Me.PrecioDataGridViewTextBoxColumn.Name = "PrecioDataGridViewTextBoxColumn"
-        Me.PrecioDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PrecioDataGridViewTextBoxColumn.Visible = False
-        '
-        'FechaDataGridViewTextBoxColumn
-        '
-        Me.FechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha"
-        Me.FechaDataGridViewTextBoxColumn.HeaderText = "Fecha"
-        Me.FechaDataGridViewTextBoxColumn.Name = "FechaDataGridViewTextBoxColumn"
-        Me.FechaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.FechaDataGridViewTextBoxColumn.Visible = False
-        '
-        'StatusDataGridViewCheckBoxColumn
-        '
-        Me.StatusDataGridViewCheckBoxColumn.DataPropertyName = "Status"
-        Me.StatusDataGridViewCheckBoxColumn.HeaderText = "Status"
-        Me.StatusDataGridViewCheckBoxColumn.Name = "StatusDataGridViewCheckBoxColumn"
-        Me.StatusDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.StatusDataGridViewCheckBoxColumn.Visible = False
-        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.btnSalir)
@@ -520,9 +319,9 @@ Partial Class frmUPM
         Me.GroupBox2.Controls.Add(Me.btnGuardar)
         Me.GroupBox2.Controls.Add(Me.btnNuevo)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 320)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 291)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(620, 82)
+        Me.GroupBox2.Size = New System.Drawing.Size(606, 82)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         '
@@ -605,61 +404,279 @@ Partial Class frmUPM
         Me.btnNuevo.Appearance = Appearance6
         Me.btnNuevo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnNuevo.ImageSize = New System.Drawing.Size(40, 40)
-        Me.btnNuevo.Location = New System.Drawing.Point(21, 19)
+        Me.btnNuevo.Location = New System.Drawing.Point(26, 19)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(68, 48)
         Me.btnNuevo.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.btnNuevo, "Nuevo Registro")
         Me.btnNuevo.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
-        'ToolStrip1
+        'tabRegistro
         '
-        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblOnzasUPM2, Me.lblOnzasUPM, Me.ToolStripLabel1, Me.lblOnzasCierre})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 402)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(620, 25)
-        Me.ToolStrip1.TabIndex = 0
-        Me.ToolStrip1.Text = "ToolStrip1"
+        Me.tabRegistro.Controls.Add(Me.GroupBox8)
+        Me.tabRegistro.Controls.Add(Me.GroupBox7)
+        Me.tabRegistro.Controls.Add(Me.GroupBox6)
+        Me.tabRegistro.Controls.Add(Me.GroupBox5)
+        Me.tabRegistro.Controls.Add(Me.GroupBox4)
+        Me.tabRegistro.Location = New System.Drawing.Point(4, 22)
+        Me.tabRegistro.Name = "tabRegistro"
+        Me.tabRegistro.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabRegistro.Size = New System.Drawing.Size(612, 376)
+        Me.tabRegistro.TabIndex = 1
+        Me.tabRegistro.Text = "Registro UPM"
+        Me.tabRegistro.UseVisualStyleBackColor = True
         '
-        'lblOnzasUPM2
+        'GroupBox8
         '
-        Me.lblOnzasUPM2.Name = "lblOnzasUPM2"
-        Me.lblOnzasUPM2.Size = New System.Drawing.Size(71, 22)
-        Me.lblOnzasUPM2.Text = "Onzas UPM:"
+        Me.GroupBox8.Controls.Add(Me.lblOnzas)
+        Me.GroupBox8.Controls.Add(Me.Label10)
+        Me.GroupBox8.Controls.Add(Me.btnOnzas)
+        Me.GroupBox8.Location = New System.Drawing.Point(8, 225)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(596, 100)
+        Me.GroupBox8.TabIndex = 7
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "Onzas cierres"
+        '
+        'lblOnzas
+        '
+        Me.lblOnzas.AutoSize = True
+        Me.lblOnzas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOnzas.Location = New System.Drawing.Point(303, 24)
+        Me.lblOnzas.Name = "lblOnzas"
+        Me.lblOnzas.Size = New System.Drawing.Size(45, 15)
+        Me.lblOnzas.TabIndex = 5
+        Me.lblOnzas.Text = "(0.00)"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(16, 24)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(255, 13)
+        Me.Label10.TabIndex = 4
+        Me.Label10.Text = "Suma onzas de cierres disponibles o mayores a zero:"
+        '
+        'btnOnzas
+        '
+        Appearance7.Image = Global.EfectiOro.My.Resources.Resources.Calculator11
+        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnOnzas.Appearance = Appearance7
+        Me.btnOnzas.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnOnzas.ImageSize = New System.Drawing.Size(32, 32)
+        Me.btnOnzas.Location = New System.Drawing.Point(532, 19)
+        Me.btnOnzas.Name = "btnOnzas"
+        Me.btnOnzas.Size = New System.Drawing.Size(49, 51)
+        Me.btnOnzas.TabIndex = 0
+        Me.btnOnzas.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.lblOnzasUPM)
+        Me.GroupBox7.Controls.Add(Me.Label11)
+        Me.GroupBox7.Controls.Add(Me.btnCalcularOnzasUPM)
+        Me.GroupBox7.Location = New System.Drawing.Point(314, 119)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(290, 100)
+        Me.GroupBox7.TabIndex = 7
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Onzas UPM"
         '
         'lblOnzasUPM
         '
+        Me.lblOnzasUPM.AutoSize = True
+        Me.lblOnzasUPM.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOnzasUPM.Location = New System.Drawing.Point(16, 43)
         Me.lblOnzasUPM.Name = "lblOnzasUPM"
-        Me.lblOnzasUPM.Size = New System.Drawing.Size(36, 22)
+        Me.lblOnzasUPM.Size = New System.Drawing.Size(45, 15)
+        Me.lblOnzasUPM.TabIndex = 5
         Me.lblOnzasUPM.Text = "(0.00)"
         '
-        'ToolStripLabel1
+        'Label11
         '
-        Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(79, 22)
-        Me.ToolStripLabel1.Text = "Onzas cierres:"
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(16, 24)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(248, 13)
+        Me.Label11.TabIndex = 4
+        Me.Label11.Text = "Suma onzas de UPM disponibles o mayores a zero:"
         '
-        'lblOnzasCierre
+        'btnCalcularOnzasUPM
         '
-        Me.lblOnzasCierre.Name = "lblOnzasCierre"
-        Me.lblOnzasCierre.Size = New System.Drawing.Size(36, 22)
-        Me.lblOnzasCierre.Text = "(0.00)"
+        Appearance8.Image = Global.EfectiOro.My.Resources.Resources.Calculator11
+        Appearance8.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance8.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnCalcularOnzasUPM.Appearance = Appearance8
+        Me.btnCalcularOnzasUPM.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnCalcularOnzasUPM.ImageSize = New System.Drawing.Size(32, 32)
+        Me.btnCalcularOnzasUPM.Location = New System.Drawing.Point(226, 43)
+        Me.btnCalcularOnzasUPM.Name = "btnCalcularOnzasUPM"
+        Me.btnCalcularOnzasUPM.Size = New System.Drawing.Size(49, 51)
+        Me.btnCalcularOnzasUPM.TabIndex = 0
+        Me.btnCalcularOnzasUPM.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.lblOnzasCierres)
+        Me.GroupBox6.Controls.Add(Me.Label9)
+        Me.GroupBox6.Controls.Add(Me.btnCalcularOnzasCierres)
+        Me.GroupBox6.Location = New System.Drawing.Point(8, 119)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(290, 100)
+        Me.GroupBox6.TabIndex = 6
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Onzas cierres"
+        '
+        'lblOnzasCierres
+        '
+        Me.lblOnzasCierres.AutoSize = True
+        Me.lblOnzasCierres.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOnzasCierres.Location = New System.Drawing.Point(16, 43)
+        Me.lblOnzasCierres.Name = "lblOnzasCierres"
+        Me.lblOnzasCierres.Size = New System.Drawing.Size(45, 15)
+        Me.lblOnzasCierres.TabIndex = 5
+        Me.lblOnzasCierres.Text = "(0.00)"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(16, 24)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(255, 13)
+        Me.Label9.TabIndex = 4
+        Me.Label9.Text = "Suma onzas de cierres disponibles o mayores a zero:"
+        '
+        'btnCalcularOnzasCierres
+        '
+        Appearance9.Image = Global.EfectiOro.My.Resources.Resources.Calculator11
+        Appearance9.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance9.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnCalcularOnzasCierres.Appearance = Appearance9
+        Me.btnCalcularOnzasCierres.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnCalcularOnzasCierres.ImageSize = New System.Drawing.Size(32, 32)
+        Me.btnCalcularOnzasCierres.Location = New System.Drawing.Point(222, 40)
+        Me.btnCalcularOnzasCierres.Name = "btnCalcularOnzasCierres"
+        Me.btnCalcularOnzasCierres.Size = New System.Drawing.Size(49, 51)
+        Me.btnCalcularOnzasCierres.TabIndex = 0
+        Me.btnCalcularOnzasCierres.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.lblSumOnzasCompras)
+        Me.GroupBox5.Controls.Add(Me.Label7)
+        Me.GroupBox5.Controls.Add(Me.btnCalcularOnzasCompra)
+        Me.GroupBox5.Location = New System.Drawing.Point(214, 6)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(390, 107)
+        Me.GroupBox5.TabIndex = 1
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Onzas compras"
+        '
+        'lblSumOnzasCompras
+        '
+        Me.lblSumOnzasCompras.AutoSize = True
+        Me.lblSumOnzasCompras.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSumOnzasCompras.Location = New System.Drawing.Point(217, 24)
+        Me.lblSumOnzasCompras.Name = "lblSumOnzasCompras"
+        Me.lblSumOnzasCompras.Size = New System.Drawing.Size(45, 15)
+        Me.lblSumOnzasCompras.TabIndex = 5
+        Me.lblSumOnzasCompras.Text = "(0.00)"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(16, 24)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(195, 13)
+        Me.Label7.TabIndex = 4
+        Me.Label7.Text = "Suma de onzas según rango de fechas:"
+        '
+        'btnCalcularOnzasCompra
+        '
+        Appearance10.Image = Global.EfectiOro.My.Resources.Resources.Calculator11
+        Appearance10.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance10.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnCalcularOnzasCompra.Appearance = Appearance10
+        Me.btnCalcularOnzasCompra.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnCalcularOnzasCompra.ImageSize = New System.Drawing.Size(32, 32)
+        Me.btnCalcularOnzasCompra.Location = New System.Drawing.Point(326, 24)
+        Me.btnCalcularOnzasCompra.Name = "btnCalcularOnzasCompra"
+        Me.btnCalcularOnzasCompra.Size = New System.Drawing.Size(49, 51)
+        Me.btnCalcularOnzasCompra.TabIndex = 0
+        Me.btnCalcularOnzasCompra.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.txtHasta)
+        Me.GroupBox4.Controls.Add(Me.Label6)
+        Me.GroupBox4.Controls.Add(Me.txtDesde)
+        Me.GroupBox4.Controls.Add(Me.Label5)
+        Me.GroupBox4.Location = New System.Drawing.Point(8, 6)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(200, 107)
+        Me.GroupBox4.TabIndex = 0
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Rango fechas"
+        '
+        'txtHasta
+        '
+        Me.txtHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.txtHasta.Location = New System.Drawing.Point(54, 50)
+        Me.txtHasta.Name = "txtHasta"
+        Me.txtHasta.Size = New System.Drawing.Size(125, 20)
+        Me.txtHasta.TabIndex = 3
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(7, 54)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(38, 13)
+        Me.Label6.TabIndex = 2
+        Me.Label6.Text = "Hasta:"
+        '
+        'txtDesde
+        '
+        Me.txtDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.txtDesde.Location = New System.Drawing.Point(54, 17)
+        Me.txtDesde.Name = "txtDesde"
+        Me.txtDesde.Size = New System.Drawing.Size(125, 20)
+        Me.txtDesde.TabIndex = 1
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(7, 21)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(41, 13)
+        Me.Label5.TabIndex = 0
+        Me.Label5.Text = "Desde:"
         '
         'erp
         '
         Me.erp.ContainerControl = Me
+        '
+        'sourcecierre
+        '
+        Me.sourcecierre.DataSource = GetType(EfectiOro.Database.CierrePrecios)
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(612, 376)
+        Me.TabPage1.TabIndex = 2
+        Me.TabPage1.Text = "Cierre UPM"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'frmUPM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(620, 427)
         Me.Controls.Add(Me.tabUPM)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "frmUPM"
-        Me.Controls.SetChildIndex(Me.ToolStrip1, 0)
-        Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.tabUPM, 0)
         Me.tabUPM.ResumeLayout(False)
         Me.tabDatos.ResumeLayout(False)
@@ -668,18 +685,21 @@ Partial Class frmUPM
         CType(Me.sourceUPM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.tabRegistro.ResumeLayout(False)
-        Me.GroupBox5.ResumeLayout(False)
-        CType(Me.dgvCierres, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sourcecierre, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox4.ResumeLayout(False)
-        CType(Me.dgvUPM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
+        Me.tabRegistro.ResumeLayout(False)
+        Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox8.PerformLayout()
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sourcecierre, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -712,33 +732,29 @@ Partial Class frmUPM
     Friend WithEvents colPrecio As DataGridViewTextBoxColumn
     Friend WithEvents colFecha As DataGridViewTextBoxColumn
     Friend WithEvents colStatus As DataGridViewCheckBoxColumn
-    Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents dgvCierres As DataGridView
-    Friend WithEvents dgvUPM As DataGridView
     Friend WithEvents sourcecierre As BindingSource
     Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents lblOnzasUPM2 As ToolStripLabel
-    Friend WithEvents lblOnzasUPM As ToolStripLabel
-    Friend WithEvents ToolStripLabel1 As ToolStripLabel
-    Friend WithEvents lblOnzasCierre As ToolStripLabel
-    Friend WithEvents colSeleccionar As DataGridViewCheckBoxColumn
-    Friend WithEvents colCodCierre As DataGridViewTextBoxColumn
-    Friend WithEvents CodclienteDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents StatusDataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
-    Friend WithEvents OnzasFinasDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents GramosFinosDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PrecioOroDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PrecioBaseDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents SaldoOnzasDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents FechaDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents MargenDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents colCodupmRegistro As DataGridViewTextBoxColumn
-    Friend WithEvents CodigoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents OnzasDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PrecioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents FechaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents StatusDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents chkStatus As CheckBox
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents txtHasta As DateTimePicker
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txtDesde As DateTimePicker
+    Friend WithEvents Label5 As Label
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents btnCalcularOnzasCompra As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents lblSumOnzasCompras As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents lblOnzasUPM As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents btnCalcularOnzasUPM As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents lblOnzasCierres As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents btnCalcularOnzasCierres As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents lblOnzas As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents btnOnzas As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents TabPage1 As TabPage
 End Class

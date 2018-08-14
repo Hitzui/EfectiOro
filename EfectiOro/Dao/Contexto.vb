@@ -8016,7 +8016,7 @@ Namespace Database
 #End Region
 #Region "Campos"
         Private _codupm As Integer
-        <Column(Name:="codupm", Storage:="_codupm", DbType:="int not null", IsPrimaryKey:=True)>
+        <Column(Name:="codupm", Storage:="_codupm", DbType:="int not null", IsPrimaryKey:=True, IsDbGenerated:=True)>
         Public Property Codupm() As Integer
             Get
                 Return _codupm

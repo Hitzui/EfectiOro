@@ -1,0 +1,882 @@
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+E:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+E:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+E:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+E:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+E:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+E:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+E:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+E:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+E:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovCaja.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.dll
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.xml
+E:\Dropbox\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+F:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+F:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+F:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+F:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+F:\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+F:\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+F:\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+F:\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+F:\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+F:\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+F:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+F:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovCaja.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+F:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovCaja.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+C:\Users\Jose\Dropbox\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+H:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+H:\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+H:\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+H:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+H:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+H:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+H:\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+H:\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+H:\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+H:\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+H:\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.xml
+H:\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+H:\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+H:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+H:\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+H:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+H:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+H:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+H:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+H:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+H:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+H:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+H:\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovCaja.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinListView.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinListView.v12.2.xml
+E:\Dropbox\Dropbox\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+G:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+G:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+G:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+G:\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+G:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+G:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+G:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+G:\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+G:\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinListView.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+G:\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+G:\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+G:\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+G:\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinListView.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+G:\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+G:\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+G:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+G:\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+G:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmActualizarFechaDetaCaja.resources
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinListView.v12.2.xml
+H:\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmActualizarFechaDetaCaja.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+H:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinListView.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinEditors.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinListView.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinSchedule.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinTabControl.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.UltraWinToolbars.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmActualizarFechaDetaCaja.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmEstadisticoCompra.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+E:\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmActualizarFechaDetaCaja.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAplicarAdelantoEfectivo.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmEstadisticoCompra.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\ShockwaveFlashObjects.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\stdole.dll
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\Jose Miguel\Desktop\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\ShockwaveFlashObjects.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\stdole.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmActualizarFechaDetaCaja.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAplicarAdelantoEfectivo.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmEstadisticoCompra.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+C:\Users\Jose Miguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\ShockwaveFlashObjects.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\stdole.dll
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbprojResolveAssemblyReference.cache
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmActualizarFechaDetaCaja.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAplicarAdelantoEfectivo.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmEstadisticoCompra.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteCaja.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteReciboAdelantoAbono.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteCajaActual.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteConsolodidadoGeneral.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportePic.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportePica.resources
+D:\One drive\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteCompra.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Servicios\log4net.assembly.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Remotion.Interfaces.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationProvider.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\UIAutomationTypes.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\ShockwaveFlashObjects.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\stdole.dll
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.v12.2.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\LinqToExcel.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\log4net.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfig.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmConfiguracionGeneral.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosBasicos.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmParametrosConexion.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Form1.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPersonalizado.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.Resources.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmActualizarFechaDetaCaja.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantos.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosAplicados.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAgencia.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAplicarAdelantoEfectivo.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmBackupBaseDatos.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCaja.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCliente.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmCompras.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDescargues.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmEstadisticoCompra.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrincipal.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRecuperarClave.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRubros.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmTipoCambio.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmUsuario.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerAdelantos.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmVerDetalleCompras.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteReciboAdelantoAbono.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteCaja.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteCajaActual.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteConsolodidadoGeneral.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptCaja.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportePic.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportePica.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptClientes.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteCompra.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptComrpas.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmRptDescargue.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReportes.resources
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.Cache
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
+C:\Users\josemiguel\OneDrive\proyectos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb

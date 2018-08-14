@@ -1,0 +1,575 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+EfectiOro
+</name>
+</assembly>
+<members>
+<member name="P:EfectiOro.Database.Contexto.conectar">
+ <summary>
+ Cadena de conexion tomada de los parametros establecidos al inicio
+ </summary>
+ <value>String</value>
+ <returns>Cadena de conexion</returns>
+ <remarks></remarks>
+</member>
+<member name="P:EfectiOro.Database.Adelantos.nombreCliente">
+ <summary>
+ Este es no mas el nombre para la hora del reporte, no usar para guardar datos
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="F:EfectiOro.DaoCaja.cajaPorCodigo">
+ <summary>
+ Consulta compilada para recuprar la caja por codigo
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:EfectiOro.DataContext._user">
+ <summary>
+ Definimos el usuario que ha accedido al sistema
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:EfectiOro.DataContext.usuarioLog">
+ <summary>
+ Usuario que ha accedido al sistema
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoAdelantos.aplicarAdelantoEfectivo(System.Collections.Generic.List{EfectiOro.Database.Adelantos},System.Decimal,System.String)">
+ <summary>
+ Esta funcion permite aplicar efectivo a un adelanto sin necesidad de pasar por compra
+ </summary>
+ <param name="listaAdelantos">Lista de adelantos</param>
+ <param name="monto">Monto a restar</param>
+ <param name="codcliente">Codigo del cliente</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoCliente.recuperarTodosClientes">
+ <summary>
+ Recuperamos los clientes con Ado.Net
+ </summary>
+ <returns>Lista de Clientes</returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoCliente.recuperarPorNombre(System.String)">
+ <summary>
+ Recuperamos una lista de clientes filtrados por nombre utilizando Ado.Net
+ </summary>
+ <param name="nombre">Nombre del cliente</param>
+ <returns>Lista de clientes</returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoCompras.crearCompra(EfectiOro.Database.Compras,System.Collections.Generic.List{EfectiOro.Database.Det_compra},EfectiOro.Database.Mcaja,EfectiOro.Database.Detacaja,System.Collections.Generic.List{EfectiOro.Database.Adelantos})">
+ <summary>
+ Creamos la compra junto con el detalle
+ </summary>
+ <param name="compra">Compras</param>
+ <param name="detaCompras">List(Of Det_Compra)</param>
+ <returns>Boolean</returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoCompras.anularCompra(System.String)">
+ <summary>
+ Anular la compra seleccionada
+ </summary>
+ <param name="numeroCompra"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoCompras.findComprasByCodigoCliente(System.String)">
+ <summary>
+ Recuperamos la lista de compras segun el cliente
+ </summary>
+ <param name="codCliente"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoCompras.actualizarCompra(EfectiOro.Database.Compras)">
+ <summary>
+ Esta función es para actualizar la compra en el caso de que sea pendiente de cierre
+ Ya que esta funcion solo actualiza los valores de efectivo, transferencia, cheque y adelanto
+ </summary>
+ <param name="compra"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.validarCajaAbierta(System.String)">
+ <summary>
+ Revisa si la caja quedó abierta del dia anterior, True si es el mismo Dia, False si no lo es
+ </summary>
+ <param name="caja">Caja actual</param>
+ <returns>True si esl mismo Dia, False si no lo es</returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.recuperarSaldoCaja(System.String)">
+ <summary>
+ Recuperar los saldos en caja
+ </summary>
+ <param name="caja"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.estadoCaja(System.String)">
+ <summary>
+ Estado de la caja actual
+ </summary>
+ <param name="caja"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.abrirCaja(System.String,System.String)">
+ <summary>
+ Abrir caja actual
+ </summary>
+ <param name="caja"></param>
+ <param name="agencia"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.cerrarCaja(System.String)">
+ <summary>
+ Cerrar caja actual
+ </summary>
+ <param name="caja"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.actualizarDatosMaestroCaja(EfectiOro.Database.Mcaja)">
+ <summary>
+ Actualizar el maestro de caja
+ </summary>
+ <param name="mocaja"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.guardarDatosDetaCaja(EfectiOro.Database.Detacaja,EfectiOro.Database.Mcaja)">
+ <summary>
+ Guardar el movimiento de caja en el detalle de caja
+ </summary>
+ <param name="dcaja"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.validarMovimiento(System.Int32)">
+ <summary>
+ Validar movimiento si es entrada o salida
+ </summary>
+ <param name="idmov">Integer</param>
+ <returns>Boolean</returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.listarDetaCaja(System.String)">
+ <summary>
+ Lista de todos los movimientos realizados en la caja
+ </summary>
+ <param name="caja"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoMaestroCaja.recuperarDetaCajaValores(EfectiOro.Database.Mcaja)">
+ <summary>
+ Recuperamos los valores de: Efectivo, Cheque, Trnasferencia; siempre que la caja este abierta.
+ </summary>
+ <param name="mcaja"></param>
+ <returns></returns>
+</member>
+<member name="P:EfectiOro.IDaoMaestroCaja.ErrorSms">
+ <summary>
+ Manejar los errores
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoParametros.habilitarVariasCompras(System.Int32)">
+ <summary>
+ De esta manera los precios de oro no volveran a los defualts
+ al menos que el usuario indique lo contrario.
+ Así se podrán realizar compras sin que se espere a que otro
+ usuario termine la compra.
+ </summary>
+ <returns>True, habilitar varias compras</returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoTipoCambio.findAllByMes">
+ <summary>
+ Buscamos los tipos de cambio respectivo al mes en el que nos encontramos
+ </summary>
+ <returns>Lista de Tipos de Cambios</returns>
+ <remarks></remarks>
+</member>
+<member name="M:EfectiOro.IDaoTipoCambio.grabarValorOro(System.Decimal,System.DateTime)">
+ <summary>
+ Grabamos el valor del oro, segun la fecha del tipo de cambio
+ </summary>
+ <param name="valor">Valor del oro</param>
+ <param name="fecha">Fecha indicada</param>
+ <returns>True si se guarda</returns>
+ <remarks></remarks>
+</member>
+<member name="T:EfectiOro.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._0218FB9F5">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._129">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._23">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._28">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._46">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._7">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._8">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources._9">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.abstracta_fondo_de_pantalla">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.aceptar">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.ADD_PAGE">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.ADD_TO_SHOPPING_CART">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.analysis">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.buscar_24">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.buscar_48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.calculator2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.cancel">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.catalog">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.clientes">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.currency_euro_blue">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.currency_euro_yellow">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.dollar_green">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.dollar_red">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.filesave">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.finance51">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.find">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.grafica">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.HOME">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.INSERT_TO_SHOPPING_CART">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.nuevo_usuario">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.PAGE_REMOVE">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.printer">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.refresh01">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.REMOVE_FROM_SHOPPING_CART">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.SAVE">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_add_48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_add_481">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_cancel_48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.SHOPPING_CART">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.SHOPPING_CART_16">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.SHOPPING_CART_ACCEPT">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_cart_blue">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_cart_red">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_edit_48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_ok_48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.shopping_search_48">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.surveys">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.switch_off">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.switch_on">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.User_Card">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.USER_MALE_EDIT">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.USER_MALE_GO">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.USER_MALE_REMOVE">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.USER_MALE_SEARCH">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.Usercard_01">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="M:EfectiOro.frmAdelantos.calcularSuma">
+ <summary>
+ Calculamos la sumas de las respectivas transacciones seleccionadas
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:EfectiOro.frmCompras.totalGeneral">
+ <summary>
+ Guarda el total de la compra, para luego poder validar al guardar si se ha ingresado el total correcto
+ </summary>
+ <value>0</value>
+ <returns>Deicmal</returns>
+ <remarks>Total de la compra</remarks>
+</member>
+<member name="F:EfectiOro.frmVerAdelantos.adelantoSeleccionados">
+ <summary>
+ Adelantos seleccionados
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:EfectiOro.frmVerDetalleCompras.CompraSeleccionada">
+ <summary>
+ Obtiene o estable la compra seleccionada
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:EfectiOro.frmVerDetalleCompras.ListaDetalleCompra">
+ <summary>
+ Obtiene o estable la lista de detalle de la compra
+ </summary>
+ <value>Compras</value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:EfectiOro.frmVerDetalleCompras.ClienteSeleccionado">
+ <summary>
+ Obtiene o establece el cliente seleccionado
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="F:EfectiOro.frmRptClientes.tablaCliente">
+ <summary>
+ Recuperamos: codcliente,nombres,apellidos,numcedula,direccion de los clientes
+ </summary>
+ <remarks></remarks>
+</member>
+</members>
+</doc>
