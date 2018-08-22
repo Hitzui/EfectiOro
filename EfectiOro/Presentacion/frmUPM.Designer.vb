@@ -30,6 +30,9 @@ Partial Class frmUPM
         Dim Appearance8 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance9 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance10 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance11 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance12 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance13 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.tabUPM = New System.Windows.Forms.TabControl()
         Me.tabDatos = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -80,10 +83,27 @@ Partial Class frmUPM
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtDesde = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.btnGuardarDetaUPM = New Infragistics.Win.Misc.UltraButton()
+        Me.btnSalir2 = New Infragistics.Win.Misc.UltraButton()
+        Me.btnFiltrar = New Infragistics.Win.Misc.UltraButton()
+        Me.txtMontoEstimado = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtFiltrarFecha = New System.Windows.Forms.DateTimePicker()
+        Me.dgvUpm = New System.Windows.Forms.DataGridView()
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.sourcecierre = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.bsUpm = New System.Windows.Forms.BindingSource(Me.components)
+        Me.colSeleccionarUPM = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CodupmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CodigoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OnzasDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SaldoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.tabUPM.SuspendLayout()
         Me.tabDatos.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -97,8 +117,11 @@ Partial Class frmUPM
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        CType(Me.dgvUpm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.sourcecierre, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsUpm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnClose
@@ -653,6 +676,112 @@ Partial Class frmUPM
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Desde:"
         '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.btnGuardarDetaUPM)
+        Me.TabPage1.Controls.Add(Me.btnSalir2)
+        Me.TabPage1.Controls.Add(Me.btnFiltrar)
+        Me.TabPage1.Controls.Add(Me.txtMontoEstimado)
+        Me.TabPage1.Controls.Add(Me.Label12)
+        Me.TabPage1.Controls.Add(Me.Label8)
+        Me.TabPage1.Controls.Add(Me.txtFiltrarFecha)
+        Me.TabPage1.Controls.Add(Me.dgvUpm)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(612, 376)
+        Me.TabPage1.TabIndex = 2
+        Me.TabPage1.Text = "Cierre UPM"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'btnGuardarDetaUPM
+        '
+        Appearance11.Image = Global.EfectiOro.My.Resources.Resources.save01
+        Appearance11.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance11.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnGuardarDetaUPM.Appearance = Appearance11
+        Me.btnGuardarDetaUPM.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnGuardarDetaUPM.ImageSize = New System.Drawing.Size(42, 42)
+        Me.btnGuardarDetaUPM.Location = New System.Drawing.Point(281, 316)
+        Me.btnGuardarDetaUPM.Name = "btnGuardarDetaUPM"
+        Me.btnGuardarDetaUPM.Size = New System.Drawing.Size(75, 52)
+        Me.btnGuardarDetaUPM.TabIndex = 7
+        Me.btnGuardarDetaUPM.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'btnSalir2
+        '
+        Appearance12.Image = Global.EfectiOro.My.Resources.Resources.HOME
+        Appearance12.ImageHAlign = Infragistics.Win.HAlign.Center
+        Me.btnSalir2.Appearance = Appearance12
+        Me.btnSalir2.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnSalir2.ImageSize = New System.Drawing.Size(42, 42)
+        Me.btnSalir2.Location = New System.Drawing.Point(529, 316)
+        Me.btnSalir2.Name = "btnSalir2"
+        Me.btnSalir2.Size = New System.Drawing.Size(75, 52)
+        Me.btnSalir2.TabIndex = 6
+        Me.btnSalir2.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'btnFiltrar
+        '
+        Appearance13.BorderColor = System.Drawing.Color.Teal
+        Me.btnFiltrar.Appearance = Appearance13
+        Me.btnFiltrar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnFiltrar.Location = New System.Drawing.Point(529, 18)
+        Me.btnFiltrar.Name = "btnFiltrar"
+        Me.btnFiltrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnFiltrar.TabIndex = 5
+        Me.btnFiltrar.Text = "Filtrar"
+        Me.btnFiltrar.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'txtMontoEstimado
+        '
+        Me.txtMontoEstimado.Location = New System.Drawing.Point(380, 21)
+        Me.txtMontoEstimado.Name = "txtMontoEstimado"
+        Me.txtMontoEstimado.Size = New System.Drawing.Size(100, 20)
+        Me.txtMontoEstimado.TabIndex = 4
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(269, 22)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(105, 15)
+        Me.Label12.TabIndex = 3
+        Me.Label12.Text = "Onzas estimadas:"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(33, 26)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 15)
+        Me.Label8.TabIndex = 2
+        Me.Label8.Text = "Filtrar:"
+        '
+        'txtFiltrarFecha
+        '
+        Me.txtFiltrarFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.txtFiltrarFecha.Location = New System.Drawing.Point(80, 22)
+        Me.txtFiltrarFecha.Name = "txtFiltrarFecha"
+        Me.txtFiltrarFecha.Size = New System.Drawing.Size(100, 20)
+        Me.txtFiltrarFecha.TabIndex = 1
+        '
+        'dgvUpm
+        '
+        Me.dgvUpm.AllowUserToAddRows = False
+        Me.dgvUpm.AllowUserToDeleteRows = False
+        Me.dgvUpm.AutoGenerateColumns = False
+        Me.dgvUpm.BackgroundColor = System.Drawing.Color.White
+        Me.dgvUpm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvUpm.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSeleccionarUPM, Me.CodupmDataGridViewTextBoxColumn, Me.CodigoDataGridViewTextBoxColumn, Me.OnzasDataGridViewTextBoxColumn, Me.SaldoDataGridViewTextBoxColumn, Me.PrecioDataGridViewTextBoxColumn, Me.FechaDataGridViewTextBoxColumn, Me.StatusDataGridViewCheckBoxColumn})
+        Me.dgvUpm.DataSource = Me.sourceUPM
+        Me.dgvUpm.Location = New System.Drawing.Point(8, 48)
+        Me.dgvUpm.Name = "dgvUpm"
+        Me.dgvUpm.Size = New System.Drawing.Size(596, 262)
+        Me.dgvUpm.TabIndex = 0
+        '
         'erp
         '
         Me.erp.ContainerControl = Me
@@ -661,15 +790,63 @@ Partial Class frmUPM
         '
         Me.sourcecierre.DataSource = GetType(EfectiOro.Database.CierrePrecios)
         '
-        'TabPage1
+        'bsUpm
         '
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(612, 376)
-        Me.TabPage1.TabIndex = 2
-        Me.TabPage1.Text = "Cierre UPM"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.bsUpm.DataSource = Me.sourceUPM
+        '
+        'colSeleccionarUPM
+        '
+        Me.colSeleccionarUPM.HeaderText = "Seleccionar"
+        Me.colSeleccionarUPM.Name = "colSeleccionarUPM"
+        '
+        'CodupmDataGridViewTextBoxColumn
+        '
+        Me.CodupmDataGridViewTextBoxColumn.DataPropertyName = "Codupm"
+        Me.CodupmDataGridViewTextBoxColumn.HeaderText = "Codupm"
+        Me.CodupmDataGridViewTextBoxColumn.Name = "CodupmDataGridViewTextBoxColumn"
+        '
+        'CodigoDataGridViewTextBoxColumn
+        '
+        Me.CodigoDataGridViewTextBoxColumn.DataPropertyName = "Codigo"
+        Me.CodigoDataGridViewTextBoxColumn.HeaderText = "Codigo"
+        Me.CodigoDataGridViewTextBoxColumn.Name = "CodigoDataGridViewTextBoxColumn"
+        Me.CodigoDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'OnzasDataGridViewTextBoxColumn
+        '
+        Me.OnzasDataGridViewTextBoxColumn.DataPropertyName = "Onzas"
+        Me.OnzasDataGridViewTextBoxColumn.HeaderText = "Onzas"
+        Me.OnzasDataGridViewTextBoxColumn.Name = "OnzasDataGridViewTextBoxColumn"
+        Me.OnzasDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'SaldoDataGridViewTextBoxColumn
+        '
+        Me.SaldoDataGridViewTextBoxColumn.DataPropertyName = "Saldo"
+        Me.SaldoDataGridViewTextBoxColumn.HeaderText = "Saldo"
+        Me.SaldoDataGridViewTextBoxColumn.Name = "SaldoDataGridViewTextBoxColumn"
+        Me.SaldoDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'PrecioDataGridViewTextBoxColumn
+        '
+        Me.PrecioDataGridViewTextBoxColumn.DataPropertyName = "Precio"
+        Me.PrecioDataGridViewTextBoxColumn.HeaderText = "Precio"
+        Me.PrecioDataGridViewTextBoxColumn.Name = "PrecioDataGridViewTextBoxColumn"
+        Me.PrecioDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'FechaDataGridViewTextBoxColumn
+        '
+        Me.FechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha"
+        Me.FechaDataGridViewTextBoxColumn.HeaderText = "Fecha"
+        Me.FechaDataGridViewTextBoxColumn.Name = "FechaDataGridViewTextBoxColumn"
+        Me.FechaDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'StatusDataGridViewCheckBoxColumn
+        '
+        Me.StatusDataGridViewCheckBoxColumn.DataPropertyName = "Status"
+        Me.StatusDataGridViewCheckBoxColumn.HeaderText = "Status"
+        Me.StatusDataGridViewCheckBoxColumn.Name = "StatusDataGridViewCheckBoxColumn"
+        Me.StatusDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.StatusDataGridViewCheckBoxColumn.Visible = False
         '
         'frmUPM
         '
@@ -697,8 +874,12 @@ Partial Class frmUPM
         Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
+        CType(Me.dgvUpm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.sourcecierre, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsUpm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -757,4 +938,21 @@ Partial Class frmUPM
     Friend WithEvents Label10 As Label
     Friend WithEvents btnOnzas As Infragistics.Win.Misc.UltraButton
     Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents txtMontoEstimado As TextBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtFiltrarFecha As DateTimePicker
+    Friend WithEvents dgvUpm As DataGridView
+    Friend WithEvents btnFiltrar As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents btnGuardarDetaUPM As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents btnSalir2 As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents bsUpm As BindingSource
+    Friend WithEvents colSeleccionarUPM As DataGridViewCheckBoxColumn
+    Friend WithEvents CodupmDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CodigoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents OnzasDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SaldoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PrecioDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents FechaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents StatusDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
 End Class

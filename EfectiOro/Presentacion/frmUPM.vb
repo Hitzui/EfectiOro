@@ -65,7 +65,7 @@ Public Class frmUPM
         cargarDatos()
     End Sub
 
-    Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
+    Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click, btnSalir2.Click
         Me.Close()
     End Sub
 
@@ -309,6 +309,38 @@ Public Class frmUPM
             Catch ex As Exception
                 MsgBox("No hay datos de onzas para las compras segun la fecha seleccionada, intente con un rango de fecha distinto", MsgBoxStyle.Information, "Onzas")
                 lblOnzas.Text = "0.0"
+            End Try
+        End Using
+    End Sub
+
+    Private Sub txtMontoEstimado_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtMontoEstimado.KeyPress
+        NumeroDec(e, txtMontoEstimado)
+    End Sub
+
+    Private Sub btnFiltrar_Click(sender As Object, e As EventArgs) Handles btnFiltrar.Click
+        Using ctx As New Contexto
+            Try
+                Dim filtrar = (From upm In ctx.UPM Where upm.Fecha.Date <= txtFiltrarFecha.Value.Date And upm.Status = True Select upm).ToList
+                sourceUPM.DataSource = filtrar
+                dgvUpm.DataSource = sourceUPM
+            Catch ex As Exception
+                MsgBox("NO hay datos en la fecha especificada, por favor intente con otro rango de fechas", MsgBoxStyle.Information, "Filtrar")
+            End Try
+        End Using
+    End Sub
+
+    Private Sub btnGuardarDetaUPM_Click(sender As Object, e As EventArgs) Handles btnGuardarDetaUPM.Click
+        Using ctx As New Contexto
+            Try
+                Dim onzasEstimadas As Decimal = Decimal.Zero
+                If txtMontoEstimado.Text.Trim.Length <= 0 Then
+                    MsgBox("Debe especificar las onzas estimadas para continuar", MsgBoxStyle.Information, _tituloMensaje)
+                    Return
+                Else
+                    onzasEstimadas = Convert.ToDecimal(txtMontoEstimado.Text)
+                End If
+            Catch ex As Exception
+
             End Try
         End Using
     End Sub
