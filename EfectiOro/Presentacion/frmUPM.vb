@@ -2,7 +2,7 @@
 
 Public Class frmUPM
 
-    Private Const _tituloMensaje As String = "UPM"
+    Private Const _tituloMensaje As String = "Formulario UPM"
     Private Const DobleZero As String = "0.00"
     Private aux As Integer = 1
     Private listaCierresSeleccionados As List(Of CierrePrecios)
