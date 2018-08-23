@@ -5,7 +5,7 @@ Public Class frmUPM
     Private Const _tituloMensaje As String = "Formulario UPM"
     Private Const DobleZero As String = "0.00"
     Private aux As Integer = 1
-    Private listaCierresSeleccionados As List(Of CierrePrecios)
+    Private listaUPMSeleccionados As List(Of Upm)
     Private onzas_cierres As Decimal = Decimal.Zero
     Private onzas_upm As Decimal = Decimal.Zero
     Private bsCierres As New BindingSource
@@ -16,7 +16,7 @@ Public Class frmUPM
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        listaCierresSeleccionados = New List(Of CierrePrecios)
+        listaUPMSeleccionados = New List(Of Upm)
     End Sub
     Private Sub habilitarCampos(opcion As Boolean)
         txtCodigoUPM.Enabled = opcion
@@ -343,5 +343,27 @@ Public Class frmUPM
 
             End Try
         End Using
+    End Sub
+
+    Private Sub dgvUpm_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvUpm.CellEndEdit
+        Try
+            Dim seleccion As Boolean
+            Dim x_upm As Upm
+            If e.ColumnIndex = 0 Then
+                seleccion = dgvUpm.Item(e.ColumnIndex, e.RowIndex).Value
+                x_upm = sourceUPM.Item(e.RowIndex)
+                If seleccion = True Then
+                    If Not listaUPMSeleccionados.Contains(x_upm) Then
+                        listaUPMSeleccionados.Add(x_upm)
+                    End If
+                Else
+                    If listaUPMSeleccionados.Contains(x_upm) Then
+                        listaUPMSeleccionados.Remove(x_upm)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

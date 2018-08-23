@@ -109,13 +109,10 @@ Public Class frmPrecios2
         _nombreCliente = row.Cells(1).Value & " " & row.Cells(2).Value
         Using ctx As New Contexto
             Try
-                dgvCierrePrecios.Rows.Clear()
-                listaCierreClientes = (From cp In ctx.CierrePrecios Where cp.Codcliente = _codcliente And cp.Status = True And cp.SaldoOnzas > 0 Select cp).ToList
-                onzasDisponibles = listaCierreClientes.Sum(Function(c) c.SaldoOnzas)
+                Dim findCierres = (From cp In ctx.CierrePrecios Where cp.Codcliente = _codcliente And cp.Status = True And cp.SaldoOnzas > 0 Select cp).ToList
+                onzasDisponibles = findCierres.Sum(Function(c) c.SaldoOnzas)
                 lblOnzasDisponibles.Text = onzasDisponibles
-                For Each valor In listaCierreClientes
-                    dgvCierrePrecios.Rows.Add(True, valor.CodCierre, valor.SaldoOnzas, valor.PrecioOro, valor.PrecioBase, valor.Margen)
-                Next
+                bsCierres.DataSource = findCierres
                 Dim preciosCliente = (From p In ctx.Precios Where p.Codcliente = _codcliente Select p).ToList
                 If preciosCliente.Count > 0 Then
                     MsgBox("El cliente actual tiene precios establecidos, eliminelos para poder continuar", MsgBoxStyle.Information, Title)
@@ -557,31 +554,31 @@ Public Class frmPrecios2
     End Sub
 
     Private Sub dgvCierrePrecios_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCierrePrecios.CellValueChanged
-        Try
-            Dim dao = DataContext.daoPrecioKilate
-            If dgvCierrePrecios.Columns(e.ColumnIndex).Name = "colSeleccionar" Then
-                Dim row As DataGridViewRow = dgvCierrePrecios.Rows(e.RowIndex)
-                Dim cellSeleccion As DataGridViewCheckBoxCell = row.Cells("colSeleccionar")
-                Dim codigo As Integer = Convert.ToInt32(row.Cells("colCodcierre").Value)
-                Dim cierre_precio As CierrePrecios = dao.findCierrePrecio(codigo)
-                If Convert.ToBoolean(cellSeleccion.Value) = True Then
-                    onzasDisponibles = Decimal.Add(onzasDisponibles, cierre_precio.SaldoOnzas)
-                    dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
-                    dif_onzas = redondearMenos(dif_onzas, 0.0005)
-                    listaCierreClientes.Add(cierre_precio)
-                Else
-                    Dim find = listaCierreClientes.Find(Function(d) d.CodCierre = cierre_precio.CodCierre)
-                    onzasDisponibles = Decimal.Subtract(onzasDisponibles, cierre_precio.SaldoOnzas)
-                    dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
-                    dif_onzas = redondearMenos(dif_onzas, 0.0005)
-                    listaCierreClientes.Remove(find)
-                End If
-                lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
-                lblOnzasDisponibles.Text = Decimal.Round(onzasDisponibles, 3)
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Warning")
-        End Try
+        'Try
+        '    Dim dao = DataContext.daoPrecioKilate
+        '    If dgvCierrePrecios.Columns(e.ColumnIndex).Name = "colSeleccionar" Then
+        '        Dim row As DataGridViewRow = dgvCierrePrecios.Rows(e.RowIndex)
+        '        Dim cellSeleccion As DataGridViewCheckBoxCell = row.Cells("colSeleccionar")
+        '        Dim codigo As Integer = Convert.ToInt32(row.Cells("colCodcierre").Value)
+        '        Dim cierre_precio As CierrePrecios = dao.findCierrePrecio(codigo)
+        '        If Convert.ToBoolean(cellSeleccion.Value) = True Then
+        '            onzasDisponibles = Decimal.Add(onzasDisponibles, cierre_precio.SaldoOnzas)
+        '            dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
+        '            dif_onzas = redondearMenos(dif_onzas, 0.0005)
+        '            listaCierreClientes.Add(cierre_precio)
+        '        Else
+        '            Dim find = listaCierreClientes.Find(Function(d) d.CodCierre = cierre_precio.CodCierre)
+        '            onzasDisponibles = Decimal.Subtract(onzasDisponibles, cierre_precio.SaldoOnzas)
+        '            dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
+        '            dif_onzas = redondearMenos(dif_onzas, 0.0005)
+        '            listaCierreClientes.Remove(find)
+        '        End If
+        '        lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
+        '        lblOnzasDisponibles.Text = Decimal.Round(onzasDisponibles, 3)
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Warning")
+        'End Try
     End Sub
 
     Private Sub btnQuitarSeleccion_Click(sender As Object, e As EventArgs) Handles btnQuitarSeleccion.Click
@@ -649,5 +646,39 @@ Public Class frmPrecios2
 
             End Try
         End Using
+    End Sub
+
+    Private Sub dgvCierrePrecios_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCierrePrecios.CellEndEdit
+        Try
+            Dim seleccionar As Boolean
+            Dim x_cierre As CierrePrecios
+            If e.ColumnIndex = 0 Then
+                seleccionar = dgvCierrePrecios.Rows(e.RowIndex).Cells(0).Value
+                x_cierre = bsCierres.Item(e.RowIndex)
+                Using ctx As New Contexto
+                    Dim findCierre = (From c In ctx.CierrePrecios Where c.CodCierre = x_cierre.CodCierre Select c).Single
+                    If Not findCierre.SaldoOnzas.Equals(x_cierre.SaldoOnzas) Then
+                        dgvCierrePrecios.Rows(e.RowIndex).Cells(0).Value = True
+                        MsgBox("No puede quitar el cierre seleccinado ya que se ha usado para ingresar precios.", MsgBoxStyle.Exclamation, Title)
+                        Return
+                    End If
+                End Using
+                If seleccionar = True Then
+                    If Not listaCierreClientes.Contains(x_cierre) Then
+                        listaCierreClientes.Add(x_cierre)
+                    End If
+                Else
+                    If listaCierreClientes.Contains(x_cierre) Then
+                        listaCierreClientes.Remove(x_cierre)
+                    End If
+                End If
+                Dim x_onzas As Decimal = listaCierreClientes.Sum(Function(c) c.SaldoOnzas)
+                lblOnzasIngresar.Text = Decimal.Round(x_onzas, 3)
+                dif_onzas = Decimal.Subtract(onzasDisponibles, x_onzas)
+                lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Warning")
+        End Try
     End Sub
 End Class

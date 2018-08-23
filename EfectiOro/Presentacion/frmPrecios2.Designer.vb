@@ -59,12 +59,7 @@ Partial Class frmPrecios2
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.dgvCierrePrecios = New System.Windows.Forms.DataGridView()
-        Me.colSeleccionar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colCodcierre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colOnzas = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrecioOro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrecioBase = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colMargen = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.bsCierres = New System.Windows.Forms.BindingSource(Me.components)
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
@@ -75,6 +70,17 @@ Partial Class frmPrecios2
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.lblOnzasDiferencia = New System.Windows.Forms.ToolStripLabel()
+        Me.colSeleccionar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CodCierreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CodclienteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.OnzasFinasDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SaldoOnzasDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GramosFinosDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioOroDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioBaseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MargenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -83,6 +89,7 @@ Partial Class frmPrecios2
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.dgvCierrePrecios, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsCierres, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -412,10 +419,12 @@ Partial Class frmPrecios2
         '
         Me.dgvCierrePrecios.AllowUserToAddRows = False
         Me.dgvCierrePrecios.AllowUserToDeleteRows = False
-        Me.dgvCierrePrecios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvCierrePrecios.AutoGenerateColumns = False
+        Me.dgvCierrePrecios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.dgvCierrePrecios.BackgroundColor = System.Drawing.Color.White
         Me.dgvCierrePrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCierrePrecios.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSeleccionar, Me.colCodcierre, Me.colOnzas, Me.colPrecioOro, Me.colPrecioBase, Me.colMargen})
+        Me.dgvCierrePrecios.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSeleccionar, Me.CodCierreDataGridViewTextBoxColumn, Me.CodclienteDataGridViewTextBoxColumn, Me.StatusDataGridViewCheckBoxColumn, Me.OnzasFinasDataGridViewTextBoxColumn, Me.SaldoOnzasDataGridViewTextBoxColumn, Me.GramosFinosDataGridViewTextBoxColumn, Me.PrecioOroDataGridViewTextBoxColumn, Me.PrecioBaseDataGridViewTextBoxColumn, Me.FechaDataGridViewTextBoxColumn, Me.MargenDataGridViewTextBoxColumn})
+        Me.dgvCierrePrecios.DataSource = Me.bsCierres
         Me.dgvCierrePrecios.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvCierrePrecios.Location = New System.Drawing.Point(3, 16)
         Me.dgvCierrePrecios.Name = "dgvCierrePrecios"
@@ -423,42 +432,9 @@ Partial Class frmPrecios2
         Me.dgvCierrePrecios.Size = New System.Drawing.Size(444, 287)
         Me.dgvCierrePrecios.TabIndex = 0
         '
-        'colSeleccionar
+        'bsCierres
         '
-        Me.colSeleccionar.HeaderText = "Seleccionar"
-        Me.colSeleccionar.Name = "colSeleccionar"
-        Me.colSeleccionar.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colSeleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'colCodcierre
-        '
-        Me.colCodcierre.HeaderText = "Codigo"
-        Me.colCodcierre.Name = "colCodcierre"
-        Me.colCodcierre.ReadOnly = True
-        '
-        'colOnzas
-        '
-        Me.colOnzas.HeaderText = "Onzas"
-        Me.colOnzas.Name = "colOnzas"
-        Me.colOnzas.ReadOnly = True
-        '
-        'colPrecioOro
-        '
-        Me.colPrecioOro.HeaderText = "Precio oro"
-        Me.colPrecioOro.Name = "colPrecioOro"
-        Me.colPrecioOro.ReadOnly = True
-        '
-        'colPrecioBase
-        '
-        Me.colPrecioBase.HeaderText = "Precio Base"
-        Me.colPrecioBase.Name = "colPrecioBase"
-        Me.colPrecioBase.ReadOnly = True
-        '
-        'colMargen
-        '
-        Me.colMargen.HeaderText = "Margen"
-        Me.colMargen.Name = "colMargen"
-        Me.colMargen.ReadOnly = True
+        Me.bsCierres.DataSource = GetType(EfectiOro.Database.CierrePrecios)
         '
         'toolTip
         '
@@ -520,6 +496,97 @@ Partial Class frmPrecios2
         Me.lblOnzasDiferencia.Size = New System.Drawing.Size(28, 22)
         Me.lblOnzasDiferencia.Text = "0.00"
         '
+        'colSeleccionar
+        '
+        Me.colSeleccionar.HeaderText = "Seleccionar"
+        Me.colSeleccionar.Name = "colSeleccionar"
+        Me.colSeleccionar.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.colSeleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.colSeleccionar.ToolTipText = "Serlecciona el cierre para ingresar precios"
+        Me.colSeleccionar.Width = 88
+        '
+        'CodCierreDataGridViewTextBoxColumn
+        '
+        Me.CodCierreDataGridViewTextBoxColumn.DataPropertyName = "CodCierre"
+        Me.CodCierreDataGridViewTextBoxColumn.HeaderText = "CodCierre"
+        Me.CodCierreDataGridViewTextBoxColumn.Name = "CodCierreDataGridViewTextBoxColumn"
+        Me.CodCierreDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CodCierreDataGridViewTextBoxColumn.Width = 78
+        '
+        'CodclienteDataGridViewTextBoxColumn
+        '
+        Me.CodclienteDataGridViewTextBoxColumn.DataPropertyName = "Codcliente"
+        Me.CodclienteDataGridViewTextBoxColumn.HeaderText = "Codcliente"
+        Me.CodclienteDataGridViewTextBoxColumn.Name = "CodclienteDataGridViewTextBoxColumn"
+        Me.CodclienteDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CodclienteDataGridViewTextBoxColumn.Visible = False
+        Me.CodclienteDataGridViewTextBoxColumn.Width = 82
+        '
+        'StatusDataGridViewCheckBoxColumn
+        '
+        Me.StatusDataGridViewCheckBoxColumn.DataPropertyName = "Status"
+        Me.StatusDataGridViewCheckBoxColumn.HeaderText = "Status"
+        Me.StatusDataGridViewCheckBoxColumn.Name = "StatusDataGridViewCheckBoxColumn"
+        Me.StatusDataGridViewCheckBoxColumn.Visible = False
+        Me.StatusDataGridViewCheckBoxColumn.Width = 43
+        '
+        'OnzasFinasDataGridViewTextBoxColumn
+        '
+        Me.OnzasFinasDataGridViewTextBoxColumn.DataPropertyName = "OnzasFinas"
+        Me.OnzasFinasDataGridViewTextBoxColumn.HeaderText = "OnzasFinas"
+        Me.OnzasFinasDataGridViewTextBoxColumn.Name = "OnzasFinasDataGridViewTextBoxColumn"
+        Me.OnzasFinasDataGridViewTextBoxColumn.ReadOnly = True
+        Me.OnzasFinasDataGridViewTextBoxColumn.Width = 87
+        '
+        'SaldoOnzasDataGridViewTextBoxColumn
+        '
+        Me.SaldoOnzasDataGridViewTextBoxColumn.DataPropertyName = "SaldoOnzas"
+        Me.SaldoOnzasDataGridViewTextBoxColumn.HeaderText = "SaldoOnzas"
+        Me.SaldoOnzasDataGridViewTextBoxColumn.Name = "SaldoOnzasDataGridViewTextBoxColumn"
+        Me.SaldoOnzasDataGridViewTextBoxColumn.ReadOnly = True
+        Me.SaldoOnzasDataGridViewTextBoxColumn.Width = 89
+        '
+        'GramosFinosDataGridViewTextBoxColumn
+        '
+        Me.GramosFinosDataGridViewTextBoxColumn.DataPropertyName = "GramosFinos"
+        Me.GramosFinosDataGridViewTextBoxColumn.HeaderText = "GramosFinos"
+        Me.GramosFinosDataGridViewTextBoxColumn.Name = "GramosFinosDataGridViewTextBoxColumn"
+        Me.GramosFinosDataGridViewTextBoxColumn.ReadOnly = True
+        Me.GramosFinosDataGridViewTextBoxColumn.Visible = False
+        Me.GramosFinosDataGridViewTextBoxColumn.Width = 93
+        '
+        'PrecioOroDataGridViewTextBoxColumn
+        '
+        Me.PrecioOroDataGridViewTextBoxColumn.DataPropertyName = "PrecioOro"
+        Me.PrecioOroDataGridViewTextBoxColumn.HeaderText = "PrecioOro"
+        Me.PrecioOroDataGridViewTextBoxColumn.Name = "PrecioOroDataGridViewTextBoxColumn"
+        Me.PrecioOroDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PrecioOroDataGridViewTextBoxColumn.Width = 79
+        '
+        'PrecioBaseDataGridViewTextBoxColumn
+        '
+        Me.PrecioBaseDataGridViewTextBoxColumn.DataPropertyName = "PrecioBase"
+        Me.PrecioBaseDataGridViewTextBoxColumn.HeaderText = "PrecioBase"
+        Me.PrecioBaseDataGridViewTextBoxColumn.Name = "PrecioBaseDataGridViewTextBoxColumn"
+        Me.PrecioBaseDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PrecioBaseDataGridViewTextBoxColumn.Width = 86
+        '
+        'FechaDataGridViewTextBoxColumn
+        '
+        Me.FechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha"
+        Me.FechaDataGridViewTextBoxColumn.HeaderText = "Fecha"
+        Me.FechaDataGridViewTextBoxColumn.Name = "FechaDataGridViewTextBoxColumn"
+        Me.FechaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.FechaDataGridViewTextBoxColumn.Width = 62
+        '
+        'MargenDataGridViewTextBoxColumn
+        '
+        Me.MargenDataGridViewTextBoxColumn.DataPropertyName = "Margen"
+        Me.MargenDataGridViewTextBoxColumn.HeaderText = "Margen"
+        Me.MargenDataGridViewTextBoxColumn.Name = "MargenDataGridViewTextBoxColumn"
+        Me.MargenDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MargenDataGridViewTextBoxColumn.Width = 68
+        '
         'frmPrecios2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -548,6 +615,7 @@ Partial Class frmPrecios2
         CType(Me.erp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.dgvCierrePrecios, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsCierres, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -579,12 +647,6 @@ Partial Class frmPrecios2
     Friend WithEvents Label4 As Label
     Friend WithEvents txtGramos As TextBox
     Friend WithEvents btnQuitarSeleccion As Infragistics.Win.Misc.UltraButton
-    Friend WithEvents colSeleccionar As DataGridViewCheckBoxColumn
-    Friend WithEvents colCodcierre As DataGridViewTextBoxColumn
-    Friend WithEvents colOnzas As DataGridViewTextBoxColumn
-    Friend WithEvents colPrecioOro As DataGridViewTextBoxColumn
-    Friend WithEvents colPrecioBase As DataGridViewTextBoxColumn
-    Friend WithEvents colMargen As DataGridViewTextBoxColumn
     Friend WithEvents toolTip As ToolTip
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
@@ -601,4 +663,16 @@ Partial Class frmPrecios2
     Friend WithEvents colGramos As DataGridViewTextBoxColumn
     Friend WithEvents btnSalir As Infragistics.Win.Misc.UltraButton
     Friend WithEvents btnRefrescarCierres As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents bsCierres As BindingSource
+    Friend WithEvents colSeleccionar As DataGridViewCheckBoxColumn
+    Friend WithEvents CodCierreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CodclienteDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents StatusDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents OnzasFinasDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SaldoOnzasDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents GramosFinosDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PrecioOroDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PrecioBaseDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents FechaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents MargenDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class
