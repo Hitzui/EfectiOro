@@ -7847,6 +7847,10 @@ Namespace Database
         End Sub
         Partial Private Sub OnStatusChanged()
         End Sub
+        Partial Private Sub OnDegupmChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnDegupmChanged()
+        End Sub
 #End Region
 #Region "Campos"
         '[codupm] [int] IDENTITY(1,1) Not NULL,
@@ -7968,6 +7972,22 @@ Namespace Database
                 End If
             End Set
         End Property
+        Private _degupm As Integer
+        <Column(Name:="degupm", Storage:="_degupm", DbType:="int", CanBeNull:=True)>
+        Public Property Degupm() As Integer
+            Get
+                Return _degupm
+            End Get
+            Set(ByVal value As Integer)
+                If _degupm.Equals(value) = False Then
+                    Me.OnDegupmChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._degupm = value
+                    Me.SendPropertyChanged("Degupm")
+                    Me.OnDegupmChanged()
+                End If
+            End Set
+        End Property
 #End Region
 
         Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
@@ -7994,6 +8014,11 @@ Namespace Database
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
         Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+        '[degupm] [int] IDENTITY(1,1) Not NULL,
+        '[onzas] [numeric](12, 3) Not NULL,
+        '[fecha] [datetime] Not NULL,
+        '[cantupm] [int] Not NULL,
+        '[saldo] [numeric](12, 3) Not NULL,
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub
@@ -8001,54 +8026,46 @@ Namespace Database
         End Sub
         Partial Private Sub OnCreated()
         End Sub
-        Partial Private Sub OnCodupmChanging(value As Integer)
+        Partial Private Sub OnDegupmChanging(value As Integer)
         End Sub
-        Partial Private Sub OnCodupmChanged()
-        End Sub
-        Partial Private Sub OnCodcierreChanging(value As Integer)
-        End Sub
-        Partial Private Sub OnCodcierreChanged()
+        Partial Private Sub OnDegupmChanged()
         End Sub
         Partial Private Sub OnOnzasChanging(value As Decimal)
         End Sub
         Partial Private Sub OnOnzasChanged()
         End Sub
+        Partial Private Sub OnFechaChanging(value As Date)
+        End Sub
+        Partial Private Sub OnFechaChanged()
+        End Sub
+        Partial Private Sub OnCantUpmChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnCantUpmChanged()
+        End Sub
+        Partial Private Sub OnSaldoChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnSaldoChanged()
+        End Sub
 #End Region
 #Region "Campos"
-        Private _codupm As Integer
-        <Column(Name:="codupm", Storage:="_codupm", DbType:="int not null", IsPrimaryKey:=True, IsDbGenerated:=True)>
-        Public Property Codupm() As Integer
+        Private _degupm As Integer
+        <Column(Name:="degupm", Storage:="_degupm", DbType:="int not null", AutoSync:=AutoSync.OnInsert, CanBeNull:=False, IsPrimaryKey:=True, IsDbGenerated:=True)>
+        Public Property Degupm() As Integer
             Get
-                Return _codupm
+                Return _degupm
             End Get
             Set(ByVal value As Integer)
-                If (Me._codupm = value) = False Then
-                    Me.OnCodupmChanging(value)
+                If _degupm.Equals(value) = False Then
+                    Me.OnDegupmChanging(value)
                     Me.SendPropertyChanging()
-                    Me._codupm = value
-                    Me.SendPropertyChanged("Codupm")
-                    Me.OnCodupmChanged()
-                End If
-            End Set
-        End Property
-        Private _codcierre As Integer
-        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int not null", IsPrimaryKey:=True)>
-        Public Property Codcierre() As Integer
-            Get
-                Return _codcierre
-            End Get
-            Set(ByVal value As Integer)
-                If (Me._codcierre = value) = False Then
-                    Me.OnCodcierreChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._codcierre = value
-                    Me.SendPropertyChanged("Codcierre")
-                    Me.OnCodcierreChanged()
+                    Me._degupm = value
+                    Me.SendPropertyChanged("Degupm")
+                    Me.OnDegupmChanged()
                 End If
             End Set
         End Property
         Private _onzas As Decimal
-        <Column(Name:="onzas", Storage:="_onzas", DbType:="decimal(12,3) not null")>
+        <Column(Name:="onzas", Storage:="_onzas", DbType:="numeric(12,3) not null", CanBeNull:=False)>
         Public Property Onzas() As Decimal
             Get
                 Return _onzas
@@ -8060,6 +8077,54 @@ Namespace Database
                     Me._onzas = value
                     Me.SendPropertyChanged("Onzas")
                     Me.OnOnzasChanged()
+                End If
+            End Set
+        End Property
+        Private _fecha As Date
+        <Column(Name:="fecha", Storage:="_fecha", DbType:="datetime not null", CanBeNull:=False)>
+        Public Property Fecha() As Date
+            Get
+                Return _fecha
+            End Get
+            Set(ByVal value As Date)
+                If _fecha.Equals(value) = False Then
+                    Me.OnFechaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._fecha = value
+                    Me.SendPropertyChanged("Fecha")
+                    Me.OnFechaChanged()
+                End If
+            End Set
+        End Property
+        Private _cantupm As Integer
+        <Column(Name:="cantupm", Storage:="_degupm", DbType:="int not null", CanBeNull:=False)>
+        Public Property Cantupm() As Integer
+            Get
+                Return _cantupm
+            End Get
+            Set(ByVal value As Integer)
+                If _cantupm.Equals(value) = False Then
+                    Me.OnCantUpmChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._cantupm = value
+                    Me.SendPropertyChanged("Cantupm")
+                    Me.OnCantUpmChanged()
+                End If
+            End Set
+        End Property
+        Private _saldo As Decimal
+        <Column(Name:="saldo", Storage:="_saldo", DbType:="numeric(12,3) not null", CanBeNull:=False)>
+        Public Property Saldo() As Decimal
+            Get
+                Return _saldo
+            End Get
+            Set(ByVal value As Decimal)
+                If _saldo.Equals(value) = False Then
+                    Me.OnSaldoChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._saldo = value
+                    Me.SendPropertyChanged("Saldo")
+                    Me.OnSaldoChanged()
                 End If
             End Set
         End Property

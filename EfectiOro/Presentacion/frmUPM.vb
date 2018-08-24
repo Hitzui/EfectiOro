@@ -4,6 +4,7 @@ Public Class frmUPM
 
     Private Const _tituloMensaje As String = "Formulario UPM"
     Private Const DobleZero As String = "0.00"
+    Private Const _tituloError As String = "Error"
     Private aux As Integer = 1
     Private listaUPMSeleccionados As List(Of Upm)
     Private onzas_cierres As Decimal = Decimal.Zero
@@ -35,7 +36,7 @@ Public Class frmUPM
         Using ctx As New Contexto
             Try
                 Dim bs As New BindingSource()
-                Dim datosUpm = (From upm In ctx.UPM Where upm.Status = True Select upm).ToList
+                Dim datosUpm = (From upm In ctx.UPM Where upm.Status = True And upm.Degupm = 0 Select upm).ToList
                 bs.DataSource = datosUpm
                 sourceUPM.DataSource = bs
                 Dim datosCierre = (From cierre In ctx.CierrePrecios Where cierre.Status = True Select cierre).ToList
@@ -154,7 +155,7 @@ Public Class frmUPM
                         Select Case aux
                             Case 1
                                 'guardar datos
-                                Dim _upm As New Upm With {.Codigo = codigo, .Onzas = onzas, .Saldo = onzas, .Precio = precio, .Fecha = txtFecha.Value, .Status = True}
+                                Dim _upm As New Upm With {.Codigo = codigo, .Onzas = onzas, .Saldo = onzas, .Precio = precio, .Fecha = txtFecha.Value, .Status = True, .Degupm = 0}
                                 ctx.UPM.InsertOnSubmit(_upm)
                                 ctx.SubmitChanges()
                                 MsgBox("Se han guardado los datos del UPM, de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
@@ -163,14 +164,6 @@ Public Class frmUPM
                                 'editar datos
                                 Dim row As DataGridViewRow = dgvUpmDatos.CurrentRow
                                 Dim findUpm As Upm = (From upm In ctx.UPM Where upm.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select upm).Single
-                                Dim detaupm = (From deta In ctx.Detaupm Where deta.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select deta).ToList
-                                If detaupm.Count > 0 Then
-                                    Dim deta_onzas As Decimal = detaupm.Sum(Function(d) d.Onzas)
-                                    If onzas < deta_onzas Then
-                                        MsgBox("No puede editar el UPM, ya que las onzas establecidas son menores respecto a los cierres viculados a este UPM", MsgBoxStyle.Information, _tituloMensaje)
-                                        Return
-                                    End If
-                                End If
                                 findUpm.Precio = precio
                                 findUpm.Onzas = onzas
                                 findUpm.Codigo = codigo
@@ -182,11 +175,6 @@ Public Class frmUPM
                                 'eliminar datos
                                 Dim row As DataGridViewRow = dgvUpmDatos.CurrentRow
                                 Dim findUpm As Upm = (From upm In ctx.UPM Where upm.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select upm).Single
-                                Dim detaupm = (From deta In ctx.Detaupm Where deta.Codupm = Convert.ToInt32(row.Cells("colCodupm").Value) Select deta).ToList
-                                If detaupm.Count > 0 Then
-                                    MsgBox("No puede elminar el UPM actual ya que esta vinculado con cierre de precios", MsgBoxStyle.Information, _tituloMensaje)
-                                    Return
-                                End If
                                 ctx.UPM.DeleteOnSubmit(findUpm)
                                 ctx.SubmitChanges()
                                 MsgBox("Se han eliminado los datos del UPM, de forma correcta", MsgBoxStyle.Information, _tituloMensaje)
@@ -320,7 +308,7 @@ Public Class frmUPM
     Private Sub btnFiltrar_Click(sender As Object, e As EventArgs) Handles btnFiltrar.Click
         Using ctx As New Contexto
             Try
-                Dim filtrar = (From upm In ctx.UPM Where upm.Fecha.Date <= txtFiltrarFecha.Value.Date And upm.Status = True Select upm).ToList
+                Dim filtrar = (From upm In ctx.UPM Where upm.Fecha.Date <= txtFiltrarFecha.Value.Date And upm.Status = True And upm.Degupm = 0 Select upm).ToList
                 sourceUPM.DataSource = filtrar
                 dgvUpm.DataSource = sourceUPM
             Catch ex As Exception
@@ -330,6 +318,10 @@ Public Class frmUPM
     End Sub
 
     Private Sub btnGuardarDetaUPM_Click(sender As Object, e As EventArgs) Handles btnGuardarDetaUPM.Click
+        Dim dialog = MessageBox.Show("¿Seguro desea guardar los cambios seleccionados?", _tituloMensaje, MessageBoxButtons.YesNo)
+        If dialog = DialogResult.No Then
+            Return
+        End If
         Using ctx As New Contexto
             Try
                 Dim onzasEstimadas As Decimal = Decimal.Zero
@@ -339,12 +331,37 @@ Public Class frmUPM
                 Else
                     onzasEstimadas = Convert.ToDecimal(txtMontoEstimado.Text)
                 End If
+                Dim onzasSeleccionadas As Decimal = listaUPMSeleccionados.Sum(Function(c) c.Saldo)
+                Dim dif_onzas = Decimal.Subtract(onzasSeleccionadas, onzasEstimadas)
+                Dim cantupm As Integer = listaUPMSeleccionados.Count
+                Dim detaupm As New Detaupm With {.Cantupm = cantupm, .Fecha = Now, .Saldo = dif_onzas, .Onzas = onzasSeleccionadas}
+                If saveDetaUpm(detaupm) Then
+                    Dim findDegUpm = (From du In ctx.Detaupm Order By du.Degupm Descending Select du.Degupm).First
+                    For Each dato As Upm In listaUPMSeleccionados
+                        Dim find = (From upm In ctx.UPM Where upm.Codupm = dato.Codupm Select upm).Single
+                        find.Degupm = findDegUpm
+                    Next
+                    ctx.SubmitChanges()
+                    MsgBox("Se han guardado los cambios de forma correcta.", MsgBoxStyle.Information, _tituloMensaje)
+                Else
+                    MsgBox("NO se pudo realizar la accion, intente nuevamente", MsgBoxStyle.Critical, _tituloError)
+                End If
             Catch ex As Exception
-
+                MsgBox("No se pudo realizar la acción solicitada, intente nuevamente." & vbCr & ex.Message, MsgBoxStyle.Critical, _tituloError)
             End Try
         End Using
     End Sub
-
+    Private Function saveDetaUpm(value As Detaupm) As Boolean
+        Using ctx As New Contexto
+            Try
+                ctx.Detaupm.InsertOnSubmit(value)
+                ctx.SubmitChanges()
+                Return True
+            Catch ex As Exception
+                Return False
+            End Try
+        End Using
+    End Function
     Private Sub dgvUpm_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvUpm.CellEndEdit
         Try
             Dim seleccion As Boolean
