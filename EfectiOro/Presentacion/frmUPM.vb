@@ -292,7 +292,8 @@ Public Class frmUPM
                                                Select New With {.Onzas = Group.Sum(Function(c) c.Peso * Convert.ToDecimal(c.Kilate) / 24 / 31.1035)}).Sum(Function(c) c.Onzas)
                 Dim onzasCierres As Decimal = (From c In ctx.CierrePrecios Where c.Status = True Select c.SaldoOnzas).Sum
                 Dim onzasUPM As Decimal = (From u In ctx.UPM Where u.Status = True Select u.Saldo).Sum
-                Dim dif As Decimal = onzasUPM - onzasCompras - onzasCierres
+                Dim onzasDetaUpm As Decimal = (From du In ctx.Detaupm Order By du.Degupm Descending Select du.Saldo).First
+                Dim dif As Decimal = onzasUPM + onzasDetaUpm - onzasCompras - onzasCierres
                 lblOnzas.Text = dif.ToString("#,##0.000")
             Catch ex As Exception
                 MsgBox("No hay datos de onzas para las compras segun la fecha seleccionada, intente con un rango de fecha distinto", MsgBoxStyle.Information, "Onzas")
@@ -334,7 +335,10 @@ Public Class frmUPM
                 Dim onzasSeleccionadas As Decimal = listaUPMSeleccionados.Sum(Function(c) c.Saldo)
                 Dim dif_onzas = Decimal.Subtract(onzasSeleccionadas, onzasEstimadas)
                 Dim cantupm As Integer = listaUPMSeleccionados.Count
-                Dim detaupm As New Detaupm With {.Cantupm = cantupm, .Fecha = Now, .Saldo = dif_onzas, .Onzas = onzasSeleccionadas}
+                Dim detaupm As New Detaupm With {
+                    .Cantupm = cantupm, .Fecha = Now, .Saldo = dif_onzas,
+                    .Onzas = onzasSeleccionadas, .OnzasEstimadas = onzasEstimadas
+                }
                 If saveDetaUpm(detaupm) Then
                     Dim findDegUpm = (From du In ctx.Detaupm Order By du.Degupm Descending Select du.Degupm).First
                     For Each dato As Upm In listaUPMSeleccionados
@@ -343,6 +347,11 @@ Public Class frmUPM
                     Next
                     ctx.SubmitChanges()
                     MsgBox("Se han guardado los cambios de forma correcta.", MsgBoxStyle.Information, _tituloMensaje)
+                    listaUPMSeleccionados.Clear()
+                    onzasEstimadas = Decimal.Zero
+                    txtMontoEstimado.Clear()
+                    txtMontoEstimado.Focus()
+                    btnFiltrar_Click(sender, e)
                 Else
                     MsgBox("NO se pudo realizar la accion, intente nuevamente", MsgBoxStyle.Critical, _tituloError)
                 End If

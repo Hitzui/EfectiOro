@@ -3615,6 +3615,8 @@ Namespace Database
 
         Private _Codcliente As String
 
+        Private _codAgencia As String
+
         Public Sub New()
             MyBase.New()
         End Sub
@@ -3764,6 +3766,17 @@ Namespace Database
             Set(value As String)
                 If (String.Equals(Me._Codcliente, value) = False) Then
                     Me._Codcliente = value
+                End If
+            End Set
+        End Property
+        <Column(Name:="codagencia", Storage:="_codAgencia", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
+        Public Property CodAgencia() As String
+            Get
+                Return Me._codAgencia
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._codAgencia, value) = False) Then
+                    Me._codAgencia = value
                 End If
             End Set
         End Property
@@ -8046,6 +8059,10 @@ Namespace Database
         End Sub
         Partial Private Sub OnSaldoChanged()
         End Sub
+        Partial Private Sub OnOnzasEstimadasChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnOnzasEstimadasChanged()
+        End Sub
 #End Region
 #Region "Campos"
         Private _degupm As Integer
@@ -8125,6 +8142,22 @@ Namespace Database
                     Me._saldo = value
                     Me.SendPropertyChanged("Saldo")
                     Me.OnSaldoChanged()
+                End If
+            End Set
+        End Property
+        Private _onzasEstimadas As Decimal
+        <Column(Name:="onzasestimadas", Storage:="_onzasEstimadas", DbType:="numeric(12,3) not null", CanBeNull:=False)>
+        Public Property OnzasEstimadas() As Decimal
+            Get
+                Return _onzasEstimadas
+            End Get
+            Set(ByVal value As Decimal)
+                If _onzasEstimadas.Equals(value) = False Then
+                    Me.OnOnzasChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._onzasEstimadas = value
+                    Me.SendPropertyChanged("OnzasEstimadas")
+                    Me.OnOnzasChanged()
                 End If
             End Set
         End Property
