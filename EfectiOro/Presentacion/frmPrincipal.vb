@@ -1,9 +1,11 @@
-﻿Public Class frmPrincipal
+﻿Imports EfectiOro.Database
+
+Public Class frmPrincipal
 
     Dim configuracion As New ConfiguracionGeneral()
 
-    Private Sub nivelAcceso(ByVal usuario As Boolean, catalogo As Boolean, compra As Boolean, _
-                          tipocambio As Boolean, descargue As Boolean, precios As Boolean, _
+    Private Sub nivelAcceso(ByVal usuario As Boolean, catalogo As Boolean, compra As Boolean,
+                          tipocambio As Boolean, descargue As Boolean, precios As Boolean,
                           adelantoEfectivo As Boolean, adelantoOtros As Boolean, adelanto As Boolean)
         Me.CrearUsuarioToolStripMenuItem.Enabled = usuario
         Me.CatalogoToolStripMenuItem.Enabled = catalogo
@@ -48,17 +50,21 @@
         'Me.panelLateral.BackColor = Color.FromArgb(8, Color.Gray)
         Me.verificarUsuario(DataContext.usuarioLog.Nivel)
         Me.lblStatus.Text = "Sucursal: " & configuracion.getAgencia & " .:. Usuario: " & DataContext.usuarioLog.Usuario1 & " .:. " & Date.Now.ToShortTimeString() & " .:. Caja: " & configuracion.getCaja
-        Dim ctl As Control
-        Dim ctlMDI As MdiClient
+        'Dim ctl As Control
+        'Dim ctlMDI As MdiClient
         ' Loop through all of the form's controls looking
         ' for the control of type MdiClient.
-        Select Case usuarioLog.Nivel
-            Case 1, 2
-                If Now.Day = 15 Or Now.Day = 30 Then
-                    MessageBox.Show("Realice un respaldo de la base de datos.", "Back Up")
-                    frmBackupBaseDatos.ShowDialog()
-                End If
-        End Select
+        Using ctx As New Contexto
+            Dim param As Date = (From p In ctx.Ids Select p.Backup).First
+            Dim dias As Integer = Now.Day - param.Day
+            Select Case usuarioLog.Nivel
+                Case 1, 2
+                    If dias >= 2 Then
+                        MessageBox.Show(Me, "Realice un respaldo de la base de datos, se ha excedido el tiempo el cual no se ha realizado un respaldo de los datos..", "Back Up", MsgBoxStyle.Critical)
+                        frmBackupBaseDatos.ShowDialog()
+                    End If
+            End Select
+        End Using
     End Sub
 
     Private Sub ClienteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClienteToolStripMenuItem.Click

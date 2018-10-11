@@ -47,6 +47,8 @@ Public Class frmBackupBaseDatos
                                              "medianame = 'Z_EfectiOroBackups', name='Full Backup of Efectioro';" & _
                                              "backup database " & nombreBaseDatos & " to disk='" & Me.RutaArchivoBackup & "' WITH DIFFERENTIAL;")
                 MsgBox("Se ha realizado la copia de seguridad de forma correcta", MsgBoxStyle.Information, "Backup de la Base de datos")
+                Dim param = (From p In ctx.Ids Where p.Backup.Date < Now.Date Select p).First
+                param.Backup = Now
             Catch ex As Exception
                 MsgBox("Se produjo un error al intentar crear el archivo: " & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try

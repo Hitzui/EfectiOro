@@ -5182,7 +5182,21 @@ Namespace Database
         Private _recibe As String
 
         Private _Pago_adelanto As Integer
+
         Private _idreserva As Integer
+
+        Private _backup As Date
+
+        <Column(Name:="backup", Storage:="_backup", DbType:="date")>
+        Public Property Backup() As Date
+            Get
+                Return _backup
+            End Get
+            Set(ByVal value As Date)
+                _backup = value
+            End Set
+        End Property
+
         <Column(Name:="idreserva", Storage:="_idreserva", DbType:="int")> _
         Public Property Idreserva() As Integer
             Get
