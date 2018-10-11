@@ -52,7 +52,6 @@
         Dim ctlMDI As MdiClient
         ' Loop through all of the form's controls looking
         ' for the control of type MdiClient.
-
         Select Case usuarioLog.Nivel
             Case 1, 2
                 If Now.Day = 15 Or Now.Day = 30 Then

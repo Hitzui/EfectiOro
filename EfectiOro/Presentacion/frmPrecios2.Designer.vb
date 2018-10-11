@@ -27,6 +27,7 @@ Partial Class frmPrecios2
         Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrecios2))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
@@ -453,8 +454,8 @@ Partial Class frmPrecios2
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(106, 22)
-        Me.ToolStripLabel1.Text = "Onzas Disponibles:"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(72, 22)
+        Me.ToolStripLabel1.Text = "Saldo onzas:"
         '
         'lblOnzasDisponibles
         '
@@ -470,8 +471,8 @@ Partial Class frmPrecios2
         'lblOnzasIn
         '
         Me.lblOnzasIn.Name = "lblOnzasIn"
-        Me.lblOnzasIn.Size = New System.Drawing.Size(101, 22)
-        Me.lblOnzasIn.Text = "Onzas ingresadas:"
+        Me.lblOnzasIn.Size = New System.Drawing.Size(80, 22)
+        Me.lblOnzasIn.Text = "Acum. Onzas:"
         '
         'lblOnzasIngresar
         '
@@ -541,6 +542,9 @@ Partial Class frmPrecios2
         'SaldoOnzasDataGridViewTextBoxColumn
         '
         Me.SaldoOnzasDataGridViewTextBoxColumn.DataPropertyName = "SaldoOnzas"
+        DataGridViewCellStyle1.Format = "N3"
+        DataGridViewCellStyle1.NullValue = "0.00"
+        Me.SaldoOnzasDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
         Me.SaldoOnzasDataGridViewTextBoxColumn.HeaderText = "SaldoOnzas"
         Me.SaldoOnzasDataGridViewTextBoxColumn.Name = "SaldoOnzasDataGridViewTextBoxColumn"
         Me.SaldoOnzasDataGridViewTextBoxColumn.ReadOnly = True

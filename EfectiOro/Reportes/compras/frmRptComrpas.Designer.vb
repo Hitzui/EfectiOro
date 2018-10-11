@@ -74,7 +74,6 @@ Partial Class frmRptComrpas
         Me.btnCargarLiquidacion = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.dgvLiquidacion = New System.Windows.Forms.DataGridView()
-        Me.panelTitulo.SuspendLayout()
         Me.pageCompragen.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -88,10 +87,6 @@ Partial Class frmRptComrpas
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(638, 25)
-        '
         'btnClose
         '
         Me.btnClose.FlatAppearance.BorderSize = 0
@@ -99,7 +94,7 @@ Partial Class frmRptComrpas
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(613, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(638, 25)
         '
         'UltraTab1
         '
@@ -650,9 +645,7 @@ Partial Class frmRptComrpas
         Me.ClientSize = New System.Drawing.Size(638, 370)
         Me.Controls.Add(Me.UltraTabControl1)
         Me.Name = "frmRptComrpas"
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.UltraTabControl1, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.pageCompragen.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
