@@ -804,7 +804,7 @@ Public Class frmCliente
                         txtIngresosMensuales.Focus()
                         Return
                     End If
-                    pica1.Ingreso_mensual = txtIngresosMensuales.Text
+                    pica1.Ingreso_mensual = Convert.ToDecimal(txtIngresosMensuales.Text)
                     pica.Add(pica1)
                 End If
                 If txtNombre_Banco_2.TextLength > 0 Then
@@ -830,7 +830,7 @@ Public Class frmCliente
                     If auxiliar = 2 Then
                         pica2.Codcliente = txtCodCliente.Text
                     End If
-                    pica2.Ingreso_mensual = txtIngresosMensuales.Text
+                    pica2.Ingreso_mensual = Convert.ToDecimal(txtIngresosMensuales.Text)
                     pica.Add(pica2)
                 End If
                 If txtNombre_Banco_3.TextLength > 0 Then

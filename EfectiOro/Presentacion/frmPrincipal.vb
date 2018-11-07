@@ -55,12 +55,13 @@ Public Class frmPrincipal
         ' Loop through all of the form's controls looking
         ' for the control of type MdiClient.
         Using ctx As New Contexto
-            Dim param As Date = (From p In ctx.Ids Select p.Backup).First
+            Dim param As Date = (From p In ctx.Ids Select p.Backup).Single
+            'MsgBox("Valor backup: " & param.ToShortDateString, MsgBoxStyle.Information, "Titulo")
             Dim dias As Integer = Now.Day - param.Day
             Select Case usuarioLog.Nivel
                 Case 1, 2
                     If dias >= 2 Then
-                        MessageBox.Show(Me, "Realice un respaldo de la base de datos, se ha excedido el tiempo el cual no se ha realizado un respaldo de los datos..", "Back Up", MsgBoxStyle.Critical)
+                        MessageBox.Show(Me, "Realice un respaldo de la base de datos, se ha excedido el tiempo el cual no se ha realizado un respaldo de los datos..", "Back Up", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         frmBackupBaseDatos.ShowDialog()
                     End If
             End Select
@@ -248,5 +249,9 @@ Public Class frmPrincipal
 
     Private Sub UPMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UPMToolStripMenuItem.Click
         agregarAlPanel(frmUPM, panelCentral)
+    End Sub
+
+    Private Sub MonedaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MonedaToolStripMenuItem.Click
+        agregarAlPanel(frmMoneda, panelCentral)
     End Sub
 End Class

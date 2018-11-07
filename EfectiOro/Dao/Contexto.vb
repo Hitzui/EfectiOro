@@ -189,10 +189,10 @@ Namespace Database
             Get
                 If config.getSecurity() = "True" Then
                     'Entonces seguridad integrada
-                    Return "Data Source=" & config.getInstancia() & ";Initial Catalog=" & config.getCatalogo & _
+                    Return "Data Source=" & config.getInstancia() & ";Initial Catalog=" & config.getCatalogo &
                         ";Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False"
                 Else
-                    Return "Data Source=" & config.getInstancia & ";Initial Catalog=" & config.getCatalogo & _
+                    Return "Data Source=" & config.getInstancia & ";Initial Catalog=" & config.getCatalogo &
                         ";Persist Security Info=True;User ID=" & config.getUsuario() & ";Password=" & config.getPassword()
                 End If
             End Get
@@ -221,6 +221,11 @@ Namespace Database
             MyBase.New(connection, mappingSource)
             OnCreated()
         End Sub
+        Public ReadOnly Property Moneda As Table(Of Moneda)
+            Get
+                Return Me.GetTable(Of Moneda)
+            End Get
+        End Property
         Public ReadOnly Property UPM() As Table(Of Upm)
             Get
                 Return Me.GetTable(Of Upm)()
@@ -443,6 +448,120 @@ Namespace Database
             Return CType(result.ReturnValue, Integer)
         End Function
 
+    End Class
+    <Table(Name:="moneda")>
+    Public Class Moneda
+        Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+        Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+#Region "Metodos de definicion de campos"
+        Partial Private Sub OnLoaded()
+        End Sub
+        Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+        End Sub
+        Partial Private Sub OnCreated()
+        End Sub
+        Partial Private Sub OnCodmonedaChanging(value As String)
+        End Sub
+        Partial Private Sub OnCodmonedaChanged()
+        End Sub
+        Partial Private Sub OnDescripcionChanging(value As String)
+        End Sub
+        Partial Private Sub OnDescripcionChanged()
+        End Sub
+        Partial Private Sub OnSimboloChanging(value As String)
+        End Sub
+        Partial Private Sub OnSimboloChanged()
+        End Sub
+        Partial Private Sub OnFechaChanging(value As Date)
+        End Sub
+        Partial Private Sub OnFechaChanged()
+        End Sub
+#End Region
+
+#Region "Campos de la tabla"
+        Private _codmoneda As String
+        <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="varchar(10) Not NULL", CanBeNull:=False, IsPrimaryKey:=True)>
+        Public Property Codmoneda() As String
+            Get
+                Return Me._codmoneda
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._codmoneda, value) = False) Then
+                    Me.OnCodmonedaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codmoneda = value
+                    Me.SendPropertyChanged("Codmoneda")
+                    Me.OnCodmonedaChanged()
+                End If
+            End Set
+        End Property
+        Private _descripcion As String
+        <Column(Name:="descripcion", Storage:="_descripcion", DbType:="varchar(250) Not NULL", CanBeNull:=False)>
+        Public Property Descripcion() As String
+            Get
+                Return Me._descripcion
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._descripcion, value) = False) Then
+                    Me.OnDescripcionChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._descripcion = value
+                    Me.SendPropertyChanged("Descripcion")
+                    Me.OnDescripcionChanged()
+                End If
+            End Set
+        End Property
+        Private _simbolo As String
+        <Column(Name:="simbolo", Storage:="_simbolo", DbType:="varchar(250) Not NULL", CanBeNull:=False)>
+        Public Property Simbolo() As String
+            Get
+                Return Me._simbolo
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._simbolo, value) = False) Then
+                    Me.OnSimboloChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._simbolo = value
+                    Me.SendPropertyChanged("Simbolo")
+                    Me.OnSimboloChanged()
+                End If
+            End Set
+        End Property
+        Private _fecha As Date
+        <Column(Name:="fecha", Storage:="_fecha", DbType:="Date")>
+        Public Property Fecha() As Date
+            Get
+                Return Me._fecha
+            End Get
+            Set(value As Date)
+                If (Me._fecha.Equals(value) = False) Then
+                    Me.OnFechaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._fecha = value
+                    Me.SendPropertyChanged("Fecha")
+                    Me.OnFechaChanged()
+                End If
+            End Set
+        End Property
+#End Region
+        Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+        Protected Overridable Sub SendPropertyChanging()
+            If ((Me.PropertyChangingEvent Is Nothing) _
+               = False) Then
+                RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+            End If
+        End Sub
+
+        Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+            If ((Me.PropertyChangedEvent Is Nothing) _
+               = False) Then
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
     End Class
     <Table(Name:="[dbo].[Listado]")>
     Public Class Liquidacion
@@ -5187,15 +5306,7 @@ Namespace Database
 
         Private _backup As Date
 
-        <Column(Name:="backup", Storage:="_backup", DbType:="date")>
-        Public Property Backup() As Date
-            Get
-                Return _backup
-            End Get
-            Set(ByVal value As Date)
-                _backup = value
-            End Set
-        End Property
+
 
         <Column(Name:="idreserva", Storage:="_idreserva", DbType:="int")> _
         Public Property Idreserva() As Integer
@@ -5286,13 +5397,31 @@ Namespace Database
         End Sub
         Partial Private Sub OnCompras_adelantosChanged()
         End Sub
+        Partial Private Sub OnBackupChanging(value As Date)
+        End Sub
+        Partial Private Sub OnBackupChanged()
+        End Sub
 #End Region
 
         Public Sub New()
             MyBase.New()
             OnCreated()
         End Sub
-
+        <Column(Name:="backup", Storage:="_backup", DbType:="date null")>
+        Public Property Backup() As Date
+            Get
+                Return _backup
+            End Get
+            Set(ByVal value As Date)
+                If _backup.Equals(value) = False Then
+                    Me.OnBackupChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._backup = value
+                    Me.SendPropertyChanged("Backup")
+                    Me.OnBackupChanged()
+                End If
+            End Set
+        End Property
         <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="Int NOT NULL", IsPrimaryKey:=True)> _
         Public Property Codcliente() As Integer
             Get
