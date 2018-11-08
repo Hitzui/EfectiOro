@@ -311,9 +311,25 @@ Public Class frmCompras
             MsgBox("No se pudo calcular el precio: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
+    ''' <summary>
+    ''' Cargar los datos del tipo de moneda al formulario
+    ''' </summary>
+    Private Sub cargarMoneda()
+        Using ctx As New Contexto
+            Try
+                Dim monedas = ctx.Moneda.ToList
+                cmbMoneda.DataSource = monedas
+                cmbMoneda.DisplayMember = "Descripcion"
+                cmbMoneda.ValueMember = "codmoneda"
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Sub
     Private Sub frmCompras_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.compraEncontrada = False
         Me.cmbEstado.SelectedIndex = 1
+        cargarMoneda()
         'Me.filtrarCliente()
         Me.recuperarCodigo()
         Me.habilitarGrupos(False, False, False, False)
@@ -640,12 +656,14 @@ Public Class frmCompras
         txtNomcliente.Focus()
         Me.cmbEstado.Enabled = True
         Me.cmbEstado.SelectedIndex = 1
+        cmbMoneda.Enabled = True
         Me.btnCerrarcompra.Enabled = False
         'Me.filtrarCliente()
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
         Me.cmbEstado.Enabled = False
+        cmbMoneda.Enabled = False
         If Me.panelBuscar_compra.Visible = True Then
             Me.panelBuscar_compra.Visible = False
         End If
@@ -727,7 +745,8 @@ Public Class frmCompras
         Next
         nuevaCompra.Peso = peso
         nuevaCompra.Total = totalGeneral
-        nuevaCompra.Codmoneda = "Cordobas"
+        Dim moneda As Moneda = cmbMoneda.SelectedItem
+        nuevaCompra.Codmoneda = moneda.Codmoneda
         nuevaCompra.Fecha = txtFecha.Value
         'Estado de la compra 
         '0:anulada
@@ -940,6 +959,7 @@ Public Class frmCompras
             Me.txtEfectivo.Enabled = False
         End If
         Me.cmbEstado.Enabled = True
+        'cmbMoneda.Enabled = True
         Me.filtrarCompra()
     End Sub
     Sub buscarCompra()
@@ -1004,6 +1024,11 @@ Public Class frmCompras
                 ElseIf findCompra.Codestado = 2 Then
                     Me.cmbEstado.SelectedIndex = 1
                 End If
+                For indice = 0 To cmbMoneda.Items.Count - 1
+                    If findCompra.Codmoneda = cmbMoneda.Items(indice).codmoneda Then
+                        cmbMoneda.SelectedIndex = indice
+                    End If
+                Next
                 Me.compraEncontrada = True
             Catch ex As Exception
                 MsgBox("No existe la compra seleccionada " & vbCr & ex.Message, MsgBoxStyle.Information, "Buscar compra")

@@ -708,6 +708,11 @@ EfectiOro
  <returns>Deicmal</returns>
  <remarks>Total de la compra</remarks>
 </member>
+<member name="M:EfectiOro.frmCompras.cargarMoneda">
+ <summary>
+ Cargar los datos del tipo de moneda al formulario
+ </summary>
+</member>
 <member name="F:EfectiOro.frmPrecios2.dif_onzas">
  <summary>
  La diferencia de onzas, al ingresar al grid, de forma informativa, no se guarda el valor
