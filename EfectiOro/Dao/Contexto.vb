@@ -449,6 +449,9 @@ Namespace Database
         End Function
 
     End Class
+    ''' <summary>
+    ''' Entidad moneda de la tabla moneda Sql Server
+    ''' </summary>
     <Table(Name:="moneda")>
     Public Class Moneda
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
