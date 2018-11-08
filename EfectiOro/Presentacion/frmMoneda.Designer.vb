@@ -20,12 +20,15 @@ Partial Class frmMoneda
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dgvMoneda = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvSimbolo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MonedaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvMoneda, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +59,7 @@ Partial Class frmMoneda
         Me.dgvMoneda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvMoneda.BackgroundColor = System.Drawing.Color.White
         Me.dgvMoneda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvMoneda.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
+        Me.dgvMoneda.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dgvCodigo, Me.dgvDescripcion, Me.dgvSimbolo, Me.dgvFecha})
         Me.dgvMoneda.DataSource = Me.MonedaBindingSource
         Me.dgvMoneda.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvMoneda.Location = New System.Drawing.Point(3, 16)
@@ -64,33 +67,40 @@ Partial Class frmMoneda
         Me.dgvMoneda.Size = New System.Drawing.Size(520, 400)
         Me.dgvMoneda.TabIndex = 0
         '
-        'DataGridViewTextBoxColumn1
+        'dgvCodigo
         '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "Codmoneda"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Codmoneda"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.dgvCodigo.DataPropertyName = "Codmoneda"
+        Me.dgvCodigo.HeaderText = "Codmoneda"
+        Me.dgvCodigo.Name = "dgvCodigo"
+        Me.dgvCodigo.ReadOnly = True
+        Me.dgvCodigo.Visible = False
         '
-        'DataGridViewTextBoxColumn2
+        'dgvDescripcion
         '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Descripcion"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Descripcion"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.dgvDescripcion.DataPropertyName = "Descripcion"
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.dgvDescripcion.DefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvDescripcion.HeaderText = "Descripcion"
+        Me.dgvDescripcion.Name = "dgvDescripcion"
         '
-        'DataGridViewTextBoxColumn3
+        'dgvSimbolo
         '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "Simbolo"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Simbolo"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.dgvSimbolo.DataPropertyName = "Simbolo"
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.dgvSimbolo.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvSimbolo.HeaderText = "Simbolo"
+        Me.dgvSimbolo.Name = "dgvSimbolo"
         '
-        'DataGridViewTextBoxColumn4
+        'dgvFecha
         '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Fecha"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Fecha"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.dgvFecha.DataPropertyName = "Fecha"
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.dgvFecha.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvFecha.HeaderText = "Fecha"
+        Me.dgvFecha.Name = "dgvFecha"
         '
         'MonedaBindingSource
         '
-        Me.MonedaBindingSource.AllowNew = True
         Me.MonedaBindingSource.DataSource = GetType(EfectiOro.Database.Moneda)
         '
         'frmMoneda
@@ -108,9 +118,9 @@ Partial Class frmMoneda
     End Sub
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents dgvMoneda As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
     Friend WithEvents MonedaBindingSource As BindingSource
+    Friend WithEvents dgvCodigo As DataGridViewTextBoxColumn
+    Friend WithEvents dgvDescripcion As DataGridViewTextBoxColumn
+    Friend WithEvents dgvSimbolo As DataGridViewTextBoxColumn
+    Friend WithEvents dgvFecha As DataGridViewTextBoxColumn
 End Class

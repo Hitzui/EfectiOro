@@ -415,6 +415,11 @@ EfectiOro
  <returns>Cadena de conexion</returns>
  <remarks></remarks>
 </member>
+<member name="T:EfectiOro.Database.Moneda">
+ <summary>
+ Entidad moneda de la tabla moneda Sql Server
+ </summary>
+</member>
 <member name="P:EfectiOro.Database.Adelantos.nombreCliente">
  <summary>
  Este es no mas el nombre para la hora del reporte, no usar para guardar datos
