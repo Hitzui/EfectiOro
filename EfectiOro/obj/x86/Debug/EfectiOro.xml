@@ -177,6 +177,11 @@ EfectiOro
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:EfectiOro.My.Resources.Resources.delete_20x20">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:EfectiOro.My.Resources.Resources.delete01">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -283,6 +288,11 @@ EfectiOro
 </summary>
 </member>
 <member name="P:EfectiOro.My.Resources.Resources.save01">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:EfectiOro.My.Resources.Resources.save20x20">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

@@ -629,6 +629,7 @@ C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmDetaDesc
 C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmEstadisticoCompra.resources
 C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmLogin.resources
 C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMaestroCaja.resources
+C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMoneda.resources
 C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmMovimientosCaja.resources
 C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPagoCompra.resources
 C:\Users\server\OneDrive\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmPrecios.resources

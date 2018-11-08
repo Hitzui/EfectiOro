@@ -137,6 +137,9 @@ Public Class frmRptComrpas
                     Dim lisCompras = (From c In ctx.Compras_operador
                                       Where c.Fecha <= Me.txtHastaGen.Value And c.Fecha >= Me.txtDesdeGen.Value
                                       Select c).ToList()
+                    If chkFiltrarAgencia.Checked Then
+                        lisCompras = lisCompras.Where(Function(c) c.CodAgencia = _agencia).ToList
+                    End If
                     If lisCompras.Count <= 0 Then
                         MsgBox("No hay datos a mostar en el rango de fechas indicado, intente nuevamente", MsgBoxStyle.Information, "Compras")
                         Return
@@ -149,18 +152,26 @@ Public Class frmRptComrpas
                 frmReportes.Show()
             End If
             If Me.radPoroperador.Checked Then
-                Dim lisCompras = (From c In ctx.Compras_operador
+                Try
+                    Dim lisCompras As New List(Of Compras_operador)
+                    lisCompras = (From c In ctx.Compras_operador
                                   Where c.Fecha <= Me.txtHastaGen.Value And c.Fecha >= Me.txtDesdeGen.Value _
-                                 And c.Nombre = Me.cmbOperador.Text Select c).ToList()
-                If lisCompras.Count <= 0 Then
-                    MsgBox("No hay datos a mostar en el rango de fechas indicado, intente nuevamente", MsgBoxStyle.Information, "Compras")
-                    Return
-                End If
-                Dim report As New rptComprasOperadorDetalle
-                report.SetDataSource(lisCompras)
-                ServiciosBasicos.ParametrosCrystal(txtDesdeGen.Value, txtHastaGen.Value)
-                frmReportes.viewer.ReportSource = report
-                frmReportes.Show()
+                                         And c.Nombre = Me.cmbOperador.Text Select c).ToList()
+                    If chkFiltrarAgencia.Checked Then
+                        lisCompras = lisCompras.Where(Function(c) c.CodAgencia = _agencia).ToList
+                    End If
+                    If lisCompras.Count <= 0 Then
+                        MsgBox("No hay datos a mostar en el rango de fechas indicado, intente nuevamente", MsgBoxStyle.Information, "Compras")
+                        Return
+                    End If
+                    Dim report As New rptComprasOperadorDetalle
+                    report.SetDataSource(lisCompras)
+                    ServiciosBasicos.ParametrosCrystal(txtDesdeGen.Value, txtHastaGen.Value)
+                    frmReportes.viewer.ReportSource = report
+                    frmReportes.Show()
+                Catch ex As Exception
+                    MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "Error Operador")
+                End Try
             End If
             If radGeneral.Checked Then
                 If cmbComprasGen.SelectedIndex = 0 Then
@@ -712,5 +723,9 @@ Public Class frmRptComrpas
                 cmbTipoPago.Visible = False
             End If
         End If
+    End Sub
+
+    Private Sub lblTitulo_Click(sender As Object, e As EventArgs) Handles lblTitulo.Click
+
     End Sub
 End Class

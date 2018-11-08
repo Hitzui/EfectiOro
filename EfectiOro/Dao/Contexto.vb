@@ -189,10 +189,10 @@ Namespace Database
             Get
                 If config.getSecurity() = "True" Then
                     'Entonces seguridad integrada
-                    Return "Data Source=" & config.getInstancia() & ";Initial Catalog=" & config.getCatalogo & _
+                    Return "Data Source=" & config.getInstancia() & ";Initial Catalog=" & config.getCatalogo &
                         ";Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False"
                 Else
-                    Return "Data Source=" & config.getInstancia & ";Initial Catalog=" & config.getCatalogo & _
+                    Return "Data Source=" & config.getInstancia & ";Initial Catalog=" & config.getCatalogo &
                         ";Persist Security Info=True;User ID=" & config.getUsuario() & ";Password=" & config.getPassword()
                 End If
             End Get
@@ -221,6 +221,11 @@ Namespace Database
             MyBase.New(connection, mappingSource)
             OnCreated()
         End Sub
+        Public ReadOnly Property Moneda As Table(Of Moneda)
+            Get
+                Return Me.GetTable(Of Moneda)
+            End Get
+        End Property
         Public ReadOnly Property UPM() As Table(Of Upm)
             Get
                 Return Me.GetTable(Of Upm)()
@@ -443,6 +448,120 @@ Namespace Database
             Return CType(result.ReturnValue, Integer)
         End Function
 
+    End Class
+    <Table(Name:="moneda")>
+    Public Class Moneda
+        Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+        Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+#Region "Metodos de definicion de campos"
+        Partial Private Sub OnLoaded()
+        End Sub
+        Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+        End Sub
+        Partial Private Sub OnCreated()
+        End Sub
+        Partial Private Sub OnCodmonedaChanging(value As String)
+        End Sub
+        Partial Private Sub OnCodmonedaChanged()
+        End Sub
+        Partial Private Sub OnDescripcionChanging(value As String)
+        End Sub
+        Partial Private Sub OnDescripcionChanged()
+        End Sub
+        Partial Private Sub OnSimboloChanging(value As String)
+        End Sub
+        Partial Private Sub OnSimboloChanged()
+        End Sub
+        Partial Private Sub OnFechaChanging(value As Date)
+        End Sub
+        Partial Private Sub OnFechaChanged()
+        End Sub
+#End Region
+
+#Region "Campos de la tabla"
+        Private _codmoneda As String
+        <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="varchar(10) Not NULL", CanBeNull:=False, IsPrimaryKey:=True)>
+        Public Property Codmoneda() As String
+            Get
+                Return Me._codmoneda
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._codmoneda, value) = False) Then
+                    Me.OnCodmonedaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._codmoneda = value
+                    Me.SendPropertyChanged("Codmoneda")
+                    Me.OnCodmonedaChanged()
+                End If
+            End Set
+        End Property
+        Private _descripcion As String
+        <Column(Name:="descripcion", Storage:="_descripcion", DbType:="varchar(250) Not NULL", CanBeNull:=False)>
+        Public Property Descripcion() As String
+            Get
+                Return Me._descripcion
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._descripcion, value) = False) Then
+                    Me.OnDescripcionChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._descripcion = value
+                    Me.SendPropertyChanged("Descripcion")
+                    Me.OnDescripcionChanged()
+                End If
+            End Set
+        End Property
+        Private _simbolo As String
+        <Column(Name:="simbolo", Storage:="_simbolo", DbType:="varchar(250) Not NULL", CanBeNull:=False)>
+        Public Property Simbolo() As String
+            Get
+                Return Me._simbolo
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._simbolo, value) = False) Then
+                    Me.OnSimboloChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._simbolo = value
+                    Me.SendPropertyChanged("Simbolo")
+                    Me.OnSimboloChanged()
+                End If
+            End Set
+        End Property
+        Private _fecha As Date
+        <Column(Name:="fecha", Storage:="_fecha", DbType:="Date")>
+        Public Property Fecha() As Date
+            Get
+                Return Me._fecha
+            End Get
+            Set(value As Date)
+                If (Me._fecha.Equals(value) = False) Then
+                    Me.OnFechaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._fecha = value
+                    Me.SendPropertyChanged("Fecha")
+                    Me.OnFechaChanged()
+                End If
+            End Set
+        End Property
+#End Region
+        Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+        Protected Overridable Sub SendPropertyChanging()
+            If ((Me.PropertyChangingEvent Is Nothing) _
+               = False) Then
+                RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+            End If
+        End Sub
+
+        Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+            If ((Me.PropertyChangedEvent Is Nothing) _
+               = False) Then
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
     End Class
     <Table(Name:="[dbo].[Listado]")>
     Public Class Liquidacion
@@ -3615,6 +3734,8 @@ Namespace Database
 
         Private _Codcliente As String
 
+        Private _codAgencia As String
+
         Public Sub New()
             MyBase.New()
         End Sub
@@ -3764,6 +3885,17 @@ Namespace Database
             Set(value As String)
                 If (String.Equals(Me._Codcliente, value) = False) Then
                     Me._Codcliente = value
+                End If
+            End Set
+        End Property
+        <Column(Name:="codagencia", Storage:="_codAgencia", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
+        Public Property CodAgencia() As String
+            Get
+                Return Me._codAgencia
+            End Get
+            Set(value As String)
+                If (String.Equals(Me._codAgencia, value) = False) Then
+                    Me._codAgencia = value
                 End If
             End Set
         End Property
@@ -5169,7 +5301,13 @@ Namespace Database
         Private _recibe As String
 
         Private _Pago_adelanto As Integer
+
         Private _idreserva As Integer
+
+        Private _backup As Date
+
+
+
         <Column(Name:="idreserva", Storage:="_idreserva", DbType:="int")> _
         Public Property Idreserva() As Integer
             Get
@@ -5259,13 +5397,31 @@ Namespace Database
         End Sub
         Partial Private Sub OnCompras_adelantosChanged()
         End Sub
+        Partial Private Sub OnBackupChanging(value As Date)
+        End Sub
+        Partial Private Sub OnBackupChanged()
+        End Sub
 #End Region
 
         Public Sub New()
             MyBase.New()
             OnCreated()
         End Sub
-
+        <Column(Name:="backup", Storage:="_backup", DbType:="date null")>
+        Public Property Backup() As Date
+            Get
+                Return _backup
+            End Get
+            Set(ByVal value As Date)
+                If _backup.Equals(value) = False Then
+                    Me.OnBackupChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._backup = value
+                    Me.SendPropertyChanged("Backup")
+                    Me.OnBackupChanged()
+                End If
+            End Set
+        End Property
         <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="Int NOT NULL", IsPrimaryKey:=True)> _
         Public Property Codcliente() As Integer
             Get
@@ -7847,6 +8003,10 @@ Namespace Database
         End Sub
         Partial Private Sub OnStatusChanged()
         End Sub
+        Partial Private Sub OnDegupmChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnDegupmChanged()
+        End Sub
 #End Region
 #Region "Campos"
         '[codupm] [int] IDENTITY(1,1) Not NULL,
@@ -7968,6 +8128,22 @@ Namespace Database
                 End If
             End Set
         End Property
+        Private _degupm As Integer
+        <Column(Name:="degupm", Storage:="_degupm", DbType:="int", CanBeNull:=True)>
+        Public Property Degupm() As Integer
+            Get
+                Return _degupm
+            End Get
+            Set(ByVal value As Integer)
+                If _degupm.Equals(value) = False Then
+                    Me.OnDegupmChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._degupm = value
+                    Me.SendPropertyChanged("Degupm")
+                    Me.OnDegupmChanged()
+                End If
+            End Set
+        End Property
 #End Region
 
         Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
@@ -7994,6 +8170,11 @@ Namespace Database
         Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
         Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+        '[degupm] [int] IDENTITY(1,1) Not NULL,
+        '[onzas] [numeric](12, 3) Not NULL,
+        '[fecha] [datetime] Not NULL,
+        '[cantupm] [int] Not NULL,
+        '[saldo] [numeric](12, 3) Not NULL,
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub
@@ -8001,54 +8182,50 @@ Namespace Database
         End Sub
         Partial Private Sub OnCreated()
         End Sub
-        Partial Private Sub OnCodupmChanging(value As Integer)
+        Partial Private Sub OnDegupmChanging(value As Integer)
         End Sub
-        Partial Private Sub OnCodupmChanged()
-        End Sub
-        Partial Private Sub OnCodcierreChanging(value As Integer)
-        End Sub
-        Partial Private Sub OnCodcierreChanged()
+        Partial Private Sub OnDegupmChanged()
         End Sub
         Partial Private Sub OnOnzasChanging(value As Decimal)
         End Sub
         Partial Private Sub OnOnzasChanged()
         End Sub
+        Partial Private Sub OnFechaChanging(value As Date)
+        End Sub
+        Partial Private Sub OnFechaChanged()
+        End Sub
+        Partial Private Sub OnCantUpmChanging(value As Integer)
+        End Sub
+        Partial Private Sub OnCantUpmChanged()
+        End Sub
+        Partial Private Sub OnSaldoChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnSaldoChanged()
+        End Sub
+        Partial Private Sub OnOnzasEstimadasChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnOnzasEstimadasChanged()
+        End Sub
 #End Region
 #Region "Campos"
-        Private _codupm As Integer
-        <Column(Name:="codupm", Storage:="_codupm", DbType:="int not null", IsPrimaryKey:=True, IsDbGenerated:=True)>
-        Public Property Codupm() As Integer
+        Private _degupm As Integer
+        <Column(Name:="degupm", Storage:="_degupm", DbType:="int not null", AutoSync:=AutoSync.OnInsert, CanBeNull:=False, IsPrimaryKey:=True, IsDbGenerated:=True)>
+        Public Property Degupm() As Integer
             Get
-                Return _codupm
+                Return _degupm
             End Get
             Set(ByVal value As Integer)
-                If (Me._codupm = value) = False Then
-                    Me.OnCodupmChanging(value)
+                If _degupm.Equals(value) = False Then
+                    Me.OnDegupmChanging(value)
                     Me.SendPropertyChanging()
-                    Me._codupm = value
-                    Me.SendPropertyChanged("Codupm")
-                    Me.OnCodupmChanged()
-                End If
-            End Set
-        End Property
-        Private _codcierre As Integer
-        <Column(Name:="codcierre", Storage:="_codcierre", DbType:="int not null", IsPrimaryKey:=True)>
-        Public Property Codcierre() As Integer
-            Get
-                Return _codcierre
-            End Get
-            Set(ByVal value As Integer)
-                If (Me._codcierre = value) = False Then
-                    Me.OnCodcierreChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._codcierre = value
-                    Me.SendPropertyChanged("Codcierre")
-                    Me.OnCodcierreChanged()
+                    Me._degupm = value
+                    Me.SendPropertyChanged("Degupm")
+                    Me.OnDegupmChanged()
                 End If
             End Set
         End Property
         Private _onzas As Decimal
-        <Column(Name:="onzas", Storage:="_onzas", DbType:="decimal(12,3) not null")>
+        <Column(Name:="onzas", Storage:="_onzas", DbType:="numeric(12,3) not null", CanBeNull:=False)>
         Public Property Onzas() As Decimal
             Get
                 Return _onzas
@@ -8059,6 +8236,70 @@ Namespace Database
                     Me.SendPropertyChanging()
                     Me._onzas = value
                     Me.SendPropertyChanged("Onzas")
+                    Me.OnOnzasChanged()
+                End If
+            End Set
+        End Property
+        Private _fecha As Date
+        <Column(Name:="fecha", Storage:="_fecha", DbType:="datetime not null", CanBeNull:=False)>
+        Public Property Fecha() As Date
+            Get
+                Return _fecha
+            End Get
+            Set(ByVal value As Date)
+                If _fecha.Equals(value) = False Then
+                    Me.OnFechaChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._fecha = value
+                    Me.SendPropertyChanged("Fecha")
+                    Me.OnFechaChanged()
+                End If
+            End Set
+        End Property
+        Private _cantupm As Integer
+        <Column(Name:="cantupm", Storage:="_degupm", DbType:="int not null", CanBeNull:=False)>
+        Public Property Cantupm() As Integer
+            Get
+                Return _cantupm
+            End Get
+            Set(ByVal value As Integer)
+                If _cantupm.Equals(value) = False Then
+                    Me.OnCantUpmChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._cantupm = value
+                    Me.SendPropertyChanged("Cantupm")
+                    Me.OnCantUpmChanged()
+                End If
+            End Set
+        End Property
+        Private _saldo As Decimal
+        <Column(Name:="saldo", Storage:="_saldo", DbType:="numeric(12,3) not null", CanBeNull:=False)>
+        Public Property Saldo() As Decimal
+            Get
+                Return _saldo
+            End Get
+            Set(ByVal value As Decimal)
+                If _saldo.Equals(value) = False Then
+                    Me.OnSaldoChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._saldo = value
+                    Me.SendPropertyChanged("Saldo")
+                    Me.OnSaldoChanged()
+                End If
+            End Set
+        End Property
+        Private _onzasEstimadas As Decimal
+        <Column(Name:="onzasestimadas", Storage:="_onzasEstimadas", DbType:="numeric(12,3) not null", CanBeNull:=False)>
+        Public Property OnzasEstimadas() As Decimal
+            Get
+                Return _onzasEstimadas
+            End Get
+            Set(ByVal value As Decimal)
+                If _onzasEstimadas.Equals(value) = False Then
+                    Me.OnOnzasChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._onzasEstimadas = value
+                    Me.SendPropertyChanged("OnzasEstimadas")
                     Me.OnOnzasChanged()
                 End If
             End Set

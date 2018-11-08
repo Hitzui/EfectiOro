@@ -373,6 +373,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Public ReadOnly Property delete_20x20() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("delete_20x20", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Public ReadOnly Property delete01() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("delete01", resourceCulture)
@@ -586,6 +596,16 @@ Namespace My.Resources
         Public ReadOnly Property save01() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("save01", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Public ReadOnly Property save20x20() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("save20x20", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

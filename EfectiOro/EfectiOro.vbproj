@@ -362,6 +362,12 @@
     <Compile Include="Presentacion\frmMaestroCaja.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\frmMoneda.Designer.vb">
+      <DependentUpon>frmMoneda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmMoneda.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\frmMovimientosCaja.Designer.vb">
       <DependentUpon>frmMovimientosCaja.vb</DependentUpon>
     </Compile>
@@ -954,6 +960,9 @@
     <EmbeddedResource Include="Presentacion\frmMaestroCaja.resx">
       <DependentUpon>frmMaestroCaja.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmMoneda.resx">
+      <DependentUpon>frmMoneda.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\frmMovimientosCaja.resx">
       <DependentUpon>frmMovimientosCaja.vb</DependentUpon>
     </EmbeddedResource>
@@ -1287,6 +1296,7 @@
     <None Include="My Project\DataSources\EfectiOro.Database.Forma_pago.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Ids.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Mcaja.datasource" />
+    <None Include="My Project\DataSources\EfectiOro.Database.Moneda.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Movcaja.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Pagos_adelantados.datasource" />
     <None Include="My Project\DataSources\EfectiOro.Database.Pica.datasource" />
@@ -1328,6 +1338,8 @@
     <None Include="Resources\trash.png" />
     <None Include="Resources\cerrar_precio.png" />
     <None Include="Resources\Calculator1.png" />
+    <None Include="Resources\delete_20x20.png" />
+    <None Include="Resources\save20x20.png" />
     <Content Include="Servicios\log4net.assembly.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

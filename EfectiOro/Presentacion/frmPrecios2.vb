@@ -109,10 +109,17 @@ Public Class frmPrecios2
         _nombreCliente = row.Cells(1).Value & " " & row.Cells(2).Value
         Using ctx As New Contexto
             Try
-                Dim findCierres = (From cp In ctx.CierrePrecios Where cp.Codcliente = _codcliente And cp.Status = True And cp.SaldoOnzas > 0 Select cp).ToList
+                Dim findCierres = (From cp In ctx.CierrePrecios Where cp.Codcliente = _codcliente _
+                                    And cp.Status = True And cp.SaldoOnzas > 0 Select cp).ToList
                 onzasDisponibles = findCierres.Sum(Function(c) c.SaldoOnzas)
                 lblOnzasDisponibles.Text = onzasDisponibles
                 bsCierres.DataSource = findCierres
+                For Each rows As DataGridViewRow In dgvCierrePrecios.Rows
+                    rows.Cells(0).Value = True
+                Next
+                listaCierreClientes.AddRange(findCierres)
+                lblOnzasDisponibles.Text = findCierres.Sum(Function(p) p.SaldoOnzas).ToString("#,##0.000")
+                lblOnzasIngresar.Text = findCierres.Sum(Function(p) p.SaldoOnzas).ToString("#,##0.000")
                 Dim preciosCliente = (From p In ctx.Precios Where p.Codcliente = _codcliente Select p).ToList
                 If preciosCliente.Count > 0 Then
                     MsgBox("El cliente actual tiene precios establecidos, eliminelos para poder continuar", MsgBoxStyle.Information, Title)
@@ -622,24 +629,23 @@ Public Class frmPrecios2
                 Dim findAllCierres As List(Of CierrePrecios) = (From c In ctx.CierrePrecios
                                                                 Where c.Codcliente = txtCodigo.Text And c.Status = True
                                                                 Select c).ToList
-                Dim codigosCierresActuales As List(Of Integer) = (From c In listaCierreClientes Select c.CodCierre).ToList
+                Dim codigosCierresActuales As List(Of Integer) = (From c In bsCierres.Cast(Of CierrePrecios) Select c.CodCierre).ToList
                 Dim filtrarCierres As List(Of CierrePrecios) = (From c In findAllCierres
                                                                 Where Not codigosCierresActuales.Contains(c.CodCierre)
                                                                 Select c).ToList
-                If filtrarCierres.Count > 0 Then
-                    For Each dato As CierrePrecios In filtrarCierres
-                        onzasDisponibles = Decimal.Add(onzasDisponibles, dato.SaldoOnzas)
-                        If onzas_acumuladas > Decimal.Zero Then
-                            dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
-                            dif_onzas = redondearMenos(dif_onzas, 0.0005)
-                        End If
-                        listaCierreClientes.Add(dato)
+                For Each dato As CierrePrecios In filtrarCierres
+                    bsCierres.Add(dato)
+                    'dif_onzas = Decimal.Add(dif_onzas, dato.SaldoOnzas)
+                Next
+                If findAllCierres.Count > 0 Then
+                    For Each valor As CierrePrecios In listaCierreClientes
+                        For Each row As DataGridViewRow In dgvCierrePrecios.Rows
+                            If row.Cells("CodCierreDataGridViewTextBoxColumn").Value = valor.CodCierre Then
+                                row.Cells(0).Value = True
+                            End If
+                        Next
                     Next
-                    dgvCierrePrecios.Rows.Clear()
-                    For Each dato As CierrePrecios In findAllCierres
-                        dgvCierrePrecios.Rows.Add(True, dato.CodCierre, dato.SaldoOnzas, dato.PrecioOro, dato.PrecioBase, dato.Margen)
-                    Next
-                    lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
+                    'lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
                     lblOnzasDisponibles.Text = findAllCierres.Sum(Function(c) c.SaldoOnzas).ToString("#,##0.000")
                 End If
             Catch ex As Exception
@@ -657,25 +663,24 @@ Public Class frmPrecios2
                 x_cierre = bsCierres.Item(e.RowIndex)
                 Using ctx As New Contexto
                     Dim findCierre = (From c In ctx.CierrePrecios Where c.CodCierre = x_cierre.CodCierre Select c).Single
-                    If Not findCierre.SaldoOnzas.Equals(x_cierre.SaldoOnzas) Then
-                        dgvCierrePrecios.Rows(e.RowIndex).Cells(0).Value = True
-                        MsgBox("No puede quitar el cierre seleccinado ya que se ha usado para ingresar precios.", MsgBoxStyle.Exclamation, Title)
-                        Return
+                    If seleccionar = True Then
+                        If Not listaCierreClientes.Contains(x_cierre) Then
+                            listaCierreClientes.Add(x_cierre)
+                        End If
+                    Else
+                        If Not findCierre.SaldoOnzas.Equals(x_cierre.SaldoOnzas) Then
+                            dgvCierrePrecios.Rows(e.RowIndex).Cells(0).Value = True
+                            MsgBox("No puede quitar el cierre seleccinado ya que se ha usado para ingresar precios.", MsgBoxStyle.Exclamation, Title)
+                            Return
+                        End If
+                        If listaCierreClientes.Contains(x_cierre) Then
+                            listaCierreClientes.Remove(x_cierre)
+                        End If
                     End If
+                    Dim x_onzas As Decimal = listaCierreClientes.Sum(Function(c) c.SaldoOnzas)
+                    dif_onzas = Decimal.Subtract(x_onzas, onzas_acumuladas)
+                    lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
                 End Using
-                If seleccionar = True Then
-                    If Not listaCierreClientes.Contains(x_cierre) Then
-                        listaCierreClientes.Add(x_cierre)
-                    End If
-                Else
-                    If listaCierreClientes.Contains(x_cierre) Then
-                        listaCierreClientes.Remove(x_cierre)
-                    End If
-                End If
-                Dim x_onzas As Decimal = listaCierreClientes.Sum(Function(c) c.SaldoOnzas)
-                lblOnzasIngresar.Text = Decimal.Round(x_onzas, 3)
-                dif_onzas = Decimal.Subtract(onzasDisponibles, x_onzas)
-                lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Warning")
