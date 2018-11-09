@@ -46,7 +46,7 @@ Public Class DaoAdelantos
         End Using
     End Function
 
-    Public Function crearAdelanto(adelanto As Database.Adelantos) As Boolean Implements IDaoAdelantos.crearAdelanto
+    Public Function crearAdelanto(adelanto As Adelantos) As Boolean Implements IDaoAdelantos.crearAdelanto
         Try
             Dim config As New ConfiguracionGeneral
             Dim agencia = config.getAgencia

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmParametrosBasicos
     Inherits EfectiOro.frmPersonalizado
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -53,13 +53,8 @@ Partial Class frmParametrosBasicos
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cmbCompra = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.panelTitulo.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(479, 25)
         '
         'btnClose
         '
@@ -68,7 +63,7 @@ Partial Class frmParametrosBasicos
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(454, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(502, 25)
         '
         'GroupBox1
         '
@@ -103,7 +98,7 @@ Partial Class frmParametrosBasicos
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 31)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(445, 431)
+        Me.GroupBox1.Size = New System.Drawing.Size(478, 448)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Parametros"
@@ -114,7 +109,7 @@ Partial Class frmParametrosBasicos
         Me.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnGuardar.FlatAppearance.BorderSize = 0
         Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(387, 377)
+        Me.btnGuardar.Location = New System.Drawing.Point(420, 394)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(52, 48)
         Me.btnGuardar.TabIndex = 22
@@ -369,13 +364,11 @@ Partial Class frmParametrosBasicos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(479, 474)
+        Me.ClientSize = New System.Drawing.Size(502, 491)
         Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmParametrosBasicos"
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)

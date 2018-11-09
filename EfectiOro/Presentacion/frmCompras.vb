@@ -1268,5 +1268,7 @@ Public Class frmCompras
         End Select
     End Sub
 
+    Private Sub cmbMoneda_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbMoneda.SelectedIndexChanged
 
+    End Sub
 End Class
