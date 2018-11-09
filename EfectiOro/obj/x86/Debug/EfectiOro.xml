@@ -415,6 +415,11 @@ EfectiOro
  <returns>Cadena de conexion</returns>
  <remarks></remarks>
 </member>
+<member name="T:EfectiOro.Database.Moneda">
+ <summary>
+ Entidad moneda de la tabla moneda Sql Server
+ </summary>
+</member>
 <member name="P:EfectiOro.Database.Adelantos.nombreCliente">
  <summary>
  Este es no mas el nombre para la hora del reporte, no usar para guardar datos
@@ -702,6 +707,11 @@ EfectiOro
  <value>0</value>
  <returns>Deicmal</returns>
  <remarks>Total de la compra</remarks>
+</member>
+<member name="M:EfectiOro.frmCompras.cargarMoneda">
+ <summary>
+ Cargar los datos del tipo de moneda al formulario
+ </summary>
 </member>
 <member name="F:EfectiOro.frmPrecios2.dif_onzas">
  <summary>

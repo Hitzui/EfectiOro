@@ -464,7 +464,7 @@ Namespace Database
         End Sub
         Partial Private Sub OnCreated()
         End Sub
-        Partial Private Sub OnCodmonedaChanging(value As String)
+        Partial Private Sub OnCodmonedaChanging(value As Integer)
         End Sub
         Partial Private Sub OnCodmonedaChanged()
         End Sub
@@ -483,14 +483,14 @@ Namespace Database
 #End Region
 
 #Region "Campos de la tabla"
-        Private _codmoneda As String
-        <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="varchar(10) Not NULL", CanBeNull:=False, IsPrimaryKey:=True)>
-        Public Property Codmoneda() As String
+        Private _codmoneda As Integer
+        <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="int Not NULL", CanBeNull:=False, IsPrimaryKey:=True, IsDbGenerated:=True)>
+        Public Property Codmoneda() As Integer
             Get
                 Return Me._codmoneda
             End Get
-            Set(value As String)
-                If (String.Equals(Me._codmoneda, value) = False) Then
+            Set(value As Integer)
+                If (Integer.Equals(Me._codmoneda, value) = False) Then
                     Me.OnCodmonedaChanging(value)
                     Me.SendPropertyChanging()
                     Me._codmoneda = value
@@ -2905,7 +2905,7 @@ Namespace Database
 
         Private _Peso As Decimal
 
-        Private _Codmoneda As String
+        Private _Codmoneda As Integer
 
         Private _Total As Decimal
 
@@ -2963,7 +2963,7 @@ Namespace Database
         End Sub
         Partial Private Sub OnPesoChanged()
         End Sub
-        Partial Private Sub OnCodmonedaChanging(value As String)
+        Partial Private Sub OnCodmonedaChanging(value As Integer)
         End Sub
         Partial Private Sub OnCodmonedaChanged()
         End Sub
@@ -3115,13 +3115,13 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codmoneda", Storage:="_Codmoneda", DbType:="VarChar(10) NOT NULL", CanBeNull:=False)>
-        Public Property Codmoneda() As String
+        <Column(Name:="codmoneda", Storage:="_Codmoneda", DbType:="int NOT NULL", CanBeNull:=False)>
+        Public Property Codmoneda() As Integer
             Get
                 Return Me._Codmoneda
             End Get
-            Set(value As String)
-                If (String.Equals(Me._Codmoneda, value) = False) Then
+            Set(value As Integer)
+                If (Integer.Equals(Me._Codmoneda, value) = False) Then
                     Me.OnCodmonedaChanging(value)
                     Me.SendPropertyChanging()
                     Me._Codmoneda = value

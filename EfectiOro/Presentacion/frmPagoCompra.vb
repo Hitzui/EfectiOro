@@ -255,13 +255,13 @@ Public Class frmPagoCompra
                 Return
             End If
             If xefectivo > 0 Then
-                Me.compraSeleccionada.Efectivo += xefectivo
+                Me.compraSeleccionada.Efectivo = Decimal.Add(compraSeleccionada.Efectivo, xefectivo)
             End If
             If xcheque > 0 Then
-                Me.compraSeleccionada.Cheque += xcheque
+                Me.compraSeleccionada.Cheque = Decimal.Add(compraSeleccionada.Cheque, xcheque)
             End If
             If xtransferencia > 0 Then
-                Me.compraSeleccionada.Transferencia += xtransferencia
+                Me.compraSeleccionada.Transferencia = Decimal.Add(compraSeleccionada.Transferencia, xtransferencia)
             End If
             'restamos el efectivo por el saldo que tiene pendiente
             If suma <= Me.compraSeleccionada.Saldo_por_pagar Then

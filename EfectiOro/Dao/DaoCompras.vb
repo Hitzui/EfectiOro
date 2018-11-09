@@ -47,7 +47,7 @@ Public Class DaoCompras
     Public Function actualizarCompra(compra As Compras) As Boolean Implements IDaoCompras.actualizarCompra
         Using ctx As New Contexto
             Try
-                Dim buscar = (From c In ctx.Compras Where c.Numcompra = compra.Numcompra Select c).First()
+                Dim buscar = (From c In ctx.Compras Where c.Numcompra = compra.Numcompra And c.Codagencia = compra.Codagencia Select c).First()
                 buscar.Efectivo = compra.Efectivo
                 buscar.Cheque = compra.Cheque
                 buscar.Transferencia = compra.Transferencia

@@ -21,9 +21,9 @@ Partial Class frmCompras
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCompras))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.panelHeader = New System.Windows.Forms.Panel()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btnCerrarcompra = New System.Windows.Forms.Button()
@@ -125,6 +125,8 @@ Partial Class frmCompras
         Me.txtFiltrar_compra = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.cmbEstado = New System.Windows.Forms.ComboBox()
+        Me.cmbMoneda = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.panelHeader.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -573,14 +575,14 @@ Partial Class frmCompras
         Me.dgvCompras.AllowUserToDeleteRows = False
         Me.dgvCompras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvCompras.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Orange
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvCompras.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Orange
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvCompras.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCompras.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colLinea, Me.colDescripcion, Me.colPeso, Me.colPrecio, Me.colImporte})
         Me.dgvCompras.Dock = System.Windows.Forms.DockStyle.Fill
@@ -605,17 +607,17 @@ Partial Class frmCompras
         '
         'colPeso
         '
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle2
         Me.colPeso.HeaderText = "Peso"
         Me.colPeso.Name = "colPeso"
         '
         'colPrecio
         '
-        DataGridViewCellStyle6.Format = "N2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle3
         Me.colPrecio.HeaderText = "Precio"
         Me.colPrecio.Name = "colPrecio"
         '
@@ -1143,10 +1145,32 @@ Partial Class frmCompras
         Me.cmbEstado.Size = New System.Drawing.Size(136, 21)
         Me.cmbEstado.TabIndex = 12
         '
+        'cmbMoneda
+        '
+        Me.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbMoneda.Enabled = False
+        Me.cmbMoneda.FormattingEnabled = True
+        Me.cmbMoneda.Items.AddRange(New Object() {"Vigente", "Cerrado"})
+        Me.cmbMoneda.Location = New System.Drawing.Point(541, 532)
+        Me.cmbMoneda.Name = "cmbMoneda"
+        Me.cmbMoneda.Size = New System.Drawing.Size(136, 21)
+        Me.cmbMoneda.TabIndex = 14
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(431, 533)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(88, 13)
+        Me.Label13.TabIndex = 13
+        Me.Label13.Text = "Tipo de Moneda:"
+        '
         'frmCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(850, 646)
+        Me.Controls.Add(Me.cmbMoneda)
+        Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.cmbEstado)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.panelBuscar_compra)
@@ -1168,6 +1192,8 @@ Partial Class frmCompras
         Me.Controls.SetChildIndex(Me.panelBuscar_compra, 0)
         Me.Controls.SetChildIndex(Me.Label12, 0)
         Me.Controls.SetChildIndex(Me.cmbEstado, 0)
+        Me.Controls.SetChildIndex(Me.Label13, 0)
+        Me.Controls.SetChildIndex(Me.cmbMoneda, 0)
         Me.panelHeader.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -1300,4 +1326,6 @@ Partial Class frmCompras
     Friend WithEvents colNombreBuscar As DataGridViewTextBoxColumn
     Friend WithEvents colApellidosBuscar As DataGridViewTextBoxColumn
     Friend WithEvents colDireccionBuscar As DataGridViewTextBoxColumn
+    Friend WithEvents cmbMoneda As ComboBox
+    Friend WithEvents Label13 As Label
 End Class
