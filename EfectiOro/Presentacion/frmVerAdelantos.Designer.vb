@@ -20,9 +20,9 @@ Partial Class frmVerAdelantos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVerAdelantos))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblSaldoTotal = New System.Windows.Forms.Label()
@@ -43,14 +43,9 @@ Partial Class frmVerAdelantos
         Me.btnAplicarSaldo = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnRefrescar = New System.Windows.Forms.Button()
-        Me.panelTitulo.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvAdelanto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(679, 25)
         '
         'btnClose
         '
@@ -60,7 +55,7 @@ Partial Class frmVerAdelantos
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(654, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(679, 25)
         '
         'GroupBox1
         '
@@ -147,27 +142,27 @@ Partial Class frmVerAdelantos
         '
         'colFecha
         '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Format = "d"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle4
         Me.colFecha.HeaderText = "Fecha"
         Me.colFecha.Name = "colFecha"
         Me.colFecha.ReadOnly = True
         '
         'colMonto
         '
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = "0"
-        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Format = "C2"
+        DataGridViewCellStyle5.NullValue = "0"
+        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle5
         Me.colMonto.HeaderText = "Monto"
         Me.colMonto.Name = "colMonto"
         Me.colMonto.ReadOnly = True
         '
         'colSaldo
         '
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = "0"
-        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Format = "C2"
+        DataGridViewCellStyle6.NullValue = "0"
+        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle6
         Me.colSaldo.HeaderText = "Saldo"
         Me.colSaldo.Name = "colSaldo"
         Me.colSaldo.ReadOnly = True
@@ -179,11 +174,10 @@ Partial Class frmVerAdelantos
         Me.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSalir.ImageIndex = 2
         Me.btnSalir.ImageList = Me.ImageList1
-        Me.btnSalir.Location = New System.Drawing.Point(599, 255)
+        Me.btnSalir.Location = New System.Drawing.Point(599, 245)
         Me.btnSalir.Name = "btnSalir"
-        Me.btnSalir.Size = New System.Drawing.Size(68, 27)
+        Me.btnSalir.Size = New System.Drawing.Size(68, 37)
         Me.btnSalir.TabIndex = 4
-        Me.btnSalir.Text = "Volver"
         Me.ToolTip1.SetToolTip(Me.btnSalir, "Volver a la compra")
         '
         'ImageList1
@@ -213,16 +207,14 @@ Partial Class frmVerAdelantos
         '
         'btnAplicarSaldo
         '
-        Me.btnAplicarSaldo.FlatAppearance.BorderSize = 0
         Me.btnAplicarSaldo.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.HotTrack
         Me.btnAplicarSaldo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAplicarSaldo.ImageIndex = 0
         Me.btnAplicarSaldo.ImageList = Me.ImageList1
         Me.btnAplicarSaldo.Location = New System.Drawing.Point(532, 129)
         Me.btnAplicarSaldo.Name = "btnAplicarSaldo"
-        Me.btnAplicarSaldo.Size = New System.Drawing.Size(122, 27)
+        Me.btnAplicarSaldo.Size = New System.Drawing.Size(122, 34)
         Me.btnAplicarSaldo.TabIndex = 1
-        Me.btnAplicarSaldo.Text = "Aplicar saldo"
         Me.ToolTip1.SetToolTip(Me.btnAplicarSaldo, "Aplicar saldo al monto de la compra")
         '
         'btnRefrescar
@@ -232,11 +224,10 @@ Partial Class frmVerAdelantos
         Me.btnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefrescar.ImageIndex = 1
         Me.btnRefrescar.ImageList = Me.ImageList1
-        Me.btnRefrescar.Location = New System.Drawing.Point(500, 255)
+        Me.btnRefrescar.Location = New System.Drawing.Point(500, 245)
         Me.btnRefrescar.Name = "btnRefrescar"
-        Me.btnRefrescar.Size = New System.Drawing.Size(93, 27)
+        Me.btnRefrescar.Size = New System.Drawing.Size(82, 37)
         Me.btnRefrescar.TabIndex = 6
-        Me.btnRefrescar.Text = "Refrescar"
         Me.ToolTip1.SetToolTip(Me.btnRefrescar, "Volver a cargar los datos de adelantos")
         '
         'frmVerAdelantos
@@ -252,7 +243,6 @@ Partial Class frmVerAdelantos
         Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmVerAdelantos"
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.dgvAdelanto, 0)
         Me.Controls.SetChildIndex(Me.btnSalir, 0)
@@ -260,7 +250,6 @@ Partial Class frmVerAdelantos
         Me.Controls.SetChildIndex(Me.txtSaldo, 0)
         Me.Controls.SetChildIndex(Me.btnAplicarSaldo, 0)
         Me.Controls.SetChildIndex(Me.btnRefrescar, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgvAdelanto, System.ComponentModel.ISupportInitialize).EndInit()

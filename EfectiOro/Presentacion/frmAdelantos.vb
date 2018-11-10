@@ -139,6 +139,8 @@ Public Class frmAdelantos
             Case Keys.Enter
                 txtreferencia.Focus()
                 e.Handled = True
+            Case Keys.Escape
+                dgvCliente.Visible = False
         End Select
     End Sub
 
@@ -523,30 +525,5 @@ Public Class frmAdelantos
 
     Private Sub btnAdelantos_Click(sender As Object, e As EventArgs) Handles btnAdelantos.Click
         frmAdelantosAplicados.Show()
-    End Sub
-
-    Private Sub cmbMoneda_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbMoneda.SelectedValueChanged
-        Using ctx As New Contexto
-            Try
-                Dim tipocambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = Now.Date Select tc).Single
-                Dim moneda As Moneda = cmbMoneda.SelectedItem
-                Select Case moneda.Codmoneda
-                    Case 1
-                        'cordobas
-                        If txtefectivo.Text.Trim.Length > 0 Then
-                            Dim efectivo As Decimal = Convert.ToDecimal(txtefectivo.Text)
-                            txtefectivo.Text = Decimal.Multiply(efectivo, tipocambio.Tipocambio1).ToString("#,###,#00.000")
-                        End If
-                    Case 2
-                        'dolares
-                        If txtefectivo.Text.Trim.Length > 0 Then
-                            Dim efectivo As Decimal = Convert.ToDecimal(txtefectivo.Text)
-                            txtefectivo.Text = Decimal.Divide(efectivo, tipocambio.Tipocambio1).ToString("#,###,#00.000")
-                        End If
-                End Select
-            Catch ex As Exception
-
-            End Try
-        End Using
     End Sub
 End Class

@@ -4,9 +4,8 @@ Imports EfectiOro.Database
 
 Public Class frmCompras
     Private Const tituloError As String = "Error"
-    Private Const Title As String = "Error"
-
 #Region "Properties"
+    Public Shared _codmoneda As Integer = 0
     Dim config As New ConfiguracionGeneral
     Dim agencia As String
     Private bsCliente As New BindingSource
@@ -554,7 +553,7 @@ Public Class frmCompras
                     e.Handled = True
             End Select
         Catch ex As Exception
-            MsgBox("Error al intentar actualizar el precio" & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Error al intentar actualizar el precio" & vbCr & ex.Message, MsgBoxStyle.Critical, tituloError)
         End Try
     End Sub
 
@@ -659,6 +658,8 @@ Public Class frmCompras
         cmbMoneda.Enabled = True
         Me.btnCerrarcompra.Enabled = False
         'Me.filtrarCliente()
+        'MsgBox(cmbMoneda.SelectedValue & " - " & cmbMoneda.SelectedItem.Descripcion)
+        _codmoneda = CInt(cmbMoneda.SelectedValue)
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
@@ -924,7 +925,7 @@ Public Class frmCompras
     Private Sub btnAdelantos_Click(sender As Object, e As EventArgs) Handles btnAdelantos.Click
         If totalGeneral <= 0 Then
             MsgBox("Especifique un monto para aplicar al adelanto de la compra",
-                   MsgBoxStyle.Information, "Guardar compra")
+                   MsgBoxStyle.Information, "Compra")
             Return
         End If
         Dim saldo As Decimal = 0D
@@ -936,6 +937,7 @@ Public Class frmCompras
             Return
         End If
         Dim frm As New frmVerAdelantos()
+        _codmoneda = cmbMoneda.SelectedValue
         frm.ShowDialog()
     End Sub
 
@@ -1268,7 +1270,14 @@ Public Class frmCompras
         End Select
     End Sub
 
-    Private Sub cmbMoneda_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbMoneda.SelectedIndexChanged
-
+    Private Sub cmbMoneda_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbMoneda.SelectionChangeCommitted
+        Try
+            If _codmoneda <> cmbMoneda.SelectedValue Then
+                'en este momento son distintos los valores
+            End If
+            _codmoneda = cmbMoneda.SelectedValue
+        Catch ex As Exception
+            MsgBox("No se pudo establecer el tipo de moneda seleccionado debido al siguiente error: " & vbCr & ex.Message, MsgBoxStyle.Exclamation, tituloError)
+        End Try
     End Sub
 End Class
