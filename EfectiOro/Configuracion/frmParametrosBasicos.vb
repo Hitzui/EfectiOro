@@ -39,8 +39,18 @@ Public Class frmParametrosBasicos
         cmbPagoAdelantos.DisplayMember = "Descripcion"
         cmbPagoAdelantos.ValueMember = "Idmov"
     End Sub
+<<<<<<< HEAD
 
 
+=======
+    Sub cargarMoneda()
+        Using ctx As New Contexto
+            cmbMoneda.DataSource = ctx.Moneda.ToList
+            cmbMoneda.DisplayMember = "Descripcion"
+            cmbMoneda.ValueMember = "Codmoneda"
+        End Using
+    End Sub
+>>>>>>> d8bfd5a6acabacd5117db978dba64f782dae3e16
     Sub cargarParametros()
         Dim dao = DataContext.daoParametros
         Try
@@ -68,6 +78,8 @@ Public Class frmParametrosBasicos
     Private Sub frmParametrosBasicos_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.panelTitulo.Visible = False
         cargarComboBox()
+        cargarMoneda()
+        cmbMoneda.SelectedIndex = 0
         Me.cargarParametros()
     End Sub
 
@@ -77,8 +89,10 @@ Public Class frmParametrosBasicos
         'Id_adelantos
         'Idadelanto
         'Idcompras
-        'Numcompra        
+        'Numcompra
+        Dim dao = DataContext.daoParametros
         Dim para As New Ids
+        Dim find = dao.recuperarParametros()
         para.Codagencia = CInt(txtcodagencia.Text)
         para.Codcliente = CInt(txtcodcliente.Text)
         para.Idadelanto = CInt(txtidadelanto.Text)
@@ -93,8 +107,10 @@ Public Class frmParametrosBasicos
         para.Anular_adelanto = CInt(cmbAnularAdelanto.SelectedValue)
         para.recibe = cmbVoucher.SelectedValue
         para.Varias_compras = False
-        para.Pago_adelanto = CInt(cmbPagoAdelantos.SelectedValue)
-        Dim dao = DataContext.daoParametros
+        para.pago_adelanto = CInt(cmbPagoAdelantos.SelectedValue)
+        para.dolares = CInt(cmbMoneda.SelectedValue)
+        para.backup = find.backup
+        para.idreserva = find.idreserva
         If Me.parametrosCargados Then
             If dao.actualizarParametros(para) Then
                 MsgBox("Se actualizaron los parametros de configuracion", MsgBoxStyle.Information, "Establecer parametros")

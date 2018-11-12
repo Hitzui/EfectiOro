@@ -107,6 +107,21 @@ Public Class frmVerAdelantos
         Me.montoCompra = frmCompras.totalGeneral
     End Sub
 
+    Private Sub dgvAdelanto_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles dgvAdelanto.CellValidating
+        Try
+            If dgvAdelanto.CurrentCell.ColumnIndex = 0 Then
+                Dim dao = DataContext.daoAdelantos
+                Dim cellSeleccion As DataGridViewCheckBoxCell = dgvAdelanto.Rows(e.RowIndex).Cells("colSeleccionar")
+                Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(Convert.ToString(dgvAdelanto.Rows(e.RowIndex).Cells("colCodigo").Value))
+                If addAdelanto.Codmoneda <> _codmoneda Then
+                    MsgBox("No se puede seleccionar el adelanto ya que el tipo de moneda de la compras es distinto al adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelanto")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
     Private Sub dgvAdelanto_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvAdelanto.CellValueChanged
         Me.validarSeleccionGrid(e)
     End Sub
@@ -116,7 +131,16 @@ Public Class frmVerAdelantos
             If dgvAdelanto.Columns(e.ColumnIndex).Name = "colSeleccionar" Then
                 Dim row As DataGridViewRow = dgvAdelanto.Rows(e.RowIndex)
                 Dim cellSeleccion As DataGridViewCheckBoxCell = row.Cells("colSeleccionar")
+<<<<<<< HEAD
                 Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(CStr(row.Cells("colCodigo").Value))
+=======
+                Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(Convert.ToString(row.Cells("colCodigo").Value))
+                If addAdelanto.Codmoneda <> _codmoneda Then
+                    'MsgBox("No se puede seleccionar el adelanto ya que el tipo de moneda de la compras es distinto al adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelanto")
+                    row.Cells("colseleccionar").Value = False
+                    Return
+                End If
+>>>>>>> d8bfd5a6acabacd5117db978dba64f782dae3e16
                 If Convert.ToBoolean(cellSeleccion.Value) = True Then
                     valorSeleccionadoMonto += Convert.ToDecimal(row.Cells("colSaldo").Value)
                     adelantoSeleccionados.Add(addAdelanto)

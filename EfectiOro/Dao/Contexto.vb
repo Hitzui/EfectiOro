@@ -5269,404 +5269,267 @@ Namespace Database
         End Sub
     End Class
 
-    <Table(Name:="dbo.Ids")> _
+    <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Ids")>
     Partial Public Class Ids
-        Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 
-        Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+        Private _codcliente As Integer
 
-        Private _Codcliente As Integer
+        Private _codagencia As System.Nullable(Of Integer)
 
-        Private _Codagencia As System.Nullable(Of Integer)
+        Private _numcompra As System.Nullable(Of Integer)
 
-        Private _Numcompra As System.Nullable(Of Integer)
+        Private _idadelanto As System.Nullable(Of Integer)
 
-        Private _Idadelanto As System.Nullable(Of Integer)
+        Private _idcompras As System.Nullable(Of Integer)
 
-        Private _Idcompras As System.Nullable(Of Integer)
+        Private _id_adelantos As System.Nullable(Of Integer)
 
-        Private _Id_adelantos As System.Nullable(Of Integer)
+        Private _saldo_anterior As System.Nullable(Of Integer)
 
-        Private _Saldo_anterior As System.Nullable(Of Integer)
+        Private _cierre_compra As System.Nullable(Of Integer)
 
-        Private _Cierre_compra As System.Nullable(Of Integer)
+        Private _prestamo_egreso As System.Nullable(Of Integer)
 
-        Private _Prestamo_egreso As System.Nullable(Of Integer)
+        Private _prestamo_ingreso As System.Nullable(Of Integer)
 
-        Private _Prestamo_ingreso As System.Nullable(Of Integer)
+        Private _anular_compra As System.Nullable(Of Integer)
 
-        Private _Anular_compra As System.Nullable(Of Integer)
+        Private _anular_adelanto As System.Nullable(Of Integer)
 
-        Private _Anular_adelanto As System.Nullable(Of Integer)
-
-        Private _Varias_compras As System.Nullable(Of Boolean)
+        Private _varias_compras As System.Nullable(Of Boolean)
 
         Private _recibe As String
 
-        Private _Pago_adelanto As Integer
+        Private _pago_adelanto As System.Nullable(Of Integer)
 
-        Private _idreserva As Integer
+        Private _idreserva As System.Nullable(Of Integer)
 
-        Private _backup As Date
+        Private _backup As System.Nullable(Of Date)
 
-
-
-        <Column(Name:="idreserva", Storage:="_idreserva", DbType:="int")> _
-        Public Property Idreserva() As Integer
-            Get
-                Return _idreserva
-            End Get
-            Set(ByVal value As Integer)
-                _idreserva = value
-            End Set
-        End Property
-
-
-        <Column(Name:="recibe", Storage:="_recibe", DbType:="varchar(50)")> _
-        Public Property recibe() As String
-            Get
-                Return _recibe
-            End Get
-            Set(ByVal value As String)
-                _recibe = value
-            End Set
-        End Property
-
-
-#Region "Extensibility Method Definitions"
-        Partial Private Sub OnLoaded()
-        End Sub
-        Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-        End Sub
-        Partial Private Sub OnCreated()
-        End Sub
-        Partial Private Sub OnCodclienteChanging(value As Integer)
-        End Sub
-        Partial Private Sub OnCodclienteChanged()
-        End Sub
-        Partial Private Sub OnCodagenciaChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnCodagenciaChanged()
-        End Sub
-        Partial Private Sub OnNumcompraChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnNumcompraChanged()
-        End Sub
-        Partial Private Sub OnIdadelantoChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnIdadelantoChanged()
-        End Sub
-        Partial Private Sub OnIdcomprasChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnIdcomprasChanged()
-        End Sub
-        Partial Private Sub OnPago_compraChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnPago_compraChanged()
-        End Sub
-        Partial Private Sub OnId_adelantosChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnId_adelantosChanged()
-        End Sub
-        Partial Private Sub OnSaldo_anteriorChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnSaldo_anteriorChanged()
-        End Sub
-        Partial Private Sub OnCierre_compraChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnCierre_compraChanged()
-        End Sub
-        Partial Private Sub OnPrestamo_egresoChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnPrestamo_egresoChanged()
-        End Sub
-        Partial Private Sub OnPrestamo_ingresoChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnPrestamo_ingresoChanged()
-        End Sub
-        Partial Private Sub OnAnular_compraChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnAnular_compraChanged()
-        End Sub
-        Partial Private Sub OnAnular_adelantoChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnAnular_adelantoChanged()
-        End Sub
-        Partial Private Sub OnVarias_comprasChanging(value As System.Nullable(Of Boolean))
-        End Sub
-        Partial Private Sub OnVarias_comprasChanged()
-        End Sub
-        Partial Private Sub OnCompras_adelantosChanging(value As System.Nullable(Of Integer))
-        End Sub
-        Partial Private Sub OnCompras_adelantosChanged()
-        End Sub
-        Partial Private Sub OnBackupChanging(value As Date)
-        End Sub
-        Partial Private Sub OnBackupChanged()
-        End Sub
-#End Region
+        Private _dolares As System.Nullable(Of Integer)
 
         Public Sub New()
-            MyBase.New()
-            OnCreated()
+            MyBase.New
         End Sub
-        <Column(Name:="backup", Storage:="_backup", DbType:="date null")>
-        Public Property Backup() As Date
-            Get
-                Return _backup
-            End Get
-            Set(ByVal value As Date)
-                If _backup.Equals(value) = False Then
-                    Me.OnBackupChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._backup = value
-                    Me.SendPropertyChanged("Backup")
-                    Me.OnBackupChanged()
-                End If
-            End Set
-        End Property
-        <Column(Name:="codcliente", Storage:="_Codcliente", DbType:="Int NOT NULL", IsPrimaryKey:=True)> _
-        Public Property Codcliente() As Integer
-            Get
-                Return Me._Codcliente
-            End Get
-            Set(value As Integer)
-                If ((Me._Codcliente = value) _
-                            = False) Then
-                    Me.OnCodclienteChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Codcliente = value
-                    Me.SendPropertyChanged("Codcliente")
-                    Me.OnCodclienteChanged()
-                End If
-            End Set
-        End Property
 
-        <Column(Name:="codagencia", Storage:="_Codagencia", DbType:="Int")> _
-        Public Property Codagencia() As System.Nullable(Of Integer)
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcliente", DbType:="Int NOT NULL", IsPrimaryKey:=True)>
+        Public Property codcliente() As Integer
             Get
-                Return Me._Codagencia
+                Return Me._codcliente
             End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Codagencia.Equals(value) = False) Then
-                    Me.OnCodagenciaChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Codagencia = value
-                    Me.SendPropertyChanged("Codagencia")
-                    Me.OnCodagenciaChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="pago_adelanto", Storage:="_Pago_adelanto", DbType:="Int")> _
-        Public Property Pago_adelanto() As Integer
-            Get
-                Return Me._Pago_adelanto
-            End Get
-            Set(value As Integer)
-                If (Me._Pago_adelanto.Equals(value) = False) Then
-                    Me.OnNumcompraChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Pago_adelanto = value
-                    Me.SendPropertyChanged("Pago_adelanto")
-                    Me.OnNumcompraChanged()
-                End If
-            End Set
-        End Property
-        <Column(Name:="numcompra", Storage:="_Numcompra", DbType:="Int")> _
-        Public Property Numcompra() As System.Nullable(Of Integer)
-            Get
-                Return Me._Numcompra
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Numcompra.Equals(value) = False) Then
-                    Me.OnNumcompraChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Numcompra = value
-                    Me.SendPropertyChanged("Numcompra")
-                    Me.OnNumcompraChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="idadelanto", Storage:="_Idadelanto", DbType:="Int")> _
-        Public Property Idadelanto() As System.Nullable(Of Integer)
-            Get
-                Return Me._Idadelanto
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Idadelanto.Equals(value) = False) Then
-                    Me.OnIdadelantoChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Idadelanto = value
-                    Me.SendPropertyChanged("Idadelanto")
-                    Me.OnIdadelantoChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="idcompras", Storage:="_Idcompras", DbType:="Int")> _
-        Public Property Idcompras() As System.Nullable(Of Integer)
-            Get
-                Return Me._Idcompras
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Idcompras.Equals(value) = False) Then
-                    Me.OnIdcomprasChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Idcompras = value
-                    Me.SendPropertyChanged("Idcompras")
-                    Me.OnIdcomprasChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="id_adelantos", Storage:="_Id_adelantos", DbType:="Int")> _
-        Public Property Id_adelantos() As System.Nullable(Of Integer)
-            Get
-                Return Me._Id_adelantos
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Id_adelantos.Equals(value) = False) Then
-                    Me.OnId_adelantosChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Id_adelantos = value
-                    Me.SendPropertyChanged("Id_adelantos")
-                    Me.OnId_adelantosChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="saldo_anterior", Storage:="_Saldo_anterior", DbType:="Int")> _
-        Public Property Saldo_anterior() As System.Nullable(Of Integer)
-            Get
-                Return Me._Saldo_anterior
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Saldo_anterior.Equals(value) = False) Then
-                    Me.OnSaldo_anteriorChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Saldo_anterior = value
-                    Me.SendPropertyChanged("Saldo_anterior")
-                    Me.OnSaldo_anteriorChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="cierre_compra", Storage:="_Cierre_compra", DbType:="Int")> _
-        Public Property Cierre_compra() As System.Nullable(Of Integer)
-            Get
-                Return Me._Cierre_compra
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Cierre_compra.Equals(value) = False) Then
-                    Me.OnCierre_compraChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Cierre_compra = value
-                    Me.SendPropertyChanged("Cierre_compra")
-                    Me.OnCierre_compraChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="prestamo_egreso", Storage:="_Prestamo_egreso", DbType:="Int")> _
-        Public Property Prestamo_egreso() As System.Nullable(Of Integer)
-            Get
-                Return Me._Prestamo_egreso
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Prestamo_egreso.Equals(value) = False) Then
-                    Me.OnPrestamo_egresoChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Prestamo_egreso = value
-                    Me.SendPropertyChanged("Prestamo_egreso")
-                    Me.OnPrestamo_egresoChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="prestamo_ingreso", Storage:="_Prestamo_ingreso", DbType:="Int")> _
-        Public Property Prestamo_ingreso() As System.Nullable(Of Integer)
-            Get
-                Return Me._Prestamo_ingreso
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Prestamo_ingreso.Equals(value) = False) Then
-                    Me.OnPrestamo_ingresoChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Prestamo_ingreso = value
-                    Me.SendPropertyChanged("Prestamo_ingreso")
-                    Me.OnPrestamo_ingresoChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="anular_compra", Storage:="_Anular_compra", DbType:="Int")> _
-        Public Property Anular_compra() As System.Nullable(Of Integer)
-            Get
-                Return Me._Anular_compra
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Anular_compra.Equals(value) = False) Then
-                    Me.OnAnular_compraChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Anular_compra = value
-                    Me.SendPropertyChanged("Anular_compra")
-                    Me.OnAnular_compraChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="anular_adelanto", Storage:="_Anular_adelanto", DbType:="Int")> _
-        Public Property Anular_adelanto() As System.Nullable(Of Integer)
-            Get
-                Return Me._Anular_adelanto
-            End Get
-            Set(value As System.Nullable(Of Integer))
-                If (Me._Anular_adelanto.Equals(value) = False) Then
-                    Me.OnAnular_adelantoChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Anular_adelanto = value
-                    Me.SendPropertyChanged("Anular_adelanto")
-                    Me.OnAnular_adelantoChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="varias_compras", Storage:="_Varias_compras", DbType:="Bit")> _
-        Public Property Varias_compras() As System.Nullable(Of Boolean)
-            Get
-                Return Me._Varias_compras
-            End Get
-            Set(value As System.Nullable(Of Boolean))
-                If (Me._Varias_compras.Equals(value) = False) Then
-                    Me.OnVarias_comprasChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._Varias_compras = value
-                    Me.SendPropertyChanged("Varias_compras")
-                    Me.OnVarias_comprasChanged()
-                End If
-            End Set
-        End Property
-
-        Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-
-        Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-
-        Protected Overridable Sub SendPropertyChanging()
-            If ((Me.PropertyChangingEvent Is Nothing) _
+            Set
+                If ((Me._codcliente = Value) _
                         = False) Then
-                RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-            End If
-        End Sub
+                    Me._codcliente = Value
+                End If
+            End Set
+        End Property
 
-        Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-            If ((Me.PropertyChangedEvent Is Nothing) _
-                        = False) Then
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codagencia", DbType:="Int")>
+        Public Property codagencia() As System.Nullable(Of Integer)
+            Get
+                Return Me._codagencia
+            End Get
+            Set
+                If (Me._codagencia.Equals(Value) = False) Then
+                    Me._codagencia = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_numcompra", DbType:="Int")>
+        Public Property numcompra() As System.Nullable(Of Integer)
+            Get
+                Return Me._numcompra
+            End Get
+            Set
+                If (Me._numcompra.Equals(Value) = False) Then
+                    Me._numcompra = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idadelanto", DbType:="Int")>
+        Public Property idadelanto() As System.Nullable(Of Integer)
+            Get
+                Return Me._idadelanto
+            End Get
+            Set
+                If (Me._idadelanto.Equals(Value) = False) Then
+                    Me._idadelanto = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idcompras", DbType:="Int")>
+        Public Property idcompras() As System.Nullable(Of Integer)
+            Get
+                Return Me._idcompras
+            End Get
+            Set
+                If (Me._idcompras.Equals(Value) = False) Then
+                    Me._idcompras = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id_adelantos", DbType:="Int")>
+        Public Property id_adelantos() As System.Nullable(Of Integer)
+            Get
+                Return Me._id_adelantos
+            End Get
+            Set
+                If (Me._id_adelantos.Equals(Value) = False) Then
+                    Me._id_adelantos = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_saldo_anterior", DbType:="Int")>
+        Public Property saldo_anterior() As System.Nullable(Of Integer)
+            Get
+                Return Me._saldo_anterior
+            End Get
+            Set
+                If (Me._saldo_anterior.Equals(Value) = False) Then
+                    Me._saldo_anterior = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cierre_compra", DbType:="Int")>
+        Public Property cierre_compra() As System.Nullable(Of Integer)
+            Get
+                Return Me._cierre_compra
+            End Get
+            Set
+                If (Me._cierre_compra.Equals(Value) = False) Then
+                    Me._cierre_compra = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_prestamo_egreso", DbType:="Int")>
+        Public Property prestamo_egreso() As System.Nullable(Of Integer)
+            Get
+                Return Me._prestamo_egreso
+            End Get
+            Set
+                If (Me._prestamo_egreso.Equals(Value) = False) Then
+                    Me._prestamo_egreso = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_prestamo_ingreso", DbType:="Int")>
+        Public Property prestamo_ingreso() As System.Nullable(Of Integer)
+            Get
+                Return Me._prestamo_ingreso
+            End Get
+            Set
+                If (Me._prestamo_ingreso.Equals(Value) = False) Then
+                    Me._prestamo_ingreso = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_anular_compra", DbType:="Int")>
+        Public Property anular_compra() As System.Nullable(Of Integer)
+            Get
+                Return Me._anular_compra
+            End Get
+            Set
+                If (Me._anular_compra.Equals(Value) = False) Then
+                    Me._anular_compra = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_anular_adelanto", DbType:="Int")>
+        Public Property anular_adelanto() As System.Nullable(Of Integer)
+            Get
+                Return Me._anular_adelanto
+            End Get
+            Set
+                If (Me._anular_adelanto.Equals(Value) = False) Then
+                    Me._anular_adelanto = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_varias_compras", DbType:="Bit")>
+        Public Property varias_compras() As System.Nullable(Of Boolean)
+            Get
+                Return Me._varias_compras
+            End Get
+            Set
+                If (Me._varias_compras.Equals(Value) = False) Then
+                    Me._varias_compras = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_recibe", DbType:="VarChar(50)")>
+        Public Property recibe() As String
+            Get
+                Return Me._recibe
+            End Get
+            Set
+                If (String.Equals(Me._recibe, Value) = False) Then
+                    Me._recibe = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_pago_adelanto", DbType:="Int")>
+        Public Property pago_adelanto() As System.Nullable(Of Integer)
+            Get
+                Return Me._pago_adelanto
+            End Get
+            Set
+                If (Me._pago_adelanto.Equals(Value) = False) Then
+                    Me._pago_adelanto = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idreserva", DbType:="Int")>
+        Public Property idreserva() As System.Nullable(Of Integer)
+            Get
+                Return Me._idreserva
+            End Get
+            Set
+                If (Me._idreserva.Equals(Value) = False) Then
+                    Me._idreserva = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[backup]", Storage:="_backup", DbType:="Date")>
+        Public Property backup() As System.Nullable(Of Date)
+            Get
+                Return Me._backup
+            End Get
+            Set
+                If (Me._backup.Equals(Value) = False) Then
+                    Me._backup = Value
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dolares", DbType:="Int")>
+        Public Property dolares() As System.Nullable(Of Integer)
+            Get
+                Return Me._dolares
+            End Get
+            Set
+                If (Me._dolares.Equals(Value) = False) Then
+                    Me._dolares = Value
+                End If
+            End Set
+        End Property
     End Class
+
 
     <Table(Name:="dbo.mcaja")> _
     Partial Public Class Mcaja
