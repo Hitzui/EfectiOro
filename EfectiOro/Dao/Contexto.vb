@@ -1222,7 +1222,6 @@ Namespace Database
 
         Private _Hora As String
 
-        Private _codmoneda As Integer
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub
@@ -1281,10 +1280,6 @@ Namespace Database
         Partial Private Sub OnHoraChanging(value As String)
         End Sub
         Partial Private Sub OnHoraChanged()
-        End Sub
-        Partial Private Sub OnCodmonedaChanging(value As Integer)
-        End Sub
-        Partial Private Sub OnCodmonedaChanged()
         End Sub
 #End Region
 
@@ -1511,21 +1506,6 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="int ", CanBeNull:=False)>
-        Public Property Codmoneda() As Integer
-            Get
-                Return Me._codmoneda
-            End Get
-            Set(value As Integer)
-                If (Integer.Equals(Me._codmoneda, value) = False) Then
-                    Me.OnCodmonedaChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._codmoneda = value
-                    Me.SendPropertyChanged("Codmoneda")
-                    Me.OnCodmonedaChanged()
-                End If
-            End Set
-        End Property
         Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged

@@ -1,11 +1,10 @@
 ﻿Imports EfectiOro.Database
 
 Public Class frmVerAdelantos
-    Private Const _tituloError As String = "Error"
+
     Private codigoCliente, numeroCompra As String
     Private verAdelanto As New Adelantos()
     Private montoCompra, saldoTotal As Decimal
-    Private _codmoneda As Integer = 0
     Private valorSeleccionadoMonto As Decimal = Decimal.Zero
     ''' <summary>
     ''' Adelantos seleccionados
@@ -24,24 +23,17 @@ Public Class frmVerAdelantos
     Sub llenarGrid()
         dgvAdelanto.Rows.Clear()
         Dim dao = DataContext.daoAdelantos
-        _codmoneda = frmCompras._codmoneda
         Try
             saldoTotal = Decimal.Zero
             Dim listar As List(Of Adelantos) = dao.listarAdelantosPorClientes(codigoCliente)
-            Dim seleccionar As Boolean
             For Each dato As Adelantos In listar
-                If _codmoneda <> dato.Codmoneda Then
-                    seleccionar = False
-                Else
-                    seleccionar = True
-                End If
-                dgvAdelanto.Rows.Add(seleccionar, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo)
+                dgvAdelanto.Rows.Add(True, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo)
                 adelantoSeleccionados.Add(dato)
                 saldoTotal += dato.Saldo
                 valorSeleccionadoMonto = saldoTotal
             Next
         Catch ex As Exception
-            MsgBox("Se produjo el siguiente error: " & vbCr & dao.ErrorSms, MsgBoxStyle.Information, _tituloError)
+            MsgBox("Se produjo el siguiente error: " & vbCr & dao.ErrorSms, MsgBoxStyle.Information, "Error")
         End Try
     End Sub
 
@@ -56,7 +48,6 @@ Public Class frmVerAdelantos
         Me.llenarGrid()
         lblSaldoTotal.Text = saldoTotal.ToString("#,###,#00.00")
         Me.montoCompra = frmCompras.totalGeneral
-        _codmoneda = frmCompras._codmoneda
     End Sub
 
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
@@ -125,12 +116,7 @@ Public Class frmVerAdelantos
             If dgvAdelanto.Columns(e.ColumnIndex).Name = "colSeleccionar" Then
                 Dim row As DataGridViewRow = dgvAdelanto.Rows(e.RowIndex)
                 Dim cellSeleccion As DataGridViewCheckBoxCell = row.Cells("colSeleccionar")
-                Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(Convert.ToString(row.Cells("colCodigo").Value))
-                If addAdelanto.Codmoneda <> _codmoneda Then
-                    MsgBox("No se puede seleccionar el adelanto ya que el tipo de moneda de la compras es distinto al adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelanto")
-                    row.Cells("colseleccionar").Value = False
-                    Return
-                End If
+                Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(CStr(row.Cells("colCodigo").Value))
                 If Convert.ToBoolean(cellSeleccion.Value) = True Then
                     valorSeleccionadoMonto += Convert.ToDecimal(row.Cells("colSaldo").Value)
                     adelantoSeleccionados.Add(addAdelanto)

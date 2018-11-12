@@ -40,6 +40,7 @@ Public Class frmParametrosBasicos
         cmbPagoAdelantos.ValueMember = "Idmov"
     End Sub
 
+
     Sub cargarParametros()
         Dim dao = DataContext.daoParametros
         Try
