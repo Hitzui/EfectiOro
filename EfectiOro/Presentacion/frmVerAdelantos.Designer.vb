@@ -20,9 +20,9 @@ Partial Class frmVerAdelantos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVerAdelantos))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblSaldoTotal = New System.Windows.Forms.Label()
@@ -142,27 +142,27 @@ Partial Class frmVerAdelantos
         '
         'colFecha
         '
-        DataGridViewCellStyle4.Format = "d"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
         Me.colFecha.HeaderText = "Fecha"
         Me.colFecha.Name = "colFecha"
         Me.colFecha.ReadOnly = True
         '
         'colMonto
         '
-        DataGridViewCellStyle5.Format = "C2"
-        DataGridViewCellStyle5.NullValue = "0"
-        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = "0"
+        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
         Me.colMonto.HeaderText = "Monto"
         Me.colMonto.Name = "colMonto"
         Me.colMonto.ReadOnly = True
         '
         'colSaldo
         '
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = "0"
-        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = "0"
+        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
         Me.colSaldo.HeaderText = "Saldo"
         Me.colSaldo.Name = "colSaldo"
         Me.colSaldo.ReadOnly = True

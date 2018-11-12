@@ -53,6 +53,8 @@ Partial Class frmParametrosBasicos
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cmbCompra = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.cmbMoneda = New System.Windows.Forms.ComboBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -67,6 +69,8 @@ Partial Class frmParametrosBasicos
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.cmbMoneda)
+        Me.GroupBox1.Controls.Add(Me.Label15)
         Me.GroupBox1.Controls.Add(Me.btnGuardar)
         Me.GroupBox1.Controls.Add(Me.cmbPagoAdelantos)
         Me.GroupBox1.Controls.Add(Me.Label14)
@@ -359,6 +363,24 @@ Partial Class frmParametrosBasicos
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "Movimiento de compras:"
         '
+        'cmbMoneda
+        '
+        Me.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbMoneda.FormattingEnabled = True
+        Me.cmbMoneda.Location = New System.Drawing.Point(17, 375)
+        Me.cmbMoneda.Name = "cmbMoneda"
+        Me.cmbMoneda.Size = New System.Drawing.Size(191, 21)
+        Me.cmbMoneda.TabIndex = 24
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(20, 360)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(153, 13)
+        Me.Label15.TabIndex = 23
+        Me.Label15.Text = "Establecer parametro del dolar:"
+        '
         'frmParametrosBasicos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -405,4 +427,6 @@ Partial Class frmParametrosBasicos
     Friend WithEvents cmbPagoAdelantos As System.Windows.Forms.ComboBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents btnGuardar As Button
+    Friend WithEvents cmbMoneda As ComboBox
+    Friend WithEvents Label15 As Label
 End Class
