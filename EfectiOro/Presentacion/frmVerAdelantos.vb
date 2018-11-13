@@ -34,11 +34,11 @@ Public Class frmVerAdelantos
                     seleccionar = False
                 Else
                     seleccionar = True
+                    saldoTotal += dato.Saldo
+                    valorSeleccionadoMonto = saldoTotal
                 End If
                 dgvAdelanto.Rows.Add(seleccionar, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo)
                 adelantoSeleccionados.Add(dato)
-                saldoTotal += dato.Saldo
-                valorSeleccionadoMonto = saldoTotal
             Next
         Catch ex As Exception
             MsgBox("Se produjo el siguiente error: " & vbCr & dao.ErrorSms, MsgBoxStyle.Information, _tituloError)

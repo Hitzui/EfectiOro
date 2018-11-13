@@ -1271,13 +1271,18 @@ Public Class frmCompras
     End Sub
 
     Private Sub cmbMoneda_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbMoneda.SelectionChangeCommitted
-        Try
-            If _codmoneda <> cmbMoneda.SelectedValue Then
-                'en este momento son distintos los valores
-            End If
-            _codmoneda = cmbMoneda.SelectedValue
-        Catch ex As Exception
-            MsgBox("No se pudo establecer el tipo de moneda seleccionado debido al siguiente error: " & vbCr & ex.Message, MsgBoxStyle.Exclamation, tituloError)
-        End Try
+        Using ctx As New Contexto
+            Try
+                Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = Now.Date Select tc).First
+                Dim moneda = (From m In ctx.Moneda Where m.Codmoneda = CInt(cmbMoneda.SelectedValue) Select m).First
+                If _codmoneda <> cmbMoneda.SelectedValue Then
+                    'en este momento son distintos los valores
+                End If
+                MsgBox(cmbMoneda.Text)
+                _codmoneda = cmbMoneda.SelectedValue
+            Catch ex As Exception
+                MsgBox("No se pudo establecer el tipo de moneda seleccionado debido al siguiente error: " & vbCr & ex.Message, MsgBoxStyle.Exclamation, tituloError)
+            End Try
+        End Using
     End Sub
 End Class
