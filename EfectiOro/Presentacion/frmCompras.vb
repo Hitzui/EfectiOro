@@ -663,6 +663,7 @@ Public Class frmCompras
         _codmoneda = cmbMoneda.SelectedValue
         Me.btnCerrarcompra.Enabled = False
         'Me.filtrarCliente()
+        btnDolares.Enabled = True
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
@@ -692,6 +693,7 @@ Public Class frmCompras
         Me.compraEncontrada = False
         Me.btnCerrarcompra.Enabled = True
         Me.txtFecha.Value = Now
+        btnDolares.Enabled = False
     End Sub
 
     Private Sub btnGuardar_Click(sender As System.Object, e As System.EventArgs) Handles btnGuardar.Click
@@ -1035,6 +1037,7 @@ Public Class frmCompras
                 Next
                 Me.compraEncontrada = True
                 cmbMoneda.SelectedValue = findCompra.Codmoneda
+                btnDolares.Enabled = False
             Catch ex As Exception
                 MsgBox("No existe la compra seleccionada " & vbCr & ex.Message, MsgBoxStyle.Information, "Buscar compra")
                 Me.compraEncontrada = False
