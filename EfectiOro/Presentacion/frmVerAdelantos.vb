@@ -11,6 +11,7 @@ Public Class frmVerAdelantos
     ''' </summary>
     ''' <remarks></remarks>
     Public Shared adelantoSeleccionados As List(Of Adelantos)
+    Private _codmoneda As Integer
 
     Public Sub New()
 
@@ -131,16 +132,13 @@ Public Class frmVerAdelantos
             If dgvAdelanto.Columns(e.ColumnIndex).Name = "colSeleccionar" Then
                 Dim row As DataGridViewRow = dgvAdelanto.Rows(e.RowIndex)
                 Dim cellSeleccion As DataGridViewCheckBoxCell = row.Cells("colSeleccionar")
-<<<<<<< HEAD
                 Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(CStr(row.Cells("colCodigo").Value))
-=======
-                Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(Convert.ToString(row.Cells("colCodigo").Value))
+                'Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(Convert.ToString(row.Cells("colCodigo").Value))
                 If addAdelanto.Codmoneda <> _codmoneda Then
                     'MsgBox("No se puede seleccionar el adelanto ya que el tipo de moneda de la compras es distinto al adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelanto")
                     row.Cells("colseleccionar").Value = False
                     Return
                 End If
->>>>>>> d8bfd5a6acabacd5117db978dba64f782dae3e16
                 If Convert.ToBoolean(cellSeleccion.Value) = True Then
                     valorSeleccionadoMonto += Convert.ToDecimal(row.Cells("colSaldo").Value)
                     adelantoSeleccionados.Add(addAdelanto)

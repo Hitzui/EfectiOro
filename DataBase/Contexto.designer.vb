@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="Efectioro")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="efectioro")>  _
 Partial Public Class ContextoDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -37,10 +37,16 @@ Partial Public Class ContextoDataContext
     End Sub
   Partial Private Sub Deletedetacaja(instance As detacaja)
     End Sub
+  Partial Private Sub InsertIds(instance As Ids)
+    End Sub
+  Partial Private Sub UpdateIds(instance As Ids)
+    End Sub
+  Partial Private Sub DeleteIds(instance As Ids)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.DataBase.My.MySettings.Default.EfectiOroConnectionString, mappingSource)
+		MyBase.New(Global.DataBase.My.MySettings.Default.efectioroConnectionString1, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -70,9 +76,9 @@ Partial Public Class ContextoDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property Ids() As System.Data.Linq.Table(Of Id)
+	Public ReadOnly Property Ids() As System.Data.Linq.Table(Of Ids)
 		Get
-			Return Me.GetTable(Of Id)
+			Return Me.GetTable(Of Ids)
 		End Get
 	End Property
 End Class
@@ -343,7 +349,10 @@ Partial Public Class detacaja
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Ids")>  _
-Partial Public Class Id
+Partial Public Class Ids
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
 	
 	Private _codcliente As Integer
 	
@@ -381,11 +390,99 @@ Partial Public Class Id
 	
 	Private _dolares As System.Nullable(Of Integer)
 	
+	Private _cordobas As System.Nullable(Of Integer)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OncodclienteChanging(value As Integer)
+    End Sub
+    Partial Private Sub OncodclienteChanged()
+    End Sub
+    Partial Private Sub OncodagenciaChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OncodagenciaChanged()
+    End Sub
+    Partial Private Sub OnnumcompraChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnnumcompraChanged()
+    End Sub
+    Partial Private Sub OnidadelantoChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnidadelantoChanged()
+    End Sub
+    Partial Private Sub OnidcomprasChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnidcomprasChanged()
+    End Sub
+    Partial Private Sub Onid_adelantosChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onid_adelantosChanged()
+    End Sub
+    Partial Private Sub Onsaldo_anteriorChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onsaldo_anteriorChanged()
+    End Sub
+    Partial Private Sub Oncierre_compraChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Oncierre_compraChanged()
+    End Sub
+    Partial Private Sub Onprestamo_egresoChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onprestamo_egresoChanged()
+    End Sub
+    Partial Private Sub Onprestamo_ingresoChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onprestamo_ingresoChanged()
+    End Sub
+    Partial Private Sub Onanular_compraChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onanular_compraChanged()
+    End Sub
+    Partial Private Sub Onanular_adelantoChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onanular_adelantoChanged()
+    End Sub
+    Partial Private Sub Onvarias_comprasChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub Onvarias_comprasChanged()
+    End Sub
+    Partial Private Sub OnrecibeChanging(value As String)
+    End Sub
+    Partial Private Sub OnrecibeChanged()
+    End Sub
+    Partial Private Sub Onpago_adelantoChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub Onpago_adelantoChanged()
+    End Sub
+    Partial Private Sub OnidreservaChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnidreservaChanged()
+    End Sub
+    Partial Private Sub OnbackupChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnbackupChanged()
+    End Sub
+    Partial Private Sub OndolaresChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OndolaresChanged()
+    End Sub
+    Partial Private Sub OncordobasChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OncordobasChanged()
+    End Sub
+    #End Region
+	
 	Public Sub New()
 		MyBase.New
+		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcliente", DbType:="Int NOT NULL")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcliente", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
 	Public Property codcliente() As Integer
 		Get
 			Return Me._codcliente
@@ -393,7 +490,11 @@ Partial Public Class Id
 		Set
 			If ((Me._codcliente = value)  _
 						= false) Then
+				Me.OncodclienteChanging(value)
+				Me.SendPropertyChanging
 				Me._codcliente = value
+				Me.SendPropertyChanged("codcliente")
+				Me.OncodclienteChanged
 			End If
 		End Set
 	End Property
@@ -405,7 +506,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._codagencia.Equals(value) = false) Then
+				Me.OncodagenciaChanging(value)
+				Me.SendPropertyChanging
 				Me._codagencia = value
+				Me.SendPropertyChanged("codagencia")
+				Me.OncodagenciaChanged
 			End If
 		End Set
 	End Property
@@ -417,7 +522,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._numcompra.Equals(value) = false) Then
+				Me.OnnumcompraChanging(value)
+				Me.SendPropertyChanging
 				Me._numcompra = value
+				Me.SendPropertyChanged("numcompra")
+				Me.OnnumcompraChanged
 			End If
 		End Set
 	End Property
@@ -429,7 +538,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._idadelanto.Equals(value) = false) Then
+				Me.OnidadelantoChanging(value)
+				Me.SendPropertyChanging
 				Me._idadelanto = value
+				Me.SendPropertyChanged("idadelanto")
+				Me.OnidadelantoChanged
 			End If
 		End Set
 	End Property
@@ -441,7 +554,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._idcompras.Equals(value) = false) Then
+				Me.OnidcomprasChanging(value)
+				Me.SendPropertyChanging
 				Me._idcompras = value
+				Me.SendPropertyChanged("idcompras")
+				Me.OnidcomprasChanged
 			End If
 		End Set
 	End Property
@@ -453,7 +570,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._id_adelantos.Equals(value) = false) Then
+				Me.Onid_adelantosChanging(value)
+				Me.SendPropertyChanging
 				Me._id_adelantos = value
+				Me.SendPropertyChanged("id_adelantos")
+				Me.Onid_adelantosChanged
 			End If
 		End Set
 	End Property
@@ -465,7 +586,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._saldo_anterior.Equals(value) = false) Then
+				Me.Onsaldo_anteriorChanging(value)
+				Me.SendPropertyChanging
 				Me._saldo_anterior = value
+				Me.SendPropertyChanged("saldo_anterior")
+				Me.Onsaldo_anteriorChanged
 			End If
 		End Set
 	End Property
@@ -477,7 +602,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._cierre_compra.Equals(value) = false) Then
+				Me.Oncierre_compraChanging(value)
+				Me.SendPropertyChanging
 				Me._cierre_compra = value
+				Me.SendPropertyChanged("cierre_compra")
+				Me.Oncierre_compraChanged
 			End If
 		End Set
 	End Property
@@ -489,7 +618,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._prestamo_egreso.Equals(value) = false) Then
+				Me.Onprestamo_egresoChanging(value)
+				Me.SendPropertyChanging
 				Me._prestamo_egreso = value
+				Me.SendPropertyChanged("prestamo_egreso")
+				Me.Onprestamo_egresoChanged
 			End If
 		End Set
 	End Property
@@ -501,7 +634,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._prestamo_ingreso.Equals(value) = false) Then
+				Me.Onprestamo_ingresoChanging(value)
+				Me.SendPropertyChanging
 				Me._prestamo_ingreso = value
+				Me.SendPropertyChanged("prestamo_ingreso")
+				Me.Onprestamo_ingresoChanged
 			End If
 		End Set
 	End Property
@@ -513,7 +650,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._anular_compra.Equals(value) = false) Then
+				Me.Onanular_compraChanging(value)
+				Me.SendPropertyChanging
 				Me._anular_compra = value
+				Me.SendPropertyChanged("anular_compra")
+				Me.Onanular_compraChanged
 			End If
 		End Set
 	End Property
@@ -525,7 +666,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._anular_adelanto.Equals(value) = false) Then
+				Me.Onanular_adelantoChanging(value)
+				Me.SendPropertyChanging
 				Me._anular_adelanto = value
+				Me.SendPropertyChanged("anular_adelanto")
+				Me.Onanular_adelantoChanged
 			End If
 		End Set
 	End Property
@@ -537,7 +682,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._varias_compras.Equals(value) = false) Then
+				Me.Onvarias_comprasChanging(value)
+				Me.SendPropertyChanging
 				Me._varias_compras = value
+				Me.SendPropertyChanged("varias_compras")
+				Me.Onvarias_comprasChanged
 			End If
 		End Set
 	End Property
@@ -549,7 +698,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (String.Equals(Me._recibe, value) = false) Then
+				Me.OnrecibeChanging(value)
+				Me.SendPropertyChanging
 				Me._recibe = value
+				Me.SendPropertyChanged("recibe")
+				Me.OnrecibeChanged
 			End If
 		End Set
 	End Property
@@ -561,7 +714,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._pago_adelanto.Equals(value) = false) Then
+				Me.Onpago_adelantoChanging(value)
+				Me.SendPropertyChanging
 				Me._pago_adelanto = value
+				Me.SendPropertyChanged("pago_adelanto")
+				Me.Onpago_adelantoChanged
 			End If
 		End Set
 	End Property
@@ -573,7 +730,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._idreserva.Equals(value) = false) Then
+				Me.OnidreservaChanging(value)
+				Me.SendPropertyChanging
 				Me._idreserva = value
+				Me.SendPropertyChanged("idreserva")
+				Me.OnidreservaChanged
 			End If
 		End Set
 	End Property
@@ -585,7 +746,11 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._backup.Equals(value) = false) Then
+				Me.OnbackupChanging(value)
+				Me.SendPropertyChanging
 				Me._backup = value
+				Me.SendPropertyChanged("backup")
+				Me.OnbackupChanged
 			End If
 		End Set
 	End Property
@@ -597,8 +762,46 @@ Partial Public Class Id
 		End Get
 		Set
 			If (Me._dolares.Equals(value) = false) Then
+				Me.OndolaresChanging(value)
+				Me.SendPropertyChanging
 				Me._dolares = value
+				Me.SendPropertyChanged("dolares")
+				Me.OndolaresChanged
 			End If
 		End Set
 	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cordobas", DbType:="Int")>  _
+	Public Property cordobas() As System.Nullable(Of Integer)
+		Get
+			Return Me._cordobas
+		End Get
+		Set
+			If (Me._cordobas.Equals(value) = false) Then
+				Me.OncordobasChanging(value)
+				Me.SendPropertyChanging
+				Me._cordobas = value
+				Me.SendPropertyChanged("cordobas")
+				Me.OncordobasChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class
