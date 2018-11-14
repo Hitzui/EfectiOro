@@ -1223,6 +1223,7 @@ Namespace Database
         Private _Hora As String
 
         Private _codmoneda As Integer
+
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub

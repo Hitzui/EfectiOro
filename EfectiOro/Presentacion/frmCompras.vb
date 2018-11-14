@@ -4,13 +4,14 @@ Imports EfectiOro.Database
 
 Public Class frmCompras
     Private Const tituloError As String = "Error"
-    Private Const Title As String = "Error"
+    Private Const tituloCompra As String = "Compras"
 
 #Region "Properties"
     Dim config As New ConfiguracionGeneral
     Dim agencia As String
     Private bsCliente As New BindingSource
     Private auxiliar As Integer
+    Private _convertirMoneda As Integer = 0
     Private _compraActual As Compras
     'Dim daoCliente As IDaoCliente
     Private _preciosSeleccionados As List(Of Precios)
@@ -49,7 +50,7 @@ Public Class frmCompras
     Public Property totalGeneral As Decimal
     Public Property aplicarAdelanto As Decimal
     Public verAdelanto As List(Of Adelantos)
-    Private _codmoneda As Object
+    Public Shared _codmoneda As Integer
     Private Property compraEncontrada As Boolean
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
@@ -264,7 +265,7 @@ Public Class frmCompras
                 txtPeso.Text = Convert.ToString(findPrecio.Gramos)
             End If
         Catch ex As Exception
-            MsgBox("Establesca los precios del oro para poder ingresar la compra", MsgBoxStyle.Information, "Compras")
+            MsgBox("Establesca los precios del oro para poder ingresar la compra", MsgBoxStyle.Information, tituloCompra)
         End Try
     End Sub
     Sub calcularTotales()
@@ -572,7 +573,7 @@ Public Class frmCompras
 
     Private Sub btnAgregar_Click(sender As System.Object, e As System.EventArgs) Handles btnAgregar.Click
         If Me.txtImporte.TextLength <= 0 Then
-            MsgBox("No se ha indicado el importe al item seleccionado, intente nuevamente", MsgBoxStyle.Information, "Compras")
+            MsgBox("No se ha indicado el importe al item seleccionado, intente nuevamente", MsgBoxStyle.Information, tituloCompra)
             Me.txtPrecio.Focus()
             Return
         End If
@@ -622,7 +623,7 @@ Public Class frmCompras
 
     Private Sub btnQuitar_Click(sender As System.Object, e As System.EventArgs) Handles btnQuitar.Click
         Try
-            Dim result As DialogResult = MsgBox("¿Seguro desea quitar el item seleccionado de la lista?", MsgBoxStyle.YesNo, "Compras")
+            Dim result As DialogResult = MsgBox("¿Seguro desea quitar el item seleccionado de la lista?", MsgBoxStyle.YesNo, tituloCompra)
             If result = Windows.Forms.DialogResult.No Then
                 Return
             End If
@@ -658,6 +659,8 @@ Public Class frmCompras
         Me.cmbEstado.Enabled = True
         Me.cmbEstado.SelectedIndex = 1
         cmbMoneda.Enabled = True
+        cmbMoneda.SelectedIndex = 0
+        _codmoneda = cmbMoneda.SelectedValue
         Me.btnCerrarcompra.Enabled = False
         'Me.filtrarCliente()
     End Sub
@@ -844,7 +847,7 @@ Public Class frmCompras
                 'creamos el detalle del movimiento en la caja
                 Dim detaCaja As New Detacaja
                 detaCaja.codcaja = caja
-                detaCaja.idmov = parametros.Idcompras
+                detaCaja.idmov = parametros.idcompras
                 detaCaja.idcaja = modCaja.Idcaja
                 detaCaja.fecha = DateTime.Now
                 'detaCaja.Concepto = "***COMPRA: " & nuevaCompra.Numcompra & "***"
@@ -874,7 +877,7 @@ Public Class frmCompras
                     'End If
                     'daoMcaja.actualizarDatosMaestroCaja(modCaja)
                     'daoMcaja.guardarDatosDetaCaja(detaCaja)
-                    If parametros.Varias_compras = False Then
+                    If parametros.varias_compras = False Then
                         daoPrecio.valoresPorDefault()
                     End If
                     MsgBox("Se guardaron los datos de la compra en el sistema", MsgBoxStyle.Information, "Guardar Compra")
@@ -1031,6 +1034,7 @@ Public Class frmCompras
                     End If
                 Next
                 Me.compraEncontrada = True
+                cmbMoneda.SelectedValue = findCompra.Codmoneda
             Catch ex As Exception
                 MsgBox("No existe la compra seleccionada " & vbCr & ex.Message, MsgBoxStyle.Information, "Buscar compra")
                 Me.compraEncontrada = False
@@ -1271,12 +1275,50 @@ Public Class frmCompras
 
     Private Sub cmbMoneda_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbMoneda.SelectionChangeCommitted
         Try
+            Dim daoParam = DataContext.daoParametros
+            Dim param = daoParam.recuperarParametros
             If _codmoneda <> cmbMoneda.SelectedValue Then
                 'en este momento son distintos los valores
             End If
             _codmoneda = cmbMoneda.SelectedValue
+            Select Case CInt(cmbMoneda.SelectedValue)
+                Case param.dolares
+                    _convertirMoneda = param.dolares
+                Case param.cordobas
+                    _convertirMoneda = param.cordobas
+            End Select
         Catch ex As Exception
             MsgBox("No se pudo establecer el tipo de moneda seleccionado debido al siguiente error: " & vbCr & ex.Message, MsgBoxStyle.Exclamation, tituloError)
+        End Try
+    End Sub
+
+    Private Sub btnDolares_Click(sender As Object, e As EventArgs) Handles btnDolares.Click
+        Try
+            If dgvCompras.Rows.Count <= 0 Then
+                MsgBox("No hay datos ingresados para convertir, intente nuevamente", MsgBoxStyle.Information, tituloCompra)
+                Return
+            End If
+            Dim daoParam = DataContext.daoParametros
+            Dim daoTipoCambio = DataContext.daoTipoCambio
+            Dim param = daoParam.recuperarParametros
+            Dim tc = daoTipoCambio.buscarDato(Now.Date)
+            Select Case _convertirMoneda
+                Case param.dolares
+                    For Each row As DataGridViewRow In dgvCompras.Rows
+                        Dim precio As Decimal = Convert.ToDecimal(row.Cells("colPrecio").Value)
+                        Dim importe As Decimal = Convert.ToDecimal(row.Cells("colImporte").Value)
+                        precio = Decimal.Divide(precio, tc.Tipocambio1)
+                        row.Cells("colPrecio").Value = precio
+                        importe = Decimal.Divide(importe, tc.Tipocambio1)
+                        row.Cells("colImporte").Value = importe
+                    Next
+                    Dim total As Decimal = Convert.ToDecimal(txtTotal.Text)
+                    total = Decimal.Divide(total, tc.Tipocambio1)
+                    txtTotal.Text = total.ToString("#,###,##0.00")
+                Case param.cordobas
+            End Select
+        Catch ex As Exception
+            MsgBox("No se pudo convertir la moneda seleccionada, intente nuevamente o revise si se ha establecido el tipo de cambio en el sistema", MsgBoxStyle.Information, tituloError)
         End Try
     End Sub
 End Class
