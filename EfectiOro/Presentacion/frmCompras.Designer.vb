@@ -24,6 +24,7 @@ Partial Class frmCompras
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.panelHeader = New System.Windows.Forms.Panel()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btnCerrarcompra = New System.Windows.Forms.Button()
@@ -127,6 +128,7 @@ Partial Class frmCompras
         Me.cmbEstado = New System.Windows.Forms.ComboBox()
         Me.cmbMoneda = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.UltraButton1 = New Infragistics.Win.Misc.UltraButton()
         Me.panelHeader.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -1165,10 +1167,25 @@ Partial Class frmCompras
         Me.Label13.TabIndex = 13
         Me.Label13.Text = "Tipo de Moneda:"
         '
+        'UltraButton1
+        '
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.finance51
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.UltraButton1.Appearance = Appearance1
+        Me.UltraButton1.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.UltraButton1.ImageSize = New System.Drawing.Size(30, 30)
+        Me.UltraButton1.Location = New System.Drawing.Point(709, 517)
+        Me.UltraButton1.Name = "UltraButton1"
+        Me.UltraButton1.Size = New System.Drawing.Size(50, 36)
+        Me.UltraButton1.TabIndex = 15
+        Me.UltraButton1.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
         'frmCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(850, 646)
+        Me.Controls.Add(Me.UltraButton1)
         Me.Controls.Add(Me.cmbMoneda)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.cmbEstado)
@@ -1194,6 +1211,7 @@ Partial Class frmCompras
         Me.Controls.SetChildIndex(Me.cmbEstado, 0)
         Me.Controls.SetChildIndex(Me.Label13, 0)
         Me.Controls.SetChildIndex(Me.cmbMoneda, 0)
+        Me.Controls.SetChildIndex(Me.UltraButton1, 0)
         Me.panelHeader.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -1328,4 +1346,5 @@ Partial Class frmCompras
     Friend WithEvents colDireccionBuscar As DataGridViewTextBoxColumn
     Friend WithEvents cmbMoneda As ComboBox
     Friend WithEvents Label13 As Label
+    Friend WithEvents UltraButton1 As Infragistics.Win.Misc.UltraButton
 End Class

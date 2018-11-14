@@ -6,7 +6,30 @@ Public Class frmAdelantos
     Private sumaGen As Decimal = 0
     Private nombreCliente As String
     Private saldoActual As Decimal = 0D
+    Private g_efectivo = Decimal.Zero
+    Private g_transferencia = Decimal.Zero
+    Private g_cheque As Decimal = Decimal.Zero
+    Public Sub New()
 
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+    Sub cargarMoneda()
+        Using ctx As New Contexto
+            Try
+                Dim monedas = ctx.Moneda.ToList
+                cmbMoneda.DisplayMember = "descripcion"
+                cmbMoneda.ValueMember = "codmoneda"
+                cmbMoneda.DataSource = monedas
+                cmbMoneda.SelectedIndex = 0
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Sub
     Sub filtrarCliente()
         Try
             If txtcodcliente.TextLength > 0 Then
@@ -29,7 +52,7 @@ Public Class frmAdelantos
     ''' <remarks></remarks>
     Sub calcularSuma()
         Try
-            Dim efectivo, cheque, transferencia, suma As Decimal
+            Dim efectivo, transferencia, cheque, suma As Decimal
             If txtefectivo.TextLength > 0 Then
                 efectivo = Convert.ToDecimal(txtefectivo.Text)
             Else
@@ -86,6 +109,8 @@ Public Class frmAdelantos
     End Sub
 
     Private Sub btnNuevo_Click(sender As System.Object, e As System.EventArgs) Handles btnNuevo.Click
+        cmbMoneda.Enabled = True
+        cargarMoneda()
         Me.habilitar(False, True, True, True)
         Me.limpiar()
         txtcodcliente.Focus()
@@ -95,6 +120,7 @@ Public Class frmAdelantos
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
         Me.habilitar(True, False, False, False)
         Me.dgvCliente.Visible = False
+        cmbMoneda.Enabled = False
         Me.limpiar()
     End Sub
 
@@ -113,6 +139,8 @@ Public Class frmAdelantos
             Case Keys.Enter
                 txtreferencia.Focus()
                 e.Handled = True
+            Case Keys.Escape
+                dgvCliente.Visible = False
         End Select
     End Sub
 
@@ -445,13 +473,14 @@ Public Class frmAdelantos
         adelanto.Numcompra = String.Empty
         adelanto.Monto_letras = ConvertirNumeroLetros(Convert.ToDecimal(lbltotal.Text))
         adelanto.Hora = lblHora.Text
+        adelanto.Codmoneda = cmbMoneda.SelectedValue
         'definimos los detalles del detacaja
         detaCaja.Referencia = txtreferencia.Text
         detaCaja.Idcaja = recuperarCaja.Idcaja
         detaCaja.Idmov = daoParametros.recuperarParametros().Id_adelantos
         detaCaja.fecha = DateTime.Now
         detaCaja.Concepto = "***ADELANTO: " & adelanto.Idsalida & "***"
-        detaCaja.Hora = lblHora.Text
+        detaCaja.hora = lblHora.Text
         'detaCaja.Fecha = Now
         detaCaja.Codcaja = caja
         'validamos que haya saldo dsiponible para realizar la transacción
@@ -497,5 +526,4 @@ Public Class frmAdelantos
     Private Sub btnAdelantos_Click(sender As Object, e As EventArgs) Handles btnAdelantos.Click
         frmAdelantosAplicados.Show()
     End Sub
-
 End Class

@@ -49,6 +49,7 @@ Public Class frmCompras
     Public Property totalGeneral As Decimal
     Public Property aplicarAdelanto As Decimal
     Public verAdelanto As List(Of Adelantos)
+    Private _codmoneda As Object
     Private Property compraEncontrada As Boolean
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
@@ -1268,5 +1269,14 @@ Public Class frmCompras
         End Select
     End Sub
 
-
+    Private Sub cmbMoneda_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbMoneda.SelectionChangeCommitted
+        Try
+            If _codmoneda <> cmbMoneda.SelectedValue Then
+                'en este momento son distintos los valores
+            End If
+            _codmoneda = cmbMoneda.SelectedValue
+        Catch ex As Exception
+            MsgBox("No se pudo establecer el tipo de moneda seleccionado debido al siguiente error: " & vbCr & ex.Message, MsgBoxStyle.Exclamation, tituloError)
+        End Try
+    End Sub
 End Class
