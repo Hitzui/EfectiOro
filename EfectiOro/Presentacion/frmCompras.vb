@@ -13,6 +13,8 @@ Public Class frmCompras
     Private auxiliar As Integer
     Private _convertirMoneda As Integer = 0
     Private _compraActual As Compras
+    Private _dolares As Boolean = False
+    Private _cordobas As Boolean = False
     'Dim daoCliente As IDaoCliente
     Private _preciosSeleccionados As List(Of Precios)
     Public ReadOnly Property precio_seleccionado() As List(Of Precios)
@@ -1305,32 +1307,42 @@ Public Class frmCompras
             Dim daoTipoCambio = DataContext.daoTipoCambio
             Dim param = daoParam.recuperarParametros
             Dim tc = daoTipoCambio.buscarDato(Now.Date)
+            Dim total As Decimal = Convert.ToDecimal(txtTotal.Text)
             Select Case _convertirMoneda
                 Case param.dolares
-                    For Each row As DataGridViewRow In dgvCompras.Rows
-                        Dim precio As Decimal = Convert.ToDecimal(row.Cells("colPrecio").Value)
-                        Dim importe As Decimal = Convert.ToDecimal(row.Cells("colImporte").Value)
+                    If _dolares = True Then
+                        MsgBox("Ya se ha hecho el cambio monetario al tipo Dolar, intente nuevamente.", MsgBoxStyle.Information, tituloCompra)
+                        Return
+                    End If
+                    total = Decimal.Divide(total, tc.Tipocambio1)
+                    _dolares = True
+                    _cordobas = False
+                Case param.cordobas
+                    If _cordobas = True Then
+                        MsgBox("Ya se ha hecho el cambio monetario al tipo Cordoba, intente nuevamente.", MsgBoxStyle.Information, tituloCompra)
+                        Return
+                    End If
+                    total = Decimal.Multiply(total, tc.Tipocambio1)
+                    _dolares = False
+                    _cordobas = True
+            End Select
+            For Each row As DataGridViewRow In dgvCompras.Rows
+                Dim precio As Decimal = Convert.ToDecimal(row.Cells("colPrecio").Value)
+                Dim importe As Decimal = Convert.ToDecimal(row.Cells("colImporte").Value)
+                Select Case _convertirMoneda
+                    Case param.dolares
                         precio = Decimal.Divide(precio, tc.Tipocambio1)
                         row.Cells("colPrecio").Value = precio
                         importe = Decimal.Divide(importe, tc.Tipocambio1)
                         row.Cells("colImporte").Value = importe
-                    Next
-                    Dim total As Decimal = Convert.ToDecimal(txtTotal.Text)
-                    total = Decimal.Divide(total, tc.Tipocambio1)
-                    txtTotal.Text = total.ToString("#,###,##0.00")
-                Case param.cordobas
-                    For Each row As DataGridViewRow In dgvCompras.Rows
-                        Dim precio As Decimal = Convert.ToDecimal(row.Cells("colPrecio").Value)
-                        Dim importe As Decimal = Convert.ToDecimal(row.Cells("colImporte").Value)
+                    Case param.cordobas
                         precio = Decimal.Multiply(precio, tc.Tipocambio1)
                         row.Cells("colPrecio").Value = precio
                         importe = Decimal.Multiply(importe, tc.Tipocambio1)
                         row.Cells("colImporte").Value = importe
-                    Next
-                    Dim total As Decimal = Convert.ToDecimal(txtTotal.Text)
-                    total = Decimal.Multiply(total, tc.Tipocambio1)
-                    txtTotal.Text = total.ToString("#,###,##0.00")
-            End Select
+                End Select
+            Next
+            txtTotal.Text = total.ToString("#,###,#00.00")
         Catch ex As Exception
             MsgBox("No se pudo convertir la moneda seleccionada, intente nuevamente o revise si se ha establecido el tipo de cambio en el sistema", MsgBoxStyle.Information, tituloError)
         End Try
