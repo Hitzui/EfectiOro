@@ -1319,6 +1319,17 @@ Public Class frmCompras
                     total = Decimal.Divide(total, tc.Tipocambio1)
                     txtTotal.Text = total.ToString("#,###,##0.00")
                 Case param.cordobas
+                    For Each row As DataGridViewRow In dgvCompras.Rows
+                        Dim precio As Decimal = Convert.ToDecimal(row.Cells("colPrecio").Value)
+                        Dim importe As Decimal = Convert.ToDecimal(row.Cells("colImporte").Value)
+                        precio = Decimal.Multiply(precio, tc.Tipocambio1)
+                        row.Cells("colPrecio").Value = precio
+                        importe = Decimal.Multiply(importe, tc.Tipocambio1)
+                        row.Cells("colImporte").Value = importe
+                    Next
+                    Dim total As Decimal = Convert.ToDecimal(txtTotal.Text)
+                    total = Decimal.Multiply(total, tc.Tipocambio1)
+                    txtTotal.Text = total.ToString("#,###,##0.00")
             End Select
         Catch ex As Exception
             MsgBox("No se pudo convertir la moneda seleccionada, intente nuevamente o revise si se ha establecido el tipo de cambio en el sistema", MsgBoxStyle.Information, tituloError)
