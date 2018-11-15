@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmParametrosBasicos
     Inherits EfectiOro.frmPersonalizado
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -24,6 +24,8 @@ Partial Class frmParametrosBasicos
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmParametrosBasicos))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmbMoneda = New System.Windows.Forms.ComboBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.cmbPagoAdelantos = New System.Windows.Forms.ComboBox()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -53,8 +55,8 @@ Partial Class frmParametrosBasicos
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cmbCompra = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.cmbMoneda = New System.Windows.Forms.ComboBox()
-        Me.Label15 = New System.Windows.Forms.Label()
+        Me.cmbCordobas = New System.Windows.Forms.ComboBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -65,10 +67,12 @@ Partial Class frmParametrosBasicos
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(502, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(519, 25)
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.cmbCordobas)
+        Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.cmbMoneda)
         Me.GroupBox1.Controls.Add(Me.Label15)
         Me.GroupBox1.Controls.Add(Me.btnGuardar)
@@ -102,10 +106,28 @@ Partial Class frmParametrosBasicos
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 31)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(478, 448)
+        Me.GroupBox1.Size = New System.Drawing.Size(495, 431)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Parametros"
+        '
+        'cmbMoneda
+        '
+        Me.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbMoneda.FormattingEnabled = True
+        Me.cmbMoneda.Location = New System.Drawing.Point(17, 375)
+        Me.cmbMoneda.Name = "cmbMoneda"
+        Me.cmbMoneda.Size = New System.Drawing.Size(191, 21)
+        Me.cmbMoneda.TabIndex = 24
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(20, 360)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(153, 13)
+        Me.Label15.TabIndex = 23
+        Me.Label15.Text = "Establecer parametro del dolar:"
         '
         'btnGuardar
         '
@@ -113,7 +135,7 @@ Partial Class frmParametrosBasicos
         Me.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnGuardar.FlatAppearance.BorderSize = 0
         Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(420, 394)
+        Me.btnGuardar.Location = New System.Drawing.Point(437, 377)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(52, 48)
         Me.btnGuardar.TabIndex = 22
@@ -363,30 +385,30 @@ Partial Class frmParametrosBasicos
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "Movimiento de compras:"
         '
-        'cmbMoneda
+        'cmbCordobas
         '
-        Me.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbMoneda.FormattingEnabled = True
-        Me.cmbMoneda.Location = New System.Drawing.Point(17, 375)
-        Me.cmbMoneda.Name = "cmbMoneda"
-        Me.cmbMoneda.Size = New System.Drawing.Size(191, 21)
-        Me.cmbMoneda.TabIndex = 24
+        Me.cmbCordobas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCordobas.FormattingEnabled = True
+        Me.cmbCordobas.Location = New System.Drawing.Point(219, 375)
+        Me.cmbCordobas.Name = "cmbCordobas"
+        Me.cmbCordobas.Size = New System.Drawing.Size(191, 21)
+        Me.cmbCordobas.TabIndex = 26
         '
-        'Label15
+        'Label16
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(20, 360)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(153, 13)
-        Me.Label15.TabIndex = 23
-        Me.Label15.Text = "Establecer parametro del dolar:"
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(222, 360)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(169, 13)
+        Me.Label16.TabIndex = 25
+        Me.Label16.Text = "Establecer parametro del cordoba:"
         '
         'frmParametrosBasicos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(502, 491)
+        Me.ClientSize = New System.Drawing.Size(519, 474)
         Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmParametrosBasicos"
@@ -429,4 +451,6 @@ Partial Class frmParametrosBasicos
     Friend WithEvents btnGuardar As Button
     Friend WithEvents cmbMoneda As ComboBox
     Friend WithEvents Label15 As Label
+    Friend WithEvents cmbCordobas As ComboBox
+    Friend WithEvents Label16 As Label
 End Class

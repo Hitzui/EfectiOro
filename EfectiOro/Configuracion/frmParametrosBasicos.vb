@@ -39,11 +39,19 @@ Public Class frmParametrosBasicos
         cmbPagoAdelantos.DisplayMember = "Descripcion"
         cmbPagoAdelantos.ValueMember = "Idmov"
     End Sub
+
     Sub cargarMoneda()
         Using ctx As New Contexto
-            cmbMoneda.DataSource = ctx.Moneda.ToList
-            cmbMoneda.DisplayMember = "Descripcion"
-            cmbMoneda.ValueMember = "Codmoneda"
+            Try
+                cmbMoneda.DataSource = ctx.Moneda.ToList
+                cmbMoneda.DisplayMember = "Descripcion"
+                cmbMoneda.ValueMember = "Codmoneda"
+                cmbCordobas.DataSource = ctx.Moneda.ToList
+                cmbCordobas.DisplayMember = "Descripcion"
+                cmbCordobas.ValueMember = "Codmoneda"
+            Catch ex As Exception
+                MsgBox("Cree los valores de la monedas a usar. Revise la siguiente informacion: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Moneda")
+            End Try
         End Using
     End Sub
     Sub cargarParametros()
@@ -106,6 +114,7 @@ Public Class frmParametrosBasicos
         para.dolares = CInt(cmbMoneda.SelectedValue)
         para.backup = find.backup
         para.idreserva = find.idreserva
+        para.cordobas = CInt(cmbCordobas.SelectedValue)
         If Me.parametrosCargados Then
             If dao.actualizarParametros(para) Then
                 MsgBox("Se actualizaron los parametros de configuracion", MsgBoxStyle.Information, "Establecer parametros")

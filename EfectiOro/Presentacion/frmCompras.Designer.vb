@@ -22,8 +22,10 @@ Partial Class frmCompras
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCompras))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.panelHeader = New System.Windows.Forms.Panel()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btnCerrarcompra = New System.Windows.Forms.Button()
@@ -63,11 +65,6 @@ Partial Class frmCompras
         Me.Label5 = New System.Windows.Forms.Label()
         Me.grupoLista = New System.Windows.Forms.GroupBox()
         Me.dgvCompras = New System.Windows.Forms.DataGridView()
-        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPeso = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.grupoDetalle = New System.Windows.Forms.GroupBox()
         Me.btnAdelantos = New System.Windows.Forms.Button()
         Me.txtAdelantos = New System.Windows.Forms.TextBox()
@@ -84,6 +81,7 @@ Partial Class frmCompras
         Me.Label11 = New System.Windows.Forms.Label()
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnDolares = New Infragistics.Win.Misc.UltraButton()
         Me.dgvFiltrarCliente = New System.Windows.Forms.DataGridView()
         Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -127,6 +125,11 @@ Partial Class frmCompras
         Me.cmbEstado = New System.Windows.Forms.ComboBox()
         Me.cmbMoneda = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPeso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelHeader.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -591,42 +594,6 @@ Partial Class frmCompras
         Me.dgvCompras.Size = New System.Drawing.Size(820, 189)
         Me.dgvCompras.TabIndex = 0
         '
-        'colLinea
-        '
-        Me.colLinea.FillWeight = 30.0!
-        Me.colLinea.HeaderText = "Linea"
-        Me.colLinea.Name = "colLinea"
-        Me.colLinea.ReadOnly = True
-        '
-        'colDescripcion
-        '
-        Me.colDescripcion.FillWeight = 200.0!
-        Me.colDescripcion.HeaderText = "Descripcion"
-        Me.colDescripcion.Name = "colDescripcion"
-        Me.colDescripcion.ReadOnly = True
-        '
-        'colPeso
-        '
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colPeso.HeaderText = "Peso"
-        Me.colPeso.Name = "colPeso"
-        '
-        'colPrecio
-        '
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colPrecio.HeaderText = "Precio"
-        Me.colPrecio.Name = "colPrecio"
-        '
-        'colImporte
-        '
-        Me.colImporte.HeaderText = "Importe"
-        Me.colImporte.Name = "colImporte"
-        Me.colImporte.ReadOnly = True
-        '
         'grupoDetalle
         '
         Me.grupoDetalle.Controls.Add(Me.btnAdelantos)
@@ -782,6 +749,21 @@ Partial Class frmCompras
         '
         'ToolTip
         '
+        '
+        'btnDolares
+        '
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.finance51
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnDolares.Appearance = Appearance1
+        Me.btnDolares.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.btnDolares.ImageSize = New System.Drawing.Size(30, 30)
+        Me.btnDolares.Location = New System.Drawing.Point(709, 523)
+        Me.btnDolares.Name = "btnDolares"
+        Me.btnDolares.Size = New System.Drawing.Size(50, 36)
+        Me.btnDolares.TabIndex = 15
+        Me.ToolTip.SetToolTip(Me.btnDolares, "Convertir dolares a cordobas / cordobas a dolar")
+        Me.btnDolares.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
         'dgvFiltrarCliente
         '
@@ -1165,10 +1147,50 @@ Partial Class frmCompras
         Me.Label13.TabIndex = 13
         Me.Label13.Text = "Tipo de Moneda:"
         '
+        'colLinea
+        '
+        Me.colLinea.FillWeight = 30.0!
+        Me.colLinea.HeaderText = "Linea"
+        Me.colLinea.Name = "colLinea"
+        Me.colLinea.ReadOnly = True
+        '
+        'colDescripcion
+        '
+        Me.colDescripcion.FillWeight = 200.0!
+        Me.colDescripcion.HeaderText = "Descripcion"
+        Me.colDescripcion.Name = "colDescripcion"
+        Me.colDescripcion.ReadOnly = True
+        '
+        'colPeso
+        '
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle2
+        Me.colPeso.HeaderText = "Peso"
+        Me.colPeso.Name = "colPeso"
+        '
+        'colPrecio
+        '
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle3
+        Me.colPrecio.HeaderText = "Precio"
+        Me.colPrecio.Name = "colPrecio"
+        '
+        'colImporte
+        '
+        DataGridViewCellStyle4.Format = "N2"
+        DataGridViewCellStyle4.NullValue = "0.0"
+        Me.colImporte.DefaultCellStyle = DataGridViewCellStyle4
+        Me.colImporte.HeaderText = "Importe"
+        Me.colImporte.Name = "colImporte"
+        Me.colImporte.ReadOnly = True
+        '
         'frmCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(850, 646)
+        Me.Controls.Add(Me.btnDolares)
         Me.Controls.Add(Me.cmbMoneda)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.cmbEstado)
@@ -1194,6 +1216,7 @@ Partial Class frmCompras
         Me.Controls.SetChildIndex(Me.cmbEstado, 0)
         Me.Controls.SetChildIndex(Me.Label13, 0)
         Me.Controls.SetChildIndex(Me.cmbMoneda, 0)
+        Me.Controls.SetChildIndex(Me.btnDolares, 0)
         Me.panelHeader.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -1267,15 +1290,6 @@ Partial Class frmCompras
     Friend WithEvents dgvBuscar_compra As System.Windows.Forms.DataGridView
     Friend WithEvents panelBuscar_compra As System.Windows.Forms.Panel
     Friend WithEvents colNumerocompra As System.Windows.Forms.DataGridViewTextBoxColumn
-    'Friend WithEvents colCodigocliente As System.Windows.Forms.DataGridViewTextBoxColumn
-    'Friend WithEvents colNombres As System.Windows.Forms.DataGridViewTextBoxColumn
-    'Friend WithEvents colApellido As System.Windows.Forms.DataGridViewTextBoxColumn
-    'Friend WithEvents colDireccionCli As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colLinea As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colDescripcion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colPeso As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colPrecio As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colImporte As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents cmbEstado As System.Windows.Forms.ComboBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Private WithEvents btnNueva As Button
@@ -1328,4 +1342,10 @@ Partial Class frmCompras
     Friend WithEvents colDireccionBuscar As DataGridViewTextBoxColumn
     Friend WithEvents cmbMoneda As ComboBox
     Friend WithEvents Label13 As Label
+    Friend WithEvents btnDolares As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents colLinea As DataGridViewTextBoxColumn
+    Friend WithEvents colDescripcion As DataGridViewTextBoxColumn
+    Friend WithEvents colPeso As DataGridViewTextBoxColumn
+    Friend WithEvents colPrecio As DataGridViewTextBoxColumn
+    Friend WithEvents colImporte As DataGridViewTextBoxColumn
 End Class

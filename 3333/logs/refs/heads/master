@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 6cf099acaaff09562c1bcb19fea6b4b4e4ed1f2f hitzui <jose_miguel_1987@yahoo.com> 1541709287 -0600	clone: from https://github.com/Hitzui/EfectiOro.git
+6cf099acaaff09562c1bcb19fea6b4b4e4ed1f2f f89b03318946345fc239529ca7c54c34c1821313 hitzui <jose_miguel_1987@yahoo.com> 1541711457 -0600	commit: ajustes a moneda
+f89b03318946345fc239529ca7c54c34c1821313 3b8953a2435e8f76d22ae3e67c7cb79b39346058 hitzui <jose_miguel_1987@yahoo.com> 1541716165 -0600	commit: integracion del tipo de moneda en el formulario compra
