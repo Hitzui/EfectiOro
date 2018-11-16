@@ -22,10 +22,10 @@ Partial Class frmCompras
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCompras))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.panelHeader = New System.Windows.Forms.Panel()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.btnCerrarcompra = New System.Windows.Forms.Button()
@@ -65,6 +65,11 @@ Partial Class frmCompras
         Me.Label5 = New System.Windows.Forms.Label()
         Me.grupoLista = New System.Windows.Forms.GroupBox()
         Me.dgvCompras = New System.Windows.Forms.DataGridView()
+        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPeso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.grupoDetalle = New System.Windows.Forms.GroupBox()
         Me.btnAdelantos = New System.Windows.Forms.Button()
         Me.txtAdelantos = New System.Windows.Forms.TextBox()
@@ -125,11 +130,6 @@ Partial Class frmCompras
         Me.cmbEstado = New System.Windows.Forms.ComboBox()
         Me.cmbMoneda = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPeso = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelHeader.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -593,6 +593,45 @@ Partial Class frmCompras
         Me.dgvCompras.Name = "dgvCompras"
         Me.dgvCompras.Size = New System.Drawing.Size(820, 189)
         Me.dgvCompras.TabIndex = 0
+        '
+        'colLinea
+        '
+        Me.colLinea.FillWeight = 30.0!
+        Me.colLinea.HeaderText = "Linea"
+        Me.colLinea.Name = "colLinea"
+        Me.colLinea.ReadOnly = True
+        '
+        'colDescripcion
+        '
+        Me.colDescripcion.FillWeight = 200.0!
+        Me.colDescripcion.HeaderText = "Descripcion"
+        Me.colDescripcion.Name = "colDescripcion"
+        Me.colDescripcion.ReadOnly = True
+        '
+        'colPeso
+        '
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle2
+        Me.colPeso.HeaderText = "Peso"
+        Me.colPeso.Name = "colPeso"
+        '
+        'colPrecio
+        '
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle3
+        Me.colPrecio.HeaderText = "Precio"
+        Me.colPrecio.Name = "colPrecio"
+        '
+        'colImporte
+        '
+        DataGridViewCellStyle4.Format = "N2"
+        DataGridViewCellStyle4.NullValue = "0.0"
+        Me.colImporte.DefaultCellStyle = DataGridViewCellStyle4
+        Me.colImporte.HeaderText = "Importe"
+        Me.colImporte.Name = "colImporte"
+        Me.colImporte.ReadOnly = True
         '
         'grupoDetalle
         '
@@ -1110,7 +1149,7 @@ Partial Class frmCompras
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(431, 492)
+        Me.Label12.Location = New System.Drawing.Point(431, 494)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(104, 13)
         Me.Label12.TabIndex = 11
@@ -1141,50 +1180,11 @@ Partial Class frmCompras
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(431, 533)
+        Me.Label13.Location = New System.Drawing.Point(447, 535)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(88, 13)
         Me.Label13.TabIndex = 13
         Me.Label13.Text = "Tipo de Moneda:"
-        '
-        'colLinea
-        '
-        Me.colLinea.FillWeight = 30.0!
-        Me.colLinea.HeaderText = "Linea"
-        Me.colLinea.Name = "colLinea"
-        Me.colLinea.ReadOnly = True
-        '
-        'colDescripcion
-        '
-        Me.colDescripcion.FillWeight = 200.0!
-        Me.colDescripcion.HeaderText = "Descripcion"
-        Me.colDescripcion.Name = "colDescripcion"
-        Me.colDescripcion.ReadOnly = True
-        '
-        'colPeso
-        '
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.colPeso.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colPeso.HeaderText = "Peso"
-        Me.colPeso.Name = "colPeso"
-        '
-        'colPrecio
-        '
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.colPrecio.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colPrecio.HeaderText = "Precio"
-        Me.colPrecio.Name = "colPrecio"
-        '
-        'colImporte
-        '
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = "0.0"
-        Me.colImporte.DefaultCellStyle = DataGridViewCellStyle4
-        Me.colImporte.HeaderText = "Importe"
-        Me.colImporte.Name = "colImporte"
-        Me.colImporte.ReadOnly = True
         '
         'frmCompras
         '
