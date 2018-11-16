@@ -492,7 +492,7 @@ Public Class DaoCompras
                      Where c.Numcompra = numero_compra And c.Codestado <> 0 And dc.Numcompra = numero_compra And dc.Codagencia = _agencia
                      Order By cli.Nombres
                      Select c.Codagencia, c.Numcompra, cli.Numcedula, dc.Descripcion, c.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion,
-                    c.Adelantos, c.Transferencia, c.Cheque, c.Efectivo, c.Por_pagar,
+                    c.Adelantos, c.Transferencia, c.Cheque, c.Efectivo, c.Por_pagar, c.Codmoneda,
                     dc.Kilate, dc.Peso, dc.Preciok, dc.Importe, c.Total, c.Fecha, c.Usuario, c.Saldo_adelanto).ToList()
                 If lisGeneral.Count <= 0 Then
                     MsgBox("No hay datos a mostrar en el rango de fechas indicado, intente nuevamente", MsgBoxStyle.Information, "Reporte de compras por cliente")
@@ -524,6 +524,7 @@ Public Class DaoCompras
                     vista.Porpagar = dato.Por_pagar
                     vista.Usuario = dato.Usuario
                     vista.Saldo_adelanto = dato.Saldo_adelanto
+                    vista.CodMoneda = dato.Codmoneda
                     lista.Add(vista)
                     If dato.Adelantos > 0 Then
                         siAdelanto = True
@@ -557,8 +558,12 @@ Public Class DaoCompras
                 Dim reportComprobante As New rptComprobanteLiquidacion
                 Dim frmReporteCompra As New frmReporteCompra
                 Dim frmcomprobante As New frmReporteComprobanteLiquidacion
-                reportComprobante.SetDataSource(lista)
-                report.SetDataSource(lista)
+                'reportComprobante.SetDataSource(lista)
+                reportComprobante.Database.Tables(0).SetDataSource(lista)
+                reportComprobante.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+                report.Database.Tables(0).SetDataSource(lista)
+                report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+                'report.SetDataSource(lista)
                 'ServiciosBasicos.ParametrosCrystal(txtDesdedet.Value, txtHastadet.Value)
                 frmcomprobante.viewer.ReportSource = reportComprobante
                 frmcomprobante.Show()

@@ -23,7 +23,7 @@
         Get
             Return _codclietne
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             _codclietne = value
         End Set
     End Property
@@ -212,6 +212,15 @@
     Public Property kilateValor As Decimal
     Public Property Margen As Decimal
     Public Property pesoTotal As Decimal
+    Private _codMoneda As Integer
+    Public Property CodMoneda() As Integer
+        Get
+            Return _codMoneda
+        End Get
+        Set(ByVal value As Integer)
+            _codMoneda = value
+        End Set
+    End Property
     Public Sub New()
 
     End Sub

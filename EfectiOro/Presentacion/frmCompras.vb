@@ -696,6 +696,8 @@ Public Class frmCompras
         Me.btnCerrarcompra.Enabled = True
         Me.txtFecha.Value = Now
         btnDolares.Enabled = False
+        _cordobas = True
+        _dolares = False
     End Sub
 
     Private Sub btnGuardar_Click(sender As System.Object, e As System.EventArgs) Handles btnGuardar.Click
