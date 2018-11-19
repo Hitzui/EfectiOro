@@ -320,9 +320,10 @@ Public Class DaoCompras
             Else
                 compra.Saldo_adelanto = Decimal.Zero
             End If
+            Dim moneda = (From m In ctx.Moneda Where m.Codmoneda = compra.Codmoneda Select m).First
             compra.Numcompra = xid
             dcaja.concepto = "***COMPRA: " & xid & "***"
-            dcaja.referencia = "COMPRA: " & xid
+            dcaja.referencia = "COMPRA: " & xid & "Tipo de moneda: " & moneda.Descripcion
             ctx.Compras.InsertOnSubmit(compra)
             Try
                 Dim sumOnzas As Decimal = Decimal.Zero
