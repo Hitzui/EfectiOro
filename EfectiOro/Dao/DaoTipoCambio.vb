@@ -12,7 +12,7 @@ Public Class DaoTipoCambio
                 Dim valor = (From t In ctx.TipoCambio Where t.Fecha = fecha Select t).First()
                 Return valor
             Catch ex As Exception
-                _error = ex.Message
+                _error = "No ha ingresado el tipo de cambio para el dia indicado, por favor ingrese el tipo de cambio para continuar"
                 Return Nothing
             End Try
         End Using

@@ -733,6 +733,13 @@ Public Class frmCompras
         End Select
         Dim daoCompra = DataContext.daoCompras
         Dim daoMcaja = DataContext.daoMcaja
+        Dim daoTc = DataContext.daoTipoCambio
+        Dim dao = DataContext.daoParametros
+        Dim tipoCambio = daoTc.buscarDato(Now.Date)
+        If tipoCambio Is Nothing Then
+            MsgBox(daoTc.ErrorSms, MsgBoxStyle.Information, "Tipo de cambio")
+            Return
+        End If
         'definimos los detalles de la compra
         Dim nuevaCompra As New Compras()
         Dim config As New ConfiguracionGeneral
@@ -745,6 +752,13 @@ Public Class frmCompras
         Dim por_cobrar As Decimal = 0
         Dim por_pagar As Decimal = 0
         Dim adelantos As Decimal = 0
+        Dim x_efectivo As Decimal = Decimal.Zero
+        Dim x_cheque As Decimal = Decimal.Zero
+        Dim x_transferencia As Decimal = Decimal.Zero
+        'esta variable parametros es para recuperar el movimiento que corresponde
+        'a la compra en la tabla ids, [idcompras]
+        Dim parametros As Ids
+        parametros = dao.recuperarParametros()
         agencia = config.getAgencia
         caja = config.getCaja
         nuevaCompra.Codagencia = agencia
@@ -792,6 +806,16 @@ Public Class frmCompras
         nuevaCompra.Cheque = cheque
         nuevaCompra.Transferencia = transferencia
         nuevaCompra.Adelantos = adelantos
+        Select Case _codmoneda
+            Case parametros.dolares
+                x_efectivo = Decimal.Multiply(efectivo, tipoCambio.Tipocambio1)
+                x_cheque = Decimal.Multiply(x_cheque, tipoCambio.Tipocambio1)
+                x_transferencia = Decimal.Multiply(x_transferencia, tipoCambio.Tipocambio1)
+            Case parametros.cordobas
+                x_efectivo = efectivo
+                x_cheque = cheque
+                x_transferencia = transferencia
+        End Select
         'seleccionamos el metodo a guardar la compra
         ' 1 - nueva compra
         ' 2 - editar compra
@@ -817,19 +841,14 @@ Public Class frmCompras
                 Next
                 'definimos el maestro de caja
                 Dim modCaja As Mcaja
-                'esta variable parametros es para recuperar el movimiento que corresponde
-                'a la compra en la tabla ids, [idcompras]
-                Dim parametros As Ids
                 Try
                     modCaja = daoMcaja.recuperarSaldoCaja(caja)
-                    Dim dao = DataContext.daoParametros
-                    parametros = dao.recuperarParametros()
                     'validamos si la caja tiene saldo disponible para aplicar la transaccion
                     If modCaja.Sfinal = 0 Then
                         MsgBox("No hay saldo para poder realizar la compra", MsgBoxStyle.Critical, "Guardar compra")
                         Return
                     End If
-                    If modCaja.Sfinal < efectivo Then
+                    If modCaja.Sfinal < x_efectivo Then
                         MsgBox("No hay saldo suficiente para realizar la transaccion, intente nuevamente." &
                                vbCr & "Saldo disponible: " & modCaja.Sfinal,
                                MsgBoxStyle.Information, "Guardar compra")
@@ -842,13 +861,12 @@ Public Class frmCompras
                     End If
                     'verificamos el valor del cheque
                     Dim listaVal = daoMcaja.recuperarDetaCajaValores(modCaja)
-
                 Catch ex As Exception
                     MsgBox("Hubo un problema al intentar recuperar la caja, revise la siguiente información: " & vbCr & daoMcaja.ErrorSms, MsgBoxStyle.Critical, "Error")
                     Return
                 End Try
                 'las compras son salidas de dinero por lo tanto solo definiremos salida
-                modCaja.Salida = efectivo
+                modCaja.Salida = x_efectivo
                 modCaja.Entrada = Decimal.Zero
                 'creamos el detalle del movimiento en la caja
                 Dim detaCaja As New Detacaja
@@ -858,9 +876,9 @@ Public Class frmCompras
                 detaCaja.fecha = DateTime.Now
                 'detaCaja.Concepto = "***COMPRA: " & nuevaCompra.Numcompra & "***"
                 'detaCaja.Referencia = "COMPRA: " & nuevaCompra.Numcompra
-                detaCaja.efectivo = efectivo
-                detaCaja.cheque = cheque
-                detaCaja.transferencia = transferencia
+                detaCaja.efectivo = x_efectivo
+                detaCaja.cheque = x_cheque
+                detaCaja.transferencia = x_transferencia
                 detaCaja.hora = Now.ToLongTimeString
                 'guardamos los datos de la compra
                 'listo, ahora a guardar los datos

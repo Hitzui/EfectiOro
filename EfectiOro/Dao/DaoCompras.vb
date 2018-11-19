@@ -549,7 +549,7 @@ Public Class DaoCompras
                             codAdelanto = codAdelanto & "; " & nextIdAdelanto
                         Next
                         vista.NotaAdelanto = "Nota: En esta compra se aplica un reembolso de C$" & vista.Adelantos.ToString(formatoNumero) & " correspondiente al adelanto número " &
-                            codAdelanto & ". El nuevo saldo es C$: " & vista.Saldo_adelanto.ToString(formatoNumero)
+                            codAdelanto & ". El nuevo saldo es C$: " & saldoPendAdelantosCordobas.ToString(formatoNumero)
                         If saldoPendAdelantosDolares > Decimal.Zero Then
                             vista.NotaAdelanto = String.Concat(vista.NotaAdelanto, ", y U$: " & saldoPendAdelantosDolares.ToString(formatoNumero) & vbCr)
                         Else
