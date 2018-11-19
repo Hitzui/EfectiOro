@@ -306,17 +306,29 @@ Public Class DaoCompras
             'Dim xid As String = Me.codigoCompra()
             'recuperamos el numero de la copmra segun la agencia o sucursal
             Dim xid As String = Me.reccuperarNumeroCompra
-            Dim ver_saldo As Decimal = Decimal.Zero
+            Dim saldoCordobas As Decimal = Decimal.Zero
+            Dim saldoDolares As Decimal = Decimal.Zero
+            Dim parametros = ctx.Ids.First
+            Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha = Now.Date Select tc).First
             'recuperamos el saldo y lo guardamos en la tabla compras
             'esto es para cuando re-impriman el voucher de compra
             'aparezca el saldo de adelanto que habia en ese momento
             Try
-                ver_saldo = ctx.Adelantos.Where(Function(a) a.Saldo > 0).Where(Function(a) a.Codcliente = compra.Codcliente).Sum(Function(a) a.Saldo)
+                'recuperamos el saldo en cordobas
+                saldoCordobas = (From a In ctx.Adelantos Where a.Codcliente = compra.Codcliente And a.Saldo > Decimal.Zero And a.Codmoneda = parametros.cordobas Select a.Saldo).Sum()
+                'recuperamos el saldo en dolares
+                saldoDolares = (From a In ctx.Adelantos Where a.Codcliente = compra.Codcliente And a.Saldo > Decimal.Zero And a.Codmoneda = parametros.dolares Select a.Saldo).Sum()
+                Select Case compra.Codmoneda
+                    Case parametros.dolares
+                        'convertimos el saldo en dolares en cordobas para reflejar su saldo segun la fecha
+                        saldoDolares = Decimal.Multiply(saldoDolares, tipoCambio.Tipocambio1)
+                End Select
+                saldoCordobas = Decimal.Add(saldoCordobas, saldoDolares)
             Catch ex As Exception
-                ver_saldo = Decimal.Zero
+
             End Try
             If compra.Adelantos > 0 Then
-                compra.Saldo_adelanto = ver_saldo - compra.Adelantos
+                compra.Saldo_adelanto = saldoCordobas - compra.Adelantos
             Else
                 compra.Saldo_adelanto = Decimal.Zero
             End If

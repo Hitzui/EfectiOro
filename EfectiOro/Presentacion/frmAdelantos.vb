@@ -258,15 +258,23 @@ Public Class frmAdelantos
                     txtcodcliente.Text = row.Cells(0).Value
                     Me.nombreCliente = row.Cells(1).Value & " " & row.Cells(2).Value
                     Dim dao = DataContext.daoAdelantos
+                    Dim daoTipoCambio = DataContext.daoTipoCambio
+                    Dim daoParametros = DataContext.daoParametros
+                    Dim tipoCambio = daoTipoCambio.buscarDato(Now.Date)
+                    Dim parametros = daoParametros.recuperarParametros
                     Dim tieneAdelanto As New Adelantos
                     'revisamos si el cliente actual tiene adelantos
                     'le mostramos que el cliene tiene un saldo
                     Dim daoAdelanto = DataContext.daoAdelantos
-                    Me.saldoActual = 0D
+                    saldoActual = Decimal.Zero
                     Try
                         Dim lisAdelanto As List(Of Adelantos) = daoAdelanto.listarAdelantosPorClientes(txtcodcliente.Text)
                         For Each dato As Adelantos In lisAdelanto
-                            saldoActual += dato.Saldo
+                            Select Case dato.Codmoneda
+                                Case parametros.dolares
+                                    dato.Saldo = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
+                            End Select
+                            saldoActual = Decimal.Add(saldoActual, dato.Saldo)
                         Next
                         tieneAdelanto = dao.findByCodigoCliente(txtcodcliente.Text)
                         Dim result As DialogResult
@@ -351,6 +359,8 @@ Public Class frmAdelantos
     Private Sub imprimir(codigoAdelanto As String, nombre As String)
         Using ctx As New Contexto
             Try
+                Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha = Now.Date Select tc).Single
+                Dim parametros = ctx.Ids.First
                 Dim buscar = (From a In ctx.Adelantos Where a.Idsalida = codigoAdelanto Select a).ToList()
                 Dim listar As New List(Of Adelantos)
                 For Each dato In buscar
@@ -407,6 +417,9 @@ Public Class frmAdelantos
         Dim daoCaja = DataContext.daoMcaja
         Dim daoAdelantos = DataContext.daoAdelantos
         Dim caja As String = config.getCaja
+        Dim x_efectivo = Decimal.Zero
+        Dim x_cheque = Decimal.Zero
+        Dim x_transferencia = Decimal.Zero
         'por el moento se usa una sola sucursal
         Dim agencia As String = "A001"
         Dim recuperarCaja As Mcaja
@@ -434,34 +447,42 @@ Public Class frmAdelantos
         Dim detaCaja As New Detacaja
         Dim adelanto As New Adelantos
         Dim actCaja As New Mcaja
+        Dim daoTipoCambio = DataContext.daoTipoCambio
+        Dim tipoCambio = daoTipoCambio.buscarDato(Now.Date)
+        Dim parametros = daoParametros.recuperarParametros()
+        Dim codmoneda As Integer = cmbMoneda.SelectedValue
         adelanto.Codcliente = txtcodcliente.Text
         adelanto.Usuario = DataContext.usuarioLog.Usuario1
         adelanto.Codcaja = caja
         'especificamos los valores
         If txtefectivo.TextLength > 0 Then
             adelanto.Efectivo = Convert.ToDecimal(txtefectivo.Text)
-            actCaja.Salida = adelanto.Efectivo
-            actCaja.Entrada = 0
-            detaCaja.Efectivo = Convert.ToDecimal(txtefectivo.Text)
         Else
-            adelanto.Efectivo = 0
-            detaCaja.Efectivo = 0
+            adelanto.Efectivo = Decimal.Zero
         End If
         If txtcheque.TextLength > 0 Then
             adelanto.Cheque = Convert.ToDecimal(txtcheque.Text)
-            detaCaja.Cheque = Convert.ToDecimal(txtcheque.Text)
         Else
-            adelanto.Cheque = 0
-            detaCaja.Cheque = 0
+            adelanto.Cheque = Decimal.Zero
         End If
         If txttransferencia.TextLength > 0 Then
             adelanto.Transferencia = Convert.ToDecimal(txttransferencia.Text)
-            detaCaja.Transferencia = Convert.ToDecimal(txttransferencia.Text)
         Else
-            adelanto.Transferencia = 0
-            detaCaja.Transferencia = 0
+            adelanto.Transferencia = Decimal.Zero
         End If
+        Select Case codmoneda
+            Case parametros.dolares
+                x_efectivo = Decimal.Multiply(adelanto.Efectivo, tipoCambio.Tipocambio1)
+                x_cheque = Decimal.Multiply(adelanto.Cheque, tipoCambio.Tipocambio1)
+                x_transferencia = Decimal.Multiply(adelanto.Transferencia, tipoCambio.Tipocambio1)
+            Case parametros.cordobas
+                x_efectivo = adelanto.Efectivo
+                x_cheque = adelanto.Cheque
+                x_transferencia = adelanto.Transferencia
+        End Select
         'definimos los detalles del mcaja
+        actCaja.Salida = x_efectivo
+        actCaja.Entrada = 0
         actCaja.Fecha = Date.Now
         actCaja.Codcaja = caja
         actCaja.Codagencia = agencia
@@ -475,18 +496,21 @@ Public Class frmAdelantos
         adelanto.Hora = lblHora.Text
         adelanto.Codmoneda = cmbMoneda.SelectedValue
         'definimos los detalles del detacaja
+        detaCaja.efectivo = x_efectivo
+        detaCaja.cheque = x_cheque
+        detaCaja.transferencia = x_transferencia
         detaCaja.Referencia = txtreferencia.Text
         detaCaja.Idcaja = recuperarCaja.Idcaja
-        detaCaja.Idmov = daoParametros.recuperarParametros().Id_adelantos
+        detaCaja.idmov = parametros.id_adelantos
         detaCaja.fecha = DateTime.Now
         detaCaja.Concepto = "***ADELANTO: " & adelanto.Idsalida & "***"
         detaCaja.hora = lblHora.Text
         'detaCaja.Fecha = Now
         detaCaja.Codcaja = caja
         'validamos que haya saldo dsiponible para realizar la transacción
-        If recuperarCaja.Sfinal < adelanto.Efectivo Then
-            MsgBox("No hay saldo suficiente para realizar la transaccion." & _
-                             vbCr & "Saldo disponible: " & recuperarCaja.Sfinal, _
+        If recuperarCaja.Sfinal < x_efectivo Then
+            MsgBox("No hay saldo suficiente para realizar la transaccion." &
+                             vbCr & "Saldo disponible: " & recuperarCaja.Sfinal,
                              MsgBoxStyle.Information, "Caja")
             Return
         End If
@@ -508,8 +532,19 @@ Public Class frmAdelantos
     Private Sub recuperarSaldoTotal(codcliente As String)
         Try
             Dim dao = DataContext.daoAdelantos
+            Dim daoTipoCambio = DataContext.daoTipoCambio
+            Dim daoParametros = DataContext.daoParametros
+            Dim tipoCambio = daoTipoCambio.buscarDato(Now.Date)
+            Dim parametros = daoParametros.recuperarParametros
             Dim find = dao.listarAdelantosPorClientes(codcliente)
-            saldoActual = find.Sum(Function(p) p.Saldo)
+            saldoActual = Decimal.Zero
+            For Each dato As Adelantos In find
+                Select Case dato.Codmoneda
+                    Case parametros.dolares
+                        dato.Saldo = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
+                End Select
+                saldoActual = Decimal.Add(saldoActual, dato.Saldo)
+            Next
         Catch ex As Exception
             MsgBox("No se pudo calcular el saldo total del cliente debido a un error: " & vbCr _
                    & ex.Message, "Error", MsgBoxStyle.Exclamation)
