@@ -10,6 +10,7 @@ Imports System.Transactions
 Public Class DaoCompras
     Implements IDaoCompras
 
+    Private Const formatoNumero As String = "#,###,##0.00"
     Private _error As String
     Private config As New ConfiguracionGeneral()
     Private cajaActual, _agencia As String
@@ -71,7 +72,7 @@ Public Class DaoCompras
                 Dim buscar As Compras = (From c In ctx.Compras
                                          Where c.Numcompra = compra.Numcompra _
                                         And c.Codagencia = compra.Codagencia
-                                        Select c).First
+                                         Select c).First
                 'ahora ingresamos los datos nuevos
                 ctx.Compras.DeleteOnSubmit(buscar)
                 ctx.Compras.InsertOnSubmit(compra)
@@ -103,9 +104,9 @@ Public Class DaoCompras
         Using ctx As New Contexto
             Try
                 Dim filtrar = (From dt In ctx.Det_compra
-                           Where dt.Numcompra = numcompra And dt.Codagencia = _agencia
-                           Order By dt.Linea Ascending
-                           Select dt).ToList()
+                               Where dt.Numcompra = numcompra And dt.Codagencia = _agencia
+                               Order By dt.Linea Ascending
+                               Select dt).ToList()
                 Return filtrar
             Catch ex As Exception
                 _error = "No existe la compra con el numero indicado, intente nuevamente"
@@ -200,9 +201,9 @@ Public Class DaoCompras
             'busquemos el detalle de caja que se ingrsó el movimiento
             'ejemplo de concepto: ***COMPRA: 7***
             Dim verDetalleCaja As Detacaja = (From dc As Detacaja In ctx.Detacaja
-                                 Where dc.codcaja = buscarCompra.Codcaja And
+                                              Where dc.codcaja = buscarCompra.Codcaja And
                                  dc.concepto = "***COMPRA: " & numeroCompra & "***"
-                                 Select dc).First()
+                                              Select dc).First()
             'buscamos el maestro de caja para actualizar los saldos
             Dim verMaestroCaja As Mcaja
             Try
@@ -210,7 +211,7 @@ Public Class DaoCompras
                                   Where mc.Codcaja = verDetalleCaja.codcaja And
                                   mc.Estado = 1 Select mc).First()
             Catch ex As Exception
-                _error = "La caja que realizó la compra se encuentra cerrada, para anular la " & _
+                _error = "La caja que realizó la compra se encuentra cerrada, para anular la " &
                     "compra revise que la caja esté abierta. Caja: " & buscarCompra.Codcaja
                 Return False
             End Try
@@ -223,7 +224,7 @@ Public Class DaoCompras
             nuevoDetaCaja.concepto = "***REVERTIR COMPRA: " & numeroCompra & "***"
             nuevoDetaCaja.fecha = DateTime.Now
             nuevoDetaCaja.hora = Now.ToLongTimeString()
-            nuevoDetaCaja.idmov = daoParametro.recuperarParametros().Anular_compra
+            nuevoDetaCaja.idmov = daoParametro.recuperarParametros().anular_compra
             nuevoDetaCaja.referencia = "Movimiento realizado por anulación de compra número: " & numeroCompra
             nuevoDetaCaja.idcaja = verMaestroCaja.Idcaja
             'ACTUALIZAMOS LOS DETALLES DEL MAESTRO DE CAJA
@@ -234,7 +235,7 @@ Public Class DaoCompras
                 Dim buscarCierres = (From dc As Detacierre In ctx.DetaCierre
                                      Where dc.Numcompra = buscarCompra.Numcompra And dc.Codagencia = buscarCompra.Codagencia Select dc).ToList
                 For Each dato In buscarCierres
-                    Dim findCierre As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
+                    Dim findCierre As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.Codcierre Select cp).Single
                     findCierre.SaldoOnzas = Decimal.Add(findCierre.SaldoOnzas, dato.Cantidad)
                     If findCierre.SaldoOnzas > 0 Then
                         findCierre.Status = True
@@ -278,9 +279,9 @@ Public Class DaoCompras
     Private Function actualizarDetalleCompra(numeroCompra As String) As Boolean
         Using ctx As New Contexto
             Try
-                ctx.ExecuteCommand("update compras set peso = 0, total = 0, codestado = 0, efectivo = 0,cheque = 0,transferencia = 0,por_cobrar= 0, " & _
+                ctx.ExecuteCommand("update compras set peso = 0, total = 0, codestado = 0, efectivo = 0,cheque = 0,transferencia = 0,por_cobrar= 0, " &
                     "por_pagar = 0, adelantos = 0, saldo_por_pagar = 0 where numcompra = '{0}'", numeroCompra)
-                ctx.ExecuteCommand("update det_compra set precioK = 0, peso = 0, importe = 0, " & _
+                ctx.ExecuteCommand("update det_compra set precioK = 0, peso = 0, importe = 0, " &
                                    "kilshowdoc = '' where numcompra = '{0}'", numeroCompra)
                 ctx.SubmitChanges()
                 Return True
@@ -290,7 +291,7 @@ Public Class DaoCompras
             End Try
         End Using
     End Function
-    
+
     Private Sub actualizarIdComprasAdelantos()
         Using ctx As New Contexto
             ctx.ExecuteCommand("update Ids set compras_adelantos = compras_adelantos +1")
@@ -500,6 +501,7 @@ Public Class DaoCompras
                 End If
                 Dim lista As New List(Of ViewCompras)
                 Dim suma As Decimal = 0
+                Dim param = (From p In ctx.Ids Where p.cordobas > 0 Select p).First
                 For Each dato In lisGeneral
                     Dim vista As New ViewCompras
                     suma += dato.Total
@@ -532,11 +534,10 @@ Public Class DaoCompras
                                            Where a.Codcliente = vista.Codcliente And
                                            a.Numcompra.Contains(dato.Numcompra)
                                            Select a).ToList()
-                        Dim saldoPendAdelantos As Decimal =
-                            ctx.ExecuteQuery(Of Decimal)("select iif(SUM(a.saldo)>0,sum(a.saldo),0) as saldo " &
-                             "from adelantos a where a.codcliente = '" & dato.Codcliente & "' and a.saldo >0").First()
+                        Dim saldoPendAdelantosCordobas As Decimal = ctx.ExecuteQuery(Of Decimal)(String.Format("select iif(SUM(a.saldo)>0,sum(a.saldo),0) as saldo from adelantos a where a.codcliente = '{0}' and a.saldo >0 and a.codmoneda = {1}", dato.Codcliente, param.cordobas)).First()
+                        Dim saldoPendAdelantosDolares As Decimal = ctx.ExecuteQuery(Of Decimal)(String.Format("select iif(SUM(a.saldo)>0,sum(a.saldo),0) as saldo from adelantos a where a.codcliente = '{0}' and a.saldo >0 and a.codmoneda = {1}", dato.Codcliente, param.dolares)).First()
                         If vista.Saldo_adelanto <= Decimal.Zero Then
-                            vista.Saldo_adelanto = saldoPendAdelantos
+                            vista.Saldo_adelanto = saldoPendAdelantosCordobas
                         End If
                         Dim nextIdAdelanto As String = String.Empty
                         Dim codAdelanto As String = String.Empty
@@ -547,8 +548,13 @@ Public Class DaoCompras
                             End If
                             codAdelanto = codAdelanto & "; " & nextIdAdelanto
                         Next
-                        vista.NotaAdelanto = "Nota: En esta compra se aplica un reembolso de C$" & vista.Adelantos.ToString("#,###,##0.00") & " correspondiente al adelanto número " &
-                            codAdelanto & ". El nuevo saldo es C$" & vista.Saldo_adelanto.ToString("#,###,##0.00") & vbCr
+                        vista.NotaAdelanto = "Nota: En esta compra se aplica un reembolso de C$" & vista.Adelantos.ToString(formatoNumero) & " correspondiente al adelanto número " &
+                            codAdelanto & ". El nuevo saldo es C$: " & vista.Saldo_adelanto.ToString(formatoNumero)
+                        If saldoPendAdelantosDolares > Decimal.Zero Then
+                            vista.NotaAdelanto = String.Concat(vista.NotaAdelanto, ", y U$: " & saldoPendAdelantosDolares.ToString(formatoNumero) & vbCr)
+                        Else
+                            vista.NotaAdelanto = String.Concat(vista.NotaAdelanto, vbCr)
+                        End If
                     End If
                     If vista.Porpagar > 0 Then
                         vista.NotaAdelanto &= "Nota: Esta compra tiene un saldo pendiente por pagar (pendiente de cierre): " & vista.Porpagar.ToString("#,###,##0.000")
