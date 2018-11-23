@@ -39,9 +39,11 @@ Public Class frmAdelantosAplicados
                     Select Case dato.Codmoneda
                         Case parametros.dolares
                             saldo = Decimal.Multiply(dato.Saldo, tipocambio.Tipocambio1)
+                        Case parametros.cordobas
+                            saldo = dato.Saldo
                     End Select
                     If saldo <= minSaldo Then
-                        minSaldo = dato.Saldo
+                        minSaldo = saldo
                     End If
                     If saldo >= maySaldo Then
                         maySaldo = saldo
@@ -92,24 +94,32 @@ Public Class frmAdelantosAplicados
                 Dim maySaldo As Decimal = 0D
                 Dim minSaldo As Decimal = 1000000D
                 Dim sumSaldo As Decimal = 0D
+                Dim parametros = ctx.Ids.First
+                Dim tipocambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = Now.Date Select tc).First
                 dgvAdelantos.Rows.Clear()
                 Dim listar = (From a In ctx.Adelantos
                               Join cli In ctx.Cliente On a.Codcliente Equals cli.Codcliente
                               Where a.Saldo > 0 And System.Data.Linq.SqlClient.SqlMethods.Like(cli.Nombres, "%" & Me.txtFiltrar.Text & "%")
-                              Select New With {a.Idsalida, _
-                                               a.Codcliente, _
-                                               .Nombres = cli.Nombres & " " & cli.Apellidos, _
-                                               a.Fecha, a.Hora, _
-                                               a.Monto, a.Saldo, _
-                                               a.Codcaja, a.Usuario}).ToList()
+                              Select New With {a.Idsalida,
+                                               a.Codcliente,
+                                               .Nombres = cli.Nombres & " " & cli.Apellidos,
+                                               a.Fecha, a.Hora,
+                                               a.Monto, a.Saldo,
+                                               a.Codcaja, a.Usuario, a.Codmoneda}).ToList()
                 For Each dato In listar
-                    If dato.Saldo <= minSaldo Then
-                        minSaldo = dato.Saldo
+                    Select Case dato.Codmoneda
+                        Case parametros.dolares
+                            saldo = Decimal.Multiply(dato.Saldo, tipocambio.Tipocambio1)
+                        Case parametros.cordobas
+                            saldo = dato.Saldo
+                    End Select
+                    If saldo <= minSaldo Then
+                        minSaldo = saldo
                     End If
-                    If dato.Saldo >= maySaldo Then
-                        maySaldo = dato.Saldo
+                    If saldo >= maySaldo Then
+                        maySaldo = saldo
                     End If
-                    sumSaldo += dato.Saldo
+                    sumSaldo += saldo
                     dgvAdelantos.Rows.Add(dato.Idsalida, dato.Codcliente, dato.Nombres, dato.Fecha, dato.Hora, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
                 Next
                 Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumSaldo.ToString("#,###,#00.00")
