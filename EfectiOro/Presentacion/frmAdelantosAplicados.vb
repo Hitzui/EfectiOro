@@ -88,6 +88,10 @@ Public Class frmAdelantosAplicados
     End Sub
 
     Private Sub txtFiltrar_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFiltrar.TextChanged
+        If txtFiltrar.Text.Trim.Length <= 0 Then
+            Me.recuperarAdelantos()
+            Return
+        End If
         Using ctx As New Contexto
             Try
                 Dim saldo As Decimal = 0D
