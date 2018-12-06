@@ -448,7 +448,13 @@ Public Class frmAdelantos
         Dim adelanto As New Adelantos
         Dim actCaja As New Mcaja
         Dim daoTipoCambio = DataContext.daoTipoCambio
-        Dim tipoCambio = daoTipoCambio.buscarDato(Now.Date)
+        Dim tipoCambio = New TipoCambio
+        Try
+            tipoCambio = daoTipoCambio.buscarDato(Now.Date)
+        Catch ex As Exception
+            MsgBox("No se ha especificado el tipo de cambio, intente nuevamente despues de ingresar el tipo de cambio", MsgBoxStyle.Information, "Tipo de cambio")
+            Return
+        End Try
         Dim parametros = daoParametros.recuperarParametros()
         Dim codmoneda As Integer = cmbMoneda.SelectedValue
         adelanto.Codcliente = txtcodcliente.Text
