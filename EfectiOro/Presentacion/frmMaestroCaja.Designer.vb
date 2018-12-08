@@ -68,7 +68,6 @@ Partial Class frmMaestroCaja
         Me.panReimprimir = New System.Windows.Forms.Panel()
         Me.btnReimprimir = New Infragistics.Win.Misc.UltraButton()
         Me.dgvReimprimir = New System.Windows.Forms.DataGridView()
-        Me.panelTitulo.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -79,10 +78,6 @@ Partial Class frmMaestroCaja
         CType(Me.dgvReimprimir, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(643, 25)
-        '
         'btnClose
         '
         Me.btnClose.FlatAppearance.BorderSize = 0
@@ -90,7 +85,7 @@ Partial Class frmMaestroCaja
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(618, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(643, 25)
         '
         'Timer
         '
@@ -591,7 +586,7 @@ Partial Class frmMaestroCaja
         Me.panReimprimir.Controls.Add(Me.dgvReimprimir)
         Me.panReimprimir.Location = New System.Drawing.Point(0, 28)
         Me.panReimprimir.Name = "panReimprimir"
-        Me.panReimprimir.Size = New System.Drawing.Size(643, 315)
+        Me.panReimprimir.Size = New System.Drawing.Size(643, 10)
         Me.panReimprimir.TabIndex = 15
         '
         'btnReimprimir
@@ -645,14 +640,12 @@ Partial Class frmMaestroCaja
         Me.Controls.SetChildIndex(Me.btnCerrarCaja, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
         Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.Panel2, 0)
         Me.Controls.SetChildIndex(Me.grupoTransacciones, 0)
         Me.Controls.SetChildIndex(Me.btnSalir, 0)
         Me.Controls.SetChildIndex(Me.btnMovimientosDelDia, 0)
         Me.Controls.SetChildIndex(Me.btnReimpimirPanel, 0)
         Me.Controls.SetChildIndex(Me.panReimprimir, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
