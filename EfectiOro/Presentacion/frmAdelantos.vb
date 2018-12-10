@@ -511,6 +511,7 @@ Public Class frmAdelantos
         detaCaja.fecha = DateTime.Now
         detaCaja.Concepto = "***ADELANTO: " & adelanto.Idsalida & "***"
         detaCaja.hora = lblHora.Text
+        'detaCaja.tipocambio = tipoCambio.Tipocambio1
         'detaCaja.Fecha = Now
         detaCaja.Codcaja = caja
         'validamos que haya saldo dsiponible para realizar la transacción

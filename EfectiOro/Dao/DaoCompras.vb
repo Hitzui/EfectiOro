@@ -309,7 +309,8 @@ Public Class DaoCompras
             Dim saldoCordobas As Decimal = Decimal.Zero
             Dim saldoDolares As Decimal = Decimal.Zero
             Dim parametros = ctx.Ids.First
-            Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha = Now.Date Select tc).First
+            Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = Now.Date Select tc).First
+            dcaja.tipocambio = tipoCambio.Tipocambio1
             'recuperamos el saldo y lo guardamos en la tabla compras
             'esto es para cuando re-impriman el voucher de compra
             'aparezca el saldo de adelanto que habia en ese momento

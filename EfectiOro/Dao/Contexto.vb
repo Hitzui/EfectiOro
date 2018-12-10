@@ -4863,6 +4863,8 @@ Namespace Database
 
         Private _codcaja As String
 
+        Private _tipocambio As Decimal
+
 #Region "Definiciones de métodos de extensibilidad"
         Partial Private Sub OnLoaded()
         End Sub
@@ -4909,6 +4911,10 @@ Namespace Database
         Partial Private Sub OncodcajaChanging(value As String)
         End Sub
         Partial Private Sub OncodcajaChanged()
+        End Sub
+        Partial Private Sub OnTipoCambioChanging(value As Decimal)
+        End Sub
+        Partial Private Sub OnTipoCambioChanged()
         End Sub
 #End Region
 
@@ -5067,7 +5073,7 @@ Namespace Database
             End Set
         End Property
 
-        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcaja", DbType:="VarChar(10)", CanBeNull:=False)> _
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcaja", DbType:="VarChar(10)", CanBeNull:=False)>
         Public Property codcaja() As String
             Get
                 Return Me._codcaja
@@ -5079,6 +5085,22 @@ Namespace Database
                     Me._codcaja = value
                     Me.SendPropertyChanged("codcaja")
                     Me.OncodcajaChanged()
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_tipocambio", DbType:="numeric(12,4)", CanBeNull:=False)>
+        Public Property tipocambio() As Decimal
+            Get
+                Return Me._tipocambio
+            End Get
+            Set(value As Decimal)
+                If (Decimal.Equals(Me._tipocambio, value) = False) Then
+                    Me.OnTipoCambioChanging(value)
+                    Me.SendPropertyChanging()
+                    Me._tipocambio = value
+                    Me.SendPropertyChanged("Tipocambio")
+                    Me.OnTipoCambioChanged()
                 End If
             End Set
         End Property

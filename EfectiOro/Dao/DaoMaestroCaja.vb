@@ -175,6 +175,8 @@ Public Class DaoMaestroCaja
     Public Function guardarDatosDetaCaja(dcaja As Database.Detacaja, mocaja As Database.Mcaja) As Boolean Implements IDaoMaestroCaja.guardarDatosDetaCaja
         Using ctx As New Contexto
             Try
+                Dim tipocambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = dcaja.fecha.Date Select tc).First
+                dcaja.tipocambio = tipocambio.Tipocambio1
                 Dim xcaja = (From c In ctx.Mcaja Where c.Codcaja = mocaja.Codcaja And
                              c.Estado = 1 And c.Codagencia = mocaja.Codagencia
                              Select c).First
