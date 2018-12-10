@@ -33,6 +33,7 @@ Partial Class frmAdelantosAplicados
         Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colHora = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colMonedaDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colSaldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colCodcaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,7 +53,6 @@ Partial Class frmAdelantosAplicados
         Me.btnAnular = New System.Windows.Forms.Button()
         Me.btnAdelantoEfectivo = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.panelTitulo.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvAdelantos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,10 +61,6 @@ Partial Class frmAdelantosAplicados
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(767, 25)
-        '
         'btnClose
         '
         Me.btnClose.FlatAppearance.BorderSize = 0
@@ -72,7 +68,7 @@ Partial Class frmAdelantosAplicados
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(742, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(767, 25)
         '
         'GroupBox1
         '
@@ -96,7 +92,7 @@ Partial Class frmAdelantosAplicados
         Me.GroupBox2.Controls.Add(Me.dgvAdelantos)
         Me.GroupBox2.Location = New System.Drawing.Point(4, 75)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(589, 256)
+        Me.GroupBox2.Size = New System.Drawing.Size(611, 256)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
@@ -104,16 +100,13 @@ Partial Class frmAdelantosAplicados
         '
         Me.dgvAdelantos.AllowUserToAddRows = False
         Me.dgvAdelantos.AllowUserToDeleteRows = False
-        Me.dgvAdelantos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.dgvAdelantos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvAdelantos.BackgroundColor = System.Drawing.Color.White
-        Me.dgvAdelantos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvAdelantos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colIdsalida, Me.colCodcliente, Me.colNombres, Me.colFecha, Me.colHora, Me.colMonto, Me.colSaldo, Me.colCodcaja, Me.colUsuario})
+        Me.dgvAdelantos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colIdsalida, Me.colCodcliente, Me.colNombres, Me.colFecha, Me.colHora, Me.colMonedaDescripcion, Me.colMonto, Me.colSaldo, Me.colCodcaja, Me.colUsuario})
         Me.dgvAdelantos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAdelantos.Location = New System.Drawing.Point(3, 16)
         Me.dgvAdelantos.Name = "dgvAdelantos"
         Me.dgvAdelantos.ReadOnly = True
-        Me.dgvAdelantos.Size = New System.Drawing.Size(583, 237)
+        Me.dgvAdelantos.Size = New System.Drawing.Size(605, 237)
         Me.dgvAdelantos.TabIndex = 0
         '
         'colIdsalida
@@ -154,6 +147,13 @@ Partial Class frmAdelantosAplicados
         Me.colHora.ReadOnly = True
         Me.colHora.Width = 55
         '
+        'colMonedaDescripcion
+        '
+        Me.colMonedaDescripcion.HeaderText = "Moneda"
+        Me.colMonedaDescripcion.Name = "colMonedaDescripcion"
+        Me.colMonedaDescripcion.ReadOnly = True
+        Me.colMonedaDescripcion.Width = 71
+        '
         'colMonto
         '
         DataGridViewCellStyle2.Format = "N2"
@@ -190,9 +190,9 @@ Partial Class frmAdelantosAplicados
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.listCompras)
-        Me.GroupBox3.Location = New System.Drawing.Point(599, 31)
+        Me.GroupBox3.Location = New System.Drawing.Point(621, 31)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(156, 300)
+        Me.GroupBox3.Size = New System.Drawing.Size(134, 300)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Aplicado a compras"
@@ -203,7 +203,7 @@ Partial Class frmAdelantosAplicados
         Me.listCompras.FormattingEnabled = True
         Me.listCompras.Location = New System.Drawing.Point(3, 16)
         Me.listCompras.Name = "listCompras"
-        Me.listCompras.Size = New System.Drawing.Size(150, 281)
+        Me.listCompras.Size = New System.Drawing.Size(128, 281)
         Me.listCompras.TabIndex = 0
         '
         'menuDerecho
@@ -327,7 +327,6 @@ Partial Class frmAdelantosAplicados
         Me.Controls.Add(Me.StatusStrip1)
         Me.Name = "frmAdelantosAplicados"
         Me.Controls.SetChildIndex(Me.StatusStrip1, 0)
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
@@ -335,7 +334,6 @@ Partial Class frmAdelantosAplicados
         Me.Controls.SetChildIndex(Me.btnAnular, 0)
         Me.Controls.SetChildIndex(Me.btnAdelantoEfectivo, 0)
         Me.Controls.SetChildIndex(Me.Button1, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -362,15 +360,6 @@ Partial Class frmAdelantosAplicados
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents lblSaldoStatus As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents colIdsalida As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colCodcliente As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colNombres As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colFecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colHora As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colMonto As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colSaldo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colCodcaja As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colUsuario As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents lblSaldoMayor As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents lblMenorSaldo As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents btnImprimir As Button
@@ -378,4 +367,14 @@ Partial Class frmAdelantosAplicados
     Friend WithEvents btnAdelantoEfectivo As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents listCompras As ListBox
+    Friend WithEvents colIdsalida As DataGridViewTextBoxColumn
+    Friend WithEvents colCodcliente As DataGridViewTextBoxColumn
+    Friend WithEvents colNombres As DataGridViewTextBoxColumn
+    Friend WithEvents colFecha As DataGridViewTextBoxColumn
+    Friend WithEvents colHora As DataGridViewTextBoxColumn
+    Friend WithEvents colMonedaDescripcion As DataGridViewTextBoxColumn
+    Friend WithEvents colMonto As DataGridViewTextBoxColumn
+    Friend WithEvents colSaldo As DataGridViewTextBoxColumn
+    Friend WithEvents colCodcaja As DataGridViewTextBoxColumn
+    Friend WithEvents colUsuario As DataGridViewTextBoxColumn
 End Class

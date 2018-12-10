@@ -1224,6 +1224,9 @@ Namespace Database
 
         Private _codmoneda As Integer
 
+        Public Property saldoCordobas As Decimal
+        Public Property saldoDolares As Decimal
+
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub

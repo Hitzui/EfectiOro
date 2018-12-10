@@ -796,6 +796,7 @@ Partial Class frmCompras
         Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
         Me.btnDolares.Appearance = Appearance1
         Me.btnDolares.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.btnDolares.Enabled = False
         Me.btnDolares.ImageSize = New System.Drawing.Size(30, 30)
         Me.btnDolares.Location = New System.Drawing.Point(709, 523)
         Me.btnDolares.Name = "btnDolares"

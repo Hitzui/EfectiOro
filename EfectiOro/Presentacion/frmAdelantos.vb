@@ -375,12 +375,14 @@ Public Class frmAdelantos
                     listar.Add(adelanto)
                 Next
                 Dim report As New rptReciboAdelanto
-                report.SetDataSource(listar)
+                'report.SetDataSource(listar)
+                report.Database.Tables(0).SetDataSource(listar)
+                report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
                 'ServiciosBasicos.ParametrosCrystal(buscar.Count, txtDesdegen.Value, txtHastagen.Value)
-                frmReportes.viewer.ReportSource = report
-                frmReportes.Show()
+                frmReporteReciboAdelantoAbono.viewer.ReportSource = report
+                frmReporteReciboAdelantoAbono.Show()
             Catch ex As Exception
-
+                MsgBox(ex.Message)
             End Try
         End Using
     End Sub
@@ -388,11 +390,13 @@ Public Class frmAdelantos
         Using ctx As New Contexto
             Try
                 Dim buscar = (From a In ctx.Adelantos Where a.Idsalida = codigoAdelanto Select a).ToList()
+                Dim moneda = ctx.Moneda.ToList
                 Dim report As New rptReciboAdelanto
-                report.SetDataSource(buscar)
+                report.Database.Tables(0).SetDataSource(buscar)
+                report.Database.Tables(1).SetDataSource(moneda)
                 'ServiciosBasicos.ParametrosCrystal(buscar.Count, txtDesdegen.Value, txtHastagen.Value)
-                frmReportes.viewer.ReportSource = report
-                frmReportes.Show()
+                frmReporteReciboAdelantoAbono.viewer.ReportSource = report
+                frmReporteReciboAdelantoAbono.Show()
             Catch ex As Exception
 
             End Try

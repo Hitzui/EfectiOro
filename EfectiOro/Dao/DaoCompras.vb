@@ -251,6 +251,7 @@ Public Class DaoCompras
                 'creamos un adelanto con ese monto
                 If buscarCompra.Adelantos > 0 Then
                     Dim adelanto As New Adelantos
+                    adelanto.Codmoneda = buscarCompra.Codmoneda
                     adelanto.Codcaja = verMaestroCaja.Codcaja
                     adelanto.Hora = Now.ToShortTimeString
                     adelanto.Fecha = Now

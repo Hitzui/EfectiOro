@@ -35,6 +35,7 @@ Public Class frmAdelantosAplicados
                                                a.Monto, a.Saldo,
                                                a.Codcaja, a.Usuario, a.Codmoneda}).ToList()
                 For Each dato In listar
+                    Dim moneda = (From m In ctx.Moneda Where m.Codmoneda = dato.Codmoneda Select m).First
                     Dim saldo As Decimal = dato.Saldo
                     Select Case dato.Codmoneda
                         Case parametros.dolares
@@ -49,7 +50,7 @@ Public Class frmAdelantosAplicados
                         maySaldo = saldo
                     End If
                     sumsaldo = Decimal.Add(sumsaldo, saldo)
-                    dgvAdelantos.Rows.Add(dato.Idsalida, dato.Codcliente, dato.Nombres, dato.Fecha, dato.Hora, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
+                    dgvAdelantos.Rows.Add(dato.Idsalida, dato.Codcliente, dato.Nombres, dato.Fecha, dato.Hora, moneda.Descripcion, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
                 Next
                 Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumsaldo.ToString("#,###,#00.00")
                 Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString("#,###,#00.00")
