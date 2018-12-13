@@ -2,7 +2,7 @@
 
 
 Public Class frmAdelantosAplicados
-
+    Private Const formatoNumero As String = "#,###,#00.00"
     Public Property numeroCompra As String
     Public Property codigoCliente As String
 
@@ -15,9 +15,10 @@ Public Class frmAdelantosAplicados
         numeroCompra = String.Empty
         codigoCliente = String.Empty
     End Sub
-    Private Sub recuperarAdelantos()
+    Private Sub recuperarAdelantos(filtro As String)
         Using ctx As New Contexto
             Try
+                Dim saldoDolares = Decimal.Zero
                 Dim sumsaldo As Decimal = 0D
                 Dim maySaldo As Decimal = 0D
                 Dim minSaldo As Decimal = 100000D
@@ -26,7 +27,7 @@ Public Class frmAdelantosAplicados
                 dgvAdelantos.Rows.Clear()
                 Dim listar = (From a In ctx.Adelantos
                               Join cli In ctx.Cliente On a.Codcliente Equals cli.Codcliente
-                              Where a.Saldo > 0
+                              Where a.Saldo > 0 And cli.Nombres.Contains(filtro)
                               Order By a.Idsalida Ascending
                               Select New With {a.Idsalida,
                                                a.Codcliente,
@@ -35,26 +36,27 @@ Public Class frmAdelantosAplicados
                                                a.Monto, a.Saldo,
                                                a.Codcaja, a.Usuario, a.Codmoneda}).ToList()
                 For Each dato In listar
+                    Dim saldo = Decimal.Zero
                     Dim moneda = (From m In ctx.Moneda Where m.Codmoneda = dato.Codmoneda Select m).First
-                    Dim saldo As Decimal = dato.Saldo
                     Select Case dato.Codmoneda
-                        Case parametros.dolares
-                            saldo = Decimal.Multiply(dato.Saldo, tipocambio.Tipocambio1)
                         Case parametros.cordobas
-                            saldo = dato.Saldo
+                            Saldo = dato.Saldo
+                            If Saldo <= minSaldo Then
+                                minSaldo = Saldo
+                            End If
+                            If Saldo >= maySaldo Then
+                                maySaldo = Saldo
+                            End If
+                            sumsaldo = Decimal.Add(sumsaldo, Saldo)
                     End Select
-                    If saldo <= minSaldo Then
-                        minSaldo = saldo
-                    End If
-                    If saldo >= maySaldo Then
-                        maySaldo = saldo
-                    End If
-                    sumsaldo = Decimal.Add(sumsaldo, saldo)
-                    dgvAdelantos.Rows.Add(dato.Idsalida, dato.Codcliente, dato.Nombres, dato.Fecha, dato.Hora, moneda.Descripcion, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
+                    dgvAdelantos.Rows.Add(dato.Idsalida, dato.Codcliente, dato.Nombres, dato.Fecha, dato.Hora,
+                                          moneda.Descripcion, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
                 Next
-                Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumsaldo.ToString("#,###,#00.00")
-                Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString("#,###,#00.00")
-                Me.lblMenorSaldo.Text = "Saldo menor: " & minSaldo.ToString("#,###,#00.00")
+                saldoDolares = ctx.Adelantos.Where(Function(a) a.Codmoneda = parametros.dolares And a.Saldo > Decimal.Zero).Sum(Function(a) a.Saldo)
+                lblSaldoDolares.Text = saldoDolares.ToString(formatoNumero)
+                Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumsaldo.ToString(formatoNumero)
+                Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString(formatoNumero)
+                Me.lblMenorSaldo.Text = "Saldo menor: " & minSaldo.ToString(formatoNumero)
             Catch ex As Exception
                 MsgBox("NO hay datos a mostrar debido al siguiente error: " & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
@@ -63,7 +65,7 @@ Public Class frmAdelantosAplicados
 
     Private Sub frmAdelantosAplicados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.lblTitulo.Text = "Detalle de adelantos"
-        Me.recuperarAdelantos()
+        Me.recuperarAdelantos(String.Empty)
         Me.txtFiltrar.Focus()
     End Sub
 
@@ -90,50 +92,10 @@ Public Class frmAdelantosAplicados
 
     Private Sub txtFiltrar_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFiltrar.TextChanged
         If txtFiltrar.Text.Trim.Length <= 0 Then
-            Me.recuperarAdelantos()
+            Me.recuperarAdelantos(String.Empty)
             Return
         End If
-        Using ctx As New Contexto
-            Try
-                Dim saldo As Decimal = 0D
-                Dim maySaldo As Decimal = 0D
-                Dim minSaldo As Decimal = 1000000D
-                Dim sumSaldo As Decimal = 0D
-                Dim parametros = ctx.Ids.First
-                Dim tipocambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = Now.Date Select tc).First
-                dgvAdelantos.Rows.Clear()
-                Dim listar = (From a In ctx.Adelantos
-                              Join cli In ctx.Cliente On a.Codcliente Equals cli.Codcliente
-                              Where a.Saldo > 0 And System.Data.Linq.SqlClient.SqlMethods.Like(cli.Nombres, "%" & Me.txtFiltrar.Text & "%")
-                              Select New With {a.Idsalida,
-                                               a.Codcliente,
-                                               .Nombres = cli.Nombres & " " & cli.Apellidos,
-                                               a.Fecha, a.Hora,
-                                               a.Monto, a.Saldo,
-                                               a.Codcaja, a.Usuario, a.Codmoneda}).ToList()
-                For Each dato In listar
-                    Select Case dato.Codmoneda
-                        Case parametros.dolares
-                            saldo = Decimal.Multiply(dato.Saldo, tipocambio.Tipocambio1)
-                        Case parametros.cordobas
-                            saldo = dato.Saldo
-                    End Select
-                    If saldo <= minSaldo Then
-                        minSaldo = saldo
-                    End If
-                    If saldo >= maySaldo Then
-                        maySaldo = saldo
-                    End If
-                    sumSaldo += saldo
-                    dgvAdelantos.Rows.Add(dato.Idsalida, dato.Codcliente, dato.Nombres, dato.Fecha, dato.Hora, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
-                Next
-                Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumSaldo.ToString("#,###,#00.00")
-                Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString("#,###,#00.00")
-                Me.lblMenorSaldo.Text = "Saldo menor: " & minSaldo.ToString("#,###,#00.00")
-            Catch ex As Exception
-                MsgBox("NO hay datos a mostrar debido al siguiente error: " & ex.Message, MsgBoxStyle.Critical, "Error")
-            End Try
-        End Using
+        recuperarAdelantos(txtFiltrar.Text)
     End Sub
 
     Private Sub listCompras_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) 'Handles listCompras.MouseClick
@@ -189,32 +151,8 @@ Public Class frmAdelantosAplicados
         End Try
     End Sub
     Private Sub imprimir(codigoAdelanto As String, nombre As String)
-        Using ctx As New Contexto
-            Try
-                Dim buscar = (From a In ctx.Adelantos Where a.Idsalida = codigoAdelanto Select a).ToList()
-                Dim saldoActual As Decimal = (From a In ctx.Adelantos Where a.Codcliente = codigoCliente And a.Saldo > 0
-                          Group By a.Codcliente Into g = Group Select saldo = g.Sum(Function(p) p.Saldo)).First()
-                Dim listar As New List(Of Adelantos)
-                For Each dato In buscar
-                    Dim adelanto As New Adelantos
-                    adelanto.Idsalida = dato.Idsalida
-                    adelanto.Monto_letras = dato.Monto_letras
-                    adelanto.Fecha = dato.Fecha
-                    adelanto.Hora = dato.Hora
-                    adelanto.Monto = dato.Monto
-                    adelanto.nombreCliente = nombre
-                    adelanto.Saldo = saldoActual
-                    listar.Add(adelanto)
-                Next
-                Dim report As New rptReciboAdelanto
-                report.SetDataSource(listar)
-                'ServiciosBasicos.ParametrosCrystal(buscar.Count, txtDesdegen.Value, txtHastagen.Value)
-                frmReportes.viewer.ReportSource = report
-                frmReportes.Show()
-            Catch ex As Exception
-
-            End Try
-        End Using
+        Dim dao = DataContext.daoAdelantos
+        dao.imprimir(codigoAdelanto, nombre)
     End Sub
     Private Sub UltraButton1_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         Try
@@ -237,7 +175,7 @@ Public Class frmAdelantosAplicados
             End If
             If dao.anularAdelanto(codigo) = True Then
                 MsgBox("Se ha anulado el adelanto con código N°: " & codigo, MsgBoxStyle.Information, "Revertir adelanto")
-                Me.recuperarAdelantos()
+                Me.recuperarAdelantos(String.Empty)
             Else
                 MsgBox("Se produjo el siguiente error: " & dao.ErrorSms, MsgBoxStyle.Critical, "Error")
             End If

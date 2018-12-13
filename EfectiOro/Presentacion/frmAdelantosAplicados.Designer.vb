@@ -53,6 +53,8 @@ Partial Class frmAdelantosAplicados
         Me.btnAnular = New System.Windows.Forms.Button()
         Me.btnAdelantoEfectivo = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblSaldoDolares = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvAdelantos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,7 +238,7 @@ Partial Class frmAdelantosAplicados
         'StatusStrip1
         '
         Me.StatusStrip1.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblSaldoStatus, Me.lblSaldoMayor, Me.lblMenorSaldo})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblSaldoStatus, Me.lblSaldoMayor, Me.lblMenorSaldo, Me.ToolStripStatusLabel1, Me.lblSaldoDolares})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 347)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(767, 22)
@@ -313,6 +315,20 @@ Partial Class frmAdelantosAplicados
         Me.Button1.TabIndex = 11
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.White
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
+        Me.ToolStripStatusLabel1.Text = "Saldo dolares:"
+        '
+        'lblSaldoDolares
+        '
+        Me.lblSaldoDolares.ForeColor = System.Drawing.Color.White
+        Me.lblSaldoDolares.Name = "lblSaldoDolares"
+        Me.lblSaldoDolares.Size = New System.Drawing.Size(47, 17)
+        Me.lblSaldoDolares.Text = "(U$ 0.0)"
+        '
         'frmAdelantosAplicados
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -377,4 +393,6 @@ Partial Class frmAdelantosAplicados
     Friend WithEvents colSaldo As DataGridViewTextBoxColumn
     Friend WithEvents colCodcaja As DataGridViewTextBoxColumn
     Friend WithEvents colUsuario As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents lblSaldoDolares As ToolStripStatusLabel
 End Class

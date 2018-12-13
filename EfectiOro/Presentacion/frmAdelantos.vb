@@ -357,51 +357,10 @@ Public Class frmAdelantos
     End Sub
 
     Private Sub imprimir(codigoAdelanto As String, nombre As String)
-        Using ctx As New Contexto
-            Try
-                Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha = Now.Date Select tc).Single
-                Dim parametros = ctx.Ids.First
-                Dim buscar = (From a In ctx.Adelantos Where a.Idsalida = codigoAdelanto Select a).ToList()
-                Dim listar As New List(Of Adelantos)
-                For Each dato In buscar
-                    Dim adelanto As New Adelantos
-                    adelanto.Idsalida = dato.Idsalida
-                    adelanto.Monto_letras = dato.Monto_letras
-                    adelanto.Fecha = dato.Fecha
-                    adelanto.Hora = dato.Hora
-                    adelanto.Monto = dato.Monto
-                    adelanto.nombreCliente = nombre
-                    adelanto.Saldo = Me.saldoActual
-                    listar.Add(adelanto)
-                Next
-                Dim report As New rptReciboAdelanto
-                'report.SetDataSource(listar)
-                report.Database.Tables(0).SetDataSource(listar)
-                report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
-                'ServiciosBasicos.ParametrosCrystal(buscar.Count, txtDesdegen.Value, txtHastagen.Value)
-                frmReporteReciboAdelantoAbono.viewer.ReportSource = report
-                frmReporteReciboAdelantoAbono.Show()
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-        End Using
+        Dim dao = DataContext.daoAdelantos
+        dao.imprimir(codigoAdelanto, nombre)
     End Sub
-    Private Sub imprimir(codigoAdelanto As String)
-        Using ctx As New Contexto
-            Try
-                Dim buscar = (From a In ctx.Adelantos Where a.Idsalida = codigoAdelanto Select a).ToList()
-                Dim moneda = ctx.Moneda.ToList
-                Dim report As New rptReciboAdelanto
-                report.Database.Tables(0).SetDataSource(buscar)
-                report.Database.Tables(1).SetDataSource(moneda)
-                'ServiciosBasicos.ParametrosCrystal(buscar.Count, txtDesdegen.Value, txtHastagen.Value)
-                frmReporteReciboAdelantoAbono.viewer.ReportSource = report
-                frmReporteReciboAdelantoAbono.Show()
-            Catch ex As Exception
 
-            End Try
-        End Using
-    End Sub
     Private Sub btnGuardar_Click(sender As System.Object, e As System.EventArgs) Handles btnGuardar.Click
         If sumaGen <= 0 Then
             MsgBox("No se ha especificado un monto para aplicar el adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelantos")

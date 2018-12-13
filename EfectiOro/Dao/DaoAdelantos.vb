@@ -2,7 +2,7 @@
 Imports System.Data.Linq
 Imports System.Transactions
 Imports System.Data.SqlClient
-
+Imports EfectiOro
 
 Public Class DaoAdelantos
     Implements IDaoAdelantos
@@ -153,7 +153,7 @@ Public Class DaoAdelantos
                                       Where mc.Codcaja = buscarAdelanto.Codcaja And mc.Estado = 1
                                       Select mc).First
                     Catch ex As Exception
-                        _error = "La caja que ingresó el adelanto no esta abierta, " & _
+                        _error = "La caja que ingresó el adelanto no esta abierta, " &
                             "por lo tanto abra la caja para realizar el reembolso del adelanto."
                         Return False
                     End Try
@@ -162,22 +162,22 @@ Public Class DaoAdelantos
                     'buscamos el movimiento
                     'ahora creamos un nuevo movimiento de caja
                     'revirtiendo este adelanto
-                    Dim nuevoDetaCaja As New Detacaja With { _
-                                .codcaja = buscarAdelanto.Codcaja, _
-                                .idcaja = buscarCaja.Idcaja, _
-                                .efectivo = buscarAdelanto.Efectivo, _
-                                .cheque = buscarAdelanto.Cheque, _
-                                .transferencia = buscarAdelanto.Transferencia, _
-                                .idmov = parametros.recuperarParametros().Anular_adelanto, _
-                                .referencia = "Revertir adelanto con codigo N°: " & codigo, _
-                                .hora = Now.ToLongTimeString(), _
-                                .concepto = "***REVERTIR ADELANTO: " & codigo & "***", _
+                    Dim nuevoDetaCaja As New Detacaja With {
+                                .codcaja = buscarAdelanto.Codcaja,
+                                .idcaja = buscarCaja.Idcaja,
+                                .efectivo = buscarAdelanto.Efectivo,
+                                .cheque = buscarAdelanto.Cheque,
+                                .transferencia = buscarAdelanto.Transferencia,
+                                .idmov = parametros.recuperarParametros().anular_adelanto,
+                                .referencia = "Revertir adelanto con codigo N°: " & codigo,
+                                .hora = Now.ToLongTimeString(),
+                                .concepto = "***REVERTIR ADELANTO: " & codigo & "***",
                                 .fecha = DateTime.Now
                         }
                     If daoMcaja.guardarDatosDetaCaja(nuevoDetaCaja, buscarCaja) = True Then
                         MsgBox("Se ha ingreso el monto en efectivo a la caja", MsgBoxStyle.Information, "Revertir adelanto")
                     Else
-                        MsgBox("Se produjo un error al intentar ingresar el monto a la caja, producido por: " & _
+                        MsgBox("Se produjo un error al intentar ingresar el monto a la caja, producido por: " &
                                vbCr & daoCaja.ErrorSms, MsgBoxStyle.Critical, "Error")
                     End If
                 End If
@@ -198,7 +198,7 @@ Public Class DaoAdelantos
             Dim caja As String = config.getCaja
             Dim detaCaja As New Detacaja
             'detalle del detacaja
-            detaCaja.idmov = parametros.Pago_adelanto
+            detaCaja.idmov = parametros.pago_adelanto
             detaCaja.codcaja = config.getCaja
             detaCaja.concepto = "***EFECTIVO A ADELANTO(S): "
             detaCaja.efectivo = monto
@@ -268,5 +268,47 @@ Public Class DaoAdelantos
     Public Function aplicarAdelantoEfectivo(listaAdelantos As List(Of Adelantos), monto As Decimal, Optional ByVal codcliente As String = "") As Boolean Implements IDaoAdelantos.aplicarAdelantoEfectivo
         Return Me.aplicarEfectivo(listaAdelantos, monto, codcliente)
     End Function
-    
+
+    Public Function imprimir(codigo As String, nombre As String) As Object Implements IDaoAdelantos.imprimir
+        Using ctx As New Contexto
+            Try
+                Dim parametros = ctx.Ids.First
+                Dim buscar = (From a In ctx.Adelantos Where a.Idsalida = codigo Select a).ToList()
+                Dim listar As New List(Of Adelantos)
+                For Each dato In buscar
+                    Dim adelanto As New Adelantos
+                    adelanto.Idsalida = dato.Idsalida
+                    adelanto.Codcliente = dato.Codcliente
+                    adelanto.Monto_letras = dato.Monto_letras
+                    adelanto.Fecha = dato.Fecha
+                    adelanto.Hora = dato.Hora
+                    adelanto.Monto = dato.Monto
+                    adelanto.nombreCliente = nombre
+                    adelanto.Codmoneda = dato.Codmoneda
+                    Try
+                        adelanto.saldoCordobas = ctx.Adelantos.Where(Function(a) a.Codmoneda = parametros.cordobas And a.Saldo > 0 And a.Codcliente = dato.Codcliente).Sum(Function(a) a.Saldo)
+                    Catch ex As Exception
+                        'esto para cuando no hay saldo en cordobas
+                        adelanto.saldoCordobas = Decimal.Zero
+                    End Try
+                    Try
+                        adelanto.saldoDolares = ctx.Adelantos.Where(Function(a) a.Codmoneda = parametros.dolares And a.Saldo > 0 And a.Codcliente = dato.Codcliente).Sum(Function(a) a.Saldo)
+                    Catch ex As Exception
+                        'esto para cuando no hay saldo en dolares
+                        adelanto.saldoDolares = Decimal.Zero
+                    End Try
+                    listar.Add(adelanto)
+                Next
+                Dim report As New rptReciboAdelanto
+                'report.SetDataSource(listar)
+                report.Database.Tables(0).SetDataSource(listar)
+                report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+                'ServiciosBasicos.ParametrosCrystal(buscar.Count, txtDesdegen.Value, txtHastagen.Value)
+                frmReporteReciboAdelantoAbono.viewer.ReportSource = report
+                frmReporteReciboAdelantoAbono.Show()
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End Using
+    End Function
 End Class
