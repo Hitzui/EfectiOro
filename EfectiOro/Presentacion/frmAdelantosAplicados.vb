@@ -141,8 +141,8 @@ Public Class frmAdelantosAplicados
             Dim dao As IDaoAdelantos = DataContext.daoAdelantos
             Dim adelantoCliente As Adelantos = dao.findByCodigoAdelanto(idAdelanto)
             Dim comprasAplicadas() As String = adelantoCliente.Numcompra.Split(CChar("; "))
-            If comprasAplicadas.Count <= 0 Then
-                Me.listCompras.Items.Add("No hay compras aplicadas")
+            If comprasAplicadas.Where(Function(a) a <> String.Empty).Count <= 0 Then
+                listCompras.DataSource = New List(Of String)({"Sin aplicacion de Compra"})
             Else
                 Me.listCompras.DataSource = comprasAplicadas.Select(Function(p) p.Trim).ToArray()
             End If
