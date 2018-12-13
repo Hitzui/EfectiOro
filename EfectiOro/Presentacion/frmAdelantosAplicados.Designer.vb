@@ -20,24 +20,14 @@ Partial Class frmAdelantosAplicados
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdelantosAplicados))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdelantosAplicados))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtFiltrar = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dgvAdelantos = New System.Windows.Forms.DataGridView()
-        Me.colIdsalida = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colHora = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colMonedaDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colSaldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colCodcaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colUsuario = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.listCompras = New System.Windows.Forms.ListBox()
         Me.menuDerecho = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -49,12 +39,22 @@ Partial Class frmAdelantosAplicados
         Me.lblSaldoStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblSaldoMayor = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblMenorSaldo = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblSaldoDolares = New System.Windows.Forms.ToolStripStatusLabel()
         Me.btnImprimir = New System.Windows.Forms.Button()
         Me.btnAnular = New System.Windows.Forms.Button()
         Me.btnAdelantoEfectivo = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblSaldoDolares = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.colIdsalida = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colHora = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colMonedaDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colSaldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colCodcaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colUsuario = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvAdelantos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +102,8 @@ Partial Class frmAdelantosAplicados
         '
         Me.dgvAdelantos.AllowUserToAddRows = False
         Me.dgvAdelantos.AllowUserToDeleteRows = False
+        Me.dgvAdelantos.AllowUserToOrderColumns = True
+        Me.dgvAdelantos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.dgvAdelantos.BackgroundColor = System.Drawing.Color.White
         Me.dgvAdelantos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colIdsalida, Me.colCodcliente, Me.colNombres, Me.colFecha, Me.colHora, Me.colMonedaDescripcion, Me.colMonto, Me.colSaldo, Me.colCodcaja, Me.colUsuario})
         Me.dgvAdelantos.Dock = System.Windows.Forms.DockStyle.Fill
@@ -110,84 +112,6 @@ Partial Class frmAdelantosAplicados
         Me.dgvAdelantos.ReadOnly = True
         Me.dgvAdelantos.Size = New System.Drawing.Size(605, 237)
         Me.dgvAdelantos.TabIndex = 0
-        '
-        'colIdsalida
-        '
-        Me.colIdsalida.HeaderText = "Id Adelanto"
-        Me.colIdsalida.Name = "colIdsalida"
-        Me.colIdsalida.ReadOnly = True
-        Me.colIdsalida.Width = 86
-        '
-        'colCodcliente
-        '
-        Me.colCodcliente.HeaderText = "Codigo cliente"
-        Me.colCodcliente.Name = "colCodcliente"
-        Me.colCodcliente.ReadOnly = True
-        Me.colCodcliente.Width = 99
-        '
-        'colNombres
-        '
-        Me.colNombres.HeaderText = "Nombres"
-        Me.colNombres.Name = "colNombres"
-        Me.colNombres.ReadOnly = True
-        Me.colNombres.Width = 74
-        '
-        'colFecha
-        '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
-        Me.colFecha.HeaderText = "Fecha"
-        Me.colFecha.Name = "colFecha"
-        Me.colFecha.ReadOnly = True
-        Me.colFecha.Width = 62
-        '
-        'colHora
-        '
-        Me.colHora.HeaderText = "Hora"
-        Me.colHora.Name = "colHora"
-        Me.colHora.ReadOnly = True
-        Me.colHora.Width = 55
-        '
-        'colMonedaDescripcion
-        '
-        Me.colMonedaDescripcion.HeaderText = "Moneda"
-        Me.colMonedaDescripcion.Name = "colMonedaDescripcion"
-        Me.colMonedaDescripcion.ReadOnly = True
-        Me.colMonedaDescripcion.Width = 71
-        '
-        'colMonto
-        '
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colMonto.HeaderText = "Monto"
-        Me.colMonto.Name = "colMonto"
-        Me.colMonto.ReadOnly = True
-        Me.colMonto.Width = 62
-        '
-        'colSaldo
-        '
-        DataGridViewCellStyle3.Format = "N2"
-        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colSaldo.HeaderText = "Saldo"
-        Me.colSaldo.Name = "colSaldo"
-        Me.colSaldo.ReadOnly = True
-        Me.colSaldo.Width = 59
-        '
-        'colCodcaja
-        '
-        Me.colCodcaja.HeaderText = "Codigo caja"
-        Me.colCodcaja.Name = "colCodcaja"
-        Me.colCodcaja.ReadOnly = True
-        Me.colCodcaja.Width = 88
-        '
-        'colUsuario
-        '
-        Me.colUsuario.HeaderText = "Usuario"
-        Me.colUsuario.Name = "colUsuario"
-        Me.colUsuario.ReadOnly = True
-        Me.colUsuario.Width = 68
         '
         'GroupBox3
         '
@@ -267,6 +191,20 @@ Partial Class frmAdelantosAplicados
         Me.lblMenorSaldo.Size = New System.Drawing.Size(121, 17)
         Me.lblMenorSaldo.Text = "ToolStripStatusLabel1"
         '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.White
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
+        Me.ToolStripStatusLabel1.Text = "Saldo dolares:"
+        '
+        'lblSaldoDolares
+        '
+        Me.lblSaldoDolares.ForeColor = System.Drawing.Color.White
+        Me.lblSaldoDolares.Name = "lblSaldoDolares"
+        Me.lblSaldoDolares.Size = New System.Drawing.Size(47, 17)
+        Me.lblSaldoDolares.Text = "(U$ 0.0)"
+        '
         'btnImprimir
         '
         Me.btnImprimir.FlatAppearance.BorderSize = 0
@@ -315,19 +253,84 @@ Partial Class frmAdelantosAplicados
         Me.Button1.TabIndex = 11
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'ToolStripStatusLabel1
+        'colIdsalida
         '
-        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.White
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
-        Me.ToolStripStatusLabel1.Text = "Saldo dolares:"
+        Me.colIdsalida.HeaderText = "Id Adelanto"
+        Me.colIdsalida.Name = "colIdsalida"
+        Me.colIdsalida.ReadOnly = True
+        Me.colIdsalida.Width = 86
         '
-        'lblSaldoDolares
+        'colCodcliente
         '
-        Me.lblSaldoDolares.ForeColor = System.Drawing.Color.White
-        Me.lblSaldoDolares.Name = "lblSaldoDolares"
-        Me.lblSaldoDolares.Size = New System.Drawing.Size(47, 17)
-        Me.lblSaldoDolares.Text = "(U$ 0.0)"
+        Me.colCodcliente.HeaderText = "Codigo cliente"
+        Me.colCodcliente.Name = "colCodcliente"
+        Me.colCodcliente.ReadOnly = True
+        Me.colCodcliente.Width = 99
+        '
+        'colNombres
+        '
+        Me.colNombres.FillWeight = 200.0!
+        Me.colNombres.HeaderText = "Nombres"
+        Me.colNombres.Name = "colNombres"
+        Me.colNombres.ReadOnly = True
+        Me.colNombres.Width = 74
+        '
+        'colFecha
+        '
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
+        Me.colFecha.HeaderText = "Fecha"
+        Me.colFecha.Name = "colFecha"
+        Me.colFecha.ReadOnly = True
+        Me.colFecha.Width = 62
+        '
+        'colHora
+        '
+        Me.colHora.HeaderText = "Hora"
+        Me.colHora.Name = "colHora"
+        Me.colHora.ReadOnly = True
+        Me.colHora.Width = 55
+        '
+        'colMonedaDescripcion
+        '
+        Me.colMonedaDescripcion.HeaderText = "Moneda"
+        Me.colMonedaDescripcion.Name = "colMonedaDescripcion"
+        Me.colMonedaDescripcion.ReadOnly = True
+        Me.colMonedaDescripcion.Width = 71
+        '
+        'colMonto
+        '
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
+        Me.colMonto.HeaderText = "Monto"
+        Me.colMonto.Name = "colMonto"
+        Me.colMonto.ReadOnly = True
+        Me.colMonto.Width = 62
+        '
+        'colSaldo
+        '
+        DataGridViewCellStyle3.Format = "N2"
+        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
+        Me.colSaldo.HeaderText = "Saldo"
+        Me.colSaldo.Name = "colSaldo"
+        Me.colSaldo.ReadOnly = True
+        Me.colSaldo.Width = 59
+        '
+        'colCodcaja
+        '
+        Me.colCodcaja.HeaderText = "Codigo caja"
+        Me.colCodcaja.Name = "colCodcaja"
+        Me.colCodcaja.ReadOnly = True
+        Me.colCodcaja.Width = 88
+        '
+        'colUsuario
+        '
+        Me.colUsuario.HeaderText = "Usuario"
+        Me.colUsuario.Name = "colUsuario"
+        Me.colUsuario.ReadOnly = True
+        Me.colUsuario.Width = 68
         '
         'frmAdelantosAplicados
         '
@@ -383,6 +386,8 @@ Partial Class frmAdelantosAplicados
     Friend WithEvents btnAdelantoEfectivo As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents listCompras As ListBox
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents lblSaldoDolares As ToolStripStatusLabel
     Friend WithEvents colIdsalida As DataGridViewTextBoxColumn
     Friend WithEvents colCodcliente As DataGridViewTextBoxColumn
     Friend WithEvents colNombres As DataGridViewTextBoxColumn
@@ -393,6 +398,4 @@ Partial Class frmAdelantosAplicados
     Friend WithEvents colSaldo As DataGridViewTextBoxColumn
     Friend WithEvents colCodcaja As DataGridViewTextBoxColumn
     Friend WithEvents colUsuario As DataGridViewTextBoxColumn
-    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
-    Friend WithEvents lblSaldoDolares As ToolStripStatusLabel
 End Class
