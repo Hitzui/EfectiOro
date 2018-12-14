@@ -43,6 +43,7 @@ Partial Class frmVerAdelantos
         Me.btnAplicarSaldo = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnRefrescar = New System.Windows.Forms.Button()
+        Me.colMoneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvAdelanto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -118,10 +119,11 @@ Partial Class frmVerAdelantos
         '
         Me.dgvAdelanto.AllowUserToAddRows = False
         Me.dgvAdelanto.AllowUserToDeleteRows = False
-        Me.dgvAdelanto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvAdelanto.AllowUserToOrderColumns = True
+        Me.dgvAdelanto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgvAdelanto.BackgroundColor = System.Drawing.Color.White
         Me.dgvAdelanto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvAdelanto.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSeleccionar, Me.colCodigo, Me.colFecha, Me.colMonto, Me.colSaldo})
+        Me.dgvAdelanto.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSeleccionar, Me.colCodigo, Me.colFecha, Me.colMonto, Me.colSaldo, Me.colMoneda})
         Me.dgvAdelanto.Location = New System.Drawing.Point(13, 80)
         Me.dgvAdelanto.Name = "dgvAdelanto"
         Me.dgvAdelanto.Size = New System.Drawing.Size(481, 202)
@@ -133,12 +135,14 @@ Partial Class frmVerAdelantos
         Me.colSeleccionar.Name = "colSeleccionar"
         Me.colSeleccionar.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.colSeleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.colSeleccionar.Width = 88
         '
         'colCodigo
         '
         Me.colCodigo.HeaderText = "Codigo"
         Me.colCodigo.Name = "colCodigo"
         Me.colCodigo.ReadOnly = True
+        Me.colCodigo.Width = 65
         '
         'colFecha
         '
@@ -148,6 +152,7 @@ Partial Class frmVerAdelantos
         Me.colFecha.HeaderText = "Fecha"
         Me.colFecha.Name = "colFecha"
         Me.colFecha.ReadOnly = True
+        Me.colFecha.Width = 62
         '
         'colMonto
         '
@@ -157,6 +162,7 @@ Partial Class frmVerAdelantos
         Me.colMonto.HeaderText = "Monto"
         Me.colMonto.Name = "colMonto"
         Me.colMonto.ReadOnly = True
+        Me.colMonto.Width = 62
         '
         'colSaldo
         '
@@ -166,6 +172,7 @@ Partial Class frmVerAdelantos
         Me.colSaldo.HeaderText = "Saldo"
         Me.colSaldo.Name = "colSaldo"
         Me.colSaldo.ReadOnly = True
+        Me.colSaldo.Width = 59
         '
         'btnSalir
         '
@@ -230,6 +237,12 @@ Partial Class frmVerAdelantos
         Me.btnRefrescar.TabIndex = 6
         Me.ToolTip1.SetToolTip(Me.btnRefrescar, "Volver a cargar los datos de adelantos")
         '
+        'colMoneda
+        '
+        Me.colMoneda.HeaderText = "Moneda"
+        Me.colMoneda.Name = "colMoneda"
+        Me.colMoneda.Width = 71
+        '
         'frmVerAdelantos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -276,4 +289,5 @@ Partial Class frmVerAdelantos
     Friend WithEvents colMonto As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colSaldo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents colMoneda As DataGridViewTextBoxColumn
 End Class

@@ -20,31 +20,14 @@ Partial Class frmAdelantosAplicados
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdelantosAplicados))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdelantosAplicados))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtFiltrar = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dgvAdelantos = New System.Windows.Forms.DataGridView()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.listCompras = New System.Windows.Forms.ListBox()
-        Me.menuDerecho = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.VerCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopiarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblSaldoStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblSaldoMayor = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblMenorSaldo = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblSaldoDolares = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.btnImprimir = New System.Windows.Forms.Button()
-        Me.btnAnular = New System.Windows.Forms.Button()
-        Me.btnAdelantoEfectivo = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.colIdsalida = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -55,6 +38,21 @@ Partial Class frmAdelantosAplicados
         Me.colSaldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colCodcaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colUsuario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.listCompras = New System.Windows.Forms.ListBox()
+        Me.menuDerecho = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.VerCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopiarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblSaldoStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblSaldoDolares = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.btnImprimir = New System.Windows.Forms.Button()
+        Me.btnAnular = New System.Windows.Forms.Button()
+        Me.btnAdelantoEfectivo = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvAdelantos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,7 +68,7 @@ Partial Class frmAdelantosAplicados
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(767, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(776, 25)
         '
         'GroupBox1
         '
@@ -112,146 +110,6 @@ Partial Class frmAdelantosAplicados
         Me.dgvAdelantos.ReadOnly = True
         Me.dgvAdelantos.Size = New System.Drawing.Size(605, 237)
         Me.dgvAdelantos.TabIndex = 0
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.listCompras)
-        Me.GroupBox3.Location = New System.Drawing.Point(621, 31)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(134, 300)
-        Me.GroupBox3.TabIndex = 2
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Aplicado a compras"
-        '
-        'listCompras
-        '
-        Me.listCompras.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.listCompras.FormattingEnabled = True
-        Me.listCompras.Location = New System.Drawing.Point(3, 16)
-        Me.listCompras.Name = "listCompras"
-        Me.listCompras.Size = New System.Drawing.Size(128, 281)
-        Me.listCompras.TabIndex = 0
-        '
-        'menuDerecho
-        '
-        Me.menuDerecho.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerCompraToolStripMenuItem, Me.CopiarToolStripMenuItem})
-        Me.menuDerecho.Name = "menuDerecho"
-        Me.menuDerecho.Size = New System.Drawing.Size(136, 48)
-        '
-        'VerCompraToolStripMenuItem
-        '
-        Me.VerCompraToolStripMenuItem.Name = "VerCompraToolStripMenuItem"
-        Me.VerCompraToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
-        Me.VerCompraToolStripMenuItem.Text = "Ver compra"
-        '
-        'CopiarToolStripMenuItem
-        '
-        Me.CopiarToolStripMenuItem.Name = "CopiarToolStripMenuItem"
-        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
-        Me.CopiarToolStripMenuItem.Text = "Copiar"
-        '
-        'ImageList1
-        '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "9.PNG")
-        Me.ImageList1.Images.SetKeyName(1, "analysis.png")
-        Me.ImageList1.Images.SetKeyName(2, "finance51.png")
-        Me.ImageList1.Images.SetKeyName(3, "printer.png")
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblSaldoStatus, Me.lblSaldoMayor, Me.lblMenorSaldo, Me.ToolStripStatusLabel1, Me.lblSaldoDolares})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 347)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(767, 22)
-        Me.StatusStrip1.SizingGrip = False
-        Me.StatusStrip1.TabIndex = 7
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'lblSaldoStatus
-        '
-        Me.lblSaldoStatus.ForeColor = System.Drawing.Color.White
-        Me.lblSaldoStatus.Name = "lblSaldoStatus"
-        Me.lblSaldoStatus.Size = New System.Drawing.Size(111, 17)
-        Me.lblSaldoStatus.Text = "(Cantidad de Saldo)"
-        '
-        'lblSaldoMayor
-        '
-        Me.lblSaldoMayor.ForeColor = System.Drawing.Color.White
-        Me.lblSaldoMayor.Name = "lblSaldoMayor"
-        Me.lblSaldoMayor.Size = New System.Drawing.Size(121, 17)
-        Me.lblSaldoMayor.Text = "ToolStripStatusLabel1"
-        '
-        'lblMenorSaldo
-        '
-        Me.lblMenorSaldo.ForeColor = System.Drawing.Color.White
-        Me.lblMenorSaldo.Name = "lblMenorSaldo"
-        Me.lblMenorSaldo.Size = New System.Drawing.Size(121, 17)
-        Me.lblMenorSaldo.Text = "ToolStripStatusLabel1"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.White
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
-        Me.ToolStripStatusLabel1.Text = "Saldo dolares:"
-        '
-        'lblSaldoDolares
-        '
-        Me.lblSaldoDolares.ForeColor = System.Drawing.Color.White
-        Me.lblSaldoDolares.Name = "lblSaldoDolares"
-        Me.lblSaldoDolares.Size = New System.Drawing.Size(47, 17)
-        Me.lblSaldoDolares.Text = "(U$ 0.0)"
-        '
-        'btnImprimir
-        '
-        Me.btnImprimir.FlatAppearance.BorderSize = 0
-        Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnImprimir.ImageIndex = 3
-        Me.btnImprimir.ImageList = Me.ImageList1
-        Me.btnImprimir.Location = New System.Drawing.Point(339, 31)
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(57, 38)
-        Me.btnImprimir.TabIndex = 8
-        Me.btnImprimir.UseVisualStyleBackColor = True
-        '
-        'btnAnular
-        '
-        Me.btnAnular.FlatAppearance.BorderSize = 0
-        Me.btnAnular.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAnular.ImageIndex = 0
-        Me.btnAnular.ImageList = Me.ImageList1
-        Me.btnAnular.Location = New System.Drawing.Point(402, 31)
-        Me.btnAnular.Name = "btnAnular"
-        Me.btnAnular.Size = New System.Drawing.Size(57, 38)
-        Me.btnAnular.TabIndex = 9
-        Me.btnAnular.UseVisualStyleBackColor = True
-        '
-        'btnAdelantoEfectivo
-        '
-        Me.btnAdelantoEfectivo.FlatAppearance.BorderSize = 0
-        Me.btnAdelantoEfectivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdelantoEfectivo.ImageIndex = 2
-        Me.btnAdelantoEfectivo.ImageList = Me.ImageList1
-        Me.btnAdelantoEfectivo.Location = New System.Drawing.Point(465, 31)
-        Me.btnAdelantoEfectivo.Name = "btnAdelantoEfectivo"
-        Me.btnAdelantoEfectivo.Size = New System.Drawing.Size(57, 38)
-        Me.btnAdelantoEfectivo.TabIndex = 10
-        Me.btnAdelantoEfectivo.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ImageIndex = 1
-        Me.Button1.ImageList = Me.ImageList1
-        Me.Button1.Location = New System.Drawing.Point(528, 31)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(57, 38)
-        Me.Button1.TabIndex = 11
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'colIdsalida
         '
@@ -332,10 +190,136 @@ Partial Class frmAdelantosAplicados
         Me.colUsuario.ReadOnly = True
         Me.colUsuario.Width = 68
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.listCompras)
+        Me.GroupBox3.Location = New System.Drawing.Point(621, 31)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(143, 300)
+        Me.GroupBox3.TabIndex = 2
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Aplicado a compras"
+        '
+        'listCompras
+        '
+        Me.listCompras.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.listCompras.FormattingEnabled = True
+        Me.listCompras.Location = New System.Drawing.Point(3, 16)
+        Me.listCompras.Name = "listCompras"
+        Me.listCompras.Size = New System.Drawing.Size(137, 281)
+        Me.listCompras.TabIndex = 0
+        '
+        'menuDerecho
+        '
+        Me.menuDerecho.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerCompraToolStripMenuItem, Me.CopiarToolStripMenuItem})
+        Me.menuDerecho.Name = "menuDerecho"
+        Me.menuDerecho.Size = New System.Drawing.Size(136, 48)
+        '
+        'VerCompraToolStripMenuItem
+        '
+        Me.VerCompraToolStripMenuItem.Name = "VerCompraToolStripMenuItem"
+        Me.VerCompraToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.VerCompraToolStripMenuItem.Text = "Ver compra"
+        '
+        'CopiarToolStripMenuItem
+        '
+        Me.CopiarToolStripMenuItem.Name = "CopiarToolStripMenuItem"
+        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.CopiarToolStripMenuItem.Text = "Copiar"
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "9.PNG")
+        Me.ImageList1.Images.SetKeyName(1, "analysis.png")
+        Me.ImageList1.Images.SetKeyName(2, "finance51.png")
+        Me.ImageList1.Images.SetKeyName(3, "printer.png")
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblSaldoStatus, Me.ToolStripStatusLabel1, Me.lblSaldoDolares})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 347)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(776, 22)
+        Me.StatusStrip1.SizingGrip = False
+        Me.StatusStrip1.TabIndex = 7
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'lblSaldoStatus
+        '
+        Me.lblSaldoStatus.ForeColor = System.Drawing.Color.White
+        Me.lblSaldoStatus.Name = "lblSaldoStatus"
+        Me.lblSaldoStatus.Size = New System.Drawing.Size(111, 17)
+        Me.lblSaldoStatus.Text = "(Cantidad de Saldo)"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.White
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
+        Me.ToolStripStatusLabel1.Text = "Saldo dolares:"
+        '
+        'lblSaldoDolares
+        '
+        Me.lblSaldoDolares.ForeColor = System.Drawing.Color.White
+        Me.lblSaldoDolares.Name = "lblSaldoDolares"
+        Me.lblSaldoDolares.Size = New System.Drawing.Size(47, 17)
+        Me.lblSaldoDolares.Text = "(U$ 0.0)"
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.FlatAppearance.BorderSize = 0
+        Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImprimir.ImageIndex = 3
+        Me.btnImprimir.ImageList = Me.ImageList1
+        Me.btnImprimir.Location = New System.Drawing.Point(339, 31)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(57, 38)
+        Me.btnImprimir.TabIndex = 8
+        Me.btnImprimir.UseVisualStyleBackColor = True
+        '
+        'btnAnular
+        '
+        Me.btnAnular.FlatAppearance.BorderSize = 0
+        Me.btnAnular.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAnular.ImageIndex = 0
+        Me.btnAnular.ImageList = Me.ImageList1
+        Me.btnAnular.Location = New System.Drawing.Point(402, 31)
+        Me.btnAnular.Name = "btnAnular"
+        Me.btnAnular.Size = New System.Drawing.Size(57, 38)
+        Me.btnAnular.TabIndex = 9
+        Me.btnAnular.UseVisualStyleBackColor = True
+        '
+        'btnAdelantoEfectivo
+        '
+        Me.btnAdelantoEfectivo.FlatAppearance.BorderSize = 0
+        Me.btnAdelantoEfectivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAdelantoEfectivo.ImageIndex = 2
+        Me.btnAdelantoEfectivo.ImageList = Me.ImageList1
+        Me.btnAdelantoEfectivo.Location = New System.Drawing.Point(465, 31)
+        Me.btnAdelantoEfectivo.Name = "btnAdelantoEfectivo"
+        Me.btnAdelantoEfectivo.Size = New System.Drawing.Size(57, 38)
+        Me.btnAdelantoEfectivo.TabIndex = 10
+        Me.btnAdelantoEfectivo.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ImageIndex = 1
+        Me.Button1.ImageList = Me.ImageList1
+        Me.Button1.Location = New System.Drawing.Point(528, 31)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(57, 38)
+        Me.Button1.TabIndex = 11
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmAdelantosAplicados
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(767, 369)
+        Me.ClientSize = New System.Drawing.Size(776, 369)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnAdelantoEfectivo)
         Me.Controls.Add(Me.btnAnular)
@@ -379,8 +363,6 @@ Partial Class frmAdelantosAplicados
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents lblSaldoStatus As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents lblSaldoMayor As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents lblMenorSaldo As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents btnImprimir As Button
     Friend WithEvents btnAnular As Button
     Friend WithEvents btnAdelantoEfectivo As Button

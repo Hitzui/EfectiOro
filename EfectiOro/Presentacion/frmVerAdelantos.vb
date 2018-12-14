@@ -24,21 +24,27 @@ Public Class frmVerAdelantos
     Sub llenarGrid()
         dgvAdelanto.Rows.Clear()
         Dim dao = DataContext.daoAdelantos
-        _codmoneda = frmCompras._codmoneda
+        Dim daoParametros = DataContext.daoParametros
+        Dim param = daoParametros.recuperarParametros
+        Dim daoTipoCambio = DataContext.daoTipoCambio
+        Dim tipoCambio = daoTipoCambio.buscarDato(Now.Date)
         Try
             saldoTotal = Decimal.Zero
             Dim listar As List(Of Adelantos) = dao.listarAdelantosPorClientes(codigoCliente)
-            Dim seleccionar As Boolean
+            Dim seleccionar As Boolean = True
             For Each dato As Adelantos In listar
-                If _codmoneda <> dato.Codmoneda Then
-                    seleccionar = False
+                Dim descMoneda As String
+                If dato.Codmoneda = param.dolares Then
+                    Dim dolares = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
+                    saldoTotal = Decimal.Add(saldoTotal, dolares)
+                    descMoneda = "Dolares"
                 Else
-                    seleccionar = True
-                    saldoTotal += dato.Saldo
-                    valorSeleccionadoMonto = saldoTotal
-                    adelantoSeleccionados.Add(dato)
+                    saldoTotal = Decimal.Add(saldoTotal, dato.Saldo)
+                    descMoneda = "Cordobas"
                 End If
-                dgvAdelanto.Rows.Add(seleccionar, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo)
+                valorSeleccionadoMonto = saldoTotal
+                adelantoSeleccionados.Add(dato)
+                dgvAdelanto.Rows.Add(seleccionar, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo, descMoneda)
             Next
         Catch ex As Exception
             MsgBox("Se produjo el siguiente error: " & vbCr & dao.ErrorSms, MsgBoxStyle.Information, _tituloError)
@@ -116,46 +122,43 @@ Public Class frmVerAdelantos
         Me.montoCompra = frmCompras.totalGeneral
     End Sub
 
-    Private Sub dgvAdelanto_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles dgvAdelanto.CellValidating
-        Try
-            If dgvAdelanto.CurrentCell.ColumnIndex = 0 Then
-                Dim dao = DataContext.daoAdelantos
-                Dim cellSeleccion As DataGridViewCheckBoxCell = dgvAdelanto.Rows(e.RowIndex).Cells("colSeleccionar")
-                Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(Convert.ToString(dgvAdelanto.Rows(e.RowIndex).Cells("colCodigo").Value))
-                If addAdelanto.Codmoneda <> _codmoneda Then
-                    MsgBox("No se puede seleccionar el adelanto ya que el tipo de moneda de la compras es distinto al adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelanto")
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
-
     Private Sub dgvAdelanto_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvAdelanto.CellValueChanged
         Me.validarSeleccionGrid(e)
     End Sub
+
     Sub validarSeleccionGrid(e As DataGridViewCellEventArgs)
         Try
             Dim dao = DataContext.daoAdelantos
+            Dim daoParam = DataContext.daoParametros
+            Dim daoTipoCambio = DataContext.daoTipoCambio
+            Dim param = daoParam.recuperarParametros
+            Dim tipocambio = daoTipoCambio.buscarDato(Now.Date)
+            Dim dolares = Decimal.Zero
             If dgvAdelanto.Columns(e.ColumnIndex).Name = "colSeleccionar" Then
                 Dim row As DataGridViewRow = dgvAdelanto.Rows(e.RowIndex)
                 Dim cellSeleccion As DataGridViewCheckBoxCell = row.Cells("colSeleccionar")
                 Dim addAdelanto As Adelantos = dao.findByCodigoAdelanto(Convert.ToString(row.Cells("colCodigo").Value))
-                If addAdelanto.Codmoneda <> _codmoneda Then
-                    'MsgBox("No se puede seleccionar el adelanto ya que el tipo de moneda de la compras es distinto al adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelanto")
-                    row.Cells("colseleccionar").Value = False
-                    Return
-                End If
+                Dim saldo As Decimal = Convert.ToDecimal(row.Cells("colSaldo").Value)
                 If Convert.ToBoolean(cellSeleccion.Value) = True Then
-                    valorSeleccionadoMonto += Convert.ToDecimal(row.Cells("colSaldo").Value)
+                    If addAdelanto.Codmoneda = param.dolares Then
+                        dolares = Decimal.Multiply(addAdelanto.Saldo, tipocambio.Tipocambio1)
+                        valorSeleccionadoMonto = Decimal.Add(valorSeleccionadoMonto, dolares)
+                    Else
+                        valorSeleccionadoMonto = Decimal.Add(valorSeleccionadoMonto, saldo)
+                    End If
                     adelantoSeleccionados.Add(addAdelanto)
                 Else
-                    valorSeleccionadoMonto -= Convert.ToDecimal(row.Cells("colSaldo").Value)
+                    If addAdelanto.Codmoneda = param.dolares Then
+                        dolares = Decimal.Multiply(saldo, tipocambio.Tipocambio1)
+                        valorSeleccionadoMonto = Decimal.Subtract(valorSeleccionadoMonto, dolares)
+                    Else
+                        valorSeleccionadoMonto = Decimal.Subtract(valorSeleccionadoMonto, saldo)
+                    End If
                     Dim find = frmVerAdelantos.adelantoSeleccionados.Find(Function(d) d.Idsalida = addAdelanto.Idsalida)
                     adelantoSeleccionados.Remove(find)
                 End If
                 saldoTotal = Me.valorSeleccionadoMonto
-                lblSaldoTotal.Text = Convert.ToString(valorSeleccionadoMonto)
+                lblSaldoTotal.Text = Convert.ToString(valorSeleccionadoMonto.ToString("#,###,#00.00"))
             End If
         Catch ex As Exception
             MsgBox(ex.Message)

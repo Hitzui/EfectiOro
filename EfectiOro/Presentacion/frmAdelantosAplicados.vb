@@ -53,10 +53,10 @@ Public Class frmAdelantosAplicados
                                           moneda.Descripcion, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
                 Next
                 saldoDolares = ctx.Adelantos.Where(Function(a) a.Codmoneda = parametros.dolares And a.Saldo > Decimal.Zero).Sum(Function(a) a.Saldo)
-                lblSaldoDolares.Text = saldoDolares.ToString(formatoNumero)
+                lblSaldoDolares.Text = "Saldo dolares:" & saldoDolares.ToString(formatoNumero)
                 Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumsaldo.ToString(formatoNumero)
-                Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString(formatoNumero)
-                Me.lblMenorSaldo.Text = "Saldo menor: " & minSaldo.ToString(formatoNumero)
+                'Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString(formatoNumero)
+                'Me.lblMenorSaldo.Text = "Saldo menor: " & minSaldo.ToString(formatoNumero)
             Catch ex As Exception
                 MsgBox("NO hay datos a mostrar debido al siguiente error: " & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
@@ -71,23 +71,6 @@ Public Class frmAdelantosAplicados
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
-    End Sub
-
-    Private Sub dgvAdelantos_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvAdelantos.CellClick
-        Try
-
-            Dim row As DataGridViewRow = dgvAdelantos.CurrentRow
-            Dim idAdelanto As String = CStr(row.Cells("colIdsalida").Value)
-            Me.codigoCliente = CStr(row.Cells("colCodcliente").Value)
-            Dim dao As IDaoAdelantos = DataContext.daoAdelantos
-            Dim adelantoCliente As Adelantos = dao.findByCodigoAdelanto(idAdelanto)
-            Dim comprasAplicadas() As String = adelantoCliente.Numcompra.Split(CChar("; "))
-            For Each valor As String In comprasAplicadas
-
-            Next
-        Catch ex As Exception
-            'MsgBox("Error al intentar filtrar los adelantos del cliente: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
-        End Try
     End Sub
 
     Private Sub txtFiltrar_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFiltrar.TextChanged
