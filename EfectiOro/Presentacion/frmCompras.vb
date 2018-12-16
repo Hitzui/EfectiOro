@@ -326,7 +326,7 @@ Public Class frmCompras
                 cmbMoneda.DisplayMember = "Descripcion"
                 cmbMoneda.ValueMember = "codmoneda"
             Catch ex As Exception
-
+                MsgBox("Error en moneda: " & ex.Message, MsgBoxStyle.Critical, tituloError)
             End Try
         End Using
     End Sub
@@ -334,15 +334,12 @@ Public Class frmCompras
         Me.compraEncontrada = False
         Me.cmbEstado.SelectedIndex = 1
         cargarMoneda()
-        'Me.filtrarCliente()
         Me.recuperarCodigo()
         Me.habilitarGrupos(False, False, False, False)
         lblTitulo.Text = "Formulario de Compras - EfectiOro"
         dgvFiltrarCliente.Visible = False
         ServiciosBasicos.colorearGrid(dgvCompras)
         ServiciosBasicos.colorearGrid(dgvFiltrarCliente)
-        'Me.llenarComboKilate()
-        'Me.buscarPrecio()
     End Sub
 
     Private Sub checEfectivo_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles checEfectivo.CheckedChanged
@@ -660,12 +657,8 @@ Public Class frmCompras
         txtNomcliente.Focus()
         Me.cmbEstado.Enabled = True
         Me.cmbEstado.SelectedIndex = 1
-        cmbMoneda.Enabled = True
         cmbMoneda.SelectedIndex = 0
         _codmoneda = cmbMoneda.SelectedValue
-        Me.btnCerrarcompra.Enabled = False
-        'Me.filtrarCliente()
-        btnDolares.Enabled = True
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
@@ -987,7 +980,6 @@ Public Class frmCompras
             Me.txtEfectivo.Enabled = False
         End If
         Me.cmbEstado.Enabled = True
-        'cmbMoneda.Enabled = True
         Me.filtrarCompra()
     End Sub
     Sub buscarCompra()
