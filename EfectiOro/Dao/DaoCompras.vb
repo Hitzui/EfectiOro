@@ -249,7 +249,7 @@ Public Class DaoCompras
             Try
                 'si la compra tiene un monto en adelanto
                 'creamos un adelanto con ese monto
-                'en dependencia de la moneda usada en el adelanto no en la compra
+                'en dependencia de la moneda del adelanto
                 If buscarCompra.Adelantos > 0 Then
                     Dim buscarAdelanto = (From ca In ctx.Compras_adelantos Where ca.Numcompra = buscarCompra.Numcompra Select ca).ToList
                     Dim param = daoParametro.recuperarParametros
