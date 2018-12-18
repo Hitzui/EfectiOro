@@ -235,6 +235,7 @@ Public Class DaoAdelantos
                         comprasAdelantos.Numcompra = adelanto.Idsalida & " " & hora.ToString("h\:mm\:ss")
                         comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
                         'Saldo inicial es el monto con el que esta al momento
+                        comprasAdelantos.Codmoneda = adelanto.Codmoneda
                         comprasAdelantos.Sinicial = adelanto.Saldo
                         If saldo > monto Then
                             'si el saldo es mayor que el adelanto
@@ -270,7 +271,7 @@ Public Class DaoAdelantos
         Return Me.aplicarEfectivo(listaAdelantos, monto, codcliente)
     End Function
 
-    Public Function imprimir(codigo As String, nombre As String) As Object Implements IDaoAdelantos.imprimir
+    Public Sub imprimir(codigo As String, nombre As String) As Object Implements IDaoAdelantos.imprimir
         Using ctx As New Contexto
             Try
                 Dim parametros = ctx.Ids.First
@@ -311,5 +312,5 @@ Public Class DaoAdelantos
                 MsgBox(ex.Message)
             End Try
         End Using
-    End Function
+    End Sub
 End Class

@@ -19,5 +19,5 @@ Public Interface IDaoAdelantos
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function aplicarAdelantoEfectivo(listaAdelantos As List(Of Adelantos), monto As Decimal, Optional ByVal codcliente As String = "") As Boolean
-    Function imprimir(codigo As String, nombre As String)
+    Sub imprimir(codigo As String, nombre As String)
 End Interface
