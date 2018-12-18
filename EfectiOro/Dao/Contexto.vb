@@ -2960,7 +2960,16 @@ Namespace Database
 
         Private _Saldo_por_pagar As Decimal
         Private _saldo_adelanto As Decimal
-
+        Private _saldo_adelanto_dolares As String
+        <Column(Name:="saldo_adelanto_dolares", Storage:="_saldo_adelanto_dolares", DbType:="numeric(12,3)", CanBeNull:=False)>
+        Public Property saldo_adelanto_dolares() As String
+            Get
+                Return _saldo_adelanto_dolares
+            End Get
+            Set(ByVal value As String)
+                _saldo_adelanto_dolares = value
+            End Set
+        End Property
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub

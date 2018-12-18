@@ -660,17 +660,14 @@ Public Class frmCompras
         txtNomcliente.Focus()
         Me.cmbEstado.Enabled = True
         Me.cmbEstado.SelectedIndex = 1
-        cmbMoneda.Enabled = True
         cmbMoneda.SelectedIndex = 0
         _codmoneda = cmbMoneda.SelectedValue
         Me.btnCerrarcompra.Enabled = False
         'Me.filtrarCliente()
-        btnDolares.Enabled = True
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
         Me.cmbEstado.Enabled = False
-        cmbMoneda.Enabled = False
         If Me.panelBuscar_compra.Visible = True Then
             Me.panelBuscar_compra.Visible = False
         End If
@@ -695,7 +692,6 @@ Public Class frmCompras
         Me.compraEncontrada = False
         Me.btnCerrarcompra.Enabled = True
         Me.txtFecha.Value = Now
-        btnDolares.Enabled = False
         _cordobas = True
         _dolares = False
     End Sub

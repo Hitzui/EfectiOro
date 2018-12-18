@@ -107,7 +107,8 @@ Public Class DaoAdelantos
     Public Function listarAdelantosPorClientes(codigo As String) As List(Of Adelantos) Implements IDaoAdelantos.listarAdelantosPorClientes
         Using ctx As New Contexto
             Try
-                Dim find = findAdelantoByCliente(ctx, codigo).ToList()
+                'Dim find = findAdelantoByCliente(ctx, codigo).ToList()
+                Dim find = (From a In ctx.Adelantos Where a.Codcliente = codigo And a.Saldo > Decimal.Zero Order By a.Fecha Ascending Select a).ToList
                 Return find
             Catch ex As Exception
                 Return Nothing
@@ -136,6 +137,7 @@ Public Class DaoAdelantos
                 'especificamos que el monto sea igual al saldo para
                 'asegurar que no tenga una aplicación en alguna compra
                 Dim buscarAdelanto As Adelantos
+                Dim comprasAdelantos = (From ca In ctx.Compras_adelantos Where ca.Idadelanto = codigo Select ca).First
                 Try
                     buscarAdelanto = (From a In ctx.Adelantos
                                       Where a.Idsalida = codigo And a.Monto = a.Saldo
@@ -145,6 +147,7 @@ Public Class DaoAdelantos
                     Return False
                 End Try
                 buscarAdelanto.Saldo = 0
+                ctx.Compras_adelantos.DeleteOnSubmit(comprasAdelantos)
                 ctx.SubmitChanges()
                 If MsgBox("¿Desea revertir el monto en efectivo a la caja?", MsgBoxStyle.YesNo, "Revertir adelanto") = MsgBoxResult.Yes Then
                     'buscamos la caja con su saldos para actualizarlos
@@ -271,7 +274,7 @@ Public Class DaoAdelantos
         Return Me.aplicarEfectivo(listaAdelantos, monto, codcliente)
     End Function
 
-    Public Sub imprimir(codigo As String, nombre As String) As Object Implements IDaoAdelantos.imprimir
+    Public Sub imprimir(codigo As String, nombre As String) Implements IDaoAdelantos.imprimir
         Using ctx As New Contexto
             Try
                 Dim parametros = ctx.Ids.First

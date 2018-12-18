@@ -278,6 +278,17 @@ Module ServiciosBasicos
             Return var
         End Try
     End Function
+    Public Function redondearMas(ByVal var As Decimal, Optional _decimal As Decimal = 0.55) As Decimal
+        Try
+            Dim Input As Decimal
+            Dim Output As Decimal
+            Input = Decimal.Round(var, 4)
+            Output = Input + (Input Mod _decimal)
+            Return Output
+        Catch ex As Exception
+            Return var
+        End Try
+    End Function
     Public Sub colorearGrid(ByVal dgv As DataGridView)
         dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells
         ' Set the selection background color for all the cells.

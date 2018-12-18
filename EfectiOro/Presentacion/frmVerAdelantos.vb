@@ -43,6 +43,7 @@ Public Class frmVerAdelantos
                     descMoneda = "Cordobas"
                 End If
                 valorSeleccionadoMonto = saldoTotal
+                valorSeleccionadoMonto = redondearMas(valorSeleccionadoMonto, 0.01)
                 adelantoSeleccionados.Add(dato)
                 dgvAdelanto.Rows.Add(seleccionar, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo, descMoneda)
             Next
@@ -79,7 +80,7 @@ Public Class frmVerAdelantos
             Else
                 saldo = Convert.ToDecimal(txtSaldo.Text)
             End If
-            If saldoTotal < saldo Then
+            If valorSeleccionadoMonto < saldo Then
                 MsgBox("El saldo a aplicar es mayor que el saldo del adelanto del cliente, intente nuevamente", MsgBoxStyle.Information, "Adelantos")
                 Return
             End If
@@ -157,7 +158,7 @@ Public Class frmVerAdelantos
                     Dim find = frmVerAdelantos.adelantoSeleccionados.Find(Function(d) d.Idsalida = addAdelanto.Idsalida)
                     adelantoSeleccionados.Remove(find)
                 End If
-                saldoTotal = Me.valorSeleccionadoMonto
+                saldoTotal = Decimal.Round(valorSeleccionadoMonto, 2)
                 lblSaldoTotal.Text = Convert.ToString(valorSeleccionadoMonto.ToString("#,###,#00.00"))
             End If
         Catch ex As Exception

@@ -53,8 +53,11 @@ Public Class frmAdelantosAplicados
                                           moneda.Descripcion, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
                 Next
                 saldoDolares = ctx.Adelantos.Where(Function(a) a.Codmoneda = parametros.dolares And a.Saldo > Decimal.Zero).Sum(Function(a) a.Saldo)
-                lblSaldoDolares.Text = "Saldo dolares:" & saldoDolares.ToString(formatoNumero)
+                Dim saldoDolaras_Cordobas = Decimal.Multiply(saldoDolares, tipocambio.Tipocambio1)
+                saldoDolaras_Cordobas = Decimal.Add(saldoDolaras_Cordobas, sumsaldo)
+                lblSaldoDolares.Text = "Saldo dolares: " & saldoDolares.ToString(formatoNumero)
                 Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumsaldo.ToString(formatoNumero)
+                lblSaldoGlobal.Text = saldoDolaras_Cordobas.ToString(formatoNumero)
                 'Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString(formatoNumero)
                 'Me.lblMenorSaldo.Text = "Saldo menor: " & minSaldo.ToString(formatoNumero)
             Catch ex As Exception
