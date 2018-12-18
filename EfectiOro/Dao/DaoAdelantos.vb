@@ -63,6 +63,7 @@ Public Class DaoAdelantos
                 comprasAdelantos.Sfinal = adelanto.Monto
                 comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
                 comprasAdelantos.Codagencia = agencia
+                comprasAdelantos.Codmoneda = adelanto.Codmoneda
                 ctx.Compras_adelantos.InsertOnSubmit(comprasAdelantos)
                 ctx.Adelantos.InsertOnSubmit(adelanto)
                 ctx.SubmitChanges()

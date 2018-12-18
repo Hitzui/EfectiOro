@@ -2959,10 +2959,7 @@ Namespace Database
         Private _Adelantos As Decimal
 
         Private _Saldo_por_pagar As Decimal
-
         Private _saldo_adelanto As Decimal
-
-        Private _saldo_adelanto_dolares As Decimal
 
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
@@ -3054,10 +3051,6 @@ Namespace Database
         Partial Private Sub OnSaldo_AdelantoChanging(value As Decimal)
         End Sub
         Partial Private Sub OnSaldo_AdelantoChanged()
-        End Sub
-        Partial Private Sub OnSaldo_Adelanto_DolaresChanging(value As Decimal)
-        End Sub
-        Partial Private Sub OnSaldo_Adelanto_DolaresChanged()
         End Sub
 #End Region
 
@@ -3398,34 +3391,19 @@ Namespace Database
             End Set
         End Property
 
-        <Column(Name:="saldo_adelanto", Storage:="_saldo_adelanto", DbType:="Decimal(18,3) NULL")>
+        <Column(Name:="saldo_adelanto", Storage:="_saldo_adelanto", DbType:="Decimal(18,2) NULL")>
         Public Property Saldo_adelanto() As Decimal
             Get
                 Return Me._saldo_adelanto
             End Get
             Set(value As Decimal)
-                If ((Me._saldo_adelanto = value) = False) Then
+                If ((Me._saldo_adelanto = value) _
+                            = False) Then
                     Me.OnSaldo_AdelantoChanging(value)
                     Me.SendPropertyChanging()
                     Me._saldo_adelanto = value
                     Me.SendPropertyChanged("Saldo_adelanto")
                     Me.OnSaldo_AdelantoChanged()
-                End If
-            End Set
-        End Property
-
-        <Column(Name:="saldo_adelanto_dolares", Storage:="_saldo_adelanto_dolares", DbType:="Decimal(18,3) NULL")>
-        Public Property Saldo_adelanto_Dolares() As Decimal
-            Get
-                Return Me._saldo_adelanto_dolares
-            End Get
-            Set(value As Decimal)
-                If ((Me._saldo_adelanto_dolares = value) = False) Then
-                    Me.OnSaldo_Adelanto_DolaresChanging(value)
-                    Me.SendPropertyChanging()
-                    Me._saldo_adelanto_dolares = value
-                    Me.SendPropertyChanged("Saldo_adelanto_Dolares")
-                    Me.OnSaldo_Adelanto_DolaresChanged()
                 End If
             End Set
         End Property
@@ -3479,6 +3457,16 @@ Namespace Database
 
         Private _codagencia As String
 
+        Private _codmoneda As Integer
+        <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="int")>
+        Public Property Codmoneda() As Integer
+            Get
+                Return _codmoneda
+            End Get
+            Set(ByVal value As Integer)
+                _codmoneda = value
+            End Set
+        End Property
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub
