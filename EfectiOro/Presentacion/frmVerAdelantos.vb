@@ -43,7 +43,7 @@ Public Class frmVerAdelantos
                     descMoneda = "Cordobas"
                 End If
                 valorSeleccionadoMonto = saldoTotal
-                valorSeleccionadoMonto = redondearMas(valorSeleccionadoMonto, 0.01)
+                'valorSeleccionadoMonto = redondearMas(valorSeleccionadoMonto, 0.01)
                 adelantoSeleccionados.Add(dato)
                 dgvAdelanto.Rows.Add(seleccionar, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo, descMoneda)
             Next
