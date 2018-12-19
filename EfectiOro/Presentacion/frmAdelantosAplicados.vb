@@ -47,19 +47,17 @@ Public Class frmAdelantosAplicados
                             If Saldo >= maySaldo Then
                                 maySaldo = Saldo
                             End If
-                            sumsaldo = Decimal.Add(sumsaldo, Saldo)
+                            sumsaldo = Decimal.Add(sumsaldo, saldo)
+                        Case parametros.dolares
+                            saldoDolares = Decimal.Add(saldoDolares, dato.Saldo)
                     End Select
                     dgvAdelantos.Rows.Add(dato.Idsalida, dato.Codcliente, dato.Nombres, dato.Fecha, dato.Hora,
                                           moneda.Descripcion, dato.Monto, dato.Saldo, dato.Codcaja, dato.Usuario)
                 Next
-                saldoDolares = ctx.Adelantos.Where(Function(a) a.Codmoneda = parametros.dolares And a.Saldo > Decimal.Zero).Sum(Function(a) a.Saldo)
-                Dim saldoDolaras_Cordobas = Decimal.Multiply(saldoDolares, tipocambio.Tipocambio1)
-                saldoDolaras_Cordobas = Decimal.Add(saldoDolaras_Cordobas, sumsaldo)
-                lblSaldoDolares.Text = "Saldo dolares: " & saldoDolares.ToString(formatoNumero)
-                Me.lblSaldoStatus.Text = "Total de Saldo pendientes de pago: " & sumsaldo.ToString(formatoNumero)
-                lblSaldoGlobal.Text = saldoDolaras_Cordobas.ToString(formatoNumero)
-                'Me.lblSaldoMayor.Text = "Saldo mayor: " & maySaldo.ToString(formatoNumero)
-                'Me.lblMenorSaldo.Text = "Saldo menor: " & minSaldo.ToString(formatoNumero)
+                Dim saldoGlobal = sumsaldo + Decimal.Multiply(saldoDolares, tipocambio.Tipocambio1)
+                lblSaldoDolares.Text = saldoDolares.ToString(formatoNumero)
+                Me.lblSaldoStatus.Text = "Saldo cordobas: " & sumsaldo.ToString(formatoNumero)
+                lblSaldoGlobal.Text = "Saldo global (C$): " & saldoGlobal.ToString(formatoNumero)
             Catch ex As Exception
                 MsgBox("NO hay datos a mostrar debido al siguiente error: " & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try

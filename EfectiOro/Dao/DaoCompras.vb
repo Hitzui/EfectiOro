@@ -249,7 +249,6 @@ Public Class DaoCompras
             Try
                 'si la compra tiene un monto en adelanto
                 'creamos un adelanto con ese monto
-                'en dependencia de la moneda del adelanto
                 If buscarCompra.Adelantos > 0 Then
                     'buscamos los montos aplicados en la tabla compras adelantos
                     'y ese es el saldo a retornar
@@ -347,24 +346,22 @@ Public Class DaoCompras
             Dim parametros = ctx.Ids.First
             Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = Now.Date Select tc).First
             dcaja.tipocambio = tipoCambio.Tipocambio1
-            'recuperamos el saldo y lo guardamos en la tabla compras
-            'esto es para cuando re-impriman el voucher de compra
-            'aparezca el saldo de adelanto que habia en ese momento
             Try
                 'recuperamos el saldo en cordobas
                 saldoCordobas = (From a In ctx.Adelantos Where a.Codcliente = compra.Codcliente And a.Saldo > Decimal.Zero And a.Codmoneda = parametros.cordobas Select a.Saldo).Sum()
             Catch ex As Exception
+                saldoCordobas = Decimal.Zero
             End Try
             Try
                 'recuperamos el saldo en dolares
                 saldoDolares = (From a In ctx.Adelantos Where a.Codcliente = compra.Codcliente And a.Saldo > Decimal.Zero And a.Codmoneda = parametros.dolares Select a.Saldo).Sum()
             Catch ex As Exception
+                saldoDolares = Decimal.Zero
             End Try
             Dim moneda = (From m In ctx.Moneda Where m.Codmoneda = compra.Codmoneda Select m).First
             compra.Numcompra = xid
             dcaja.concepto = "***COMPRA: " & xid & "***"
             dcaja.referencia = "COMPRA: " & xid & "Tipo de moneda: " & moneda.Descripcion
-
             Try
                 Dim sumOnzas As Decimal = Decimal.Zero
                 'Recuperamos el detalle de caja correspondiente 
@@ -405,28 +402,8 @@ Public Class DaoCompras
                 Catch ex As Exception
                     'no hay cierres para el cliente especificado
                 End Try
-                'If listaPreciosaCerrar IsNot Nothing Then
-                '    If listaPreciosaCerrar.Count > 0 Then
-                '        Dim listaDetaCierres As New List(Of Detacierre)
-                '        For Each dato As CierrePrecios In listaPreciosaCerrar
-                '            Dim detaCierre As New Detacierre
-                '            Dim find As CierrePrecios = (From cp In ctx.CierrePrecios Where cp.CodCierre = dato.CodCierre Select cp).Single
-                '            detaCierre.Onzas = find.SaldoOnzas
-                '            find.SaldoOnzas = Decimal.Round(dato.SaldoOnzas, 3)
-                '            detaCierre.Codcierre = dato.CodCierre
-                '            detaCierre.Fecha = Now
-                '            detaCierre.Numcompra = compra.Numcompra
-                '            detaCierre.Saldo = Decimal.Round(dato.SaldoOnzas, 3)
-                '            detaCierre.Cantidad = Decimal.Subtract(detaCierre.Onzas, detaCierre.Saldo)
-                '            If dato.SaldoOnzas = Decimal.Zero Then
-                '                find.Status = False
-                '            End If
-                '            listaDetaCierres.Add(detaCierre)
-                '        Next
-                '        ctx.DetaCierre.InsertAllOnSubmit(listaDetaCierres)
-                '    End If
-                'End If
-                Dim saldo = Decimal.Zero
+                Dim c_saldo = Decimal.Zero
+                Dim d_saldo = Decimal.Zero
                 Me.actualizarIDCompra()
                 ctx.Detacaja.InsertOnSubmit(dcaja)
                 If compra.Adelantos > 0 Then
@@ -450,22 +427,22 @@ Public Class DaoCompras
                             comprasAdelantos.Numcompra = compra.Numcompra
                             comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
                             comprasAdelantos.Codagencia = compra.Codagencia
+                            comprasAdelantos.Codmoneda = dato.Codmoneda
                             Select Case dato.Codmoneda
                                 Case parametros.dolares
-                                    Dim d_saldo = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
+                                    d_saldo = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
                                     Dim d_monto = Decimal.Divide(adelanto, tipoCambio.Tipocambio1)
                                     'guardamos el monto que se ha aplicado a la compra
                                     'en la tabla compras_adelanto
                                     'Saldo inicial es el monto con el que esta al momento
                                     comprasAdelantos.Sinicial = dato.Saldo
-                                    If d_saldo >= adelanto Then
+                                    If d_saldo > adelanto Then
                                         'si el saldo es mayor que el adelanto
                                         'le restamos al saldo el adelanto y el adelanto queda en zero
                                         comprasAdelantos.Monto = d_monto
-                                        d_saldo = Decimal.Subtract(dato.Saldo, d_monto)
+                                        d_saldo = Decimal.Subtract(d_saldo, adelanto)
                                         adelanto = Decimal.Zero
-                                        saldoDolares = Decimal.Subtract(saldoDolares, d_monto)
-                                    ElseIf adelanto >= d_saldo Then
+                                    Else
                                         'si el adelanto es mayor que el saldo
                                         'le restamos al adelanto el saldo y el saldo queda en zero
                                         comprasAdelantos.Monto = dato.Saldo
@@ -473,31 +450,30 @@ Public Class DaoCompras
                                         d_saldo = 0
                                     End If
                                     'el saldo final es el valor de saldo
-                                    comprasAdelantos.Sfinal = d_saldo
+                                    comprasAdelantos.Sfinal = Decimal.Subtract(dato.Saldo, comprasAdelantos.Monto)
                                     Dim findAdelanto = (From a In ctx.Adelantos Where a.Idsalida = idsalida Select a).Single()
                                     'daoAdelanto.actualizarAdelanto(saldo, idsalida, compra.Numcompra)
-                                    findAdelanto.Saldo = d_saldo
+                                    findAdelanto.Saldo = Decimal.Divide(d_saldo, tipoCambio.Tipocambio1)
+                                    saldoDolares = Decimal.Subtract(saldoDolares, comprasAdelantos.Monto)
                                     If findAdelanto.Numcompra.Length <= 0 Then
                                         findAdelanto.Numcompra = compra.Codagencia & "-" & compra.Numcompra
                                     Else
                                         findAdelanto.Numcompra = findAdelanto.Numcompra & "; " & compra.Codagencia & "-" & compra.Numcompra
                                     End If
-                                    saldoDolares = Decimal.Subtract(saldoDolares, comprasAdelantos.Monto)
-                                    comprasAdelantos.Codmoneda = dato.Codmoneda
                                     'adelanto = Decimal.Multiply(d_monto, tipoCambio.Tipocambio1)
                                 Case parametros.cordobas
-                                    Dim c_saldo = dato.Saldo
+                                    c_saldo = dato.Saldo
                                     'guardamos el monto que se ha aplicado a la compra
                                     'en la tabla compras_adelanto
                                     'Saldo inicial es el monto con el que esta al momento
-                                    comprasAdelantos.Sinicial = c_saldo
-                                    If c_saldo >= adelanto Then
+                                    comprasAdelantos.Sinicial = dato.Saldo
+                                    If c_saldo > adelanto Then
                                         'si el saldo es mayor que el adelanto
                                         'le restamos al saldo el adelanto y el adelanto queda en zero
                                         comprasAdelantos.Monto = adelanto
                                         c_saldo = Decimal.Subtract(c_saldo, adelanto) 'd_saldo - adelanto
                                         adelanto = Decimal.Zero
-                                    ElseIf adelanto >= c_saldo Then
+                                    Else
                                         'si el adelanto es mayor que el saldo
                                         'le restamos al adelanto el saldo y el saldo queda en zero
                                         comprasAdelantos.Monto = c_saldo
@@ -515,7 +491,6 @@ Public Class DaoCompras
                                     Else
                                         findAdelanto.Numcompra = findAdelanto.Numcompra & "; " & compra.Codagencia & "-" & compra.Numcompra
                                     End If
-                                    comprasAdelantos.Codmoneda = dato.Codmoneda
                             End Select
                             ctx.Compras_adelantos.InsertOnSubmit(comprasAdelantos)
                         End If
@@ -529,13 +504,14 @@ Public Class DaoCompras
                     _error = "No hay saldo suficiente para realizar la compra, saldo disponible: " & xcaja.Sfinal
                     Return False
                 End If
+
                 compra.Saldo_adelanto = saldoCordobas
-                compra.saldo_adelanto_dolares = saldoDolares
+                compra.Saldo_adelanto_Dolares = saldoDolares
+                ctx.Compras.InsertOnSubmit(compra)
                 xcaja.Salida = xcaja.Salida + modcaja.Salida
                 xcaja.Sfinal = xcaja.Sfinal - modcaja.Salida
                 Dim eliminarPreciosCliente = (From p In ctx.Precios Where p.Codcliente = compra.Codcliente Select p).ToList
                 ctx.Precios.DeleteAllOnSubmit(eliminarPreciosCliente)
-                ctx.Compras.InsertOnSubmit(compra)
                 ctx.SubmitChanges()
                 Return True
             Catch cco As ChangeConflictException
