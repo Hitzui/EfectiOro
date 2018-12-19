@@ -3479,6 +3479,16 @@ Namespace Database
 
         Private _codagencia As String
 
+        Private _codmoneda As Integer
+        <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="int")>
+        Public Property Codmoneda() As Integer
+            Get
+                Return _codmoneda
+            End Get
+            Set(ByVal value As Integer)
+                _codmoneda = value
+            End Set
+        End Property
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub

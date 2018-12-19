@@ -258,11 +258,14 @@ Public Class frmRptComrpas
                              Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
                              Join dc In ctx.Det_compra On c.Numcompra Equals dc.Numcompra
                              Join tc In ctx.TipoCambio On c.Fecha Equals tc.Fecha
-                             Where
-                                                              dc.Importe > Decimal.Zero And
-                                                              dc.Fecha >= txtDesdeGen.Value And dc.Fecha <= txtHastaGen.Value And
-                                                              c.Codestado >= 1 And c.Codestado <= 3 And c.Codagencia = dc.Codagencia
+                             Where dc.Importe > Decimal.Zero And
+                                   dc.Fecha >= txtDesdeGen.Value.Date And dc.Fecha <= txtHastaGen.Value.Date And
+                                   c.Codestado >= 1 And c.Codestado <= 3 And c.Codagencia = dc.Codagencia And c.Codagencia.Contains(_agencia)
                              Order By dc.Fecha Descending
+                             Let pr_gramo = dc.Importe / If(dc.Peso = Decimal.Zero, Decimal.One, dc.Peso) / If(tc.Tipocambio1 = Decimal.Zero, Decimal.One, tc.Tipocambio1)
+                             Let y_value = 31.1035 * 24 / CDec(dc.Kilate) / If(tc.Precio_oro = Decimal.Zero, Decimal.One, tc.Precio_oro)
+                             Let v_margen = CType(Decimal.One - (pr_gramo * y_value), Decimal)
+                             Let _precioKilate = CType(dc.Importe / If(dc.Peso = Decimal.Zero, Decimal.One, dc.Peso) / dc.Kilate, Decimal)
                              Select
                                   dc.Codagencia,
                                   dc.Numcompra,
@@ -277,8 +280,8 @@ Public Class frmRptComrpas
                                   dc.Fecha,
                                   tc.Tipocambio1,
                                   tc.Precio_oro,
-                                  Margen = CType(1 - (Convert.ToDecimal(dc.Importe / Convert.ToDecimal(If(dc.Peso = Decimal.Zero, Decimal.One, Convert.ToDecimal(dc.Peso))) / If(tc.Tipocambio1 = Decimal.Zero, Decimal.One, tc.Tipocambio1)) * 31.1035 * 24 / CDec(dc.Kilate) / If(tc.Precio_oro = Decimal.Zero, Decimal.One, tc.Precio_oro)), Decimal),
-                                  PrecioKilate = CType(dc.Importe / If(dc.Peso = Decimal.Zero, Decimal.One, dc.Peso) / dc.Kilate, Decimal)
+                                  Margen = v_margen,
+                                  PrecioKilate = _precioKilate
                                 ).ToList()
                         If chkFiltrarAgencia.Checked Then
                             lisGeneral = (From li In lisGeneral Where li.Codagencia = _agencia Select li).ToList
@@ -303,7 +306,7 @@ Public Class frmRptComrpas
                             vista.Precio = dato.Preciok
                             vista.Importe = dato.Importe
                             vista.Tipocambio = dato.Tipocambio1
-                            vista.Margen = dato.Margen * 100
+                            vista.Margen = Decimal.Divide(dato.Margen, 100) '* 100
                             'usamos el campo Porpagar, para no crear otro,
                             'y no cargar más.
                             vista.Porpagar = dato.PrecioKilate

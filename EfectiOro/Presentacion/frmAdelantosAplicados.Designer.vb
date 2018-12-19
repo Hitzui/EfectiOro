@@ -20,9 +20,9 @@ Partial Class frmAdelantosAplicados
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdelantosAplicados))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtFiltrar = New System.Windows.Forms.TextBox()
@@ -49,10 +49,12 @@ Partial Class frmAdelantosAplicados
         Me.lblSaldoStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblSaldoDolares = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblSaldoGlobal = New System.Windows.Forms.ToolStripStatusLabel()
         Me.btnImprimir = New System.Windows.Forms.Button()
         Me.btnAnular = New System.Windows.Forms.Button()
         Me.btnAdelantoEfectivo = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvAdelantos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,9 +137,9 @@ Partial Class frmAdelantosAplicados
         '
         'colFecha
         '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Format = "d"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle7
         Me.colFecha.HeaderText = "Fecha"
         Me.colFecha.Name = "colFecha"
         Me.colFecha.ReadOnly = True
@@ -159,9 +161,9 @@ Partial Class frmAdelantosAplicados
         '
         'colMonto
         '
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Format = "N2"
+        DataGridViewCellStyle8.NullValue = Nothing
+        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle8
         Me.colMonto.HeaderText = "Monto"
         Me.colMonto.Name = "colMonto"
         Me.colMonto.ReadOnly = True
@@ -169,8 +171,8 @@ Partial Class frmAdelantosAplicados
         '
         'colSaldo
         '
-        DataGridViewCellStyle3.Format = "N2"
-        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Format = "N2"
+        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle9
         Me.colSaldo.HeaderText = "Saldo"
         Me.colSaldo.Name = "colSaldo"
         Me.colSaldo.ReadOnly = True
@@ -213,18 +215,18 @@ Partial Class frmAdelantosAplicados
         '
         Me.menuDerecho.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerCompraToolStripMenuItem, Me.CopiarToolStripMenuItem})
         Me.menuDerecho.Name = "menuDerecho"
-        Me.menuDerecho.Size = New System.Drawing.Size(136, 48)
+        Me.menuDerecho.Size = New System.Drawing.Size(135, 48)
         '
         'VerCompraToolStripMenuItem
         '
         Me.VerCompraToolStripMenuItem.Name = "VerCompraToolStripMenuItem"
-        Me.VerCompraToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.VerCompraToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.VerCompraToolStripMenuItem.Text = "Ver compra"
         '
         'CopiarToolStripMenuItem
         '
         Me.CopiarToolStripMenuItem.Name = "CopiarToolStripMenuItem"
-        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.CopiarToolStripMenuItem.Text = "Copiar"
         '
         'ImageList1
@@ -239,7 +241,7 @@ Partial Class frmAdelantosAplicados
         'StatusStrip1
         '
         Me.StatusStrip1.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblSaldoStatus, Me.ToolStripStatusLabel1, Me.lblSaldoDolares})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblSaldoStatus, Me.ToolStripStatusLabel1, Me.lblSaldoDolares, Me.lblSaldoGlobal, Me.ToolStripStatusLabel2})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 347)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(776, 22)
@@ -267,6 +269,13 @@ Partial Class frmAdelantosAplicados
         Me.lblSaldoDolares.Name = "lblSaldoDolares"
         Me.lblSaldoDolares.Size = New System.Drawing.Size(47, 17)
         Me.lblSaldoDolares.Text = "(U$ 0.0)"
+        '
+        'lblSaldoGlobal
+        '
+        Me.lblSaldoGlobal.ForeColor = System.Drawing.Color.White
+        Me.lblSaldoGlobal.Name = "lblSaldoGlobal"
+        Me.lblSaldoGlobal.Size = New System.Drawing.Size(99, 17)
+        Me.lblSaldoGlobal.Text = "Saldo global: 0.00"
         '
         'btnImprimir
         '
@@ -315,6 +324,13 @@ Partial Class frmAdelantosAplicados
         Me.Button1.Size = New System.Drawing.Size(57, 38)
         Me.Button1.TabIndex = 11
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'ToolStripStatusLabel2
+        '
+        Me.ToolStripStatusLabel2.ForeColor = System.Drawing.Color.White
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(10, 17)
+        Me.ToolStripStatusLabel2.Text = "|"
         '
         'frmAdelantosAplicados
         '
@@ -380,4 +396,6 @@ Partial Class frmAdelantosAplicados
     Friend WithEvents colSaldo As DataGridViewTextBoxColumn
     Friend WithEvents colCodcaja As DataGridViewTextBoxColumn
     Friend WithEvents colUsuario As DataGridViewTextBoxColumn
+    Friend WithEvents lblSaldoGlobal As ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
 End Class

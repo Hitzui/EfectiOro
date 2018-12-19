@@ -58,11 +58,12 @@ Public Class DaoAdelantos
                 comprasAdelantos.Idadelanto = adelanto.Idsalida
                 comprasAdelantos.Fecha = Now
                 comprasAdelantos.Hora = New TimeSpan(Now.Hour, Now.Minute, Now.Second)
-                comprasAdelantos.Monto = 0
-                comprasAdelantos.Sinicial = 0
+                comprasAdelantos.Monto = adelanto.Monto
+                comprasAdelantos.Sinicial = Decimal.Zero
                 comprasAdelantos.Sfinal = adelanto.Monto
                 comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
                 comprasAdelantos.Codagencia = agencia
+                comprasAdelantos.Codmoneda = adelanto.Codmoneda
                 ctx.Compras_adelantos.InsertOnSubmit(comprasAdelantos)
                 ctx.Adelantos.InsertOnSubmit(adelanto)
                 ctx.SubmitChanges()

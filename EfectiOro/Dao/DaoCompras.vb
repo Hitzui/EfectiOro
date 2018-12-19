@@ -250,21 +250,55 @@ Public Class DaoCompras
                 'si la compra tiene un monto en adelanto
                 'creamos un adelanto con ese monto
                 If buscarCompra.Adelantos > 0 Then
-                    Dim adelanto As New Adelantos
-                    adelanto.Codmoneda = buscarCompra.Codmoneda
-                    adelanto.Codcaja = verMaestroCaja.Codcaja
-                    adelanto.Hora = Now.ToShortTimeString
-                    adelanto.Fecha = Now
-                    adelanto.Monto = buscarCompra.Adelantos
-                    adelanto.Saldo = buscarCompra.Adelantos
-                    adelanto.Numcompra = ""
-                    adelanto.Transferencia = 0D
-                    adelanto.Cheque = 0D
-                    adelanto.Usuario = DataContext.usuarioLog.Usuario1
-                    adelanto.Codcliente = buscarCompra.Codcliente
-                    adelanto.Monto_letras = ConvertirNumeroLetros(buscarCompra.Adelantos)
-                    adelanto.Idsalida = daoAdelanto.recpuerarCodigoAdelanto()
-                    daoAdelanto.crearAdelanto(adelanto)
+                    'buscamos los montos aplicados en la tabla compras adelantos
+                    'y ese es el saldo a retornar
+                    Dim buscarAdelanto = (From ca In ctx.Compras_adelantos Where ca.Numcompra = buscarCompra.Numcompra Select ca).ToList
+                    Dim param = daoParametro.recuperarParametros
+                    Dim sum_cordobas = Decimal.Zero
+                    Dim sum_dolares = Decimal.Zero
+                    For Each dato In buscarAdelanto
+                        Select Case dato.Codmoneda
+                            Case param.cordobas
+                                sum_cordobas = Decimal.Add(sum_cordobas, dato.Monto)
+                            Case param.dolares
+                                sum_dolares = Decimal.Add(sum_dolares, dato.Monto)
+                        End Select
+                    Next
+                    If sum_cordobas > Decimal.Zero Then
+                        Dim adelanto As New Adelantos
+                        adelanto.Codmoneda = param.cordobas
+                        adelanto.Codcaja = verMaestroCaja.Codcaja
+                        adelanto.Hora = Now.ToShortTimeString
+                        adelanto.Fecha = Now
+                        adelanto.Monto = sum_cordobas
+                        adelanto.Saldo = sum_cordobas
+                        adelanto.Numcompra = ""
+                        adelanto.Transferencia = 0D
+                        adelanto.Cheque = 0D
+                        adelanto.Usuario = DataContext.usuarioLog.Usuario1
+                        adelanto.Codcliente = buscarCompra.Codcliente
+                        adelanto.Monto_letras = ConvertirNumeroLetros(sum_cordobas)
+                        adelanto.Idsalida = daoAdelanto.recpuerarCodigoAdelanto()
+                        daoAdelanto.crearAdelanto(adelanto)
+                    End If
+                    If sum_dolares > Decimal.Zero Then
+                        Dim adelanto As New Adelantos
+                        adelanto.Codmoneda = param.dolares
+                        adelanto.Codcaja = verMaestroCaja.Codcaja
+                        adelanto.Hora = Now.ToShortTimeString
+                        adelanto.Fecha = Now
+                        adelanto.Monto = sum_dolares
+                        adelanto.Saldo = sum_dolares
+                        adelanto.Numcompra = ""
+                        adelanto.Transferencia = 0D
+                        adelanto.Cheque = 0D
+                        adelanto.Usuario = DataContext.usuarioLog.Usuario1
+                        adelanto.Codcliente = buscarCompra.Codcliente
+                        adelanto.Monto_letras = ConvertirNumeroLetros(sum_dolares)
+                        adelanto.Idsalida = daoAdelanto.recpuerarCodigoAdelanto()
+                        daoAdelanto.crearAdelanto(adelanto)
+                    End If
+                    ctx.Compras_adelantos.DeleteAllOnSubmit(buscarAdelanto)
                 End If
                 ctx.AnularCompra(numeroCompra, _agencia)
                 daoMcaja.guardarDatosDetaCaja(nuevoDetaCaja, verMaestroCaja)
@@ -393,6 +427,7 @@ Public Class DaoCompras
                             comprasAdelantos.Numcompra = compra.Numcompra
                             comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
                             comprasAdelantos.Codagencia = compra.Codagencia
+                            comprasAdelantos.Codmoneda = dato.Codmoneda
                             Select Case dato.Codmoneda
                                 Case parametros.dolares
                                     d_saldo = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
@@ -415,7 +450,7 @@ Public Class DaoCompras
                                         d_saldo = 0
                                     End If
                                     'el saldo final es el valor de saldo
-                                    comprasAdelantos.Sfinal = Decimal.Divide(d_saldo, tipoCambio.Tipocambio1)
+                                    comprasAdelantos.Sfinal = Decimal.Subtract(dato.Saldo, comprasAdelantos.Monto)
                                     Dim findAdelanto = (From a In ctx.Adelantos Where a.Idsalida = idsalida Select a).Single()
                                     'daoAdelanto.actualizarAdelanto(saldo, idsalida, compra.Numcompra)
                                     findAdelanto.Saldo = Decimal.Divide(d_saldo, tipoCambio.Tipocambio1)
