@@ -3479,6 +3479,9 @@ Namespace Database
 
         Private _codagencia As String
 
+        ''' <summary>
+        ''' Codigo de la moneda usada en el adelanto
+        ''' </summary>
         Private _codmoneda As Integer
         <Column(Name:="codmoneda", Storage:="_codmoneda", DbType:="int")>
         Public Property Codmoneda() As Integer
