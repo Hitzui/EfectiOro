@@ -20,9 +20,9 @@ Partial Class frmAdelantosAplicados
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdelantosAplicados))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtFiltrar = New System.Windows.Forms.TextBox()
@@ -50,11 +50,11 @@ Partial Class frmAdelantosAplicados
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblSaldoDolares = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblSaldoGlobal = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.btnImprimir = New System.Windows.Forms.Button()
         Me.btnAnular = New System.Windows.Forms.Button()
         Me.btnAdelantoEfectivo = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvAdelantos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,9 +137,9 @@ Partial Class frmAdelantosAplicados
         '
         'colFecha
         '
-        DataGridViewCellStyle7.Format = "d"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
         Me.colFecha.HeaderText = "Fecha"
         Me.colFecha.Name = "colFecha"
         Me.colFecha.ReadOnly = True
@@ -161,9 +161,9 @@ Partial Class frmAdelantosAplicados
         '
         'colMonto
         '
-        DataGridViewCellStyle8.Format = "N2"
-        DataGridViewCellStyle8.NullValue = Nothing
-        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
         Me.colMonto.HeaderText = "Monto"
         Me.colMonto.Name = "colMonto"
         Me.colMonto.ReadOnly = True
@@ -171,8 +171,8 @@ Partial Class frmAdelantosAplicados
         '
         'colSaldo
         '
-        DataGridViewCellStyle9.Format = "N2"
-        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Format = "N2"
+        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
         Me.colSaldo.HeaderText = "Saldo"
         Me.colSaldo.Name = "colSaldo"
         Me.colSaldo.ReadOnly = True
@@ -277,6 +277,13 @@ Partial Class frmAdelantosAplicados
         Me.lblSaldoGlobal.Size = New System.Drawing.Size(99, 17)
         Me.lblSaldoGlobal.Text = "Saldo global: 0.00"
         '
+        'ToolStripStatusLabel2
+        '
+        Me.ToolStripStatusLabel2.ForeColor = System.Drawing.Color.White
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(10, 17)
+        Me.ToolStripStatusLabel2.Text = "|"
+        '
         'btnImprimir
         '
         Me.btnImprimir.FlatAppearance.BorderSize = 0
@@ -325,17 +332,11 @@ Partial Class frmAdelantosAplicados
         Me.Button1.TabIndex = 11
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'ToolStripStatusLabel2
-        '
-        Me.ToolStripStatusLabel2.ForeColor = System.Drawing.Color.White
-        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(10, 17)
-        Me.ToolStripStatusLabel2.Text = "|"
-        '
         'frmAdelantosAplicados
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(776, 369)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnAdelantoEfectivo)
         Me.Controls.Add(Me.btnAnular)
@@ -343,9 +344,7 @@ Partial Class frmAdelantosAplicados
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.StatusStrip1)
         Me.Name = "frmAdelantosAplicados"
-        Me.Controls.SetChildIndex(Me.StatusStrip1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
@@ -353,6 +352,7 @@ Partial Class frmAdelantosAplicados
         Me.Controls.SetChildIndex(Me.btnAnular, 0)
         Me.Controls.SetChildIndex(Me.btnAdelantoEfectivo, 0)
         Me.Controls.SetChildIndex(Me.Button1, 0)
+        Me.Controls.SetChildIndex(Me.StatusStrip1, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)

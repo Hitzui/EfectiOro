@@ -103,11 +103,11 @@ Public Class DaoAdelantos
     CompiledQuery.Compile(Of Contexto, String, IQueryable(Of Adelantos))(
                 Function(ctx As Contexto, codigo As String) _
                     From a In ctx.Adelantos Where a.Codcliente = codigo _
-                            And a.Saldo > 0 Order By a.Saldo Ascending Select a)
+                            And a.Saldo > 0 Order By a.Fecha Ascending Select a)
     Public Function listarAdelantosPorClientes(codigo As String) As List(Of Adelantos) Implements IDaoAdelantos.listarAdelantosPorClientes
         Using ctx As New Contexto
             Try
-                Dim find = findAdelantoByCliente(ctx, codigo).ToList()
+                Dim find = findAdelantoByCliente(ctx, codigo).ToList
                 Return find
             Catch ex As Exception
                 Return Nothing

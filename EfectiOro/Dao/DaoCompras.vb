@@ -413,7 +413,7 @@ Public Class DaoCompras
                     'y aplicado de varios adelantos, es decir, de un cliente aplicaron
                     'varios adelantos
                     Dim adelanto As Decimal = compra.Adelantos
-                    listaAdelantos = listaAdelantos.OrderByDescending(Function(p) p.Fecha).ToList()
+                    'listaAdelantos = listaAdelantos.ToList()
                     For Each dato As Adelantos In listaAdelantos
                         If adelanto > 0 Then
                             Dim idsalida As String = dato.Idsalida

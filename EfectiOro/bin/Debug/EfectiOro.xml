@@ -428,6 +428,11 @@ EfectiOro
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="F:EfectiOro.Database.Compras_adelantos._codmoneda">
+ <summary>
+ Codigo de la moneda usada en el adelanto
+ </summary>
+</member>
 <member name="T:EfectiOro.Database.DetalleDescarguePorCompra">
  <summary>
  Esto nos sirve para generar el reporte de detalle de descargue por compras.

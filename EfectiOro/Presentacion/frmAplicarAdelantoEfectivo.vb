@@ -17,6 +17,16 @@ Public Class frmAplicarAdelantoEfectivo
         adelantoSeleccionados = New List(Of Adelantos)
     End Sub
 
+    Function recuperarMoneda(codmoneda As Integer) As Moneda
+        Using ctx As New Contexto
+            Try
+                Return ctx.Moneda.Where(Function(m) m.Codmoneda = codmoneda).First
+            Catch ex As Exception
+                Return New Moneda
+            End Try
+        End Using
+    End Function
+
     Public Sub cerrar()
         Me.saldoTotal = Decimal.Zero
         Me.adelantoSeleccionados.Clear()
@@ -46,12 +56,11 @@ Public Class frmAplicarAdelantoEfectivo
             Dim daoAdelantos = DataContext.daoAdelantos
             Dim findAdelantos = daoAdelantos.listarAdelantosPorClientes(Me.codigoCliente)
             For Each dato As Adelantos In findAdelantos
-                dgvAdelanto.Rows.Add(False, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo)
-                'adelantoSeleccionados.Add(dato)
-                'saldoTotal += dato.Saldo
-                'valorSeleccionadoMonto = saldoTotal
+                Dim moneda = recuperarMoneda(dato.Codmoneda)
+                dgvAdelanto.Rows.Add(False, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo, moneda.Descripcion)
             Next
         Catch ex As Exception
+            MsgBox("Error al recuperar los adelantos, lea la siguiente instruccion: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
 
