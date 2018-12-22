@@ -43,6 +43,7 @@ Partial Class frmDescargues
         Dim UltraGridColumn19 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Adelantos")
         Dim UltraGridColumn20 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Saldo_por_pagar")
         Dim UltraGridColumn22 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Saldo_adelanto")
+        Dim UltraGridColumn23 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Saldo_adelanto_Dolares")
         Dim UltraGridColumn21 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("colSeleccionar", 0)
         Dim ConditionValueAppearance1 As Infragistics.Win.ConditionValueAppearance = New Infragistics.Win.ConditionValueAppearance(New Infragistics.Win.ICondition(-1) {}, New Infragistics.Win.Appearance(-1) {})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDescargues))
@@ -245,10 +246,10 @@ Partial Class frmDescargues
         Me.dgvGenerar.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns
         UltraGridColumn1.Header.Caption = "Sucursal"
         UltraGridColumn1.Header.VisiblePosition = 1
-        UltraGridColumn1.Width = 89
+        UltraGridColumn1.Width = 74
         UltraGridColumn2.Header.Caption = "No compra"
         UltraGridColumn2.Header.VisiblePosition = 2
-        UltraGridColumn2.Width = 118
+        UltraGridColumn2.Width = 99
         UltraGridColumn3.Header.Caption = "Cod cliente"
         UltraGridColumn3.Header.VisiblePosition = 3
         UltraGridColumn3.Hidden = True
@@ -256,13 +257,13 @@ Partial Class frmDescargues
         UltraGridColumn4.Header.VisiblePosition = 4
         UltraGridColumn4.Hidden = True
         UltraGridColumn5.Header.VisiblePosition = 5
-        UltraGridColumn5.Width = 99
+        UltraGridColumn5.Width = 83
         UltraGridColumn6.Header.VisiblePosition = 6
         UltraGridColumn6.Hidden = True
         UltraGridColumn7.Header.VisiblePosition = 7
-        UltraGridColumn7.Width = 184
+        UltraGridColumn7.Width = 153
         UltraGridColumn8.Header.VisiblePosition = 8
-        UltraGridColumn8.Width = 106
+        UltraGridColumn8.Width = 89
         UltraGridColumn9.Header.VisiblePosition = 9
         UltraGridColumn9.Hidden = True
         UltraGridColumn10.Header.VisiblePosition = 10
@@ -287,17 +288,20 @@ Partial Class frmDescargues
         UltraGridColumn19.Hidden = True
         UltraGridColumn20.Header.VisiblePosition = 20
         UltraGridColumn20.Hidden = True
-        UltraGridColumn22.Header.Caption = "Saldo adelanto"
+        UltraGridColumn22.Header.Caption = "Saldo Cordobas"
         UltraGridColumn22.Header.VisiblePosition = 21
-        UltraGridColumn22.Width = 84
+        UltraGridColumn22.Width = 70
+        UltraGridColumn23.Header.Caption = "Saldo Dolares"
+        UltraGridColumn23.Header.VisiblePosition = 22
+        UltraGridColumn23.Width = 128
         UltraGridColumn21.DataType = GetType(Boolean)
         UltraGridColumn21.DefaultCellValue = False
         UltraGridColumn21.Header.Caption = "Seleccionar"
         UltraGridColumn21.Header.VisiblePosition = 0
         ConditionValueAppearance1.ApplyAllMatchingConditions = False
         UltraGridColumn21.ValueBasedAppearance = ConditionValueAppearance1
-        UltraGridColumn21.Width = 74
-        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn1, UltraGridColumn2, UltraGridColumn3, UltraGridColumn4, UltraGridColumn5, UltraGridColumn6, UltraGridColumn7, UltraGridColumn8, UltraGridColumn9, UltraGridColumn10, UltraGridColumn11, UltraGridColumn12, UltraGridColumn13, UltraGridColumn14, UltraGridColumn15, UltraGridColumn16, UltraGridColumn17, UltraGridColumn18, UltraGridColumn19, UltraGridColumn20, UltraGridColumn22, UltraGridColumn21})
+        UltraGridColumn21.Width = 58
+        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn1, UltraGridColumn2, UltraGridColumn3, UltraGridColumn4, UltraGridColumn5, UltraGridColumn6, UltraGridColumn7, UltraGridColumn8, UltraGridColumn9, UltraGridColumn10, UltraGridColumn11, UltraGridColumn12, UltraGridColumn13, UltraGridColumn14, UltraGridColumn15, UltraGridColumn16, UltraGridColumn17, UltraGridColumn18, UltraGridColumn19, UltraGridColumn20, UltraGridColumn22, UltraGridColumn23, UltraGridColumn21})
         Me.dgvGenerar.DisplayLayout.BandsSerializer.Add(UltraGridBand1)
         Me.dgvGenerar.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.[False]
         Me.dgvGenerar.DisplayLayout.DefaultSelectedBackColor = System.Drawing.SystemColors.HotTrack

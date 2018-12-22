@@ -129,7 +129,7 @@ Public Class frmPrecios2
             End Try
         End Using
     End Sub
-    Private Sub txtNombre_Enter(sender As Object, e As EventArgs) Handles txtNombre.Enter
+    Private Sub TxtNombre_Enter(sender As Object, e As EventArgs) Handles txtNombre.Enter
         If dgvCliente.Visible = False Then
             dgvCliente.Visible = True
             dgvCliente.Size = New Size(477, 150)
@@ -211,7 +211,6 @@ Public Class frmPrecios2
             Dim onzas_grid As Decimal = Decimal.Zero
             Dim onzas_diferencia As Decimal = Decimal.Zero
             Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
-            onzas_ingresar = onzas_ingresar
             Dim temp_onzas As Decimal = onzas_ingresar
             'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
             If listaCierreClientes.Count > 0 Then
@@ -248,7 +247,7 @@ Public Class frmPrecios2
                                     'calculo = ServiciosBasicos.redondearMenos(calculo)
                                     calculoPrecioBaseMatriz.Add(calculo)
                                     onzas_ingresar = Decimal.Subtract(onzas_ingresar, findOnzas)
-                                    onzas_ingresar = onzas_ingresar
+                                    'onzas_ingresar = onzas_ingresar
                                     'este es valor que se uso para las onzas
                                     dato.SaldoOnzas = Decimal.Zero
                                 Else
