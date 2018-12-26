@@ -54,7 +54,7 @@ Public Class frmPrecios2
     ''' <summary>
     ''' Esto para cuando las onzas a ingresar son mayores a las disponibles, entonces se cancela el ingreso y se regresan las onzas usadas a su respectivo cierre
     ''' </summary>
-    Private onzasUsadas As Dictionary(Of Integer, Decimal)
+    Private onzasUsadas As Dictionary(Of Integer, Dictionary(Of Integer, Decimal))
 
 
     Public Sub New()
@@ -69,7 +69,7 @@ Public Class frmPrecios2
         calculoPrecioBaseMatriz = New List(Of Decimal)
         onzasUsadasLinea = New Dictionary(Of Integer, List(Of CierrePrecios))
         listaCierreClientes = New List(Of CierrePrecios)
-        onzasUsadas = New Dictionary(Of Integer, Decimal)
+        onzasUsadas = New Dictionary(Of Integer, Dictionary(Of Integer, Decimal))
     End Sub
     Sub clear()
         If dgvCliente.Visible = True Then
@@ -228,9 +228,11 @@ Public Class frmPrecios2
                 dif_onzas = redondearMenos(dif_onzas, 0.0005)
                 lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
                 calculoPrecioBaseMatriz.Clear()
+                Dim aux_linea As Integer = linea
                 For Each dato As CierrePrecios In listaCierreClientes
+                    Dim saldo_onzas = dato.SaldoOnzas
                     If onzas_ingresar > Decimal.Zero Then
-                        Try
+                        If _onzasDiferencias.ContainsKey(dato.CodCierre) Then
                             Dim findOnzas = _onzasDiferencias.Item(dato.CodCierre)
                             If findOnzas > 0 Then
                                 Dim temporal_onzas As Decimal = findOnzas
@@ -263,7 +265,7 @@ Public Class frmPrecios2
                                     onzas_ingresar = Decimal.Zero
                                 End If
                             End If
-                        Catch ex As Exception
+                        Else
                             Dim temporal_onzas As Decimal = dato.SaldoOnzas
                             'esta variable es para almecenar las onzas encontradas para luego comparar
                             temporal_onzas = redondearMenos(dato.SaldoOnzas, 0.0005)
@@ -306,7 +308,14 @@ Public Class frmPrecios2
                                 linea = linea + 1
                                 onzas_ingresar = Decimal.Zero
                             End If
-                        End Try
+                        End If
+                    End If
+                    Dim x_onzas = Decimal.Subtract(Saldo_onzas, dato.SaldoOnzas)
+                    If onzasUsadas.ContainsKey(aux_linea) Then
+                        Dim buscar_onzas = onzasUsadas.Item(aux_linea)
+                        buscar_onzas.Add(dato.CodCierre, x_onzas)
+                    Else
+                        onzasUsadas.Add(aux_linea, New Dictionary(Of Integer, Decimal) From {{dato.CodCierre, x_onzas}})
                     End If
                 Next
                 txtQuilate.Clear()
