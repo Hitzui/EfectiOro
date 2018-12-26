@@ -192,6 +192,7 @@ Public Class DaoAdelantos
 
     Private Function aplicarEfectivo(listaAdelantos As List(Of Adelantos), monto As Decimal, Optional ByVal codigocliente As String = "") As Boolean
         Using ctx As New Contexto()
+            Dim d_saldo = Decimal.Zero
             Dim listarAdelantosPrint As New List(Of Adelantos)
             Dim daoParam = DataContext.daoParametros
             Dim parametros = daoParam.recuperarParametros
@@ -217,9 +218,11 @@ Public Class DaoAdelantos
             detaCaja.idcaja = xcaja.Idcaja
             ctx.Detacaja.InsertOnSubmit(detaCaja)
             Try
+                Dim tipoCambio = (From tc In ctx.TipoCambio Where tc.Fecha = Now.Date Select tc).Single
                 'listaAdelantos.OrderBy(Function(p) p.Idsalida).ToList()
                 For Each adelanto As Adelantos In listaAdelantos
                     If monto > 0 Then
+
                         detaCaja.concepto += adelanto.Idsalida & "; "
                         Dim idsalida As String = adelanto.Idsalida
                         Dim saldo As Decimal = adelanto.Saldo
@@ -234,23 +237,40 @@ Public Class DaoAdelantos
                         comprasAdelantos.Idadelanto = idsalida
                         comprasAdelantos.Numcompra = adelanto.Idsalida & " " & hora.ToString("h\:mm\:ss")
                         comprasAdelantos.Usuario = DataContext.usuarioLog.Usuario1
+                        comprasAdelantos.Codmoneda = adelanto.Codmoneda
                         'Saldo inicial es el monto con el que esta al momento
                         comprasAdelantos.Sinicial = adelanto.Saldo
-                        If saldo > monto Then
-                            'si el saldo es mayor que el adelanto
-                            'le restamos al saldo el adelanto y el adelanto queda en zero
-                            comprasAdelantos.Monto = monto
-                            saldo = saldo - monto
-                            monto = Decimal.Zero
-                        Else
-                            'si el adelanto es mayor que el saldo
-                            'le restamos al adelanto el saldo y el saldo queda en zero
-                            comprasAdelantos.Monto = saldo
-                            monto = monto - saldo
-                            saldo = 0
-                        End If
-                        comprasAdelantos.Sfinal = saldo
-                        Dim findAdelanto = (From a In ctx.Adelantos Where a.Idsalida = idsalida Select a).First()
+                        Select Case adelanto.Codmoneda
+                            Case parametros.cordobas
+                                If saldo >= monto Then
+                                    'si el saldo es mayor que el adelanto
+                                    'le restamos al saldo el adelanto y el adelanto queda en zero
+                                    comprasAdelantos.Monto = monto
+                                    saldo = Decimal.Subtract(saldo, monto) 'saldo - monto
+                                    monto = Decimal.Zero
+                                Else
+                                    'si el adelanto es mayor que el saldo
+                                    'le restamos al adelanto el saldo y el saldo queda en zero
+                                    comprasAdelantos.Monto = saldo
+                                    monto = monto - saldo
+                                    saldo = 0
+                                End If
+                                comprasAdelantos.Sfinal = saldo
+                            Case parametros.dolares
+                                d_saldo = Decimal.Multiply(saldo, tipoCambio.Tipocambio1)
+                                Dim d_monto = Decimal.Divide(monto, tipoCambio.Tipocambio1)
+                                If saldo >= d_monto Then
+                                    comprasAdelantos.Monto = d_monto
+                                    saldo = Decimal.Subtract(saldo, d_monto)
+                                    monto = Decimal.Zero
+                                ElseIf d_monto >= saldo Then
+                                    comprasAdelantos.Monto = saldo
+                                    monto = Decimal.Subtract(monto, d_saldo)
+                                    saldo = Decimal.Zero
+                                End If
+                                comprasAdelantos.Sfinal = saldo
+                        End Select
+                        Dim findAdelanto As Adelantos = (From a In ctx.Adelantos Where a.Idsalida = idsalida Select a).Single()
                         findAdelanto.Saldo = saldo
                         ctx.Compras_adelantos.InsertOnSubmit(comprasAdelantos)
                         listarAdelantosPrint.Add(findAdelanto)
