@@ -20,14 +20,15 @@ Partial Class frmPrecios2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance8 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrecios2))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
@@ -60,17 +61,6 @@ Partial Class frmPrecios2
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.dgvCierrePrecios = New System.Windows.Forms.DataGridView()
-        Me.bsCierres = New System.Windows.Forms.BindingSource(Me.components)
-        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.lblOnzasDisponibles = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.lblOnzasIn = New System.Windows.Forms.ToolStripLabel()
-        Me.lblOnzasIngresar = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
-        Me.lblOnzasDiferencia = New System.Windows.Forms.ToolStripLabel()
         Me.colSeleccionar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.CodCierreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CodclienteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -82,6 +72,18 @@ Partial Class frmPrecios2
         Me.PrecioBaseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MargenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.bsCierres = New System.Windows.Forms.BindingSource(Me.components)
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.lblOnzasDisponibles = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.lblOnzasIn = New System.Windows.Forms.ToolStripLabel()
+        Me.lblOnzasIngresar = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
+        Me.lblOnzasDiferencia = New System.Windows.Forms.ToolStripLabel()
+        Me.BtnQuitarLinea = New Infragistics.Win.Misc.UltraButton()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -163,6 +165,7 @@ Partial Class frmPrecios2
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.BtnQuitarLinea)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.txtGramos)
         Me.GroupBox2.Controls.Add(Me.Label6)
@@ -183,7 +186,7 @@ Partial Class frmPrecios2
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(307, 10)
+        Me.Label4.Location = New System.Drawing.Point(281, 12)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(54, 15)
         Me.Label4.TabIndex = 17
@@ -191,7 +194,7 @@ Partial Class frmPrecios2
         '
         'txtGramos
         '
-        Me.txtGramos.Location = New System.Drawing.Point(306, 28)
+        Me.txtGramos.Location = New System.Drawing.Point(284, 28)
         Me.txtGramos.Name = "txtGramos"
         Me.txtGramos.Size = New System.Drawing.Size(88, 20)
         Me.txtGramos.TabIndex = 16
@@ -200,7 +203,7 @@ Partial Class frmPrecios2
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(204, 10)
+        Me.Label6.Location = New System.Drawing.Point(187, 10)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(85, 15)
         Me.Label6.TabIndex = 14
@@ -208,7 +211,7 @@ Partial Class frmPrecios2
         '
         'txtMargen
         '
-        Me.txtMargen.Location = New System.Drawing.Point(207, 28)
+        Me.txtMargen.Location = New System.Drawing.Point(190, 28)
         Me.txtMargen.Name = "txtMargen"
         Me.txtMargen.Size = New System.Drawing.Size(88, 20)
         Me.txtMargen.TabIndex = 13
@@ -217,7 +220,7 @@ Partial Class frmPrecios2
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(105, 10)
+        Me.Label5.Location = New System.Drawing.Point(93, 10)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(86, 15)
         Me.Label5.TabIndex = 12
@@ -225,20 +228,20 @@ Partial Class frmPrecios2
         '
         'txtPrecioOro
         '
-        Me.txtPrecioOro.Location = New System.Drawing.Point(108, 28)
+        Me.txtPrecioOro.Location = New System.Drawing.Point(96, 28)
         Me.txtPrecioOro.Name = "txtPrecioOro"
         Me.txtPrecioOro.Size = New System.Drawing.Size(88, 20)
         Me.txtPrecioOro.TabIndex = 11
         '
         'btnAgregar
         '
-        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.money_plus
-        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnAgregar.Appearance = Appearance1
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.money_plus
+        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnAgregar.Appearance = Appearance2
         Me.btnAgregar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnAgregar.ImageSize = New System.Drawing.Size(32, 32)
-        Me.btnAgregar.Location = New System.Drawing.Point(420, 12)
+        Me.btnAgregar.Location = New System.Drawing.Point(378, 12)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(48, 36)
         Me.btnAgregar.TabIndex = 10
@@ -248,7 +251,7 @@ Partial Class frmPrecios2
         '
         Me.txtQuilate.Location = New System.Drawing.Point(9, 28)
         Me.txtQuilate.Name = "txtQuilate"
-        Me.txtQuilate.Size = New System.Drawing.Size(88, 20)
+        Me.txtQuilate.Size = New System.Drawing.Size(81, 20)
         Me.txtQuilate.TabIndex = 7
         '
         'Label3
@@ -315,10 +318,10 @@ Partial Class frmPrecios2
         '
         'btnSalir
         '
-        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.HOME
-        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnSalir.Appearance = Appearance2
+        Appearance3.Image = Global.EfectiOro.My.Resources.Resources.HOME
+        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnSalir.Appearance = Appearance3
         Me.btnSalir.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnSalir.ImageSize = New System.Drawing.Size(48, 48)
         Me.btnSalir.Location = New System.Drawing.Point(887, 19)
@@ -330,10 +333,10 @@ Partial Class frmPrecios2
         '
         'btnRefrescarCierres
         '
-        Appearance3.Image = Global.EfectiOro.My.Resources.Resources._48
-        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnRefrescarCierres.Appearance = Appearance3
+        Appearance4.Image = Global.EfectiOro.My.Resources.Resources._48
+        Appearance4.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance4.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnRefrescarCierres.Appearance = Appearance4
         Me.btnRefrescarCierres.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnRefrescarCierres.Enabled = False
         Me.btnRefrescarCierres.ImageSize = New System.Drawing.Size(48, 48)
@@ -346,10 +349,10 @@ Partial Class frmPrecios2
         '
         'btnQuitarSeleccion
         '
-        Appearance4.Image = Global.EfectiOro.My.Resources.Resources.refresh01
-        Appearance4.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance4.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnQuitarSeleccion.Appearance = Appearance4
+        Appearance5.Image = Global.EfectiOro.My.Resources.Resources.refresh01
+        Appearance5.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance5.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnQuitarSeleccion.Appearance = Appearance5
         Me.btnQuitarSeleccion.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnQuitarSeleccion.Enabled = False
         Me.btnQuitarSeleccion.ImageSize = New System.Drawing.Size(48, 48)
@@ -362,10 +365,10 @@ Partial Class frmPrecios2
         '
         'btnCancelar
         '
-        Appearance5.Image = Global.EfectiOro.My.Resources.Resources.cancel01
-        Appearance5.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance5.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnCancelar.Appearance = Appearance5
+        Appearance6.Image = Global.EfectiOro.My.Resources.Resources.cancel01
+        Appearance6.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance6.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnCancelar.Appearance = Appearance6
         Me.btnCancelar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnCancelar.ImageSize = New System.Drawing.Size(48, 48)
         Me.btnCancelar.Location = New System.Drawing.Point(178, 19)
@@ -376,10 +379,10 @@ Partial Class frmPrecios2
         '
         'btnGuardar
         '
-        Appearance6.Image = Global.EfectiOro.My.Resources.Resources.SAVE
-        Appearance6.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance6.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnGuardar.Appearance = Appearance6
+        Appearance7.Image = Global.EfectiOro.My.Resources.Resources.SAVE
+        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnGuardar.Appearance = Appearance7
         Me.btnGuardar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnGuardar.ImageSize = New System.Drawing.Size(48, 48)
         Me.btnGuardar.Location = New System.Drawing.Point(100, 19)
@@ -390,10 +393,10 @@ Partial Class frmPrecios2
         '
         'btnNuevo
         '
-        Appearance7.Image = Global.EfectiOro.My.Resources.Resources.add01
-        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnNuevo.Appearance = Appearance7
+        Appearance8.Image = Global.EfectiOro.My.Resources.Resources.add01
+        Appearance8.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance8.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnNuevo.Appearance = Appearance8
         Me.btnNuevo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnNuevo.ImageSize = New System.Drawing.Size(48, 48)
         Me.btnNuevo.Location = New System.Drawing.Point(22, 19)
@@ -432,70 +435,6 @@ Partial Class frmPrecios2
         Me.dgvCierrePrecios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvCierrePrecios.Size = New System.Drawing.Size(444, 287)
         Me.dgvCierrePrecios.TabIndex = 0
-        '
-        'bsCierres
-        '
-        Me.bsCierres.DataSource = GetType(EfectiOro.Database.CierrePrecios)
-        '
-        'toolTip
-        '
-        Me.toolTip.ToolTipTitle = "EfectiOro"
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.lblOnzasDisponibles, Me.ToolStripSeparator1, Me.lblOnzasIn, Me.lblOnzasIngresar, Me.ToolStripSeparator2, Me.ToolStripLabel2, Me.lblOnzasDiferencia})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 437)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(980, 25)
-        Me.ToolStrip1.TabIndex = 6
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'ToolStripLabel1
-        '
-        Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(72, 22)
-        Me.ToolStripLabel1.Text = "Saldo onzas:"
-        '
-        'lblOnzasDisponibles
-        '
-        Me.lblOnzasDisponibles.Name = "lblOnzasDisponibles"
-        Me.lblOnzasDisponibles.Size = New System.Drawing.Size(28, 22)
-        Me.lblOnzasDisponibles.Text = "0.00"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'lblOnzasIn
-        '
-        Me.lblOnzasIn.Name = "lblOnzasIn"
-        Me.lblOnzasIn.Size = New System.Drawing.Size(80, 22)
-        Me.lblOnzasIn.Text = "Acum. Onzas:"
-        '
-        'lblOnzasIngresar
-        '
-        Me.lblOnzasIngresar.Name = "lblOnzasIngresar"
-        Me.lblOnzasIngresar.Size = New System.Drawing.Size(28, 22)
-        Me.lblOnzasIngresar.Text = "0.00"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripLabel2
-        '
-        Me.ToolStripLabel2.Name = "ToolStripLabel2"
-        Me.ToolStripLabel2.Size = New System.Drawing.Size(98, 22)
-        Me.ToolStripLabel2.Text = "Diferencia Onzas:"
-        '
-        'lblOnzasDiferencia
-        '
-        Me.lblOnzasDiferencia.Name = "lblOnzasDiferencia"
-        Me.lblOnzasDiferencia.Size = New System.Drawing.Size(28, 22)
-        Me.lblOnzasDiferencia.Text = "0.00"
         '
         'colSeleccionar
         '
@@ -591,6 +530,84 @@ Partial Class frmPrecios2
         Me.MargenDataGridViewTextBoxColumn.ReadOnly = True
         Me.MargenDataGridViewTextBoxColumn.Width = 68
         '
+        'bsCierres
+        '
+        Me.bsCierres.DataSource = GetType(EfectiOro.Database.CierrePrecios)
+        '
+        'toolTip
+        '
+        Me.toolTip.ToolTipTitle = "EfectiOro"
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.lblOnzasDisponibles, Me.ToolStripSeparator1, Me.lblOnzasIn, Me.lblOnzasIngresar, Me.ToolStripSeparator2, Me.ToolStripLabel2, Me.lblOnzasDiferencia})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 437)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(980, 25)
+        Me.ToolStrip1.TabIndex = 6
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(72, 22)
+        Me.ToolStripLabel1.Text = "Saldo onzas:"
+        '
+        'lblOnzasDisponibles
+        '
+        Me.lblOnzasDisponibles.Name = "lblOnzasDisponibles"
+        Me.lblOnzasDisponibles.Size = New System.Drawing.Size(28, 22)
+        Me.lblOnzasDisponibles.Text = "0.00"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'lblOnzasIn
+        '
+        Me.lblOnzasIn.Name = "lblOnzasIn"
+        Me.lblOnzasIn.Size = New System.Drawing.Size(80, 22)
+        Me.lblOnzasIn.Text = "Acum. Onzas:"
+        '
+        'lblOnzasIngresar
+        '
+        Me.lblOnzasIngresar.Name = "lblOnzasIngresar"
+        Me.lblOnzasIngresar.Size = New System.Drawing.Size(28, 22)
+        Me.lblOnzasIngresar.Text = "0.00"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripLabel2
+        '
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(98, 22)
+        Me.ToolStripLabel2.Text = "Diferencia Onzas:"
+        '
+        'lblOnzasDiferencia
+        '
+        Me.lblOnzasDiferencia.Name = "lblOnzasDiferencia"
+        Me.lblOnzasDiferencia.Size = New System.Drawing.Size(28, 22)
+        Me.lblOnzasDiferencia.Text = "0.00"
+        '
+        'BtnQuitarLinea
+        '
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.REMOVE_FROM_SHOPPING_CART
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.BtnQuitarLinea.Appearance = Appearance1
+        Me.BtnQuitarLinea.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.BtnQuitarLinea.ImageSize = New System.Drawing.Size(32, 32)
+        Me.BtnQuitarLinea.Location = New System.Drawing.Point(432, 12)
+        Me.BtnQuitarLinea.Name = "BtnQuitarLinea"
+        Me.BtnQuitarLinea.Size = New System.Drawing.Size(48, 36)
+        Me.BtnQuitarLinea.TabIndex = 18
+        Me.BtnQuitarLinea.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
         'frmPrecios2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -679,4 +696,5 @@ Partial Class frmPrecios2
     Friend WithEvents PrecioBaseDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents FechaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents MargenDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents BtnQuitarLinea As Infragistics.Win.Misc.UltraButton
 End Class

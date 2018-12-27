@@ -110,7 +110,7 @@ Public Class frmPrecios2
         Using ctx As New Contexto
             Try
                 Dim findCierres = (From cp In ctx.CierrePrecios Where cp.Codcliente = _codcliente _
-                                    And cp.Status = True And cp.SaldoOnzas > 0 Select cp).ToList
+                                    And cp.Status = True And cp.SaldoOnzas > 0 Order By cp.CodCierre Ascending Select cp).ToList
                 onzasDisponibles = findCierres.Sum(Function(c) c.SaldoOnzas)
                 lblOnzasDisponibles.Text = onzasDisponibles
                 bsCierres.DataSource = findCierres
@@ -692,6 +692,35 @@ Public Class frmPrecios2
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Warning")
+        End Try
+    End Sub
+
+    Private Sub BtnQuitarLinea_Click(sender As Object, e As EventArgs) Handles BtnQuitarLinea.Click
+        Try
+            Dim result = MessageBox.Show(Me, "¿Seguiro quiere quitar la linea seleccionada?", "Quitar item", MessageBoxButtons.YesNo)
+            If result = DialogResult.No Then
+                Return
+            End If
+            Dim row = dgvPrecios.CurrentRow()
+            Dim aux_linea As Integer = row.Cells(0).Value
+            If onzasUsadas.ContainsKey(aux_linea) Then
+                Dim buscar_onzas = onzasUsadas.Item(aux_linea)
+                For Each dato In _onzasDiferencias
+                    If buscar_onzas.ContainsKey(dato.Key) Then
+                        Dim x_onzas = buscar_onzas.Item(dato.Key)
+                        Dim find = listaCierreClientes.Find(Function(c) c.CodCierre = dato.Key)
+                        find.SaldoOnzas = Decimal.Add(find.SaldoOnzas, x_onzas)
+                    End If
+                Next
+                'despues de devolver las onzas recalculamos los precios bases nuevamente
+                For Each dato As CierrePrecios In listaCierreClientes
+                    If dato.SaldoOnzas > Decimal.Zero Then
+
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+
         End Try
     End Sub
 End Class
