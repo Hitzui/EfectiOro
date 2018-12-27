@@ -212,7 +212,7 @@ Public Class frmPrecios2
             Dim onzas_diferencia As Decimal = Decimal.Zero
             Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
             Dim temp_onzas As Decimal = onzas_ingresar
-            'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
+            Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
             If listaCierreClientes.Count > 0 Then
                 Dim sum_onzas = listaCierreClientes.Sum(Function(p) p.SaldoOnzas)
                 Dim ver_onzas = Decimal.Subtract(onzas_ingresar, sum_onzas)
@@ -228,102 +228,14 @@ Public Class frmPrecios2
                 dif_onzas = redondearMenos(dif_onzas, 0.0005)
                 lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
                 calculoPrecioBaseMatriz.Clear()
-                Dim aux_linea As Integer = linea
-                For Each dato As CierrePrecios In listaCierreClientes
-                    Dim saldo_onzas = dato.SaldoOnzas
-                    If onzas_ingresar > Decimal.Zero Then
-                        If _onzasDiferencias.ContainsKey(dato.CodCierre) Then
-                            Dim findOnzas = _onzasDiferencias.Item(dato.CodCierre)
-                            If findOnzas > 0 Then
-                                Dim temporal_onzas As Decimal = findOnzas
-                                'esta variable es para almecenar las onzas encontradas para luego comparar
-                                temporal_onzas = redondearMenos(findOnzas, 0.005)
-                                Dim temporal_onzas_ingresar As Decimal = redondearMenos(onzas_ingresar, 0.005)
-                                'restamos las variables temporales con 4 decimales
-                                'con un redondeo hacia abajo
-                                Dim difrencias_temporales As Decimal = Decimal.Subtract(temporal_onzas, temporal_onzas_ingresar)
-                                onzas_diferencia = Decimal.Subtract(findOnzas, onzas_ingresar)
-                                If difrencias_temporales < Decimal.Zero Then
-                                    _onzasDiferencias.Item(dato.CodCierre) = Decimal.Zero
-                                    Dim calculo As Decimal = dato.PrecioBase * findOnzas
-                                    'calculo = ServiciosBasicos.redondearMenos(calculo)
-                                    calculoPrecioBaseMatriz.Add(calculo)
-                                    onzas_ingresar = Decimal.Subtract(onzas_ingresar, findOnzas)
-                                    'onzas_ingresar = onzas_ingresar
-                                    'este es valor que se uso para las onzas
-                                    dato.SaldoOnzas = Decimal.Zero
-                                Else
-                                    _onzasDiferencias.Item(dato.CodCierre) = Decimal.Round(onzas_diferencia, 3)
-                                    Dim pb As Decimal = _preciosBaseCierres.Item(dato.CodCierre)
-                                    'pb = ServiciosBasicos.redondearMenos(pb)
-                                    Dim precio As Decimal = pb * quilate
-                                    'precio = ServiciosBasicos.redondearMenos(precio)
-                                    dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 2), gramos)
-                                    'onzas usadas para el precio
-                                    dato.SaldoOnzas = Decimal.Subtract(dato.SaldoOnzas, onzas_ingresar)
-                                    linea = linea + 1
-                                    onzas_ingresar = Decimal.Zero
-                                End If
-                            End If
-                        Else
-                            Dim temporal_onzas As Decimal = dato.SaldoOnzas
-                            'esta variable es para almecenar las onzas encontradas para luego comparar
-                            temporal_onzas = redondearMenos(dato.SaldoOnzas, 0.0005)
-                            Dim temporal_onzas_ingresar As Decimal = redondearMenos(onzas_ingresar, 0.0005)
-                            'restamos las variables temporales con 4 decimales
-                            'con un redondeo hacia abajo
-                            Dim difrencias_temporales As Decimal = Decimal.Subtract(dato.SaldoOnzas, temporal_onzas_ingresar)
-                            onzas_diferencia = Decimal.Subtract(dato.SaldoOnzas, onzas_ingresar)
-                            If difrencias_temporales < Decimal.Zero Then
-                                _onzasDiferencias.Add(dato.CodCierre, Decimal.Zero)
-                                _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
-                                Dim calculo As Decimal = dato.PrecioBase * dato.SaldoOnzas
-                                'calculo = ServiciosBasicos.redondearMenos(calculo)
-                                calculoPrecioBaseMatriz.Add(calculo)
-                                onzas_ingresar = Decimal.Subtract(onzas_ingresar, dato.SaldoOnzas)
-                                dato.SaldoOnzas = Decimal.Zero
-                            Else
-                                Dim precio As Decimal = Decimal.Zero
-                                Dim pb As Decimal = Decimal.Zero
-                                If Decimal.Equals(onzas_ingresar, temp_onzas) = False Then
-                                    pb = dato.PrecioBase * onzas_ingresar
-                                    Dim sum_pb As Decimal = calculoPrecioBaseMatriz.Sum()
-                                    'sum_pb = ServiciosBasicos.redondearMenos(sum_pb)
-                                    Dim tempPrecioBase As Decimal = (pb + sum_pb) / temp_onzas
-                                    'tempPrecioBase = ServiciosBasicos.redondearMenos(tempPrecioBase)
-                                    tempPrecioBase = Decimal.Round(tempPrecioBase, 2)
-                                    precio = tempPrecioBase * quilate
-                                Else
-                                    precio = dato.PrecioBase * quilate
-                                    precio = redondearMenos(precio, 0.0005)
-                                End If
-                                'precio = ServiciosBasicos.redondearMenos(precio)
-                                _onzasDiferencias.Add(dato.CodCierre, Decimal.Round(onzas_diferencia, 3))
-                                _preciosBaseCierres.Add(dato.CodCierre, dato.PrecioBase)
-                                precio = redondearMenos(precio, 0.005)
-                                precio = Decimal.Round(precio, 2)
-                                dgvPrecios.Rows.Add(linea, quilate, precio, gramos)
-                                'onzas usadas para el precio
-                                dato.SaldoOnzas = Decimal.Subtract(dato.SaldoOnzas, onzas_ingresar)
-                                linea = linea + 1
-                                onzas_ingresar = Decimal.Zero
-                            End If
-                        End If
-                    End If
-                    Dim x_onzas = Decimal.Subtract(Saldo_onzas, dato.SaldoOnzas)
-                    If onzasUsadas.ContainsKey(aux_linea) Then
-                        Dim buscar_onzas = onzasUsadas.Item(aux_linea)
-                        buscar_onzas.Add(dato.CodCierre, x_onzas)
-                    Else
-                        onzasUsadas.Add(aux_linea, New Dictionary(Of Integer, Decimal) From {{dato.CodCierre, x_onzas}})
-                    End If
-                Next
+                'Dim aux_linea As Integer = linea
+                calcularPrecio(onzas_ingresar, quilate, gramos)
                 txtQuilate.Clear()
                 txtGramos.Clear()
                 txtQuilate.Focus()
-                If onzas_ingresar > Decimal.Zero Then
-                    MsgBox("NO se pudo ingresar el precio, ya que las onza a ingresar son mayores a las disponibles", MsgBoxStyle.Information, "Precios")
-                End If
+                'If onzas_ingresar > Decimal.Zero Then
+                '    MsgBox("NO se pudo ingresar el precio, ya que las onza a ingresar son mayores a las disponibles", MsgBoxStyle.Information, "Precios")
+                'End If
             Else
                 Dim precioBase As Decimal = Decimal.Zero
                 Dim precio As Decimal = Decimal.Zero
@@ -702,7 +614,7 @@ Public Class frmPrecios2
                 Return
             End If
             Dim row = dgvPrecios.CurrentRow()
-            Dim aux_linea As Integer = row.Cells(0).Value
+            Dim aux_linea As Integer = row.Cells("colLinea").Value
             If onzasUsadas.ContainsKey(aux_linea) Then
                 'despues de devolver las onzas recalculamos los precios bases nuevamente
                 For Each dato As CierrePrecios In listaCierreClientes
@@ -713,25 +625,36 @@ Public Class frmPrecios2
                         End If
                     Next
                 Next
+                linea = 1
                 onzasUsadas.Clear()
                 _onzasDiferencias.Clear()
-
-                For Each row In dgvPrecios.Rows
-                    Dim quilate As Decimal = Convert.ToDecimal(row.Cells("colQuilate").Value)
-                    Dim gramos As Decimal = Convert.ToDecimal(row.Cells("colGramos").Value)
-
+                calculoPrecioBaseMatriz.Clear()
+                Dim valores_grid As New Dictionary(Of Decimal, Decimal)
+                If dgvPrecios.Rows.Count > 1 Then
+                    dgvPrecios.Rows.RemoveAt(row.Index)
+                End If
+                For Each value_row In dgvPrecios.Rows
+                    Dim quilate As Decimal = Convert.ToDecimal(value_row.Cells("colQuilate").Value)
+                    Dim gramos As Decimal = Convert.ToDecimal(value_row.Cells("colGramos").Value)
+                    valores_grid.Add(quilate, gramos)
+                Next
+                dgvPrecios.Rows.Clear()
+                For Each dato In valores_grid
+                    Dim quilate As Decimal = dato.Key
+                    Dim gramos As Decimal = dato.Value
+                    Dim onzas_ingresar = gramos * quilate / 24 / 31.1035
+                    calcularPrecio(onzas_ingresar, quilate, gramos)
                 Next
             End If
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
 
-    Private Sub calcularPrecio(quilate As Decimal, gramos As Decimal)
+    Private Sub calcularPrecio(onzas_ingresar As Decimal, quilate As Decimal, gramos As Decimal)
         Try
-            linea = 1
             Dim aux_linea = linea
-            Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
+            'Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
             Dim temp_onzas As Decimal = onzas_ingresar
             Dim onzas_diferencia = Decimal.Zero
             For Each dato As CierrePrecios In listaCierreClientes
@@ -823,6 +746,9 @@ Public Class frmPrecios2
                     onzasUsadas.Add(aux_linea, New Dictionary(Of Integer, Decimal) From {{dato.CodCierre, x_onzas}})
                 End If
             Next
+            If onzas_ingresar > Decimal.Zero Then
+                MsgBox("NO se pudo ingresar el precio, ya que las onza a ingresar son mayores a las disponibles", MsgBoxStyle.Information, "Precios")
+            End If
         Catch ex As Exception
 
         End Try
