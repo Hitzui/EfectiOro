@@ -628,10 +628,14 @@ Public Class frmPrecios2
                 linea = 1
                 onzasUsadas.Clear()
                 _onzasDiferencias.Clear()
+                _preciosBaseCierres.Clear()
                 calculoPrecioBaseMatriz.Clear()
                 Dim valores_grid As New Dictionary(Of Decimal, Decimal)
                 If dgvPrecios.Rows.Count > 1 Then
                     dgvPrecios.Rows.RemoveAt(row.Index)
+                Else
+                    dgvPrecios.Rows.RemoveAt(row.Index)
+                    Return
                 End If
                 For Each value_row In dgvPrecios.Rows
                     Dim quilate As Decimal = Convert.ToDecimal(value_row.Cells("colQuilate").Value)
@@ -750,7 +754,7 @@ Public Class frmPrecios2
                 MsgBox("NO se pudo ingresar el precio, ya que las onza a ingresar son mayores a las disponibles", MsgBoxStyle.Information, "Precios")
             End If
         Catch ex As Exception
-
+            MsgBox("Se produjo el siguiente error al calcular el precio de las onzas: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
 End Class
