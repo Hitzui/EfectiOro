@@ -20,6 +20,7 @@ Partial Class frmPrecios2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
@@ -28,7 +29,6 @@ Partial Class frmPrecios2
         Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance8 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrecios2))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
@@ -37,6 +37,7 @@ Partial Class frmPrecios2
         Me.Label1 = New System.Windows.Forms.Label()
         Me.dgvCliente = New System.Windows.Forms.DataGridView()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.BtnQuitarLinea = New Infragistics.Win.Misc.UltraButton()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtGramos = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -83,7 +84,6 @@ Partial Class frmPrecios2
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.lblOnzasDiferencia = New System.Windows.Forms.ToolStripLabel()
-        Me.BtnQuitarLinea = New Infragistics.Win.Misc.UltraButton()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -181,6 +181,20 @@ Partial Class frmPrecios2
         Me.GroupBox2.Size = New System.Drawing.Size(500, 242)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
+        '
+        'BtnQuitarLinea
+        '
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.REMOVE_FROM_SHOPPING_CART
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.BtnQuitarLinea.Appearance = Appearance1
+        Me.BtnQuitarLinea.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
+        Me.BtnQuitarLinea.ImageSize = New System.Drawing.Size(32, 32)
+        Me.BtnQuitarLinea.Location = New System.Drawing.Point(432, 12)
+        Me.BtnQuitarLinea.Name = "BtnQuitarLinea"
+        Me.BtnQuitarLinea.Size = New System.Drawing.Size(48, 36)
+        Me.BtnQuitarLinea.TabIndex = 18
+        Me.BtnQuitarLinea.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
         'Label4
         '
@@ -533,6 +547,7 @@ Partial Class frmPrecios2
         'bsCierres
         '
         Me.bsCierres.DataSource = GetType(EfectiOro.Database.CierrePrecios)
+        Me.bsCierres.Sort = ""
         '
         'toolTip
         '
@@ -593,20 +608,6 @@ Partial Class frmPrecios2
         Me.lblOnzasDiferencia.Name = "lblOnzasDiferencia"
         Me.lblOnzasDiferencia.Size = New System.Drawing.Size(28, 22)
         Me.lblOnzasDiferencia.Text = "0.00"
-        '
-        'BtnQuitarLinea
-        '
-        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.REMOVE_FROM_SHOPPING_CART
-        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.BtnQuitarLinea.Appearance = Appearance1
-        Me.BtnQuitarLinea.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Me.BtnQuitarLinea.ImageSize = New System.Drawing.Size(32, 32)
-        Me.BtnQuitarLinea.Location = New System.Drawing.Point(432, 12)
-        Me.BtnQuitarLinea.Name = "BtnQuitarLinea"
-        Me.BtnQuitarLinea.Size = New System.Drawing.Size(48, 36)
-        Me.BtnQuitarLinea.TabIndex = 18
-        Me.BtnQuitarLinea.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
         'frmPrecios2
         '

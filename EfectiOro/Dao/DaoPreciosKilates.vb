@@ -99,7 +99,7 @@ Public Class DaoPreciosKilates
     Public Function listaCierresPreciosCliente(codcliente As String) As List(Of CierrePrecios) Implements IDaoPreciosKilates.listaCierresPreciosCliente
         Using ctx As New Contexto
             Try
-                Return ctx.CierrePrecios.Where(Function(cp) cp.Codcliente = codcliente And cp.SaldoOnzas > 0).OrderBy(Function(cp) cp.Fecha).ToList
+                Return ctx.CierrePrecios.Where(Function(cp) cp.Codcliente = codcliente And cp.SaldoOnzas > 0 And cp.Status = True).OrderBy(Function(cp) cp.Fecha).ToList
             Catch ex As Exception
                 _error = ex.Message
                 Return Nothing

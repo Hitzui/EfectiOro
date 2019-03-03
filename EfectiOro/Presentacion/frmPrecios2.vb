@@ -398,6 +398,7 @@ Public Class frmPrecios2
         enableGrupos(False)
         enableButtons(True, False, False)
         _onzasDiferencias.Clear()
+        onzasUsadas.Clear()
         clearText()
     End Sub
 
@@ -546,28 +547,35 @@ Public Class frmPrecios2
     Private Sub btnRefrescarCierres_Click(sender As Object, e As EventArgs) Handles btnRefrescarCierres.Click
         Using ctx As New Contexto
             Try
-                Dim findAllCierres As List(Of CierrePrecios) = (From c In ctx.CierrePrecios
-                                                                Where c.Codcliente = txtCodigo.Text And c.Status = True
-                                                                Select c).ToList
-                Dim codigosCierresActuales As List(Of Integer) = (From c In bsCierres.Cast(Of CierrePrecios) Select c.CodCierre).ToList
-                Dim filtrarCierres As List(Of CierrePrecios) = (From c In findAllCierres
-                                                                Where Not codigosCierresActuales.Contains(c.CodCierre)
-                                                                Select c).ToList
-                For Each dato As CierrePrecios In filtrarCierres
-                    bsCierres.Add(dato)
-                    'dif_onzas = Decimal.Add(dif_onzas, dato.SaldoOnzas)
-                Next
-                If findAllCierres.Count > 0 Then
-                    For Each valor As CierrePrecios In listaCierreClientes
-                        For Each row As DataGridViewRow In dgvCierrePrecios.Rows
-                            If row.Cells("CodCierreDataGridViewTextBoxColumn").Value = valor.CodCierre Then
-                                row.Cells(0).Value = True
-                            End If
-                        Next
+                Dim list_x As List(Of Integer) = (From c In bsCierres.Cast(Of CierrePrecios) Select c.CodCierre).ToList
+                Dim listaCierres = (From c In ctx.CierrePrecios
+                                    Where c.Codcliente = txtCodigo.Text And c.Status = True
+                                    Select c).ToList
+                Dim nuevosCierres = (From c In listaCierres Where Not list_x.Contains(c.CodCierre) Select c).ToList
+                For Each valor As CierrePrecios In bsCierres
+                    Dim y_saldo As Decimal = Decimal.Zero
+                    For Each x_row As DataGridViewRow In dgvCierrePrecios.Rows
+                        Dim x_value = Convert.ToInt32(x_row.Cells("CodCierreDataGridViewTextBoxColumn").Value)
+                        If valor.CodCierre = x_value Then
+                            y_saldo = Convert.ToDecimal(x_row.Cells("OnzasFinasDataGridViewTextBoxColumn").Value)
+                            Exit For
+                        End If
                     Next
-                    'lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
-                    lblOnzasDisponibles.Text = findAllCierres.Sum(Function(c) c.SaldoOnzas).ToString("#,##0.000")
-                End If
+                    Dim var = (From c In listaCierres Where c.CodCierre = valor.CodCierre Select c).Single
+                    If var.OnzasFinas <> valor.OnzasFinas Then
+                        Dim dif = Decimal.Subtract(var.SaldoOnzas, y_saldo)
+                        valor.SaldoOnzas = Decimal.Add(valor.SaldoOnzas, dif)
+                        valor.OnzasFinas = var.OnzasFinas
+                        If _onzasDiferencias.ContainsKey(valor.CodCierre) Then
+                            Dim sal = _onzasDiferencias.Item(valor.CodCierre)
+                            sal = Decimal.Add(sal, dif)
+                            _onzasDiferencias.Item(valor.CodCierre) = sal
+                        End If
+                    End If
+                Next
+                For Each valor As CierrePrecios In nuevosCierres
+                    bsCierres.Add(valor)
+                Next
             Catch ex As Exception
 
             End Try
