@@ -577,7 +577,7 @@ Public Class frmPrecios2
                     bsCierres.Add(valor)
                 Next
             Catch ex As Exception
-
+                MsgBox("No se pudo actualizar debido a un error interno." & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
         End Using
     End Sub
