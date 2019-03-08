@@ -6,6 +6,20 @@ Public Class DaoCliente
     Implements IDaoCliente
 
     Private contexto As New EfectiOro.Database.Contexto()
+
+    Public Function filtrarPorNombrePorApellido(filtro As String) As List(Of Cliente) Implements IDaoCliente.filtrarPorNombrePorApellido
+        Try
+            Using ctx As New Contexto
+                Dim buscar = (From c In ctx.Cliente Where c.Nombres.Contains(filtro) OrElse c.Apellidos.Contains(filtro)
+                              Select c).ToList
+                Return buscar
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error buscar")
+            Return New List(Of Cliente)
+        End Try
+    End Function
+
     Public Function DataReaderMapToList(Of T)(ByVal dr As IDataReader) As List(Of T)
         Dim list As New List(Of T)
         Dim obj As T

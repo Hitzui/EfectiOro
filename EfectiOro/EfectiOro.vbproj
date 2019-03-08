@@ -446,6 +446,12 @@
     <Compile Include="Presentacion\frmVerDetalleCompras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\adelantos\frmAdelantosReportes.Designer.vb">
+      <DependentUpon>frmAdelantosReportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\adelantos\frmAdelantosReportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\adelantos\frmReporteReciboAdelantoAbono.Designer.vb">
       <DependentUpon>frmReporteReciboAdelantoAbono.vb</DependentUpon>
     </Compile>
@@ -1001,6 +1007,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\frmVerDetalleCompras.resx">
       <DependentUpon>frmVerDetalleCompras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\adelantos\frmAdelantosReportes.resx">
+      <DependentUpon>frmAdelantosReportes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\adelantos\frmReporteReciboAdelantoAbono.resx">
       <DependentUpon>frmReporteReciboAdelantoAbono.vb</DependentUpon>

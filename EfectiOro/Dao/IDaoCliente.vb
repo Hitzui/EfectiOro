@@ -30,4 +30,9 @@ Public Interface IDaoCliente
     Property ErrorSms As String
     Function existeCliente(codcliente As String) As Boolean
     Function findAllClientesDS() As DataTable
+    ''' <summary>
+    ''' filtramos por nombre o apellidos
+    ''' </summary>
+    ''' <returns>Lista Clientes</returns>
+    Function filtrarPorNombrePorApellido(filtro As String) As List(Of Cliente)
 End Interface

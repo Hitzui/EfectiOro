@@ -138,15 +138,9 @@ Public Class frmPrecios2
 
 
     Private Sub txtNombre_TextChanged_1(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
-        Try
-            Using ctx As New Contexto
-                Dim buscar = (From c In ctx.Cliente Where c.Nombres.Contains(txtNombre.Text) OrElse c.Apellidos.Contains(txtNombre.Text)
-                              Select c.Codcliente, c.Nombres, c.Apellidos, c.Numcedula).ToList
-                dgvCliente.DataSource = buscar
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error buscar")
-        End Try
+        Dim dao = DataContext.daoCliente
+        Dim buscar = dao.filtrarPorNombrePorApellido(txtNombre.Text)
+        dgvCliente.DataSource = buscar
     End Sub
 
     Private Sub txtQuilate_KeyDown(sender As Object, e As KeyEventArgs) Handles txtQuilate.KeyDown

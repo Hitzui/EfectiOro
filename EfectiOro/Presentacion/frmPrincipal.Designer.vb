@@ -24,6 +24,8 @@ Partial Class frmPrincipal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
+        Dim Appearance11 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance12 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
@@ -32,8 +34,6 @@ Partial Class frmPrincipal
         Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance7 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance8 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance9 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance10 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.InicioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -63,6 +63,7 @@ Partial Class frmPrincipal
         Me.ReservarOroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolPreciosCierres = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MonedaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeComprasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -80,7 +81,7 @@ Partial Class frmPrincipal
         Me.panelCentral = New System.Windows.Forms.Panel()
         Me.status = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.MonedaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeAdelantosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.panelLateral.SuspendLayout()
         Me.status.SuspendLayout()
@@ -283,9 +284,16 @@ Partial Class frmPrincipal
         Me.UPMToolStripMenuItem.Size = New System.Drawing.Size(270, 24)
         Me.UPMToolStripMenuItem.Text = "UPM"
         '
+        'MonedaToolStripMenuItem
+        '
+        Me.MonedaToolStripMenuItem.Image = Global.EfectiOro.My.Resources.Resources.dollar
+        Me.MonedaToolStripMenuItem.Name = "MonedaToolStripMenuItem"
+        Me.MonedaToolStripMenuItem.Size = New System.Drawing.Size(270, 24)
+        Me.MonedaToolStripMenuItem.Text = "Moneda"
+        '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeComprasToolStripMenuItem, Me.DeClientesToolStripMenuItem, Me.DeDescarguesToolStripMenuItem, Me.DeCajasToolStripMenuItem, Me.CierrePreciosToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeComprasToolStripMenuItem, Me.DeClientesToolStripMenuItem, Me.DeDescarguesToolStripMenuItem, Me.DeCajasToolStripMenuItem, Me.CierrePreciosToolStripMenuItem, Me.DeAdelantosToolStripMenuItem})
         Me.ReportesToolStripMenuItem.ForeColor = System.Drawing.Color.White
         Me.ReportesToolStripMenuItem.Image = Global.EfectiOro.My.Resources.Resources.analysis
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
@@ -295,31 +303,31 @@ Partial Class frmPrincipal
         'DeComprasToolStripMenuItem
         '
         Me.DeComprasToolStripMenuItem.Name = "DeComprasToolStripMenuItem"
-        Me.DeComprasToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.DeComprasToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.DeComprasToolStripMenuItem.Text = "De compras"
         '
         'DeClientesToolStripMenuItem
         '
         Me.DeClientesToolStripMenuItem.Name = "DeClientesToolStripMenuItem"
-        Me.DeClientesToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.DeClientesToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.DeClientesToolStripMenuItem.Text = "De clientes"
         '
         'DeDescarguesToolStripMenuItem
         '
         Me.DeDescarguesToolStripMenuItem.Name = "DeDescarguesToolStripMenuItem"
-        Me.DeDescarguesToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.DeDescarguesToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.DeDescarguesToolStripMenuItem.Text = "De descargues"
         '
         'DeCajasToolStripMenuItem
         '
         Me.DeCajasToolStripMenuItem.Name = "DeCajasToolStripMenuItem"
-        Me.DeCajasToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.DeCajasToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.DeCajasToolStripMenuItem.Text = "De cajas"
         '
         'CierrePreciosToolStripMenuItem
         '
         Me.CierrePreciosToolStripMenuItem.Name = "CierrePreciosToolStripMenuItem"
-        Me.CierrePreciosToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.CierrePreciosToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.CierrePreciosToolStripMenuItem.Text = "Cierre precios"
         '
         'AcercaDeToolStripMenuItem
@@ -363,19 +371,19 @@ Partial Class frmPrincipal
         '
         'btnMcaja
         '
-        Appearance1.FontData.BoldAsString = "True"
-        Appearance1.FontData.Name = "Arial"
-        Appearance1.ForeColor = System.Drawing.Color.White
-        Appearance1.Image = "cash_register.png"
-        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Appearance1.TextVAlignAsString = "Bottom"
-        Me.btnMcaja.Appearance = Appearance1
+        Appearance11.FontData.BoldAsString = "True"
+        Appearance11.FontData.Name = "Arial"
+        Appearance11.ForeColor = System.Drawing.Color.White
+        Appearance11.Image = "cash_register.png"
+        Appearance11.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance11.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Appearance11.TextVAlignAsString = "Bottom"
+        Me.btnMcaja.Appearance = Appearance11
         Me.btnMcaja.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnMcaja.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Appearance2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Appearance2.Image = "cash_register2.png"
-        Me.btnMcaja.HotTrackAppearance = Appearance2
+        Appearance12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Appearance12.Image = "cash_register2.png"
+        Me.btnMcaja.HotTrackAppearance = Appearance12
         Me.btnMcaja.ImageList = Me.ImageList1
         Me.btnMcaja.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnMcaja.Location = New System.Drawing.Point(1, 421)
@@ -387,19 +395,19 @@ Partial Class frmPrincipal
         '
         'btnTipocambio
         '
-        Appearance3.FontData.BoldAsString = "True"
-        Appearance3.FontData.Name = "Arial"
-        Appearance3.ForeColor = System.Drawing.Color.White
-        Appearance3.Image = "currency_euro blue.png"
-        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Appearance3.TextVAlignAsString = "Bottom"
-        Me.btnTipocambio.Appearance = Appearance3
+        Appearance1.FontData.BoldAsString = "True"
+        Appearance1.FontData.Name = "Arial"
+        Appearance1.ForeColor = System.Drawing.Color.White
+        Appearance1.Image = "currency_euro blue.png"
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Appearance1.TextVAlignAsString = "Bottom"
+        Me.btnTipocambio.Appearance = Appearance1
         Me.btnTipocambio.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnTipocambio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Appearance4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Appearance4.Image = "currency_euro yellow.png"
-        Me.btnTipocambio.HotTrackAppearance = Appearance4
+        Appearance2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Appearance2.Image = "currency_euro yellow.png"
+        Me.btnTipocambio.HotTrackAppearance = Appearance2
         Me.btnTipocambio.ImageList = Me.ImageList1
         Me.btnTipocambio.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnTipocambio.Location = New System.Drawing.Point(2, 320)
@@ -411,18 +419,18 @@ Partial Class frmPrincipal
         '
         'btnPrecios
         '
-        Appearance5.FontData.BoldAsString = "True"
-        Appearance5.FontData.Name = "Arial"
-        Appearance5.ForeColor = System.Drawing.Color.White
-        Appearance5.Image = "dollar green.png"
-        Appearance5.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance5.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Appearance5.TextVAlignAsString = "Bottom"
-        Me.btnPrecios.Appearance = Appearance5
+        Appearance3.FontData.BoldAsString = "True"
+        Appearance3.FontData.Name = "Arial"
+        Appearance3.ForeColor = System.Drawing.Color.White
+        Appearance3.Image = "dollar green.png"
+        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Appearance3.TextVAlignAsString = "Bottom"
+        Me.btnPrecios.Appearance = Appearance3
         Me.btnPrecios.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Appearance6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Appearance6.Image = "dollar red.png"
-        Me.btnPrecios.HotTrackAppearance = Appearance6
+        Appearance4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Appearance4.Image = "dollar red.png"
+        Me.btnPrecios.HotTrackAppearance = Appearance4
         Me.btnPrecios.ImageList = Me.ImageList1
         Me.btnPrecios.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnPrecios.Location = New System.Drawing.Point(2, 219)
@@ -434,18 +442,18 @@ Partial Class frmPrincipal
         '
         'btnCompras
         '
-        Appearance7.FontData.BoldAsString = "True"
-        Appearance7.FontData.Name = "Arial"
-        Appearance7.ForeColor = System.Drawing.Color.White
-        Appearance7.Image = "shopping_cart blue.png"
-        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Appearance7.TextVAlignAsString = "Bottom"
-        Me.btnCompras.Appearance = Appearance7
+        Appearance5.FontData.BoldAsString = "True"
+        Appearance5.FontData.Name = "Arial"
+        Appearance5.ForeColor = System.Drawing.Color.White
+        Appearance5.Image = "shopping_cart blue.png"
+        Appearance5.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance5.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Appearance5.TextVAlignAsString = "Bottom"
+        Me.btnCompras.Appearance = Appearance5
         Me.btnCompras.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Appearance8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Appearance8.Image = "shopping_cart red.png"
-        Me.btnCompras.HotTrackAppearance = Appearance8
+        Appearance6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Appearance6.Image = "shopping_cart red.png"
+        Me.btnCompras.HotTrackAppearance = Appearance6
         Me.btnCompras.ImageList = Me.ImageList1
         Me.btnCompras.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnCompras.Location = New System.Drawing.Point(2, 118)
@@ -457,18 +465,18 @@ Partial Class frmPrincipal
         '
         'btnCliente
         '
-        Appearance9.FontData.BoldAsString = "True"
-        Appearance9.FontData.Name = "Arial"
-        Appearance9.ForeColor = System.Drawing.Color.White
-        Appearance9.Image = "User Card.png"
-        Appearance9.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance9.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Appearance9.TextVAlignAsString = "Bottom"
-        Me.btnCliente.Appearance = Appearance9
+        Appearance7.FontData.BoldAsString = "True"
+        Appearance7.FontData.Name = "Arial"
+        Appearance7.ForeColor = System.Drawing.Color.White
+        Appearance7.Image = "User Card.png"
+        Appearance7.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Appearance7.TextVAlignAsString = "Bottom"
+        Me.btnCliente.Appearance = Appearance7
         Me.btnCliente.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Appearance10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Appearance10.Image = "Usercard_01.png"
-        Me.btnCliente.HotTrackAppearance = Appearance10
+        Appearance8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Appearance8.Image = "Usercard_01.png"
+        Me.btnCliente.HotTrackAppearance = Appearance8
         Me.btnCliente.ImageList = Me.ImageList1
         Me.btnCliente.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnCliente.Location = New System.Drawing.Point(2, 17)
@@ -505,12 +513,12 @@ Partial Class frmPrincipal
         Me.lblStatus.Size = New System.Drawing.Size(141, 19)
         Me.lblStatus.Text = "ToolStripStatusLabel1"
         '
-        'MonedaToolStripMenuItem
+        'DeAdelantosToolStripMenuItem
         '
-        Me.MonedaToolStripMenuItem.Image = Global.EfectiOro.My.Resources.Resources.dollar
-        Me.MonedaToolStripMenuItem.Name = "MonedaToolStripMenuItem"
-        Me.MonedaToolStripMenuItem.Size = New System.Drawing.Size(270, 24)
-        Me.MonedaToolStripMenuItem.Text = "Moneda"
+        Me.DeAdelantosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 10.5!)
+        Me.DeAdelantosToolStripMenuItem.Name = "DeAdelantosToolStripMenuItem"
+        Me.DeAdelantosToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.DeAdelantosToolStripMenuItem.Text = "De adelantos"
         '
         'frmPrincipal
         '
@@ -586,4 +594,5 @@ Partial Class frmPrincipal
     Friend WithEvents toolPreciosCierres As ToolStripMenuItem
     Friend WithEvents UPMToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MonedaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeAdelantosToolStripMenuItem As ToolStripMenuItem
 End Class

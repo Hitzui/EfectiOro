@@ -483,6 +483,12 @@ EfectiOro
  <returns>Lista de clientes</returns>
  <remarks></remarks>
 </member>
+<member name="M:EfectiOro.IDaoCliente.filtrarPorNombrePorApellido(System.String)">
+ <summary>
+ filtramos por nombre o apellidos
+ </summary>
+ <returns>Lista Clientes</returns>
+</member>
 <member name="M:EfectiOro.IDaoCompras.crearCompra(EfectiOro.Database.Compras,System.Collections.Generic.List{EfectiOro.Database.Det_compra},EfectiOro.Database.Mcaja,EfectiOro.Database.Detacaja,System.Collections.Generic.List{EfectiOro.Database.Adelantos},System.Collections.Generic.List{EfectiOro.Database.CierrePrecios})">
  <summary>
  Creamos la compra junto con el detalle

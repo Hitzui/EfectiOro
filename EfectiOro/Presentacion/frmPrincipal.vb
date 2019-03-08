@@ -254,4 +254,8 @@ Public Class frmPrincipal
     Private Sub MonedaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MonedaToolStripMenuItem.Click
         agregarAlPanel(frmMoneda, panelCentral)
     End Sub
+
+    Private Sub DeAdelantosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeAdelantosToolStripMenuItem.Click
+        agregarAlPanel(frmAdelantosReportes, panelCentral)
+    End Sub
 End Class

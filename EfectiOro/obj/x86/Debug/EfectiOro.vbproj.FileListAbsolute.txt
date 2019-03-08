@@ -694,3 +694,4 @@ E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.CopyComplete
 E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
 E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
 E:\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+E:\Source\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmAdelantosReportes.resources
