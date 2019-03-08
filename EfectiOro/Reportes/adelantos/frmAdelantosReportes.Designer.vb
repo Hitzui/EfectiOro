@@ -58,10 +58,16 @@ Partial Class frmAdelantosReportes
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtDesde = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lblSaldoDolares = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.lblSaldoCordobas = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bsClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
@@ -76,6 +82,7 @@ Partial Class frmAdelantosReportes
         '
         Me.dgvClientes.AllowUserToAddRows = False
         Me.dgvClientes.AllowUserToDeleteRows = False
+        Me.dgvClientes.AllowUserToOrderColumns = True
         Me.dgvClientes.AutoGenerateColumns = False
         Me.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvClientes.BackgroundColor = System.Drawing.Color.White
@@ -83,8 +90,10 @@ Partial Class frmAdelantosReportes
         Me.dgvClientes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colCodcliente, Me.colNombres, Me.colApellidos, Me.NumcedulaDataGridViewTextBoxColumn, Me.FemisionDataGridViewTextBoxColumn, Me.FvencimientoDataGridViewTextBoxColumn, Me.DireccionDataGridViewTextBoxColumn, Me.FnacimientoDataGridViewTextBoxColumn, Me.EstadocivilDataGridViewTextBoxColumn, Me.CiudadDataGridViewTextBoxColumn, Me.TelefonoDataGridViewTextBoxColumn, Me.CelularDataGridViewTextBoxColumn, Me.EmailDataGridViewTextBoxColumn, Me.FingresoDataGridViewTextBoxColumn, Me.OcupacionDataGridViewTextBoxColumn, Me.DireccionnegocioDataGridViewTextBoxColumn, Me.TiemponegDataGridViewTextBoxColumn, Me.OtraaeDataGridViewTextBoxColumn, Me.DescotraDataGridViewTextBoxColumn, Me.NomcuentaDataGridViewTextBoxColumn, Me.NumcuentaDataGridViewTextBoxColumn, Me.NombancoDataGridViewTextBoxColumn, Me.MontomensualDataGridViewTextBoxColumn, Me.TotaloperacionesDataGridViewTextBoxColumn, Me.ActuaporDataGridViewTextBoxColumn, Me.NombreterceroDataGridViewTextBoxColumn, Me.DireccionterceroDataGridViewTextBoxColumn, Me.PicaDataGridViewTextBoxColumn})
         Me.dgvClientes.DataSource = Me.bsClientes
         Me.dgvClientes.Location = New System.Drawing.Point(6, 44)
+        Me.dgvClientes.MultiSelect = False
         Me.dgvClientes.Name = "dgvClientes"
         Me.dgvClientes.ReadOnly = True
+        Me.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvClientes.Size = New System.Drawing.Size(435, 185)
         Me.dgvClientes.TabIndex = 1
         '
@@ -389,21 +398,78 @@ Partial Class frmAdelantosReportes
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Desde:"
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.lblSaldoDolares)
+        Me.GroupBox3.Controls.Add(Me.Label6)
+        Me.GroupBox3.Controls.Add(Me.lblSaldoCordobas)
+        Me.GroupBox3.Controls.Add(Me.Label4)
+        Me.GroupBox3.Location = New System.Drawing.Point(12, 272)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(447, 176)
+        Me.GroupBox3.TabIndex = 4
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "GroupBox3"
+        '
+        'lblSaldoDolares
+        '
+        Me.lblSaldoDolares.AutoSize = True
+        Me.lblSaldoDolares.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSaldoDolares.Location = New System.Drawing.Point(149, 59)
+        Me.lblSaldoDolares.Name = "lblSaldoDolares"
+        Me.lblSaldoDolares.Size = New System.Drawing.Size(39, 15)
+        Me.lblSaldoDolares.TabIndex = 3
+        Me.lblSaldoDolares.Text = "(0.00)"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(19, 59)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(127, 15)
+        Me.Label6.TabIndex = 2
+        Me.Label6.Text = "Saldo en dólares (U$)"
+        '
+        'lblSaldoCordobas
+        '
+        Me.lblSaldoCordobas.AutoSize = True
+        Me.lblSaldoCordobas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSaldoCordobas.Location = New System.Drawing.Point(149, 30)
+        Me.lblSaldoCordobas.Name = "lblSaldoCordobas"
+        Me.lblSaldoCordobas.Size = New System.Drawing.Size(39, 15)
+        Me.lblSaldoCordobas.TabIndex = 1
+        Me.lblSaldoCordobas.Text = "(0.00)"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(19, 30)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(124, 15)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Saldo Cordobas (C$):"
+        '
         'frmAdelantosReportes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(816, 498)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmAdelantosReportes"
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
+        Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bsClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -446,4 +512,9 @@ Partial Class frmAdelantosReportes
     Friend WithEvents Label3 As Label
     Friend WithEvents txtDesde As DateTimePicker
     Friend WithEvents Label2 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents lblSaldoDolares As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents lblSaldoCordobas As Label
+    Friend WithEvents Label4 As Label
 End Class
