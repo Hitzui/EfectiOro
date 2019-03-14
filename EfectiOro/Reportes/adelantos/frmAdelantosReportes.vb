@@ -10,6 +10,15 @@ Public Class frmAdelantosReportes
         bsClientes.DataSource = daoClientes.findAll
     End Sub
 
+    Sub loadAdelantosCliente(codcliente As String)
+        Try
+            Dim daoAdelantos = DataContext.daoAdelantos
+            Dim findByCliente = daoAdelantos.listarAdelantosPorClientes(codcliente)
+            AdelantosBindingSource.DataSource = findByCliente
+        Catch ex As Exception
+            MsgBox("Error al filtrar por cliente: " & vbCr & ex.Message, MsgBoxStyle.Critical, [error])
+        End Try
+    End Sub
 
     Private Sub frmAdelantosReportes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblTitulo.Text = "Reportes de Adelantos"
@@ -26,40 +35,31 @@ Public Class frmAdelantosReportes
         bsClientes.DataSource = buscar
     End Sub
 
-    Private Sub dgvClientes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClientes.CellClick
+    Sub datosAdelantosGrid()
         Try
-            Using ctx As New Contexto
-                Dim codCliente As String = String.Empty
-                Dim row As DataGridViewRow = dgvClientes.CurrentRow
-                codCliente = row.Cells("colCodcliente").Value
-                Dim filtrar = (From a In ctx.Adelantos Where a.Codcliente = codCliente And a.Saldo > 0 Select a).ToList
-                Dim param = (From p In ctx.Ids Select p).First
-                Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
-                Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
-                lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
-                lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
-            End Using
+            Dim daoAdelantos = DataContext.daoAdelantos
+            Dim daoParam = DataContext.daoParametros
+            Dim codCliente As String = String.Empty
+            Dim row As DataGridViewRow = dgvClientes.CurrentRow
+            codCliente = row.Cells("colCodcliente").Value
+            Dim filtrar = daoAdelantos.listarAdelantosPorClientes(codCliente)
+            Dim param = daoParam.recuperarParametros
+            Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
+            Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
+            lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
+            lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
+            loadAdelantosCliente(codCliente)
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
         End Try
     End Sub
 
+    Private Sub dgvClientes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClientes.CellClick
+        datosAdelantosGrid()
+    End Sub
+
     Private Sub dgvClientes_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClientes.CellEnter
-        Try
-            Using ctx As New Contexto
-                Dim codCliente As String = String.Empty
-                Dim row As DataGridViewRow = dgvClientes.CurrentRow
-                codCliente = row.Cells("colCodcliente").Value
-                Dim filtrar = (From a In ctx.Adelantos Where a.Codcliente = codCliente And a.Saldo > 0 Select a).ToList
-                Dim param = (From p In ctx.Ids Select p).First
-                Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
-                Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
-                lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
-                lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
-        End Try
+        datosAdelantosGrid()
     End Sub
 
 
