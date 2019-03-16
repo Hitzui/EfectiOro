@@ -19,5 +19,13 @@ Public Interface IDaoAdelantos
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function aplicarAdelantoEfectivo(listaAdelantos As List(Of Adelantos), monto As Decimal, Optional ByVal codcliente As String = "") As Boolean
-    Function imprimir(codigo As String, nombre As String)
+    Sub imprimir(codigo As String, nombre As String)
+    ''' <summary>
+    ''' Listar adelantos por fecha y por codigo del cliente
+    ''' </summary>
+    ''' <param name="desde">Date</param>
+    ''' <param name="hasta">Date</param>
+    ''' <param name="codcliente">String</param>
+    ''' <returns>Lista de adelantos</returns>
+    Function listarAdelantosPorFecha(desde As Date, hasta As Date, codcliente As String) As List(Of Adelantos)
 End Interface

@@ -39,16 +39,19 @@ Public Class frmAdelantosReportes
         Try
             Dim daoAdelantos = DataContext.daoAdelantos
             Dim daoParam = DataContext.daoParametros
+            Dim desde, hasta As Date
+            desde = txtDesde.Value
+            hasta = txtHasta.Value
             Dim codCliente As String = String.Empty
             Dim row As DataGridViewRow = dgvClientes.CurrentRow
             codCliente = row.Cells("colCodcliente").Value
-            Dim filtrar = daoAdelantos.listarAdelantosPorClientes(codCliente)
+            Dim filtrar = daoAdelantos.listarAdelantosPorFecha(txtDesde.Value, txtHasta.Value, codCliente)
+            AdelantosBindingSource.DataSource = filtrar
             Dim param = daoParam.recuperarParametros
             Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
             Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
             lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
             lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
-            loadAdelantosCliente(codCliente)
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
         End Try

@@ -83,6 +83,7 @@ Partial Class frmAdelantosReportes
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AdelantosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bsClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -117,7 +118,7 @@ Partial Class frmAdelantosReportes
         Me.dgvClientes.Name = "dgvClientes"
         Me.dgvClientes.ReadOnly = True
         Me.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvClientes.Size = New System.Drawing.Size(435, 185)
+        Me.dgvClientes.Size = New System.Drawing.Size(410, 185)
         Me.dgvClientes.TabIndex = 1
         '
         'colCodcliente
@@ -352,7 +353,7 @@ Partial Class frmAdelantosReportes
         Me.GroupBox1.Controls.Add(Me.dgvClientes)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 31)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(447, 235)
+        Me.GroupBox1.Size = New System.Drawing.Size(422, 235)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         '
@@ -370,7 +371,7 @@ Partial Class frmAdelantosReportes
         '
         Me.txtFiltrar.Location = New System.Drawing.Point(53, 17)
         Me.txtFiltrar.Name = "txtFiltrar"
-        Me.txtFiltrar.Size = New System.Drawing.Size(388, 20)
+        Me.txtFiltrar.Size = New System.Drawing.Size(363, 20)
         Me.txtFiltrar.TabIndex = 2
         '
         'GroupBox2
@@ -382,7 +383,7 @@ Partial Class frmAdelantosReportes
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(12, 272)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(200, 136)
+        Me.GroupBox2.Size = New System.Drawing.Size(185, 136)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Filtrar segun fecha:"
@@ -391,7 +392,7 @@ Partial Class frmAdelantosReportes
         '
         Me.txtHasta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.txtHasta.Location = New System.Drawing.Point(68, 83)
+        Me.txtHasta.Location = New System.Drawing.Point(64, 72)
         Me.txtHasta.Name = "txtHasta"
         Me.txtHasta.Size = New System.Drawing.Size(110, 20)
         Me.txtHasta.TabIndex = 3
@@ -400,7 +401,7 @@ Partial Class frmAdelantosReportes
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(16, 87)
+        Me.Label3.Location = New System.Drawing.Point(16, 72)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(42, 15)
         Me.Label3.TabIndex = 2
@@ -410,7 +411,7 @@ Partial Class frmAdelantosReportes
         '
         Me.txtDesde.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.txtDesde.Location = New System.Drawing.Point(68, 40)
+        Me.txtDesde.Location = New System.Drawing.Point(64, 30)
         Me.txtDesde.Name = "txtDesde"
         Me.txtDesde.Size = New System.Drawing.Size(110, 20)
         Me.txtDesde.TabIndex = 1
@@ -419,7 +420,7 @@ Partial Class frmAdelantosReportes
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(16, 44)
+        Me.Label2.Location = New System.Drawing.Point(12, 30)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(46, 15)
         Me.Label2.TabIndex = 0
@@ -432,9 +433,9 @@ Partial Class frmAdelantosReportes
         Me.GroupBox3.Controls.Add(Me.lblSaldoCordobas)
         Me.GroupBox3.Controls.Add(Me.Label4)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(218, 272)
+        Me.GroupBox3.Location = New System.Drawing.Point(203, 272)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(241, 136)
+        Me.GroupBox3.Size = New System.Drawing.Size(231, 136)
         Me.GroupBox3.TabIndex = 4
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Saldos del cleinte:"
@@ -442,10 +443,10 @@ Partial Class frmAdelantosReportes
         'lblSaldoDolares
         '
         Me.lblSaldoDolares.AutoSize = True
-        Me.lblSaldoDolares.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSaldoDolares.Location = New System.Drawing.Point(149, 59)
+        Me.lblSaldoDolares.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSaldoDolares.Location = New System.Drawing.Point(26, 97)
         Me.lblSaldoDolares.Name = "lblSaldoDolares"
-        Me.lblSaldoDolares.Size = New System.Drawing.Size(39, 15)
+        Me.lblSaldoDolares.Size = New System.Drawing.Size(40, 13)
         Me.lblSaldoDolares.TabIndex = 3
         Me.lblSaldoDolares.Text = "(0.00)"
         '
@@ -453,19 +454,19 @@ Partial Class frmAdelantosReportes
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(19, 59)
+        Me.Label6.Location = New System.Drawing.Point(18, 74)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(127, 15)
+        Me.Label6.Size = New System.Drawing.Size(115, 15)
         Me.Label6.TabIndex = 2
-        Me.Label6.Text = "Saldo en dólares (U$)"
+        Me.Label6.Text = "Saldo Dólares (U$):"
         '
         'lblSaldoCordobas
         '
         Me.lblSaldoCordobas.AutoSize = True
-        Me.lblSaldoCordobas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSaldoCordobas.Location = New System.Drawing.Point(149, 30)
+        Me.lblSaldoCordobas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSaldoCordobas.Location = New System.Drawing.Point(26, 53)
         Me.lblSaldoCordobas.Name = "lblSaldoCordobas"
-        Me.lblSaldoCordobas.Size = New System.Drawing.Size(39, 15)
+        Me.lblSaldoCordobas.Size = New System.Drawing.Size(40, 13)
         Me.lblSaldoCordobas.TabIndex = 1
         Me.lblSaldoCordobas.Text = "(0.00)"
         '
@@ -473,7 +474,7 @@ Partial Class frmAdelantosReportes
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(19, 30)
+        Me.Label4.Location = New System.Drawing.Point(18, 30)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(124, 15)
         Me.Label4.TabIndex = 0
@@ -482,9 +483,9 @@ Partial Class frmAdelantosReportes
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.AdelantosDataGridView)
-        Me.GroupBox4.Location = New System.Drawing.Point(465, 31)
+        Me.GroupBox4.Location = New System.Drawing.Point(440, 31)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(406, 235)
+        Me.GroupBox4.Size = New System.Drawing.Size(419, 235)
         Me.GroupBox4.TabIndex = 5
         Me.GroupBox4.TabStop = False
         '
@@ -501,7 +502,7 @@ Partial Class frmAdelantosReportes
         Me.AdelantosDataGridView.Location = New System.Drawing.Point(3, 16)
         Me.AdelantosDataGridView.Name = "AdelantosDataGridView"
         Me.AdelantosDataGridView.ReadOnly = True
-        Me.AdelantosDataGridView.Size = New System.Drawing.Size(400, 216)
+        Me.AdelantosDataGridView.Size = New System.Drawing.Size(413, 216)
         Me.AdelantosDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn4
@@ -638,10 +639,20 @@ Partial Class frmAdelantosReportes
         '
         Me.AdelantosBindingSource.DataSource = GetType(EfectiOro.Database.Adelantos)
         '
+        'GroupBox5
+        '
+        Me.GroupBox5.Location = New System.Drawing.Point(440, 272)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(416, 214)
+        Me.GroupBox5.TabIndex = 6
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "GroupBox5"
+        '
         'frmAdelantosReportes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(871, 498)
+        Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
@@ -651,6 +662,7 @@ Partial Class frmAdelantosReportes
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         Me.Controls.SetChildIndex(Me.GroupBox4, 0)
+        Me.Controls.SetChildIndex(Me.GroupBox5, 0)
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bsClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
@@ -729,4 +741,5 @@ Partial Class frmAdelantosReportes
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox5 As GroupBox
 End Class

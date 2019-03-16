@@ -468,6 +468,15 @@ EfectiOro
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="M:EfectiOro.IDaoAdelantos.listarAdelantosPorFecha(System.DateTime,System.DateTime,System.String)">
+ <summary>
+ Listar adelantos por fecha y por codigo del cliente
+ </summary>
+ <param name="desde">Date</param>
+ <param name="hasta">Date</param>
+ <param name="codcliente">String</param>
+ <returns>Lista de adelantos</returns>
+</member>
 <member name="M:EfectiOro.IDaoCliente.recuperarTodosClientes">
  <summary>
  Recuperamos los clientes con Ado.Net

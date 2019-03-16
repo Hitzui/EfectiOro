@@ -290,7 +290,7 @@ Public Class DaoAdelantos
         Return Me.aplicarEfectivo(listaAdelantos, monto, codcliente)
     End Function
 
-    Public Function imprimir(codigo As String, nombre As String) As Object Implements IDaoAdelantos.imprimir
+    Public Sub imprimir(codigo As String, nombre As String) Implements IDaoAdelantos.imprimir
         Using ctx As New Contexto
             Try
                 Dim parametros = ctx.Ids.First
@@ -329,6 +329,17 @@ Public Class DaoAdelantos
                 frmReporteReciboAdelantoAbono.Show()
             Catch ex As Exception
                 MsgBox(ex.Message)
+            End Try
+        End Using
+    End Sub
+    Public Function listarAdelantosPorFecha(desde As Date, hasta As Date, codcliente As String) As List(Of Adelantos) Implements IDaoAdelantos.listarAdelantosPorFecha
+        Using ctx As New Contexto
+            Try
+                Dim find = (From a In ctx.Adelantos Where a.Fecha >= desde And a.Fecha <= hasta And a.Codcliente = codcliente Select a).ToList
+                Return find
+            Catch ex As Exception
+                _error = ex.Message
+                Return New List(Of Adelantos)
             End Try
         End Using
     End Function
