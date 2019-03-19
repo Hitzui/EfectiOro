@@ -477,6 +477,13 @@ EfectiOro
  <param name="codcliente">String</param>
  <returns>Lista de adelantos</returns>
 </member>
+<member name="M:EfectiOro.IDaoAdelantos.listarAdelantosComrpas(System.String)">
+ <summary>
+ Buscar lista de adelantos por compras, kardex de adelantos
+ </summary>
+ <param name="idadelanto">Id Adelanto</param>
+ <returns>List</returns>
+</member>
 <member name="M:EfectiOro.IDaoCliente.recuperarTodosClientes">
  <summary>
  Recuperamos los clientes con Ado.Net

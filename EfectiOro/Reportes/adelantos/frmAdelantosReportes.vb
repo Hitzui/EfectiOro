@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports CrystalDecisions.Shared
 Imports EfectiOro.Database
 
 Public Class frmAdelantosReportes
@@ -91,15 +92,38 @@ Public Class frmAdelantosReportes
 
     Private Sub btnVerReporte_Click(sender As Object, e As EventArgs) Handles btnVerReporte.Click
         Try
-            Dim row As DataGridViewRow = AdelantosDataGridView.CurrentRow
-            Dim idAdelanto As String = row.Cells("DataGridViewTextBoxColumn4").Value
+            Dim Parametros As ParameterFields = New ParameterFields()
+            Dim rowAdelanto As DataGridViewRow = AdelantosDataGridView.CurrentRow
+            Dim rowCliente As DataGridViewRow = dgvClientes.CurrentRow
+            Dim nombre_Cliente As String = rowCliente.Cells("colNombres").Value & " " & rowCliente.Cells("colApellidos").Value
+            Dim idAdelanto As String = rowAdelanto.Cells("DataGridViewTextBoxColumn4").Value
             Dim daoAdelanto = DataContext.daoAdelantos
             If radVerAdelanto.Checked Then
-                Dim sel_adelanto = daoAdelanto.findAll.Where(Function(a) a.Idsalida = idAdelanto).ToList
+                Dim parMoneda As ParameterField = New ParameterField()
+                Dim disMoneda As ParameterDiscreteValue = New ParameterDiscreteValue()
+                parMoneda.ParameterFieldName = "Moneda"
+                disMoneda.Value = rowAdelanto.Cells("DataGridViewTextBoxColumn3").Value
+                parMoneda.CurrentValues().Add(disMoneda)
+                Parametros.Add(parMoneda)
+                Dim sel_adelanto = daoAdelanto.findAll.Where(Function(a) a.Idsalida = idAdelanto).ToList()
+                sel_adelanto.ForEach(Sub(s As Adelantos) s.nombreCliente = nombre_Cliente)
                 Dim compras_adelantos = daoAdelanto.listarAdelantosComrpas(idAdelanto)
+                Dim report As New rptVerAdelantoDetalle
+                report.Database.Tables(0).SetDataSource(sel_adelanto)
+                report.Database.Tables(1).SetDataSource(compras_adelantos)
+                frmReporteReciboAdelantoAbono.viewer.ReportSource = report
+                frmReporteReciboAdelantoAbono.viewer.ParameterFieldInfo = Parametros
+                frmReporteReciboAdelantoAbono.Show()
             End If
         Catch ex As Exception
 
         End Try
+    End Sub
+    Shared Sub Process(items As List(Of Integer))
+        Dim result As Integer = 10
+        For Each item As Integer In items
+            result *= item
+            result -= item * 2
+        Next item
     End Sub
 End Class
