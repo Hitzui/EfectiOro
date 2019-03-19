@@ -115,6 +115,13 @@ Public Class frmAdelantosReportes
                 frmReporteReciboAdelantoAbono.viewer.ParameterFieldInfo = Parametros
                 frmReporteReciboAdelantoAbono.Show()
             End If
+            If radAdelantoCliente.Checked Then
+                Select Case cmbAdelantoCliente.SelectedIndex
+                    Case 0
+                        'Detallado por fecha   
+
+                End Select
+            End If
         Catch ex As Exception
 
         End Try

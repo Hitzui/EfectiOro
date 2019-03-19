@@ -87,6 +87,8 @@ Partial Class frmAdelantosReportes
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.btnVerReporte = New Infragistics.Win.Misc.UltraButton()
         Me.radVerAdelanto = New System.Windows.Forms.RadioButton()
+        Me.radAdelantoCliente = New System.Windows.Forms.RadioButton()
+        Me.cmbAdelantoCliente = New System.Windows.Forms.ComboBox()
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bsClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -645,6 +647,8 @@ Partial Class frmAdelantosReportes
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.cmbAdelantoCliente)
+        Me.GroupBox5.Controls.Add(Me.radAdelantoCliente)
         Me.GroupBox5.Controls.Add(Me.btnVerReporte)
         Me.GroupBox5.Controls.Add(Me.radVerAdelanto)
         Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -680,6 +684,28 @@ Partial Class frmAdelantosReportes
         Me.radVerAdelanto.TabStop = True
         Me.radVerAdelanto.Text = "Ver detalle del adelanto"
         Me.radVerAdelanto.UseVisualStyleBackColor = True
+        '
+        'radAdelantoCliente
+        '
+        Me.radAdelantoCliente.AutoSize = True
+        Me.radAdelantoCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.radAdelantoCliente.Location = New System.Drawing.Point(26, 76)
+        Me.radAdelantoCliente.Name = "radAdelantoCliente"
+        Me.radAdelantoCliente.Size = New System.Drawing.Size(107, 17)
+        Me.radAdelantoCliente.TabIndex = 7
+        Me.radAdelantoCliente.TabStop = True
+        Me.radAdelantoCliente.Text = "Adelantos Cliente"
+        Me.radAdelantoCliente.UseVisualStyleBackColor = True
+        '
+        'cmbAdelantoCliente
+        '
+        Me.cmbAdelantoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbAdelantoCliente.FormattingEnabled = True
+        Me.cmbAdelantoCliente.Items.AddRange(New Object() {"Detallado por fecha"})
+        Me.cmbAdelantoCliente.Location = New System.Drawing.Point(163, 75)
+        Me.cmbAdelantoCliente.Name = "cmbAdelantoCliente"
+        Me.cmbAdelantoCliente.Size = New System.Drawing.Size(121, 21)
+        Me.cmbAdelantoCliente.TabIndex = 8
         '
         'frmAdelantosReportes
         '
@@ -779,4 +805,6 @@ Partial Class frmAdelantosReportes
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents radVerAdelanto As RadioButton
     Friend WithEvents btnVerReporte As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents cmbAdelantoCliente As ComboBox
+    Friend WithEvents radAdelantoCliente As RadioButton
 End Class
