@@ -488,6 +488,12 @@
       <DependentUpon>rptReciboAdelantoAbono.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\adelantos\rptVerAdelantoDetalle.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptVerAdelantoDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\caja\frmReporteCaja.Designer.vb">
       <DependentUpon>frmReporteCaja.vb</DependentUpon>
     </Compile>
@@ -1033,6 +1039,10 @@
     <EmbeddedResource Include="Reportes\adelantos\rptReciboAdelantoAbono.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptReciboAdelantoAbono.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\adelantos\rptVerAdelantoDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptVerAdelantoDetalle.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\caja\frmReporteCaja.resx">
       <DependentUpon>frmReporteCaja.vb</DependentUpon>

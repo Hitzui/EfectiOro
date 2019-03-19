@@ -343,4 +343,15 @@ Public Class DaoAdelantos
             End Try
         End Using
     End Function
+    Public Function listarAdelantosComrpas(idadelanto As String) As List(Of Compras_adelantos) Implements IDaoAdelantos.listarAdelantosComrpas
+        Using ctx As New Contexto
+            Try
+                Dim find = (From ca In ctx.Compras_adelantos Where ca.Idadelanto = idadelanto Select ca).ToList
+                Return find
+            Catch ex As Exception
+                _error = ex.Message
+                Return New List(Of Compras_adelantos)
+            End Try
+        End Using
+    End Function
 End Class

@@ -28,4 +28,10 @@ Public Interface IDaoAdelantos
     ''' <param name="codcliente">String</param>
     ''' <returns>Lista de adelantos</returns>
     Function listarAdelantosPorFecha(desde As Date, hasta As Date, codcliente As String) As List(Of Adelantos)
+    ''' <summary>
+    ''' Buscar lista de adelantos por compras, kardex de adelantos
+    ''' </summary>
+    ''' <param name="idadelanto">Id Adelanto</param>
+    ''' <returns>List</returns>
+    Function listarAdelantosComrpas(idadelanto As String) As List(Of Compras_adelantos)
 End Interface

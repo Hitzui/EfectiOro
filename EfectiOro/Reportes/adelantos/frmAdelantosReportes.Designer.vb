@@ -20,6 +20,7 @@ Partial Class frmAdelantosReportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.dgvClientes = New System.Windows.Forms.DataGridView()
         Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -84,6 +85,8 @@ Partial Class frmAdelantosReportes
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AdelantosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.btnVerReporte = New Infragistics.Win.Misc.UltraButton()
+        Me.radVerAdelanto = New System.Windows.Forms.RadioButton()
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bsClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -92,6 +95,7 @@ Partial Class frmAdelantosReportes
         Me.GroupBox4.SuspendLayout()
         CType(Me.AdelantosDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AdelantosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
@@ -610,6 +614,7 @@ Partial Class frmAdelantosReportes
         Me.DataGridViewTextBoxColumn17.HeaderText = "Codmoneda"
         Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
         Me.DataGridViewTextBoxColumn17.ReadOnly = True
+        Me.DataGridViewTextBoxColumn17.Visible = False
         '
         'DataGridViewTextBoxColumn1
         '
@@ -630,10 +635,9 @@ Partial Class frmAdelantosReportes
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.DataPropertyName = "nombreCliente"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "nombreCliente"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Moneda"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        Me.DataGridViewTextBoxColumn3.Visible = False
         '
         'AdelantosBindingSource
         '
@@ -641,12 +645,41 @@ Partial Class frmAdelantosReportes
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.btnVerReporte)
+        Me.GroupBox5.Controls.Add(Me.radVerAdelanto)
+        Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.Location = New System.Drawing.Point(440, 272)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(416, 214)
         Me.GroupBox5.TabIndex = 6
         Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "GroupBox5"
+        Me.GroupBox5.Text = "Opciones"
+        '
+        'btnVerReporte
+        '
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.analysis
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnVerReporte.Appearance = Appearance1
+        Me.btnVerReporte.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonScrollbarButton
+        Me.btnVerReporte.ImageSize = New System.Drawing.Size(42, 42)
+        Me.btnVerReporte.Location = New System.Drawing.Point(344, 154)
+        Me.btnVerReporte.Name = "btnVerReporte"
+        Me.btnVerReporte.Size = New System.Drawing.Size(66, 54)
+        Me.btnVerReporte.TabIndex = 6
+        Me.btnVerReporte.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
+        '
+        'radVerAdelanto
+        '
+        Me.radVerAdelanto.AutoSize = True
+        Me.radVerAdelanto.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.radVerAdelanto.Location = New System.Drawing.Point(26, 34)
+        Me.radVerAdelanto.Name = "radVerAdelanto"
+        Me.radVerAdelanto.Size = New System.Drawing.Size(136, 17)
+        Me.radVerAdelanto.TabIndex = 5
+        Me.radVerAdelanto.TabStop = True
+        Me.radVerAdelanto.Text = "Ver detalle del adelanto"
+        Me.radVerAdelanto.UseVisualStyleBackColor = True
         '
         'frmAdelantosReportes
         '
@@ -674,6 +707,8 @@ Partial Class frmAdelantosReportes
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.AdelantosDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AdelantosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -724,6 +759,7 @@ Partial Class frmAdelantosReportes
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents AdelantosDataGridView As DataGridView
     Friend WithEvents AdelantosBindingSource As BindingSource
+    Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
@@ -741,5 +777,6 @@ Partial Class frmAdelantosReportes
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents radVerAdelanto As RadioButton
+    Friend WithEvents btnVerReporte As Infragistics.Win.Misc.UltraButton
 End Class

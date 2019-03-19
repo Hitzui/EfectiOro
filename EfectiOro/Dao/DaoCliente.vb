@@ -10,7 +10,8 @@ Public Class DaoCliente
     Public Function filtrarPorNombrePorApellido(filtro As String) As List(Of Cliente) Implements IDaoCliente.filtrarPorNombrePorApellido
         Try
             Using ctx As New Contexto
-                Dim buscar = (From c In ctx.Cliente Where c.Nombres.Contains(filtro) OrElse c.Apellidos.Contains(filtro)
+                Dim buscar = (From c In ctx.Cliente
+                              Where c.Nombres.Contains(filtro) OrElse c.Apellidos.Contains(filtro)
                               Select c).ToList
                 Return buscar
             End Using
