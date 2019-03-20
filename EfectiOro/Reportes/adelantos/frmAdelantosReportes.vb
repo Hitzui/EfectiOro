@@ -89,9 +89,13 @@ Public Class frmAdelantosReportes
     Private Sub txtDesde_ValueChanged(sender As Object, e As EventArgs) Handles txtDesde.ValueChanged
         datosAdelantosGrid()
     End Sub
-
+    Private Sub txtHasta_ValueChanged(sender As Object, e As EventArgs) Handles txtHasta.ValueChanged
+        datosAdelantosGrid()
+    End Sub
     Private Sub btnVerReporte_Click(sender As Object, e As EventArgs) Handles btnVerReporte.Click
         Try
+            Dim daoParametros = DataContext.daoParametros
+            Dim param = daoParametros.recuperarParametros
             Dim Parametros As ParameterFields = New ParameterFields()
             Dim rowAdelanto As DataGridViewRow = AdelantosDataGridView.CurrentRow
             Dim rowCliente As DataGridViewRow = dgvClientes.CurrentRow
@@ -124,6 +128,7 @@ Public Class frmAdelantosReportes
                     Case 0
                         'Detallado por fecha   
                         Dim findAelantos = daoAdelanto.listarAdelantosPorClientes(codcliente, desde, hasta)
+                        findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.nombreCliente = "Cordobas" Else If a.Codmoneda = param.dolares Then a.nombreCliente = "Dolares")
                         Dim compras_adelantos = daoAdelanto.listarAdelantosComrpasCliente(codcliente)
                         Dim listaClientes = daoCliente.findAll
                         Dim report As New rptAdelantosAplicados

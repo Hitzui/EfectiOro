@@ -20,7 +20,7 @@ Partial Class frmAdelantosReportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.dgvClientes = New System.Windows.Forms.DataGridView()
         Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -684,10 +684,10 @@ Partial Class frmAdelantosReportes
         '
         'btnVerReporte
         '
-        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.analysis
-        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnVerReporte.Appearance = Appearance2
+        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.analysis
+        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnVerReporte.Appearance = Appearance1
         Me.btnVerReporte.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonScrollbarButton
         Me.btnVerReporte.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnVerReporte.Location = New System.Drawing.Point(344, 154)
