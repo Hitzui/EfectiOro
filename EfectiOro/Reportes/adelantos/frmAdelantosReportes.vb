@@ -95,9 +95,13 @@ Public Class frmAdelantosReportes
             Dim Parametros As ParameterFields = New ParameterFields()
             Dim rowAdelanto As DataGridViewRow = AdelantosDataGridView.CurrentRow
             Dim rowCliente As DataGridViewRow = dgvClientes.CurrentRow
+            Dim desde As Date = txtDesde.Value
+            Dim hasta As Date = txtHasta.Value
+            Dim codcliente As String = rowCliente.Cells("colCodcliente").Value
             Dim nombre_Cliente As String = rowCliente.Cells("colNombres").Value & " " & rowCliente.Cells("colApellidos").Value
             Dim idAdelanto As String = rowAdelanto.Cells("DataGridViewTextBoxColumn4").Value
             Dim daoAdelanto = DataContext.daoAdelantos
+            Dim daoCliente = DataContext.daoCliente
             If radVerAdelanto.Checked Then
                 Dim parMoneda As ParameterField = New ParameterField()
                 Dim disMoneda As ParameterDiscreteValue = New ParameterDiscreteValue()
@@ -119,11 +123,20 @@ Public Class frmAdelantosReportes
                 Select Case cmbAdelantoCliente.SelectedIndex
                     Case 0
                         'Detallado por fecha   
-
+                        Dim findAelantos = daoAdelanto.listarAdelantosPorClientes(codcliente, desde, hasta)
+                        Dim compras_adelantos = daoAdelanto.listarAdelantosComrpasCliente(codcliente)
+                        Dim listaClientes = daoCliente.findAll
+                        Dim report As New rptAdelantosAplicados
+                        report.Database.Tables(0).SetDataSource(compras_adelantos)
+                        report.Database.Tables(1).SetDataSource(listaClientes)
+                        report.Database.Tables(2).SetDataSource(findAelantos)
+                        Dim frm As New Form
+                        frm.WindowState = FormWindowState.Maximized
+                        ServiciosBasicos.ParametrosCrystal(desde, hasta, frm, report)
                 End Select
             End If
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
         End Try
     End Sub
     Shared Sub Process(items As List(Of Integer))
@@ -132,5 +145,13 @@ Public Class frmAdelantosReportes
             result *= item
             result -= item * 2
         Next item
+    End Sub
+
+    Private Sub radAdelantoCliente_CheckedChanged(sender As Object, e As EventArgs) Handles radAdelantoCliente.CheckedChanged
+        If radAdelantoCliente.Checked Then
+            cmbAdelantoCliente.Enabled = True
+        Else
+            cmbAdelantoCliente.Enabled = False
+        End If
     End Sub
 End Class

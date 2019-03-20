@@ -115,6 +115,19 @@ Public Class DaoAdelantos
             End Try
         End Using
     End Function
+    Public Function listarAdelantosPorClientes(codigo As String, desde As Date, hasta As Date) As List(Of Adelantos) Implements IDaoAdelantos.listarAdelantosPorClientes
+        Using ctx As New Contexto
+            Try
+                Dim find = (From a In ctx.Adelantos
+                            Where a.Codcliente = codigo And a.Fecha.Date >= desde And a.Fecha.Date <= hasta
+                            Select a).ToList
+                Return find
+            Catch ex As Exception
+                _error = ex.Message
+                Return New List(Of Adelantos)
+            End Try
+        End Using
+    End Function
     Public Function findByCodigoAdelanto(codigo As String) As Database.Adelantos Implements IDaoAdelantos.findByCodigoAdelanto
         Using ctx As New Contexto
             Try
@@ -347,6 +360,17 @@ Public Class DaoAdelantos
         Using ctx As New Contexto
             Try
                 Dim find = (From ca In ctx.Compras_adelantos Where ca.Idadelanto = idadelanto Select ca).ToList
+                Return find
+            Catch ex As Exception
+                _error = ex.Message
+                Return New List(Of Compras_adelantos)
+            End Try
+        End Using
+    End Function
+    Public Function listarAdelantosComrpasCliente(codcliente As String) As List(Of Compras_adelantos) Implements IDaoAdelantos.listarAdelantosComrpasCliente
+        Using ctx As New Contexto
+            Try
+                Dim find = (From ca In ctx.Compras_adelantos Where ca.Codcliente = codcliente Select ca).ToList
                 Return find
             Catch ex As Exception
                 _error = ex.Message

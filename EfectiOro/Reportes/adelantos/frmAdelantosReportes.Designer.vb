@@ -20,7 +20,7 @@ Partial Class frmAdelantosReportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.dgvClientes = New System.Windows.Forms.DataGridView()
         Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -85,10 +85,10 @@ Partial Class frmAdelantosReportes
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AdelantosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.cmbAdelantoCliente = New System.Windows.Forms.ComboBox()
+        Me.radAdelantoCliente = New System.Windows.Forms.RadioButton()
         Me.btnVerReporte = New Infragistics.Win.Misc.UltraButton()
         Me.radVerAdelanto = New System.Windows.Forms.RadioButton()
-        Me.radAdelantoCliente = New System.Windows.Forms.RadioButton()
-        Me.cmbAdelantoCliente = New System.Windows.Forms.ComboBox()
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bsClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -659,12 +659,35 @@ Partial Class frmAdelantosReportes
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Opciones"
         '
+        'cmbAdelantoCliente
+        '
+        Me.cmbAdelantoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbAdelantoCliente.Enabled = False
+        Me.cmbAdelantoCliente.FormattingEnabled = True
+        Me.cmbAdelantoCliente.Items.AddRange(New Object() {"Detallado por fecha"})
+        Me.cmbAdelantoCliente.Location = New System.Drawing.Point(163, 75)
+        Me.cmbAdelantoCliente.Name = "cmbAdelantoCliente"
+        Me.cmbAdelantoCliente.Size = New System.Drawing.Size(130, 21)
+        Me.cmbAdelantoCliente.TabIndex = 8
+        '
+        'radAdelantoCliente
+        '
+        Me.radAdelantoCliente.AutoSize = True
+        Me.radAdelantoCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.radAdelantoCliente.Location = New System.Drawing.Point(26, 76)
+        Me.radAdelantoCliente.Name = "radAdelantoCliente"
+        Me.radAdelantoCliente.Size = New System.Drawing.Size(107, 17)
+        Me.radAdelantoCliente.TabIndex = 7
+        Me.radAdelantoCliente.TabStop = True
+        Me.radAdelantoCliente.Text = "Adelantos Cliente"
+        Me.radAdelantoCliente.UseVisualStyleBackColor = True
+        '
         'btnVerReporte
         '
-        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.analysis
-        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnVerReporte.Appearance = Appearance1
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.analysis
+        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnVerReporte.Appearance = Appearance2
         Me.btnVerReporte.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonScrollbarButton
         Me.btnVerReporte.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnVerReporte.Location = New System.Drawing.Point(344, 154)
@@ -684,28 +707,6 @@ Partial Class frmAdelantosReportes
         Me.radVerAdelanto.TabStop = True
         Me.radVerAdelanto.Text = "Ver detalle del adelanto"
         Me.radVerAdelanto.UseVisualStyleBackColor = True
-        '
-        'radAdelantoCliente
-        '
-        Me.radAdelantoCliente.AutoSize = True
-        Me.radAdelantoCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.radAdelantoCliente.Location = New System.Drawing.Point(26, 76)
-        Me.radAdelantoCliente.Name = "radAdelantoCliente"
-        Me.radAdelantoCliente.Size = New System.Drawing.Size(107, 17)
-        Me.radAdelantoCliente.TabIndex = 7
-        Me.radAdelantoCliente.TabStop = True
-        Me.radAdelantoCliente.Text = "Adelantos Cliente"
-        Me.radAdelantoCliente.UseVisualStyleBackColor = True
-        '
-        'cmbAdelantoCliente
-        '
-        Me.cmbAdelantoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAdelantoCliente.FormattingEnabled = True
-        Me.cmbAdelantoCliente.Items.AddRange(New Object() {"Detallado por fecha"})
-        Me.cmbAdelantoCliente.Location = New System.Drawing.Point(163, 75)
-        Me.cmbAdelantoCliente.Name = "cmbAdelantoCliente"
-        Me.cmbAdelantoCliente.Size = New System.Drawing.Size(121, 21)
-        Me.cmbAdelantoCliente.TabIndex = 8
         '
         'frmAdelantosReportes
         '

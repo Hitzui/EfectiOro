@@ -102,6 +102,13 @@ Module ServiciosBasicos
     End Function
 #End Region
 #Region "Parametros Crystal Report"
+    ''' <summary>
+    ''' Paso de parametros al reporte expecificado, y mostrando el formulario
+    ''' </summary>
+    ''' <param name="desde">Fecha desde</param>
+    ''' <param name="hasta">Fecha hasta</param>
+    ''' <param name="frm">Formulario a usar</param>
+    ''' <param name="rpt">Reporte a usar</param>
     Public Sub ParametrosCrystal(ByVal desde As Date, ByVal hasta As Date, ByVal frm As Form, ByVal rpt As ReportClass)
         'Nombre del Parametro definido dentro de “Campos de Parametros” del Crystal..
         Dim Parametros As ParameterFields = New ParameterFields()
