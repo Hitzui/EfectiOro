@@ -664,7 +664,7 @@ Partial Class frmAdelantosReportes
         Me.cmbAdelantoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbAdelantoCliente.Enabled = False
         Me.cmbAdelantoCliente.FormattingEnabled = True
-        Me.cmbAdelantoCliente.Items.AddRange(New Object() {"Detallado por fecha"})
+        Me.cmbAdelantoCliente.Items.AddRange(New Object() {"Detallado por fecha", "Consolidado por fecha"})
         Me.cmbAdelantoCliente.Location = New System.Drawing.Point(163, 75)
         Me.cmbAdelantoCliente.Name = "cmbAdelantoCliente"
         Me.cmbAdelantoCliente.Size = New System.Drawing.Size(130, 21)

@@ -124,14 +124,28 @@ Public Class frmAdelantosReportes
                 frmReporteReciboAdelantoAbono.Show()
             End If
             If radAdelantoCliente.Checked Then
+                Dim findAelantos = daoAdelanto.listarAdelantosPorClientes(codcliente, desde, hasta)
+                findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.nombreCliente = "Cordobas" Else If a.Codmoneda = param.dolares Then a.nombreCliente = "Dolares")
                 Select Case cmbAdelantoCliente.SelectedIndex
                     Case 0
                         'Detallado por fecha   
-                        Dim findAelantos = daoAdelanto.listarAdelantosPorClientes(codcliente, desde, hasta)
-                        findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.nombreCliente = "Cordobas" Else If a.Codmoneda = param.dolares Then a.nombreCliente = "Dolares")
                         Dim compras_adelantos = daoAdelanto.listarAdelantosComrpasCliente(codcliente)
                         Dim listaClientes = daoCliente.findAll
                         Dim report As New rptAdelantosAplicados
+                        report.Database.Tables(0).SetDataSource(compras_adelantos)
+                        report.Database.Tables(1).SetDataSource(listaClientes)
+                        report.Database.Tables(2).SetDataSource(findAelantos)
+                        Dim frm As New Form
+                        frm.WindowState = FormWindowState.Maximized
+                        ServiciosBasicos.ParametrosCrystal(desde, hasta, frm, report)
+                    Case 1
+                        'consolidado por fecha
+                        Dim saldoCordobas = findAelantos.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
+                        Dim saldodolares = findAelantos.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
+                        findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.saldoCordobas = saldoCordobas)
+                        Dim compras_adelantos = daoAdelanto.listarAdelantosComrpasCliente(codcliente)
+                        Dim listaClientes = daoCliente.findAll
+                        Dim report As New rptAdelantosConsolidado
                         report.Database.Tables(0).SetDataSource(compras_adelantos)
                         report.Database.Tables(1).SetDataSource(listaClientes)
                         report.Database.Tables(2).SetDataSource(findAelantos)
@@ -155,6 +169,7 @@ Public Class frmAdelantosReportes
     Private Sub radAdelantoCliente_CheckedChanged(sender As Object, e As EventArgs) Handles radAdelantoCliente.CheckedChanged
         If radAdelantoCliente.Checked Then
             cmbAdelantoCliente.Enabled = True
+            cmbAdelantoCliente.SelectedIndex = 0
         Else
             cmbAdelantoCliente.Enabled = False
         End If

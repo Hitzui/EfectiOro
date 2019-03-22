@@ -348,7 +348,9 @@ Public Class DaoAdelantos
     Public Function listarAdelantosPorFecha(desde As Date, hasta As Date, codcliente As String) As List(Of Adelantos) Implements IDaoAdelantos.listarAdelantosPorFecha
         Using ctx As New Contexto
             Try
-                Dim find = (From a In ctx.Adelantos Where a.Fecha >= desde And a.Fecha <= hasta And a.Codcliente = codcliente Select a).ToList
+                Dim find = (From a In ctx.Adelantos
+                            Where a.Fecha >= desde And a.Fecha <= hasta And a.Codcliente = codcliente
+                            Select a).ToList
                 Return find
             Catch ex As Exception
                 _error = ex.Message
@@ -359,7 +361,11 @@ Public Class DaoAdelantos
     Public Function listarAdelantosComrpas(idadelanto As String) As List(Of Compras_adelantos) Implements IDaoAdelantos.listarAdelantosComrpas
         Using ctx As New Contexto
             Try
-                Dim find = (From ca In ctx.Compras_adelantos Where ca.Idadelanto = idadelanto Select ca).ToList
+                Dim find = (From ca In ctx.Compras_adelantos
+                            Where ca.Idadelanto = idadelanto
+                            Order By ca.Idadelanto Descending
+                            Order By ca.Fecha Ascending
+                            Select ca).ToList
                 Return find
             Catch ex As Exception
                 _error = ex.Message
@@ -370,7 +376,11 @@ Public Class DaoAdelantos
     Public Function listarAdelantosComrpasCliente(codcliente As String) As List(Of Compras_adelantos) Implements IDaoAdelantos.listarAdelantosComrpasCliente
         Using ctx As New Contexto
             Try
-                Dim find = (From ca In ctx.Compras_adelantos Where ca.Codcliente = codcliente Select ca).ToList
+                Dim find = (From ca In ctx.Compras_adelantos
+                            Where ca.Codcliente = codcliente
+                            Order By ca.Idadelanto Descending
+                            Order By ca.Fecha Ascending
+                            Select ca).ToList
                 Return find
             Catch ex As Exception
                 _error = ex.Message

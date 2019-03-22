@@ -1224,8 +1224,24 @@ Namespace Database
 
         Private _codmoneda As Integer
 
-        Public Property saldoCordobas As Decimal
-        Public Property saldoDolares As Decimal
+        Private _saldoCordobas As Decimal
+        Public Property saldoCordobas() As Decimal
+            Get
+                Return _saldoCordobas
+            End Get
+            Set(ByVal value As Decimal)
+                _saldoCordobas = value
+            End Set
+        End Property
+        Private _saldoDolares As Decimal
+        Public Property saldoDolares() As Decimal
+            Get
+                Return _saldoDolares
+            End Get
+            Set(ByVal value As Decimal)
+                _saldoDolares = value
+            End Set
+        End Property
 
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
@@ -1294,6 +1310,8 @@ Namespace Database
 
         Public Sub New()
             MyBase.New()
+            _saldoCordobas = Decimal.Zero
+            _saldoDolares = Decimal.Zero
             OnCreated()
         End Sub
 
@@ -5391,9 +5409,9 @@ Namespace Database
 
         Private _backup As System.Nullable(Of Date)
 
-        Private _dolares As System.Nullable(Of Integer)
+        Private _dolares As Integer
 
-        Private _cordobas As System.Nullable(Of Integer)
+        Private _cordobas As Integer
 
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
@@ -5759,7 +5777,7 @@ Namespace Database
         End Property
 
         <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dolares", DbType:="Int")>
-        Public Property dolares() As System.Nullable(Of Integer)
+        Public Property dolares() As Integer
             Get
                 Return Me._dolares
             End Get
@@ -5775,7 +5793,7 @@ Namespace Database
         End Property
 
         <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cordobas", DbType:="Int")>
-        Public Property cordobas() As System.Nullable(Of Integer)
+        Public Property cordobas() As Integer
             Get
                 Return Me._cordobas
             End Get
