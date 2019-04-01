@@ -97,7 +97,7 @@ Public Class frmAdelantosReportes
             Dim daoParametros = DataContext.daoParametros
             Dim param = daoParametros.recuperarParametros
             Dim Parametros As ParameterFields = New ParameterFields()
-            Dim rowAdelanto As DataGridViewRow = AdelantosDataGridView.CurrentRow
+            Dim rowAdelanto As DataGridViewRow = AdelantosDataGridView.Rows.Item
             Dim rowCliente As DataGridViewRow = dgvClientes.CurrentRow
             Dim desde As Date = txtDesde.Value
             Dim hasta As Date = txtHasta.Value
@@ -173,5 +173,13 @@ Public Class frmAdelantosReportes
         Else
             cmbAdelantoCliente.Enabled = False
         End If
+    End Sub
+
+    Private Sub AdelantosDataGridView_ClickCell(sender As Object, e As Infragistics.Win.UltraWinGrid.ClickCellEventArgs) Handles AdelantosDataGridView.ClickCell
+        Try
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

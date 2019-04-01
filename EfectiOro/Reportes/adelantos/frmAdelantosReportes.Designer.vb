@@ -20,7 +20,42 @@ Partial Class frmAdelantosReportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim UltraGridBand1 As Infragistics.Win.UltraWinGrid.UltraGridBand = New Infragistics.Win.UltraWinGrid.UltraGridBand("Adelantos", -1)
+        Dim UltraGridColumn1 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("saldoCordobas")
+        Dim UltraGridColumn2 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("saldoDolares")
+        Dim UltraGridColumn3 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("nombreCliente")
+        Dim UltraGridColumn4 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Idsalida")
+        Dim UltraGridColumn5 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Codcliente")
+        Dim UltraGridColumn6 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Numcompra")
+        Dim UltraGridColumn7 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Fecha")
+        Dim UltraGridColumn8 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Monto")
+        Dim UltraGridColumn9 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Saldo")
+        Dim UltraGridColumn10 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Efectivo")
+        Dim UltraGridColumn11 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Cheque")
+        Dim UltraGridColumn12 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Transferencia")
+        Dim UltraGridColumn13 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Codcaja")
+        Dim UltraGridColumn14 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Usuario")
+        Dim UltraGridColumn15 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Monto_letras")
+        Dim UltraGridColumn16 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Hora")
+        Dim UltraGridColumn17 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Codmoneda")
+        Dim UltraGridColumn18 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("compras_adelantos")
+        Dim UltraGridBand2 As Infragistics.Win.UltraWinGrid.UltraGridBand = New Infragistics.Win.UltraWinGrid.UltraGridBand("compras_adelantos", 0)
+        Dim UltraGridColumn19 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Codmoneda")
+        Dim UltraGridColumn20 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Idcompras_adelantos")
+        Dim UltraGridColumn21 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Numcompra")
+        Dim UltraGridColumn22 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Idadelanto")
+        Dim UltraGridColumn23 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Codcliente")
+        Dim UltraGridColumn24 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Sinicial")
+        Dim UltraGridColumn25 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Monto")
+        Dim UltraGridColumn26 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Sfinal")
+        Dim UltraGridColumn27 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Fecha")
+        Dim UltraGridColumn28 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Codcaja")
+        Dim UltraGridColumn29 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Usuario")
+        Dim UltraGridColumn30 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Hora")
+        Dim UltraGridColumn31 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("Codagencia")
+        Dim UltraGridColumn32 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("adelanto")
         Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.dgvClientes = New System.Windows.Forms.DataGridView()
         Me.colCodcliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -65,24 +100,7 @@ Partial Class frmAdelantosReportes
         Me.lblSaldoCordobas = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.AdelantosDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdelantosDataGridView = New Infragistics.Win.UltraWinGrid.UltraGrid()
         Me.AdelantosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.cmbAdelantoCliente = New System.Windows.Forms.ComboBox()
@@ -497,149 +515,78 @@ Partial Class frmAdelantosReportes
         '
         'AdelantosDataGridView
         '
-        Me.AdelantosDataGridView.AllowUserToAddRows = False
-        Me.AdelantosDataGridView.AllowUserToDeleteRows = False
-        Me.AdelantosDataGridView.AutoGenerateColumns = False
-        Me.AdelantosDataGridView.BackgroundColor = System.Drawing.Color.White
-        Me.AdelantosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.AdelantosDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3})
         Me.AdelantosDataGridView.DataSource = Me.AdelantosBindingSource
+        UltraGridColumn1.Header.VisiblePosition = 0
+        UltraGridColumn1.Hidden = True
+        UltraGridColumn2.Header.VisiblePosition = 1
+        UltraGridColumn2.Hidden = True
+        UltraGridColumn3.Header.VisiblePosition = 2
+        UltraGridColumn3.Hidden = True
+        UltraGridColumn4.Header.Caption = "Cod Adelanto"
+        UltraGridColumn4.Header.VisiblePosition = 3
+        UltraGridColumn5.Header.VisiblePosition = 4
+        UltraGridColumn5.Hidden = True
+        UltraGridColumn6.Header.VisiblePosition = 5
+        UltraGridColumn6.Hidden = True
+        UltraGridColumn7.Header.VisiblePosition = 6
+        UltraGridColumn8.Header.VisiblePosition = 8
+        UltraGridColumn9.Header.VisiblePosition = 9
+        UltraGridColumn10.Header.VisiblePosition = 10
+        UltraGridColumn10.Hidden = True
+        UltraGridColumn11.Header.VisiblePosition = 11
+        UltraGridColumn11.Hidden = True
+        UltraGridColumn12.Header.VisiblePosition = 12
+        UltraGridColumn12.Hidden = True
+        UltraGridColumn13.Header.Caption = "Caja"
+        UltraGridColumn13.Header.VisiblePosition = 13
+        UltraGridColumn14.Header.VisiblePosition = 14
+        UltraGridColumn14.Hidden = True
+        UltraGridColumn15.Header.VisiblePosition = 15
+        UltraGridColumn15.Hidden = True
+        UltraGridColumn16.Header.VisiblePosition = 7
+        UltraGridColumn17.Header.VisiblePosition = 16
+        UltraGridColumn18.Header.VisiblePosition = 17
+        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn1, UltraGridColumn2, UltraGridColumn3, UltraGridColumn4, UltraGridColumn5, UltraGridColumn6, UltraGridColumn7, UltraGridColumn8, UltraGridColumn9, UltraGridColumn10, UltraGridColumn11, UltraGridColumn12, UltraGridColumn13, UltraGridColumn14, UltraGridColumn15, UltraGridColumn16, UltraGridColumn17, UltraGridColumn18})
+        UltraGridColumn19.Header.VisiblePosition = 0
+        UltraGridColumn19.Hidden = True
+        UltraGridColumn20.Header.VisiblePosition = 1
+        UltraGridColumn20.Hidden = True
+        UltraGridColumn21.Header.Caption = "Cod Compra"
+        UltraGridColumn21.Header.VisiblePosition = 2
+        UltraGridColumn22.Header.VisiblePosition = 3
+        UltraGridColumn22.Hidden = True
+        UltraGridColumn23.Header.VisiblePosition = 4
+        UltraGridColumn23.Hidden = True
+        UltraGridColumn24.Header.Caption = "Saldo inicial"
+        UltraGridColumn24.Header.VisiblePosition = 5
+        UltraGridColumn25.Header.Caption = "Monto aplicado"
+        UltraGridColumn25.Header.VisiblePosition = 6
+        UltraGridColumn26.Header.Caption = "Saldo final"
+        UltraGridColumn26.Header.VisiblePosition = 7
+        UltraGridColumn27.Header.VisiblePosition = 8
+        UltraGridColumn28.Header.Caption = "Caja"
+        UltraGridColumn28.Header.VisiblePosition = 9
+        UltraGridColumn29.Header.VisiblePosition = 10
+        UltraGridColumn29.Hidden = True
+        UltraGridColumn30.Header.VisiblePosition = 11
+        UltraGridColumn31.Header.Caption = "Agencia"
+        UltraGridColumn31.Header.VisiblePosition = 12
+        UltraGridColumn32.Header.VisiblePosition = 13
+        UltraGridColumn32.Hidden = True
+        UltraGridBand2.Columns.AddRange(New Object() {UltraGridColumn19, UltraGridColumn20, UltraGridColumn21, UltraGridColumn22, UltraGridColumn23, UltraGridColumn24, UltraGridColumn25, UltraGridColumn26, UltraGridColumn27, UltraGridColumn28, UltraGridColumn29, UltraGridColumn30, UltraGridColumn31, UltraGridColumn32})
+        Me.AdelantosDataGridView.DisplayLayout.BandsSerializer.Add(UltraGridBand1)
+        Me.AdelantosDataGridView.DisplayLayout.BandsSerializer.Add(UltraGridBand2)
+        Me.AdelantosDataGridView.DisplayLayout.EmptyRowSettings.ShowEmptyRows = True
+        Me.AdelantosDataGridView.DisplayLayout.EmptyRowSettings.Style = Infragistics.Win.UltraWinGrid.EmptyRowStyle.ExtendRowSelector
+        Appearance1.FontData.BoldAsString = "True"
+        Me.AdelantosDataGridView.DisplayLayout.Override.HeaderAppearance = Appearance1
         Me.AdelantosDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.AdelantosDataGridView.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AdelantosDataGridView.Location = New System.Drawing.Point(3, 16)
         Me.AdelantosDataGridView.Name = "AdelantosDataGridView"
-        Me.AdelantosDataGridView.ReadOnly = True
         Me.AdelantosDataGridView.Size = New System.Drawing.Size(413, 216)
-        Me.AdelantosDataGridView.TabIndex = 0
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Idsalida"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Idsalida"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "Codcliente"
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Codcliente"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        Me.DataGridViewTextBoxColumn5.Visible = False
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Numcompra"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Numcompra"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        Me.DataGridViewTextBoxColumn6.Visible = False
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Fecha"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Fecha"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Monto"
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Monto"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.DataPropertyName = "Saldo"
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Saldo"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        Me.DataGridViewTextBoxColumn9.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.DataPropertyName = "Efectivo"
-        Me.DataGridViewTextBoxColumn10.HeaderText = "Efectivo"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        Me.DataGridViewTextBoxColumn10.ReadOnly = True
-        Me.DataGridViewTextBoxColumn10.Visible = False
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.DataPropertyName = "Cheque"
-        Me.DataGridViewTextBoxColumn11.HeaderText = "Cheque"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        Me.DataGridViewTextBoxColumn11.ReadOnly = True
-        Me.DataGridViewTextBoxColumn11.Visible = False
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Transferencia"
-        Me.DataGridViewTextBoxColumn12.HeaderText = "Transferencia"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        Me.DataGridViewTextBoxColumn12.ReadOnly = True
-        Me.DataGridViewTextBoxColumn12.Visible = False
-        '
-        'DataGridViewTextBoxColumn13
-        '
-        Me.DataGridViewTextBoxColumn13.DataPropertyName = "Codcaja"
-        Me.DataGridViewTextBoxColumn13.HeaderText = "Codcaja"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        Me.DataGridViewTextBoxColumn13.ReadOnly = True
-        Me.DataGridViewTextBoxColumn13.Visible = False
-        '
-        'DataGridViewTextBoxColumn14
-        '
-        Me.DataGridViewTextBoxColumn14.DataPropertyName = "Usuario"
-        Me.DataGridViewTextBoxColumn14.HeaderText = "Usuario"
-        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
-        Me.DataGridViewTextBoxColumn14.ReadOnly = True
-        Me.DataGridViewTextBoxColumn14.Visible = False
-        '
-        'DataGridViewTextBoxColumn15
-        '
-        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Monto_letras"
-        Me.DataGridViewTextBoxColumn15.HeaderText = "Monto_letras"
-        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
-        Me.DataGridViewTextBoxColumn15.ReadOnly = True
-        Me.DataGridViewTextBoxColumn15.Visible = False
-        '
-        'DataGridViewTextBoxColumn16
-        '
-        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Hora"
-        Me.DataGridViewTextBoxColumn16.HeaderText = "Hora"
-        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
-        Me.DataGridViewTextBoxColumn16.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn17
-        '
-        Me.DataGridViewTextBoxColumn17.DataPropertyName = "Codmoneda"
-        Me.DataGridViewTextBoxColumn17.HeaderText = "Codmoneda"
-        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-        Me.DataGridViewTextBoxColumn17.ReadOnly = True
-        Me.DataGridViewTextBoxColumn17.Visible = False
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "saldoCordobas"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "saldoCordobas"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "saldoDolares"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "saldoDolares"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        Me.DataGridViewTextBoxColumn2.Visible = False
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "nombreCliente"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Moneda"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.AdelantosDataGridView.TabIndex = 1
+        Me.AdelantosDataGridView.Text = "Adelantos segun cliente seleccionado"
         '
         'AdelantosBindingSource
         '
@@ -684,10 +631,10 @@ Partial Class frmAdelantosReportes
         '
         'btnVerReporte
         '
-        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.analysis
-        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnVerReporte.Appearance = Appearance1
+        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.analysis
+        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnVerReporte.Appearance = Appearance2
         Me.btnVerReporte.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonScrollbarButton
         Me.btnVerReporte.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnVerReporte.Location = New System.Drawing.Point(344, 154)
@@ -784,28 +731,11 @@ Partial Class frmAdelantosReportes
     Friend WithEvents lblSaldoCordobas As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents AdelantosDataGridView As DataGridView
     Friend WithEvents AdelantosBindingSource As BindingSource
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents radVerAdelanto As RadioButton
     Friend WithEvents btnVerReporte As Infragistics.Win.Misc.UltraButton
     Friend WithEvents cmbAdelantoCliente As ComboBox
     Friend WithEvents radAdelantoCliente As RadioButton
+    Friend WithEvents AdelantosDataGridView As Infragistics.Win.UltraWinGrid.UltraGrid
 End Class
