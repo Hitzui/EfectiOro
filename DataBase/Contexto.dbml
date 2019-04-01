@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="efectioro" Class="ContextoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SERVIDOR;Initial Catalog=efectioro;Persist Security Info=True;User ID=sa" SettingsObjectName="DataBase.My.MySettings" SettingsPropertyName="efectioroConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EfectiOro" Class="ContextoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SERVIDOR\SERVER;Initial Catalog=EfectiOro;Persist Security Info=True;User ID=sa" SettingsObjectName="DataBase.My.MySettings" SettingsPropertyName="EfectiOroConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.detacaja" Member="detacaja">
     <Type Name="detacaja">
       <Column Name="idcaja" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -35,6 +35,43 @@
       <Column Name="[backup]" Member="backup" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="dolares" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="cordobas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.adelantos" Member="adelantos">
+    <Type Name="adelanto">
+      <Column Name="idsalida" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codcliente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="numcompra" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="monto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="efectivo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="cheque" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="transferencia" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="codcaja" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="monto_letras" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="hora" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="codmoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="adelanto_compras_adelanto" Member="compras_adelantos" ThisKey="idsalida" OtherKey="idadelanto" Type="compras_adelanto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.compras_adelantos" Member="compras_adelantos">
+    <Type Name="compras_adelanto">
+      <Column Name="idcompras_adelantos" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="numcompra" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="idadelanto" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="codcliente" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="sinicial" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="monto" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="sfinal" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="codcaja" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="usuario" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="hora" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="codagencia" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="codmoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="adelanto_compras_adelanto" Member="adelanto" ThisKey="idadelanto" OtherKey="idsalida" Type="adelanto" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Contexto">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.625" name="Contexto">
   <DataContextMoniker Name="/ContextoDataContext" />
   <nestedChildShapes>
     <classShape Id="07b13f0e-d4a0-4564-b025-15d8e43839d0" absoluteBounds="0.5, 2.375, 2, 2.7324039713541666">
@@ -8,11 +8,30 @@
         <elementListCompartment Id="d84ce55c-5c45-41a5-b671-40f98aadf83e" absoluteBounds="0.515, 2.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="05815730-f23f-447c-8990-b0aa4fad6a0b" absoluteBounds="4.5, 3.375, 2, 4.4631168619791666">
+    <classShape Id="05815730-f23f-447c-8990-b0aa4fad6a0b" absoluteBounds="2.75, 4.875, 2, 4.4631168619791666">
       <DataClassMoniker Name="/ContextoDataContext/Ids" />
       <nestedChildShapes>
-        <elementListCompartment Id="d1efcfd0-f2d8-4ef2-9f37-e713c94984d2" absoluteBounds="4.515, 3.835, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d1efcfd0-f2d8-4ef2-9f37-e713c94984d2" absoluteBounds="2.7649999999999997, 5.335, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="48cc4bdd-0df2-40c5-9050-f4a0717a866a" absoluteBounds="3, 0.625, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/ContextoDataContext/adelanto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="88d53e7e-b19a-4824-99ce-653ad64de176" absoluteBounds="3.015, 1.085, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8e4417ac-00c2-4be9-b20d-6735b5045ef8" absoluteBounds="5.875, 0.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/ContextoDataContext/compras_adelanto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cc7a8b53-4fe6-40f8-991b-320dd014198a" absoluteBounds="5.89, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 2.40465413411458); (5.875 : 2.40465413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ContextoDataContext/adelanto/adelanto_compras_adelanto" />
+      <nodes>
+        <classShapeMoniker Id="48cc4bdd-0df2-40c5-9050-f4a0717a866a" />
+        <classShapeMoniker Id="8e4417ac-00c2-4be9-b20d-6735b5045ef8" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

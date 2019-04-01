@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="efectioro")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="EfectiOro")>  _
 Partial Public Class ContextoDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -43,10 +43,22 @@ Partial Public Class ContextoDataContext
     End Sub
   Partial Private Sub DeleteIds(instance As Ids)
     End Sub
+  Partial Private Sub Insertadelanto(instance As adelanto)
+    End Sub
+  Partial Private Sub Updateadelanto(instance As adelanto)
+    End Sub
+  Partial Private Sub Deleteadelanto(instance As adelanto)
+    End Sub
+  Partial Private Sub Insertcompras_adelanto(instance As compras_adelanto)
+    End Sub
+  Partial Private Sub Updatecompras_adelanto(instance As compras_adelanto)
+    End Sub
+  Partial Private Sub Deletecompras_adelanto(instance As compras_adelanto)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.DataBase.My.MySettings.Default.efectioroConnectionString1, mappingSource)
+		MyBase.New(Global.DataBase.My.MySettings.Default.EfectiOroConnectionString2, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -79,6 +91,18 @@ Partial Public Class ContextoDataContext
 	Public ReadOnly Property Ids() As System.Data.Linq.Table(Of Ids)
 		Get
 			Return Me.GetTable(Of Ids)
+		End Get
+	End Property
+	
+	Public ReadOnly Property adelantos() As System.Data.Linq.Table(Of adelanto)
+		Get
+			Return Me.GetTable(Of adelanto)
+		End Get
+	End Property
+	
+	Public ReadOnly Property compras_adelantos() As System.Data.Linq.Table(Of compras_adelanto)
+		Get
+			Return Me.GetTable(Of compras_adelanto)
 		End Get
 	End Property
 End Class
@@ -783,6 +807,743 @@ Partial Public Class Ids
 				Me._cordobas = value
 				Me.SendPropertyChanged("cordobas")
 				Me.OncordobasChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.adelantos")>  _
+Partial Public Class adelanto
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _idsalida As String
+	
+	Private _codcliente As String
+	
+	Private _numcompra As String
+	
+	Private _fecha As Date
+	
+	Private _monto As System.Nullable(Of Decimal)
+	
+	Private _saldo As Decimal
+	
+	Private _efectivo As System.Nullable(Of Decimal)
+	
+	Private _cheque As System.Nullable(Of Decimal)
+	
+	Private _transferencia As System.Nullable(Of Decimal)
+	
+	Private _codcaja As String
+	
+	Private _usuario As String
+	
+	Private _monto_letras As String
+	
+	Private _hora As String
+	
+	Private _codmoneda As System.Nullable(Of Integer)
+	
+	Private _compras_adelantos As EntitySet(Of compras_adelanto)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnidsalidaChanging(value As String)
+    End Sub
+    Partial Private Sub OnidsalidaChanged()
+    End Sub
+    Partial Private Sub OncodclienteChanging(value As String)
+    End Sub
+    Partial Private Sub OncodclienteChanged()
+    End Sub
+    Partial Private Sub OnnumcompraChanging(value As String)
+    End Sub
+    Partial Private Sub OnnumcompraChanged()
+    End Sub
+    Partial Private Sub OnfechaChanging(value As Date)
+    End Sub
+    Partial Private Sub OnfechaChanged()
+    End Sub
+    Partial Private Sub OnmontoChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnmontoChanged()
+    End Sub
+    Partial Private Sub OnsaldoChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnsaldoChanged()
+    End Sub
+    Partial Private Sub OnefectivoChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnefectivoChanged()
+    End Sub
+    Partial Private Sub OnchequeChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnchequeChanged()
+    End Sub
+    Partial Private Sub OntransferenciaChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OntransferenciaChanged()
+    End Sub
+    Partial Private Sub OncodcajaChanging(value As String)
+    End Sub
+    Partial Private Sub OncodcajaChanged()
+    End Sub
+    Partial Private Sub OnusuarioChanging(value As String)
+    End Sub
+    Partial Private Sub OnusuarioChanged()
+    End Sub
+    Partial Private Sub Onmonto_letrasChanging(value As String)
+    End Sub
+    Partial Private Sub Onmonto_letrasChanged()
+    End Sub
+    Partial Private Sub OnhoraChanging(value As String)
+    End Sub
+    Partial Private Sub OnhoraChanged()
+    End Sub
+    Partial Private Sub OncodmonedaChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OncodmonedaChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._compras_adelantos = New EntitySet(Of compras_adelanto)(AddressOf Me.attach_compras_adelantos, AddressOf Me.detach_compras_adelantos)
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idsalida", DbType:="VarChar(20) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
+	Public Property idsalida() As String
+		Get
+			Return Me._idsalida
+		End Get
+		Set
+			If (String.Equals(Me._idsalida, value) = false) Then
+				Me.OnidsalidaChanging(value)
+				Me.SendPropertyChanging
+				Me._idsalida = value
+				Me.SendPropertyChanged("idsalida")
+				Me.OnidsalidaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcliente", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property codcliente() As String
+		Get
+			Return Me._codcliente
+		End Get
+		Set
+			If (String.Equals(Me._codcliente, value) = false) Then
+				Me.OncodclienteChanging(value)
+				Me.SendPropertyChanging
+				Me._codcliente = value
+				Me.SendPropertyChanged("codcliente")
+				Me.OncodclienteChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_numcompra", DbType:="VarChar(MAX) NOT NULL", CanBeNull:=false)>  _
+	Public Property numcompra() As String
+		Get
+			Return Me._numcompra
+		End Get
+		Set
+			If (String.Equals(Me._numcompra, value) = false) Then
+				Me.OnnumcompraChanging(value)
+				Me.SendPropertyChanging
+				Me._numcompra = value
+				Me.SendPropertyChanged("numcompra")
+				Me.OnnumcompraChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha", DbType:="Date NOT NULL")>  _
+	Public Property fecha() As Date
+		Get
+			Return Me._fecha
+		End Get
+		Set
+			If ((Me._fecha = value)  _
+						= false) Then
+				Me.OnfechaChanging(value)
+				Me.SendPropertyChanging
+				Me._fecha = value
+				Me.SendPropertyChanged("fecha")
+				Me.OnfechaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_monto", DbType:="Decimal(18,2)")>  _
+	Public Property monto() As System.Nullable(Of Decimal)
+		Get
+			Return Me._monto
+		End Get
+		Set
+			If (Me._monto.Equals(value) = false) Then
+				Me.OnmontoChanging(value)
+				Me.SendPropertyChanging
+				Me._monto = value
+				Me.SendPropertyChanged("monto")
+				Me.OnmontoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_saldo", DbType:="Decimal(18,2) NOT NULL")>  _
+	Public Property saldo() As Decimal
+		Get
+			Return Me._saldo
+		End Get
+		Set
+			If ((Me._saldo = value)  _
+						= false) Then
+				Me.OnsaldoChanging(value)
+				Me.SendPropertyChanging
+				Me._saldo = value
+				Me.SendPropertyChanged("saldo")
+				Me.OnsaldoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_efectivo", DbType:="Decimal(18,2)")>  _
+	Public Property efectivo() As System.Nullable(Of Decimal)
+		Get
+			Return Me._efectivo
+		End Get
+		Set
+			If (Me._efectivo.Equals(value) = false) Then
+				Me.OnefectivoChanging(value)
+				Me.SendPropertyChanging
+				Me._efectivo = value
+				Me.SendPropertyChanged("efectivo")
+				Me.OnefectivoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cheque", DbType:="Decimal(18,2)")>  _
+	Public Property cheque() As System.Nullable(Of Decimal)
+		Get
+			Return Me._cheque
+		End Get
+		Set
+			If (Me._cheque.Equals(value) = false) Then
+				Me.OnchequeChanging(value)
+				Me.SendPropertyChanging
+				Me._cheque = value
+				Me.SendPropertyChanged("cheque")
+				Me.OnchequeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_transferencia", DbType:="Decimal(18,2)")>  _
+	Public Property transferencia() As System.Nullable(Of Decimal)
+		Get
+			Return Me._transferencia
+		End Get
+		Set
+			If (Me._transferencia.Equals(value) = false) Then
+				Me.OntransferenciaChanging(value)
+				Me.SendPropertyChanging
+				Me._transferencia = value
+				Me.SendPropertyChanged("transferencia")
+				Me.OntransferenciaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcaja", DbType:="VarChar(10)")>  _
+	Public Property codcaja() As String
+		Get
+			Return Me._codcaja
+		End Get
+		Set
+			If (String.Equals(Me._codcaja, value) = false) Then
+				Me.OncodcajaChanging(value)
+				Me.SendPropertyChanging
+				Me._codcaja = value
+				Me.SendPropertyChanged("codcaja")
+				Me.OncodcajaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_usuario", DbType:="VarChar(50)")>  _
+	Public Property usuario() As String
+		Get
+			Return Me._usuario
+		End Get
+		Set
+			If (String.Equals(Me._usuario, value) = false) Then
+				Me.OnusuarioChanging(value)
+				Me.SendPropertyChanging
+				Me._usuario = value
+				Me.SendPropertyChanged("usuario")
+				Me.OnusuarioChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_monto_letras", DbType:="VarChar(MAX)")>  _
+	Public Property monto_letras() As String
+		Get
+			Return Me._monto_letras
+		End Get
+		Set
+			If (String.Equals(Me._monto_letras, value) = false) Then
+				Me.Onmonto_letrasChanging(value)
+				Me.SendPropertyChanging
+				Me._monto_letras = value
+				Me.SendPropertyChanged("monto_letras")
+				Me.Onmonto_letrasChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_hora", DbType:="VarChar(50)")>  _
+	Public Property hora() As String
+		Get
+			Return Me._hora
+		End Get
+		Set
+			If (String.Equals(Me._hora, value) = false) Then
+				Me.OnhoraChanging(value)
+				Me.SendPropertyChanging
+				Me._hora = value
+				Me.SendPropertyChanged("hora")
+				Me.OnhoraChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codmoneda", DbType:="Int")>  _
+	Public Property codmoneda() As System.Nullable(Of Integer)
+		Get
+			Return Me._codmoneda
+		End Get
+		Set
+			If (Me._codmoneda.Equals(value) = false) Then
+				Me.OncodmonedaChanging(value)
+				Me.SendPropertyChanging
+				Me._codmoneda = value
+				Me.SendPropertyChanged("codmoneda")
+				Me.OncodmonedaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="adelanto_compras_adelanto", Storage:="_compras_adelantos", ThisKey:="idsalida", OtherKey:="idadelanto")>  _
+	Public Property compras_adelantos() As EntitySet(Of compras_adelanto)
+		Get
+			Return Me._compras_adelantos
+		End Get
+		Set
+			Me._compras_adelantos.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_compras_adelantos(ByVal entity As compras_adelanto)
+		Me.SendPropertyChanging
+		entity.adelanto = Me
+	End Sub
+	
+	Private Sub detach_compras_adelantos(ByVal entity As compras_adelanto)
+		Me.SendPropertyChanging
+		entity.adelanto = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.compras_adelantos")>  _
+Partial Public Class compras_adelanto
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _idcompras_adelantos As Integer
+	
+	Private _numcompra As String
+	
+	Private _idadelanto As String
+	
+	Private _codcliente As String
+	
+	Private _sinicial As Decimal
+	
+	Private _monto As Decimal
+	
+	Private _sfinal As Decimal
+	
+	Private _fecha As Date
+	
+	Private _codcaja As String
+	
+	Private _usuario As String
+	
+	Private _hora As System.TimeSpan
+	
+	Private _codagencia As String
+	
+	Private _codmoneda As System.Nullable(Of Integer)
+	
+	Private _adelanto As EntityRef(Of adelanto)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub Onidcompras_adelantosChanging(value As Integer)
+    End Sub
+    Partial Private Sub Onidcompras_adelantosChanged()
+    End Sub
+    Partial Private Sub OnnumcompraChanging(value As String)
+    End Sub
+    Partial Private Sub OnnumcompraChanged()
+    End Sub
+    Partial Private Sub OnidadelantoChanging(value As String)
+    End Sub
+    Partial Private Sub OnidadelantoChanged()
+    End Sub
+    Partial Private Sub OncodclienteChanging(value As String)
+    End Sub
+    Partial Private Sub OncodclienteChanged()
+    End Sub
+    Partial Private Sub OnsinicialChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnsinicialChanged()
+    End Sub
+    Partial Private Sub OnmontoChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnmontoChanged()
+    End Sub
+    Partial Private Sub OnsfinalChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnsfinalChanged()
+    End Sub
+    Partial Private Sub OnfechaChanging(value As Date)
+    End Sub
+    Partial Private Sub OnfechaChanged()
+    End Sub
+    Partial Private Sub OncodcajaChanging(value As String)
+    End Sub
+    Partial Private Sub OncodcajaChanged()
+    End Sub
+    Partial Private Sub OnusuarioChanging(value As String)
+    End Sub
+    Partial Private Sub OnusuarioChanged()
+    End Sub
+    Partial Private Sub OnhoraChanging(value As System.TimeSpan)
+    End Sub
+    Partial Private Sub OnhoraChanged()
+    End Sub
+    Partial Private Sub OncodagenciaChanging(value As String)
+    End Sub
+    Partial Private Sub OncodagenciaChanged()
+    End Sub
+    Partial Private Sub OncodmonedaChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OncodmonedaChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._adelanto = CType(Nothing, EntityRef(Of adelanto))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idcompras_adelantos", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property idcompras_adelantos() As Integer
+		Get
+			Return Me._idcompras_adelantos
+		End Get
+		Set
+			If ((Me._idcompras_adelantos = value)  _
+						= false) Then
+				Me.Onidcompras_adelantosChanging(value)
+				Me.SendPropertyChanging
+				Me._idcompras_adelantos = value
+				Me.SendPropertyChanged("idcompras_adelantos")
+				Me.Onidcompras_adelantosChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_numcompra", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property numcompra() As String
+		Get
+			Return Me._numcompra
+		End Get
+		Set
+			If (String.Equals(Me._numcompra, value) = false) Then
+				Me.OnnumcompraChanging(value)
+				Me.SendPropertyChanging
+				Me._numcompra = value
+				Me.SendPropertyChanged("numcompra")
+				Me.OnnumcompraChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idadelanto", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property idadelanto() As String
+		Get
+			Return Me._idadelanto
+		End Get
+		Set
+			If (String.Equals(Me._idadelanto, value) = false) Then
+				If Me._adelanto.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnidadelantoChanging(value)
+				Me.SendPropertyChanging
+				Me._idadelanto = value
+				Me.SendPropertyChanged("idadelanto")
+				Me.OnidadelantoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcliente", DbType:="VarChar(20)")>  _
+	Public Property codcliente() As String
+		Get
+			Return Me._codcliente
+		End Get
+		Set
+			If (String.Equals(Me._codcliente, value) = false) Then
+				Me.OncodclienteChanging(value)
+				Me.SendPropertyChanging
+				Me._codcliente = value
+				Me.SendPropertyChanged("codcliente")
+				Me.OncodclienteChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_sinicial", DbType:="Decimal(18,2) NOT NULL")>  _
+	Public Property sinicial() As Decimal
+		Get
+			Return Me._sinicial
+		End Get
+		Set
+			If ((Me._sinicial = value)  _
+						= false) Then
+				Me.OnsinicialChanging(value)
+				Me.SendPropertyChanging
+				Me._sinicial = value
+				Me.SendPropertyChanged("sinicial")
+				Me.OnsinicialChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_monto", DbType:="Decimal(18,3) NOT NULL")>  _
+	Public Property monto() As Decimal
+		Get
+			Return Me._monto
+		End Get
+		Set
+			If ((Me._monto = value)  _
+						= false) Then
+				Me.OnmontoChanging(value)
+				Me.SendPropertyChanging
+				Me._monto = value
+				Me.SendPropertyChanged("monto")
+				Me.OnmontoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_sfinal", DbType:="Decimal(18,2) NOT NULL")>  _
+	Public Property sfinal() As Decimal
+		Get
+			Return Me._sfinal
+		End Get
+		Set
+			If ((Me._sfinal = value)  _
+						= false) Then
+				Me.OnsfinalChanging(value)
+				Me.SendPropertyChanging
+				Me._sfinal = value
+				Me.SendPropertyChanged("sfinal")
+				Me.OnsfinalChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha", DbType:="Date NOT NULL")>  _
+	Public Property fecha() As Date
+		Get
+			Return Me._fecha
+		End Get
+		Set
+			If ((Me._fecha = value)  _
+						= false) Then
+				Me.OnfechaChanging(value)
+				Me.SendPropertyChanging
+				Me._fecha = value
+				Me.SendPropertyChanged("fecha")
+				Me.OnfechaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcaja", DbType:="VarChar(10) NOT NULL", CanBeNull:=false)>  _
+	Public Property codcaja() As String
+		Get
+			Return Me._codcaja
+		End Get
+		Set
+			If (String.Equals(Me._codcaja, value) = false) Then
+				Me.OncodcajaChanging(value)
+				Me.SendPropertyChanging
+				Me._codcaja = value
+				Me.SendPropertyChanged("codcaja")
+				Me.OncodcajaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_usuario", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property usuario() As String
+		Get
+			Return Me._usuario
+		End Get
+		Set
+			If (String.Equals(Me._usuario, value) = false) Then
+				Me.OnusuarioChanging(value)
+				Me.SendPropertyChanging
+				Me._usuario = value
+				Me.SendPropertyChanged("usuario")
+				Me.OnusuarioChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_hora", DbType:="Time NOT NULL")>  _
+	Public Property hora() As System.TimeSpan
+		Get
+			Return Me._hora
+		End Get
+		Set
+			If ((Me._hora = value)  _
+						= false) Then
+				Me.OnhoraChanging(value)
+				Me.SendPropertyChanging
+				Me._hora = value
+				Me.SendPropertyChanged("hora")
+				Me.OnhoraChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codagencia", DbType:="VarChar(10)")>  _
+	Public Property codagencia() As String
+		Get
+			Return Me._codagencia
+		End Get
+		Set
+			If (String.Equals(Me._codagencia, value) = false) Then
+				Me.OncodagenciaChanging(value)
+				Me.SendPropertyChanging
+				Me._codagencia = value
+				Me.SendPropertyChanged("codagencia")
+				Me.OncodagenciaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codmoneda", DbType:="Int")>  _
+	Public Property codmoneda() As System.Nullable(Of Integer)
+		Get
+			Return Me._codmoneda
+		End Get
+		Set
+			If (Me._codmoneda.Equals(value) = false) Then
+				Me.OncodmonedaChanging(value)
+				Me.SendPropertyChanging
+				Me._codmoneda = value
+				Me.SendPropertyChanged("codmoneda")
+				Me.OncodmonedaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="adelanto_compras_adelanto", Storage:="_adelanto", ThisKey:="idadelanto", OtherKey:="idsalida", IsForeignKey:=true)>  _
+	Public Property adelanto() As adelanto
+		Get
+			Return Me._adelanto.Entity
+		End Get
+		Set
+			Dim previousValue As adelanto = Me._adelanto.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._adelanto.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._adelanto.Entity = Nothing
+					previousValue.compras_adelantos.Remove(Me)
+				End If
+				Me._adelanto.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.compras_adelantos.Add(Me)
+					Me._idadelanto = value.idsalida
+				Else
+					Me._idadelanto = CType(Nothing, String)
+				End If
+				Me.SendPropertyChanged("adelanto")
 			End If
 		End Set
 	End Property

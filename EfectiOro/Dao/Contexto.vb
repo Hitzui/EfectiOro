@@ -1243,6 +1243,8 @@ Namespace Database
             End Set
         End Property
 
+        Private _compras_adelantos As EntitySet(Of Compras_adelantos)
+
 #Region "Extensibility Method Definitions"
         Partial Private Sub OnLoaded()
         End Sub
@@ -1310,6 +1312,7 @@ Namespace Database
 
         Public Sub New()
             MyBase.New()
+            Me._compras_adelantos = New EntitySet(Of Compras_adelantos)(AddressOf Me.attach_compras_adelantos, AddressOf Me.detach_compras_adelantos)
             _saldoCordobas = Decimal.Zero
             _saldoDolares = Decimal.Zero
             OnCreated()
@@ -1549,22 +1552,42 @@ Namespace Database
             End Set
         End Property
 
+        <Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="adelanto_compras_adelanto", Storage:="_compras_adelantos", ThisKey:="Idsalida", OtherKey:="Idadelanto")>
+        Public Property compras_adelantos() As EntitySet(Of Compras_adelantos)
+            Get
+                Return Me._compras_adelantos
+            End Get
+            Set
+                Me._compras_adelantos.Assign(Value)
+            End Set
+        End Property
+
         Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         Protected Overridable Sub SendPropertyChanging()
             If ((Me.PropertyChangingEvent Is Nothing) _
-               = False) Then
+                    = False) Then
                 RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
             End If
         End Sub
 
         Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
             If ((Me.PropertyChangedEvent Is Nothing) _
-               = False) Then
+                    = False) Then
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
             End If
+        End Sub
+
+        Private Sub attach_compras_adelantos(ByVal entity As Compras_adelantos)
+            Me.SendPropertyChanging()
+            entity.adelanto = Me
+        End Sub
+
+        Private Sub detach_compras_adelantos(ByVal entity As Compras_adelantos)
+            Me.SendPropertyChanging()
+            entity.adelanto = Nothing
         End Sub
     End Class
 
@@ -3497,6 +3520,8 @@ Namespace Database
 
         Private _codagencia As String
 
+        Private _adelanto As EntityRef(Of Adelantos)
+
         ''' <summary>
         ''' Codigo de la moneda usada en el adelanto
         ''' </summary>
@@ -3569,6 +3594,7 @@ Namespace Database
 
         Public Sub New()
             MyBase.New()
+            Me._adelanto = CType(Nothing, EntityRef(Of Adelantos))
             OnCreated()
         End Sub
 
@@ -3765,6 +3791,35 @@ Namespace Database
                     Me._codagencia = value
                     Me.SendPropertyChanged("Codagencia")
                     Me.OnCodagenciaChanged()
+                End If
+            End Set
+        End Property
+
+        <Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="adelanto_compras_adelanto", Storage:="_adelanto", ThisKey:="Idadelanto", OtherKey:="Idsalida", IsForeignKey:=True)>
+        Public Property adelanto() As Adelantos
+            Get
+                Return Me._adelanto.Entity
+            End Get
+            Set
+                Dim previousValue As Adelantos = Me._adelanto.Entity
+                If ((Object.Equals(previousValue, Value) = False) _
+                        OrElse (Me._adelanto.HasLoadedOrAssignedValue = False)) Then
+                    Me.SendPropertyChanging()
+
+                    If ((previousValue Is Nothing) _
+                            = False) Then
+                        Me._adelanto.Entity = Nothing
+                        previousValue.compras_adelantos.Remove(Me)
+                    End If
+                    Me._adelanto.Entity = Value
+                    If ((Value Is Nothing) _
+                            = False) Then
+                        Value.compras_adelantos.Add(Me)
+                        Me._Idadelanto = Value.Idsalida
+                    Else
+                        Me._Idadelanto = CType(Nothing, String)
+                    End If
+                    Me.SendPropertyChanged("adelanto")
                 End If
             End Set
         End Property
