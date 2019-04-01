@@ -1,10 +1,12 @@
 ﻿Imports System.ComponentModel
 Imports CrystalDecisions.Shared
 Imports EfectiOro.Database
+Imports Infragistics.Win.UltraWinGrid
 
 Public Class frmAdelantosReportes
     Private Const formatMoneda As String = "#,###,#00.00"
     Private Const [error] As String = "Error"
+    Private rowAdelanto As UltraGridRow
 
     Sub loadClientes()
         Dim dao = DataContext.daoCliente
@@ -39,22 +41,22 @@ Public Class frmAdelantosReportes
 
     Sub datosAdelantosGrid()
         Try
-            Dim daoAdelantos = DataContext.daoAdelantos
-            Dim daoParam = DataContext.daoParametros
-            Dim desde, hasta As Date
-            desde = txtDesde.Value
-            hasta = txtHasta.Value
-            Dim codCliente As String = String.Empty
-            Dim row As DataGridViewRow = dgvClientes.CurrentRow
-            codCliente = row.Cells("colCodcliente").Value
-            Dim filtrar = daoAdelantos.listarAdelantosPorFecha(txtDesde.Value, txtHasta.Value, codCliente)
-            AdelantosBindingSource.DataSource = filtrar
-            Dim param = daoParam.recuperarParametros
-            Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
-            Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
-            lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
-            lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
-            cambiarValorMostrarMoneda()
+            Using ctx As New Contexto
+                Dim desde, hasta As Date
+                desde = txtDesde.Value
+                hasta = txtHasta.Value
+                Dim codCliente As String = String.Empty
+                Dim row As DataGridViewRow = dgvClientes.CurrentRow
+                codCliente = row.Cells("colCodcliente").Value
+                Dim filtrar = (From a In ctx.Adelantos Where a.Fecha >= desde And a.Fecha <= hasta And a.Codcliente = codCliente Select a).ToList
+                AdelantosBindingSource.DataSource = filtrar
+                Dim param = ctx.Ids.First
+                Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
+                Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
+                lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
+                lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
+                cambiarValorMostrarMoneda()
+            End Using
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
         End Try
@@ -72,17 +74,17 @@ Public Class frmAdelantosReportes
         Try
             Dim daoParametros = DataContext.daoParametros
             Dim parametros = daoParametros.recuperarParametros
-            For Each row As DataGridViewRow In AdelantosDataGridView.Rows
-                Dim celda = Convert.ToInt32(row.Cells("DataGridViewTextBoxColumn17").Value)
+            For Each row As UltraGridRow In AdelantosDataGridView.Rows
+                Dim celda = Convert.ToInt32(row.Cells("Codmoneda").Value)
                 Select Case celda
                     Case parametros.cordobas
-                        row.Cells("DataGridViewTextBoxColumn3").Value = "Cordobas"
+                        row.Cells("nombreCliente").Value = "Cordobas"
                     Case parametros.dolares
-                        row.Cells("DataGridViewTextBoxColumn3").Value = "Dolares"
+                        row.Cells("nombreCliente").Value = "Dolares"
                 End Select
             Next
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
+            MsgBox("Moneda: " & ex.Message, MsgBoxStyle.Critical, [error])
         End Try
     End Sub
 
@@ -97,12 +99,12 @@ Public Class frmAdelantosReportes
             Dim daoParametros = DataContext.daoParametros
             Dim param = daoParametros.recuperarParametros
             Dim Parametros As ParameterFields = New ParameterFields()
-            Dim rowAdelanto As DataGridViewRow = AdelantosDataGridView.Rows.Item
             Dim rowCliente As DataGridViewRow = dgvClientes.CurrentRow
             Dim desde As Date = txtDesde.Value
             Dim hasta As Date = txtHasta.Value
             Dim codcliente As String = rowCliente.Cells("colCodcliente").Value
             Dim nombre_Cliente As String = rowCliente.Cells("colNombres").Value & " " & rowCliente.Cells("colApellidos").Value
+            'rowAdelanto = AdelantosDataGridView.ActiveRow
             Dim idAdelanto As String = rowAdelanto.Cells("DataGridViewTextBoxColumn4").Value
             Dim daoAdelanto = DataContext.daoAdelantos
             Dim daoCliente = DataContext.daoCliente
@@ -175,11 +177,13 @@ Public Class frmAdelantosReportes
         End If
     End Sub
 
-    Private Sub AdelantosDataGridView_ClickCell(sender As Object, e As Infragistics.Win.UltraWinGrid.ClickCellEventArgs) Handles AdelantosDataGridView.ClickCell
+
+
+    Private Sub AdelantosDataGridView_CellChange(sender As Object, e As CellEventArgs) Handles AdelantosDataGridView.CellChange
         Try
-
+            rowAdelanto = e.Cell.Row()
         Catch ex As Exception
-
+            MsgBox(ex.Message,MsgBoxStyle.Critical,[error])
         End Try
     End Sub
 End Class

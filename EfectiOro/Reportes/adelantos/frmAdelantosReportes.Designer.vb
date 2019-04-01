@@ -520,8 +520,8 @@ Partial Class frmAdelantosReportes
         UltraGridColumn1.Hidden = True
         UltraGridColumn2.Header.VisiblePosition = 1
         UltraGridColumn2.Hidden = True
+        UltraGridColumn3.Header.Caption = "Moneda"
         UltraGridColumn3.Header.VisiblePosition = 2
-        UltraGridColumn3.Hidden = True
         UltraGridColumn4.Header.Caption = "Cod Adelanto"
         UltraGridColumn4.Header.VisiblePosition = 3
         UltraGridColumn5.Header.VisiblePosition = 4
@@ -545,6 +545,7 @@ Partial Class frmAdelantosReportes
         UltraGridColumn15.Hidden = True
         UltraGridColumn16.Header.VisiblePosition = 7
         UltraGridColumn17.Header.VisiblePosition = 16
+        UltraGridColumn17.Hidden = True
         UltraGridColumn18.Header.VisiblePosition = 17
         UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn1, UltraGridColumn2, UltraGridColumn3, UltraGridColumn4, UltraGridColumn5, UltraGridColumn6, UltraGridColumn7, UltraGridColumn8, UltraGridColumn9, UltraGridColumn10, UltraGridColumn11, UltraGridColumn12, UltraGridColumn13, UltraGridColumn14, UltraGridColumn15, UltraGridColumn16, UltraGridColumn17, UltraGridColumn18})
         UltraGridColumn19.Header.VisiblePosition = 0
