@@ -6,7 +6,6 @@ Imports Infragistics.Win.UltraWinGrid
 Public Class frmAdelantosReportes
     Private Const formatMoneda As String = "#,###,#00.00"
     Private Const [error] As String = "Error"
-    Private rowAdelanto As UltraGridRow
 
     Sub loadClientes()
         Dim dao = DataContext.daoCliente
@@ -41,22 +40,22 @@ Public Class frmAdelantosReportes
 
     Sub datosAdelantosGrid()
         Try
-            Using ctx As New Contexto
-                Dim desde, hasta As Date
-                desde = txtDesde.Value
-                hasta = txtHasta.Value
-                Dim codCliente As String = String.Empty
-                Dim row As DataGridViewRow = dgvClientes.CurrentRow
-                codCliente = row.Cells("colCodcliente").Value
-                Dim filtrar = (From a In ctx.Adelantos Where a.Fecha >= desde And a.Fecha <= hasta And a.Codcliente = codCliente Select a).ToList
-                AdelantosBindingSource.DataSource = filtrar
-                Dim param = ctx.Ids.First
-                Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
-                Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
-                lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
-                lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
-                cambiarValorMostrarMoneda()
-            End Using
+            Dim daoParametroas = DataContext.daoParametros
+            Dim daoAdelantos = DataContext.daoAdelantos
+            Dim desde, hasta As Date
+            desde = txtDesde.Value
+            hasta = txtHasta.Value
+            Dim codCliente As String = String.Empty
+            Dim row As DataGridViewRow = dgvClientes.CurrentRow
+            codCliente = row.Cells("colCodcliente").Value
+            Dim filtrar = daoAdelantos.listarAdelantosPorFecha(desde, hasta, codCliente)
+            AdelantosBindingSource.DataSource = filtrar
+            Dim param = daoParametroas.recuperarParametros
+            Dim saldoCordobas As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
+            Dim saldoDolares As Decimal = filtrar.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
+            lblSaldoCordobas.Text = saldoCordobas.ToString(formatMoneda)
+            lblSaldoDolares.Text = saldoDolares.ToString(formatMoneda)
+            cambiarValorMostrarMoneda()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
         End Try
@@ -74,7 +73,7 @@ Public Class frmAdelantosReportes
         Try
             Dim daoParametros = DataContext.daoParametros
             Dim parametros = daoParametros.recuperarParametros
-            For Each row As UltraGridRow In AdelantosDataGridView.Rows
+            For Each row As DataGridViewRow In AdelantosDataGridView.Rows
                 Dim celda = Convert.ToInt32(row.Cells("Codmoneda").Value)
                 Select Case celda
                     Case parametros.cordobas
@@ -95,82 +94,77 @@ Public Class frmAdelantosReportes
         datosAdelantosGrid()
     End Sub
     Private Sub btnVerReporte_Click(sender As Object, e As EventArgs) Handles btnVerReporte.Click
-        Using ctx As New Contexto
-            Try
-                Dim param = ctx.Ids.First
-                Dim Parametros As ParameterFields = New ParameterFields()
-                Dim rowCliente As DataGridViewRow = dgvClientes.CurrentRow
-                Dim desde As Date = txtDesde.Value
-                Dim hasta As Date = txtHasta.Value
-                Dim codcliente As String = rowCliente.Cells("colCodcliente").Value
-                Dim nombre_Cliente As String = rowCliente.Cells("colNombres").Value & " " & rowCliente.Cells("colApellidos").Value
-                rowAdelanto = AdelantosDataGridView.ActiveRow
-                Dim idAdelanto As String = rowAdelanto.Cells("Idsalida").Value
-                Dim listaClientes = ctx.Cliente.Where(Function(a) a.Codcliente = codcliente).ToList
-                Dim compras_adelantos = (From ca In ctx.Compras_adelantos
-                                         Where ca.Codcliente = codcliente
-                                         Order By ca.Idadelanto Descending
-                                         Order By ca.Fecha Ascending
-                                         Select ca).ToList
-                If radVerAdelanto.Checked Then
-                    Dim parMoneda As ParameterField = New ParameterField()
-                    Dim disMoneda As ParameterDiscreteValue = New ParameterDiscreteValue()
-                    parMoneda.ParameterFieldName = "Moneda"
-                    Dim codmoneda As Int32 = rowAdelanto.Cells("Codmoneda").Value
-                    Select Case codmoneda
-                        Case param.cordobas
-                            disMoneda.Value = "Cordobas"
-                        Case param.dolares
-                            disMoneda.Value = "Dolares"
-                        Case Else
-                            disMoneda.Value = "Sin Valor"
-                    End Select
-                    parMoneda.CurrentValues().Add(disMoneda)
-                    Parametros.Add(parMoneda)
-                    Dim sel_adelanto = ctx.Adelantos.Where(Function(a) a.Idsalida = idAdelanto).ToList()
-                    sel_adelanto.ForEach(Sub(s As Adelantos) s.nombreCliente = nombre_Cliente)
-                    Dim report As New rptVerAdelantoDetalle
-                    report.Database.Tables(0).SetDataSource(sel_adelanto)
-                    report.Database.Tables(1).SetDataSource(compras_adelantos)
-                    frmReporteReciboAdelantoAbono.viewer.ReportSource = report
-                    frmReporteReciboAdelantoAbono.viewer.ParameterFieldInfo = Parametros
-                    frmReporteReciboAdelantoAbono.Show()
-                End If
-                If radAdelantoCliente.Checked Then
-                    Dim findAelantos = (From a In ctx.Adelantos
-                                        Where a.Codcliente = codcliente And a.Fecha.Date >= desde And a.Fecha.Date <= hasta
-                                        Select a).ToList
-                    findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.nombreCliente = "Cordobas" Else If a.Codmoneda = param.dolares Then a.nombreCliente = "Dolares")
-                    Select Case cmbAdelantoCliente.SelectedIndex
-                        Case 0
-                            'Detallado por fecha
-                            Dim report As New rptAdelantosAplicados
-                            report.Database.Tables(0).SetDataSource(compras_adelantos)
-                            report.Database.Tables(1).SetDataSource(listaClientes)
-                            report.Database.Tables(2).SetDataSource(findAelantos)
-                            Dim frm As New Form
-                            frm.WindowState = FormWindowState.Maximized
-                            frm.Text = "Reporte Reembolsos por fecha"
-                            ServiciosBasicos.ParametrosCrystal(desde, hasta, frm, report)
-                        Case 1
-                            'consolidado por fecha
-                            Dim saldoCordobas = findAelantos.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
-                            Dim saldodolares = findAelantos.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
-                            findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.saldoCordobas = saldoCordobas)
-                            Dim report As New rptAdelantosConsolidado
-                            report.Database.Tables(0).SetDataSource(compras_adelantos)
-                            report.Database.Tables(1).SetDataSource(listaClientes)
-                            report.Database.Tables(2).SetDataSource(findAelantos)
-                            Dim frm As New Form
-                            frm.Text = "Reporte Reembolsos por fecha"
-                            frm.WindowState = FormWindowState.Maximized
-                            ServiciosBasicos.ParametrosCrystal(desde, hasta, frm, report)
-                    End Select
-                End If
-            Catch ex As Exception
-                MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
-            End Try
-        End Using
+        Try
+            Dim daoCliente = DataContext.daoCliente
+            Dim daoAdelanto = DataContext.daoAdelantos
+            Dim daoParametros = DataContext.daoParametros
+            Dim param = daoParametros.recuperarParametros
+            Dim rowAdelanto = AdelantosDataGridView.CurrentRow
+            Dim Parametros As ParameterFields = New ParameterFields()
+            Dim rowCliente As DataGridViewRow = dgvClientes.CurrentRow
+            Dim desde As Date = txtDesde.Value
+            Dim hasta As Date = txtHasta.Value
+            Dim codcliente As String = rowCliente.Cells("colCodcliente").Value
+            Dim nombre_Cliente As String = rowCliente.Cells("colNombres").Value & " " & rowCliente.Cells("colApellidos").Value
+            Dim idAdelanto As String = rowAdelanto.Cells("Idsalida").Value
+            Dim listaClientes = daoCliente.findAll.Where(Function(c) c.Codcliente = codcliente).ToList
+            Dim compras_adelantos = daoAdelanto.listarAdelantosComrpasCliente(codcliente)
+            If radVerAdelanto.Checked Then
+                Dim parMoneda As ParameterField = New ParameterField()
+                Dim disMoneda As ParameterDiscreteValue = New ParameterDiscreteValue()
+                parMoneda.ParameterFieldName = "Moneda"
+                Dim codmoneda As Int32 = rowAdelanto.Cells("Codmoneda").Value
+                Select Case codmoneda
+                    Case param.cordobas
+                        disMoneda.Value = "Cordobas"
+                    Case param.dolares
+                        disMoneda.Value = "Dolares"
+                    Case Else
+                        disMoneda.Value = "Sin Valor"
+                End Select
+                parMoneda.CurrentValues().Add(disMoneda)
+                Parametros.Add(parMoneda)
+                Dim sel_adelanto = daoAdelanto.findAll.Where(Function(a) a.Idsalida = idAdelanto).ToList()
+                sel_adelanto.ForEach(Sub(s As Adelantos) s.nombreCliente = nombre_Cliente)
+                Dim report As New rptVerAdelantoDetalle
+                report.Database.Tables(0).SetDataSource(sel_adelanto)
+                report.Database.Tables(1).SetDataSource(compras_adelantos)
+                frmReporteReciboAdelantoAbono.viewer.ReportSource = report
+                frmReporteReciboAdelantoAbono.viewer.ParameterFieldInfo = Parametros
+                frmReporteReciboAdelantoAbono.Show()
+            End If
+            If radAdelantoCliente.Checked Then
+                Dim findAelantos = daoAdelanto.listarAdelantosPorFecha(desde, hasta, codcliente)
+                findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.nombreCliente = "Cordobas" Else If a.Codmoneda = param.dolares Then a.nombreCliente = "Dolares")
+                Select Case cmbAdelantoCliente.SelectedIndex
+                    Case 0
+                        'Detallado por fecha
+                        Dim report As New rptAdelantosAplicados
+                        report.Database.Tables(0).SetDataSource(compras_adelantos)
+                        report.Database.Tables(1).SetDataSource(listaClientes)
+                        report.Database.Tables(2).SetDataSource(findAelantos)
+                        Dim frm As New Form
+                        frm.WindowState = FormWindowState.Maximized
+                        frm.Text = "Reporte Reembolsos por fecha"
+                        ServiciosBasicos.ParametrosCrystal(desde, hasta, frm, report)
+                    Case 1
+                        'consolidado por fecha
+                        Dim saldoCordobas = findAelantos.Where(Function(a) a.Codmoneda = param.cordobas).Sum(Function(a) a.Saldo)
+                        Dim saldodolares = findAelantos.Where(Function(a) a.Codmoneda = param.dolares).Sum(Function(a) a.Saldo)
+                        findAelantos.ForEach(Sub(a) If a.Codmoneda = param.cordobas Then a.saldoCordobas = saldoCordobas)
+                        Dim report As New rptAdelantosConsolidado
+                        report.Database.Tables(0).SetDataSource(compras_adelantos)
+                        report.Database.Tables(1).SetDataSource(listaClientes)
+                        report.Database.Tables(2).SetDataSource(findAelantos)
+                        Dim frm As New Form
+                        frm.Text = "Reporte Reembolsos por fecha"
+                        frm.WindowState = FormWindowState.Maximized
+                        ServiciosBasicos.ParametrosCrystal(desde, hasta, frm, report)
+                End Select
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
+        End Try
     End Sub
     Shared Sub Process(items As List(Of Integer))
         Dim result As Integer = 10
@@ -191,11 +185,13 @@ Public Class frmAdelantosReportes
 
 
 
-    Private Sub AdelantosDataGridView_CellChange(sender As Object, e As CellEventArgs) Handles AdelantosDataGridView.CellChange
+    Private Sub AdelantosDataGridView_CellChange(sender As Object, e As CellEventArgs)
         Try
             rowAdelanto = e.Cell.Row()
         Catch ex As Exception
-            MsgBox(ex.Message,MsgBoxStyle.Critical,[error])
+            MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
         End Try
     End Sub
+
+
 End Class
