@@ -52,7 +52,7 @@ Public Class VConsolidadoCajaFecha
         End Set
     End Property
     Private _fecha As Date
-    <Column(Name:="fecha", Storage:="_descripcion", DbType:="varchar(250)")>
+    <Column(Name:="fecha", Storage:="_fecha", DbType:="datetime")>
     Public Property Fecha() As Date
         Get
             Return _fecha
