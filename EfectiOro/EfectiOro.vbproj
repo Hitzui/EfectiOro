@@ -530,6 +530,12 @@
       <DependentUpon>rptCajaActual.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\caja\rptConsolidadoCajaFecha.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptConsolidadoCajaFecha.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\caja\rptConsolidadoGeneral.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -548,6 +554,7 @@
       <DependentUpon>rptVoucherTransferencia.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\caja\VConsolidadoCajaFecha.vb" />
     <Compile Include="Reportes\caja\VistaConsolidadoCaja.vb" />
     <Compile Include="Reportes\caja\Voucher.vb" />
     <Compile Include="Reportes\cierres\frmReporteCierre.Designer.vb">
@@ -1063,6 +1070,10 @@
     <EmbeddedResource Include="Reportes\caja\rptCajaActual.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCajaActual.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\caja\rptConsolidadoCajaFecha.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptConsolidadoCajaFecha.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\caja\rptConsolidadoGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

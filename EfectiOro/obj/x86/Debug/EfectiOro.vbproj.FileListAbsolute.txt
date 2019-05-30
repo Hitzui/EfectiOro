@@ -765,10 +765,6 @@ D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe.config
 D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\EfectiOro.exe
 D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\EfectiOro.pdb
 D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\EfectiOro.xml
-D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.ReportSource.dll
-D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Shared.dll
-D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\CrystalDecisions.Windows.Forms.dll
 D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
 D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Shared.v12.2.dll
 D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\Infragistics4.Win.Misc.v12.2.dll
