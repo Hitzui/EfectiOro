@@ -22,14 +22,16 @@ Partial Class frmRptCaja
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance5 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance6 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtHasta = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtDesde = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.cmbConsolidadoCajaFecha = New System.Windows.Forms.ComboBox()
+        Me.radConsolidadoRangoFecha = New System.Windows.Forms.RadioButton()
         Me.cmbCajafiltrar = New System.Windows.Forms.ComboBox()
         Me.radFiltrarCaja = New System.Windows.Forms.RadioButton()
         Me.radFiltrarCajaActual = New System.Windows.Forms.RadioButton()
@@ -38,15 +40,9 @@ Partial Class frmRptCaja
         Me.radConsolidadoTodos = New System.Windows.Forms.RadioButton()
         Me.btnBuscar = New Infragistics.Win.Misc.UltraButton()
         Me.btnCancelar = New Infragistics.Win.Misc.UltraButton()
-        Me.radConsolidadoRangoFecha = New System.Windows.Forms.RadioButton()
-        Me.panelTitulo.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(681, 25)
         '
         'btnClose
         '
@@ -55,7 +51,7 @@ Partial Class frmRptCaja
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(656, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(681, 25)
         '
         'GroupBox1
         '
@@ -66,7 +62,7 @@ Partial Class frmRptCaja
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(12, 31)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(239, 201)
+        Me.GroupBox1.Size = New System.Drawing.Size(239, 248)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Rango de fechas"
@@ -107,6 +103,7 @@ Partial Class frmRptCaja
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.cmbConsolidadoCajaFecha)
         Me.GroupBox2.Controls.Add(Me.radConsolidadoRangoFecha)
         Me.GroupBox2.Controls.Add(Me.cmbCajafiltrar)
         Me.GroupBox2.Controls.Add(Me.radFiltrarCaja)
@@ -116,16 +113,38 @@ Partial Class frmRptCaja
         Me.GroupBox2.Controls.Add(Me.radConsolidadoTodos)
         Me.GroupBox2.Location = New System.Drawing.Point(257, 31)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(385, 201)
+        Me.GroupBox2.Size = New System.Drawing.Size(385, 248)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Filtrar"
+        '
+        'cmbConsolidadoCajaFecha
+        '
+        Me.cmbConsolidadoCajaFecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbConsolidadoCajaFecha.FormattingEnabled = True
+        Me.cmbConsolidadoCajaFecha.Items.AddRange(New Object() {"Agrupado por dia", "Agrupado por rango fecha"})
+        Me.cmbConsolidadoCajaFecha.Location = New System.Drawing.Point(210, 59)
+        Me.cmbConsolidadoCajaFecha.Name = "cmbConsolidadoCajaFecha"
+        Me.cmbConsolidadoCajaFecha.Size = New System.Drawing.Size(149, 21)
+        Me.cmbConsolidadoCajaFecha.TabIndex = 7
+        Me.cmbConsolidadoCajaFecha.Visible = False
+        '
+        'radConsolidadoRangoFecha
+        '
+        Me.radConsolidadoRangoFecha.AutoSize = True
+        Me.radConsolidadoRangoFecha.Location = New System.Drawing.Point(28, 60)
+        Me.radConsolidadoRangoFecha.Name = "radConsolidadoRangoFecha"
+        Me.radConsolidadoRangoFecha.Size = New System.Drawing.Size(161, 17)
+        Me.radConsolidadoRangoFecha.TabIndex = 6
+        Me.radConsolidadoRangoFecha.TabStop = True
+        Me.radConsolidadoRangoFecha.Text = "Consolidado por rango fecha"
+        Me.radConsolidadoRangoFecha.UseVisualStyleBackColor = True
         '
         'cmbCajafiltrar
         '
         Me.cmbCajafiltrar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCajafiltrar.FormattingEnabled = True
-        Me.cmbCajafiltrar.Location = New System.Drawing.Point(210, 132)
+        Me.cmbCajafiltrar.Location = New System.Drawing.Point(210, 164)
         Me.cmbCajafiltrar.Name = "cmbCajafiltrar"
         Me.cmbCajafiltrar.Size = New System.Drawing.Size(149, 21)
         Me.cmbCajafiltrar.TabIndex = 5
@@ -134,7 +153,7 @@ Partial Class frmRptCaja
         'radFiltrarCaja
         '
         Me.radFiltrarCaja.AutoSize = True
-        Me.radFiltrarCaja.Location = New System.Drawing.Point(28, 133)
+        Me.radFiltrarCaja.Location = New System.Drawing.Point(28, 165)
         Me.radFiltrarCaja.Name = "radFiltrarCaja"
         Me.radFiltrarCaja.Size = New System.Drawing.Size(103, 17)
         Me.radFiltrarCaja.TabIndex = 4
@@ -145,7 +164,7 @@ Partial Class frmRptCaja
         'radFiltrarCajaActual
         '
         Me.radFiltrarCajaActual.AutoSize = True
-        Me.radFiltrarCajaActual.Location = New System.Drawing.Point(28, 97)
+        Me.radFiltrarCajaActual.Location = New System.Drawing.Point(28, 130)
         Me.radFiltrarCajaActual.Name = "radFiltrarCajaActual"
         Me.radFiltrarCajaActual.Size = New System.Drawing.Size(78, 17)
         Me.radFiltrarCajaActual.TabIndex = 3
@@ -157,7 +176,7 @@ Partial Class frmRptCaja
         '
         Me.cmbCajaconsolidado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCajaconsolidado.FormattingEnabled = True
-        Me.cmbCajaconsolidado.Location = New System.Drawing.Point(210, 60)
+        Me.cmbCajaconsolidado.Location = New System.Drawing.Point(210, 94)
         Me.cmbCajaconsolidado.Name = "cmbCajaconsolidado"
         Me.cmbCajaconsolidado.Size = New System.Drawing.Size(149, 21)
         Me.cmbCajaconsolidado.TabIndex = 2
@@ -166,7 +185,7 @@ Partial Class frmRptCaja
         'radConsolodidadoCaja
         '
         Me.radConsolodidadoCaja.AutoSize = True
-        Me.radConsolodidadoCaja.Location = New System.Drawing.Point(28, 61)
+        Me.radConsolodidadoCaja.Location = New System.Drawing.Point(28, 95)
         Me.radConsolodidadoCaja.Name = "radConsolodidadoCaja"
         Me.radConsolodidadoCaja.Size = New System.Drawing.Size(135, 17)
         Me.radConsolodidadoCaja.TabIndex = 1
@@ -187,11 +206,11 @@ Partial Class frmRptCaja
         '
         'btnBuscar
         '
-        Appearance1.Image = Global.EfectiOro.My.Resources.Resources.buscar_48
-        Me.btnBuscar.Appearance = Appearance1
+        Appearance5.Image = Global.EfectiOro.My.Resources.Resources.buscar_48
+        Me.btnBuscar.Appearance = Appearance5
         Me.btnBuscar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnBuscar.ImageSize = New System.Drawing.Size(28, 28)
-        Me.btnBuscar.Location = New System.Drawing.Point(151, 238)
+        Me.btnBuscar.Location = New System.Drawing.Point(151, 285)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(100, 32)
         Me.btnBuscar.TabIndex = 8
@@ -200,44 +219,31 @@ Partial Class frmRptCaja
         '
         'btnCancelar
         '
-        Appearance2.Image = Global.EfectiOro.My.Resources.Resources._23
-        Me.btnCancelar.Appearance = Appearance2
+        Appearance6.Image = Global.EfectiOro.My.Resources.Resources._23
+        Me.btnCancelar.Appearance = Appearance6
         Me.btnCancelar.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnCancelar.ImageSize = New System.Drawing.Size(28, 28)
-        Me.btnCancelar.Location = New System.Drawing.Point(467, 238)
+        Me.btnCancelar.Location = New System.Drawing.Point(467, 285)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(100, 32)
         Me.btnCancelar.TabIndex = 9
         Me.btnCancelar.Text = "Salir"
         Me.btnCancelar.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
-        'radConsolidadoRangoFecha
-        '
-        Me.radConsolidadoRangoFecha.AutoSize = True
-        Me.radConsolidadoRangoFecha.Location = New System.Drawing.Point(210, 25)
-        Me.radConsolidadoRangoFecha.Name = "radConsolidadoRangoFecha"
-        Me.radConsolidadoRangoFecha.Size = New System.Drawing.Size(161, 17)
-        Me.radConsolidadoRangoFecha.TabIndex = 6
-        Me.radConsolidadoRangoFecha.TabStop = True
-        Me.radConsolidadoRangoFecha.Text = "Consolidado por rango fecha"
-        Me.radConsolidadoRangoFecha.UseVisualStyleBackColor = True
-        '
         'frmRptCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(681, 282)
+        Me.ClientSize = New System.Drawing.Size(681, 329)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnBuscar)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmRptCaja"
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.btnBuscar, 0)
         Me.Controls.SetChildIndex(Me.btnCancelar, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -260,4 +266,5 @@ Partial Class frmRptCaja
     Friend WithEvents btnBuscar As Infragistics.Win.Misc.UltraButton
     Friend WithEvents btnCancelar As Infragistics.Win.Misc.UltraButton
     Friend WithEvents radConsolidadoRangoFecha As System.Windows.Forms.RadioButton
+    Friend WithEvents cmbConsolidadoCajaFecha As ComboBox
 End Class

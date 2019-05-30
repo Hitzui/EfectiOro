@@ -442,6 +442,11 @@ Namespace Database
                 Return Me.GetTable(Of Vdetacaja)()
             End Get
         End Property
+        Public ReadOnly Property VConsolidadoCajaFecha() As System.Data.Linq.Table(Of VConsolidadoCajaFecha)
+            Get
+                Return Me.GetTable(Of VConsolidadoCajaFecha)
+            End Get
+        End Property
         <FunctionAttribute(Name:="dbo.anularCompra")>
         Public Function AnularCompra(<Parameter(DbType:="VarChar(20)")> ByVal numeroCompra As String, <Parameter(DbType:="VarChar(20)")> ByVal agencia As String) As <Parameter(DbType:="Int")> Integer
             Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), numeroCompra, agencia)

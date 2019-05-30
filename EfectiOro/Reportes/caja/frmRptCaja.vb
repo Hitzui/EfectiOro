@@ -77,55 +77,60 @@ Public Class frmRptCaja
             Dim config As New ConfiguracionGeneral
             recCaja = config.getCaja()
             If radConsolidadoRangoFecha.Checked Then
-                'reporte de caja consolidado segun rando de fecha por dia
-                Dim datos = (From dc In ctx.Detacaja
-                        Join mc In ctx.Mcaja On dc.codcaja Equals mc.Codcaja _
-                         And dc.idcaja Equals mc.Idcaja
-                        Join mov In ctx.Movcaja On dc.idmov Equals mov.Idmov
-                        Join r In ctx.Rubro On mov.Codrubro Equals r.Codrubro
-                        Where
-                          dc.fecha.Date >= txtDesde.Value.Date And dc.fecha.Date <= txtHasta.Value.Date
-                        Group New With {r, mov, dc} By
-                          r.Naturaleza,
-                          mov.Descripcion,
-                          dia = CType(dc.fecha.Day, Integer),
-                          mes = CType(dc.fecha.Month, Integer),
-                          anio = CType(dc.fecha.Year, Integer),
-                          r.Descrubro
-                         Into g = Group
-                        Order By
-                          mes, dia
-                        Select
-                          anio, dia, mes, Descrubro, Descripcion,
-                          efectivo = If(Naturaleza = 1, g.Sum(Function(p) p.dc.efectivo), (-1 * g.Sum(Function(p) p.dc.efectivo))),
-                          cheque = If(Naturaleza = 1, g.Sum(Function(p) p.dc.cheque), (-1 * g.Sum(Function(p) p.dc.cheque))),
-                          transferencia = If(Naturaleza = 1, g.Sum(Function(p) p.dc.transferencia), (-1 * g.Sum(Function(p) p.dc.transferencia)))).ToList()
-                consulta = New List(Of VistaMovCaja)
-                If datos.Count <= 0 Then
-                    MsgBox("No hay datos que mostrar en el rango de fechas especificado, intente nuevamente",
-                           MsgBoxStyle.Information, "Consolidado de cajas")
-                    Return
-                End If
-                For Each dato In datos
-                    Dim vista As New VistaMovCaja
-                    vista.Anio = dato.anio
-                    vista.Transferencia = dato.transferencia
-                    vista.Cheque = dato.cheque
-                    vista.Caja = String.Empty
-                    vista.Descripcoin = dato.Descripcion
-                    vista.Rubro = dato.Descrubro
-                    vista.Efectivo = dato.efectivo
-                    vista.Dia = dato.dia
-                    vista.Mes = dato.mes
-                    consulta.Add(vista)
-                Next
-                Dim frmrpt As New frmReporteConsolodidadoGeneral
-                Dim xreport As New rptConsolidadoRangoFecha
-                xreport.SetDataSource(consulta)
-                frmrpt.CrystalReportViewer1.ParameterFieldInfo = Parametros
-                frmrpt.CrystalReportViewer1.ReportSource = xreport
-                frmrpt.Show()
-                Return
+                Select Case cmbCajaconsolidado.SelectedIndex
+                    Case 0
+                        'reporte de caja consolidado segun rando de fecha por dia
+                        Dim datos = (From dc In ctx.Detacaja
+                                     Join mc In ctx.Mcaja On dc.codcaja Equals mc.Codcaja _
+                                      And dc.idcaja Equals mc.Idcaja
+                                     Join mov In ctx.Movcaja On dc.idmov Equals mov.Idmov
+                                     Join r In ctx.Rubro On mov.Codrubro Equals r.Codrubro
+                                     Where
+                                       dc.fecha.Date >= txtDesde.Value.Date And dc.fecha.Date <= txtHasta.Value.Date
+                                     Group New With {r, mov, dc} By
+                                       r.Naturaleza,
+                                       mov.Descripcion,
+                                       dia = CType(dc.fecha.Day, Integer),
+                                       mes = CType(dc.fecha.Month, Integer),
+                                       anio = CType(dc.fecha.Year, Integer),
+                                       r.Descrubro
+                                      Into g = Group
+                                     Order By
+                                       mes, dia
+                                     Select
+                                       anio, dia, mes, Descrubro, Descripcion,
+                                       efectivo = If(Naturaleza = 1, g.Sum(Function(p) p.dc.efectivo), (-1 * g.Sum(Function(p) p.dc.efectivo))),
+                                       cheque = If(Naturaleza = 1, g.Sum(Function(p) p.dc.cheque), (-1 * g.Sum(Function(p) p.dc.cheque))),
+                                       transferencia = If(Naturaleza = 1, g.Sum(Function(p) p.dc.transferencia), (-1 * g.Sum(Function(p) p.dc.transferencia)))).ToList()
+                        consulta = New List(Of VistaMovCaja)
+                        If datos.Count <= 0 Then
+                            MsgBox("No hay datos que mostrar en el rango de fechas especificado, intente nuevamente",
+                                   MsgBoxStyle.Information, "Consolidado de cajas")
+                            Return
+                        End If
+                        For Each dato In datos
+                            Dim vista As New VistaMovCaja
+                            vista.Anio = dato.anio
+                            vista.Transferencia = dato.transferencia
+                            vista.Cheque = dato.cheque
+                            vista.Caja = String.Empty
+                            vista.Descripcoin = dato.Descripcion
+                            vista.Rubro = dato.Descrubro
+                            vista.Efectivo = dato.efectivo
+                            vista.Dia = dato.dia
+                            vista.Mes = dato.mes
+                            consulta.Add(vista)
+                        Next
+                        Dim frmrpt As New frmReporteConsolodidadoGeneral
+                        Dim xreport As New rptConsolidadoRangoFecha
+                        xreport.SetDataSource(consulta)
+                        frmrpt.CrystalReportViewer1.ParameterFieldInfo = Parametros
+                        frmrpt.CrystalReportViewer1.ReportSource = xreport
+                        frmrpt.Show()
+                        Return
+                    Case 1
+
+                End Select
             End If
             If radConsolidadoTodos.Checked Then
                 query = (From dc In ctx.Detacaja
@@ -301,5 +306,13 @@ Public Class frmRptCaja
 
     Private Sub radFiltrarCaja_CheckedChanged_1(sender As System.Object, e As System.EventArgs) Handles radFiltrarCaja.CheckedChanged
         Me.verCombosCajas()
+    End Sub
+
+    Private Sub radConsolidadoRangoFecha_CheckedChanged(sender As Object, e As EventArgs) Handles radConsolidadoRangoFecha.CheckedChanged
+        If radConsolidadoRangoFecha.Checked Then
+            cmbConsolidadoCajaFecha.Visible = True
+        Else
+            cmbConsolidadoCajaFecha.Visible = False
+        End If
     End Sub
 End Class
