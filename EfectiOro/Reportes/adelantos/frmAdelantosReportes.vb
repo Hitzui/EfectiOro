@@ -187,7 +187,7 @@ Public Class frmAdelantosReportes
 
     Private Sub AdelantosDataGridView_CellChange(sender As Object, e As CellEventArgs)
         Try
-            rowAdelanto = e.Cell.Row()
+            'rowAdelanto = e.Cell.Row()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, [error])
         End Try
