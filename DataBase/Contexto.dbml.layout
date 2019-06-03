@@ -26,12 +26,18 @@
         <elementListCompartment Id="cc7a8b53-4fe6-40f8-991b-320dd014198a" absoluteBounds="5.89, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5 : 2.40465413411458); (5.875 : 2.40465413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5 : 2.40465413411458); (5.875 : 2.40465413411458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ContextoDataContext/adelanto/adelanto_compras_adelanto" />
       <nodes>
         <classShapeMoniker Id="48cc4bdd-0df2-40c5-9050-f4a0717a866a" />
         <classShapeMoniker Id="8e4417ac-00c2-4be9-b20d-6735b5045ef8" />
       </nodes>
     </associationConnector>
+    <classShape Id="2b7281ba-8f03-47d6-be3a-4bcedfead78a" absoluteBounds="7.625, 5.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/ContextoDataContext/vconsolidadocajafecha" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f664b0ac-13c1-4f94-b243-242946b23e05" absoluteBounds="7.64, 6.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

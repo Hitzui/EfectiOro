@@ -77,7 +77,7 @@ Public Class frmRptCaja
             Dim config As New ConfiguracionGeneral
             recCaja = config.getCaja()
             If radConsolidadoRangoFecha.Checked Then
-                Select Case cmbCajaconsolidado.SelectedIndex
+                Select Case cmbConsolidadoCajaFecha.SelectedIndex
                     Case 0
                         'reporte de caja consolidado segun rando de fecha por dia
                         Dim datos = (From dc In ctx.Detacaja
@@ -129,7 +129,18 @@ Public Class frmRptCaja
                         frmrpt.Show()
                         Return
                     Case 1
+                        Dim buscar = (From v In ctx.VConsolidadoCajaFecha
+                                      Where v.fecha.Date >= txtDesde.Value.Date And v.fecha.Date <= txtHasta.Value.Date
+                                      Group By v.idmov, v.descripcion, v.codrubro, v.descrubro Into grupo = Group
+                                      Select New With {
+                                           .Efectivo = grupo.Sum(Function(a) a.efectivo),
+                                           .Cheque = grupo.Sum(Function(a) a.cheque),
+                                           .Transferencia = grupo.Sum(Function(a) a.transferencias),
+                                           idmov, descripcion, codrubro, descrubro
+                                       }).ToList
+                        If buscar.Count > 0 Then
 
+                        End If
                 End Select
             End If
             If radConsolidadoTodos.Checked Then

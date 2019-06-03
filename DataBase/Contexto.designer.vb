@@ -105,6 +105,12 @@ Partial Public Class ContextoDataContext
 			Return Me.GetTable(Of compras_adelanto)
 		End Get
 	End Property
+	
+	Public ReadOnly Property vconsolidadocajafechas() As System.Data.Linq.Table(Of vconsolidadocajafecha)
+		Get
+			Return Me.GetTable(Of vconsolidadocajafecha)
+		End Get
+	End Property
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detacaja")>  _
@@ -1565,4 +1571,154 @@ Partial Public Class compras_adelanto
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
 	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.vconsolidadocajafecha")>  _
+Partial Public Class vconsolidadocajafecha
+	
+	Private _idcaja As Decimal
+	
+	Private _codrubro As System.Nullable(Of Integer)
+	
+	Private _descrubro As String
+	
+	Private _idmov As Integer
+	
+	Private _descripcion As String
+	
+	Private _fecha As System.Nullable(Of Date)
+	
+	Private _efectivo As System.Nullable(Of Decimal)
+	
+	Private _transferencias As System.Nullable(Of Decimal)
+	
+	Private _cheque As System.Nullable(Of Decimal)
+	
+	Private _codcaja As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idcaja", DbType:="Decimal(18,0) NOT NULL")>  _
+	Public Property idcaja() As Decimal
+		Get
+			Return Me._idcaja
+		End Get
+		Set
+			If ((Me._idcaja = value)  _
+						= false) Then
+				Me._idcaja = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codrubro", DbType:="Int")>  _
+	Public Property codrubro() As System.Nullable(Of Integer)
+		Get
+			Return Me._codrubro
+		End Get
+		Set
+			If (Me._codrubro.Equals(value) = false) Then
+				Me._codrubro = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_descrubro", DbType:="VarChar(250) NOT NULL", CanBeNull:=false)>  _
+	Public Property descrubro() As String
+		Get
+			Return Me._descrubro
+		End Get
+		Set
+			If (String.Equals(Me._descrubro, value) = false) Then
+				Me._descrubro = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idmov", DbType:="Int NOT NULL")>  _
+	Public Property idmov() As Integer
+		Get
+			Return Me._idmov
+		End Get
+		Set
+			If ((Me._idmov = value)  _
+						= false) Then
+				Me._idmov = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_descripcion", DbType:="VarChar(250) NOT NULL", CanBeNull:=false)>  _
+	Public Property descripcion() As String
+		Get
+			Return Me._descripcion
+		End Get
+		Set
+			If (String.Equals(Me._descripcion, value) = false) Then
+				Me._descripcion = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha", DbType:="DateTime")>  _
+	Public Property fecha() As System.Nullable(Of Date)
+		Get
+			Return Me._fecha
+		End Get
+		Set
+			If (Me._fecha.Equals(value) = false) Then
+				Me._fecha = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_efectivo", DbType:="Decimal(38,2)")>  _
+	Public Property efectivo() As System.Nullable(Of Decimal)
+		Get
+			Return Me._efectivo
+		End Get
+		Set
+			If (Me._efectivo.Equals(value) = false) Then
+				Me._efectivo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_transferencias", DbType:="Decimal(38,2)")>  _
+	Public Property transferencias() As System.Nullable(Of Decimal)
+		Get
+			Return Me._transferencias
+		End Get
+		Set
+			If (Me._transferencias.Equals(value) = false) Then
+				Me._transferencias = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cheque", DbType:="Decimal(38,2)")>  _
+	Public Property cheque() As System.Nullable(Of Decimal)
+		Get
+			Return Me._cheque
+		End Get
+		Set
+			If (Me._cheque.Equals(value) = false) Then
+				Me._cheque = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcaja", DbType:="VarChar(10)")>  _
+	Public Property codcaja() As String
+		Get
+			Return Me._codcaja
+		End Get
+		Set
+			If (String.Equals(Me._codcaja, value) = false) Then
+				Me._codcaja = value
+			End If
+		End Set
+	End Property
 End Class
