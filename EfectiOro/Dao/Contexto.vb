@@ -452,7 +452,11 @@ Namespace Database
             Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), numeroCompra, agencia)
             Return CType(result.ReturnValue, Integer)
         End Function
-
+        <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.ConsolidadoCajaFecha")>
+        Public Function ConsolidadoCajaFecha(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="Date")> ByVal desde As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="Date")> ByVal hasta As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="NVarChar(10)")> ByVal caja As String) As ISingleResult(Of ConsolidadoCajaFechaResult)
+            Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), desde, hasta, caja)
+            Return CType(result.ReturnValue, ISingleResult(Of ConsolidadoCajaFechaResult))
+        End Function
     End Class
     ''' <summary>
     ''' Entidad moneda de la tabla moneda Sql Server

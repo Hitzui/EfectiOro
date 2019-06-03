@@ -111,6 +111,12 @@ Partial Public Class ContextoDataContext
 			Return Me.GetTable(Of vconsolidadocajafecha)
 		End Get
 	End Property
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.ConsolidadoCajaFecha")>  _
+	Public Function ConsolidadoCajaFecha(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="Date")> ByVal desde As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="Date")> ByVal hasta As System.Nullable(Of Date), <Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="NVarChar(10)")> ByVal caja As String) As ISingleResult(Of ConsolidadoCajaFechaResult)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), desde, hasta, caja)
+		Return CType(result.ReturnValue,ISingleResult(Of ConsolidadoCajaFechaResult))
+	End Function
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.detacaja")>  _
@@ -1718,6 +1724,113 @@ Partial Public Class vconsolidadocajafecha
 		Set
 			If (String.Equals(Me._codcaja, value) = false) Then
 				Me._codcaja = value
+			End If
+		End Set
+	End Property
+End Class
+
+Partial Public Class ConsolidadoCajaFechaResult
+	
+	Private _codrubro As Integer
+	
+	Private _descrubro As String
+	
+	Private _idmov As Integer
+	
+	Private _descripcion As String
+	
+	Private _efectivo As System.Nullable(Of Decimal)
+	
+	Private _cheque As System.Nullable(Of Decimal)
+	
+	Private _transferencias As System.Nullable(Of Decimal)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codrubro", DbType:="Int NOT NULL")>  _
+	Public Property codrubro() As Integer
+		Get
+			Return Me._codrubro
+		End Get
+		Set
+			If ((Me._codrubro = value)  _
+						= false) Then
+				Me._codrubro = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_descrubro", DbType:="VarChar(250) NOT NULL", CanBeNull:=false)>  _
+	Public Property descrubro() As String
+		Get
+			Return Me._descrubro
+		End Get
+		Set
+			If (String.Equals(Me._descrubro, value) = false) Then
+				Me._descrubro = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_idmov", DbType:="Int NOT NULL")>  _
+	Public Property idmov() As Integer
+		Get
+			Return Me._idmov
+		End Get
+		Set
+			If ((Me._idmov = value)  _
+						= false) Then
+				Me._idmov = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_descripcion", DbType:="VarChar(250) NOT NULL", CanBeNull:=false)>  _
+	Public Property descripcion() As String
+		Get
+			Return Me._descripcion
+		End Get
+		Set
+			If (String.Equals(Me._descripcion, value) = false) Then
+				Me._descripcion = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_efectivo", DbType:="Decimal(38,2)")>  _
+	Public Property efectivo() As System.Nullable(Of Decimal)
+		Get
+			Return Me._efectivo
+		End Get
+		Set
+			If (Me._efectivo.Equals(value) = false) Then
+				Me._efectivo = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cheque", DbType:="Decimal(38,2)")>  _
+	Public Property cheque() As System.Nullable(Of Decimal)
+		Get
+			Return Me._cheque
+		End Get
+		Set
+			If (Me._cheque.Equals(value) = false) Then
+				Me._cheque = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_transferencias", DbType:="Decimal(38,2)")>  _
+	Public Property transferencias() As System.Nullable(Of Decimal)
+		Get
+			Return Me._transferencias
+		End Get
+		Set
+			If (Me._transferencias.Equals(value) = false) Then
+				Me._transferencias = value
 			End If
 		End Set
 	End Property

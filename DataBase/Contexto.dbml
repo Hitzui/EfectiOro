@@ -88,4 +88,18 @@
       <Column Name="codcaja" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
+  <Function Name="dbo.ConsolidadoCajaFecha" Method="ConsolidadoCajaFecha">
+    <Parameter Name="desde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="hasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="caja" Type="System.String" DbType="NVarChar(10)" />
+    <ElementType Name="ConsolidadoCajaFechaResult">
+      <Column Name="codrubro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descrubro" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="idmov" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="efectivo" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="cheque" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="transferencias" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

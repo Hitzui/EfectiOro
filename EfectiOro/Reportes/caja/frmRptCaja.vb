@@ -129,15 +129,7 @@ Public Class frmRptCaja
                         frmrpt.Show()
                         Return
                     Case 1
-                        Dim buscar = (From v In ctx.VConsolidadoCajaFecha
-                                      Where v.fecha.Date >= txtDesde.Value.Date And v.fecha.Date <= txtHasta.Value.Date
-                                      Group By v.idmov, v.descripcion, v.codrubro, v.descrubro Into grupo = Group
-                                      Select New With {
-                                           .Efectivo = grupo.Sum(Function(a) a.efectivo),
-                                           .Cheque = grupo.Sum(Function(a) a.cheque),
-                                           .Transferencia = grupo.Sum(Function(a) a.transferencias),
-                                           idmov, descripcion, codrubro, descrubro
-                                       }).ToList
+                        Dim buscar = ctx.ConsolidadoCajaFecha(txtDesde.Value.Date, txtHasta.Value.Date, "C001").ToList
                         If buscar.Count > 0 Then
 
                         End If
