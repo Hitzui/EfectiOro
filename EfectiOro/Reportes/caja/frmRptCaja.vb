@@ -131,7 +131,8 @@ Public Class frmRptCaja
                         frmrpt.Show()
                         Return
                     Case 1
-                        Dim buscar = ctx.ConsolidadoCajaFecha(txtDesde.Value.Date, txtHasta.Value.Date, "C001").ToList
+
+                        Dim buscar = ctx.ConsolidadoCajaFecha(txtDesde.Value.Date, txtHasta.Value.Date, recCaja).ToList
                         If buscar.Count <= 0 Then
                             MessageBox.Show(Me, "No hay datos a mostrar según el rango de fechas indicado, intente nuevamente o contacte a soporte ténico.",
                                             _consolidadoTitulo, MessageBoxButtons.OK, MessageBoxIcon.Warning)

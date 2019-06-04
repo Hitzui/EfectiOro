@@ -1731,6 +1731,8 @@ End Class
 
 Partial Public Class ConsolidadoCajaFechaResult
 	
+	Private _codcaja As String
+	
 	Private _codrubro As Integer
 	
 	Private _descrubro As String
@@ -1748,6 +1750,18 @@ Partial Public Class ConsolidadoCajaFechaResult
 	Public Sub New()
 		MyBase.New
 	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcaja", DbType:="VarChar(10)")>  _
+	Public Property codcaja() As String
+		Get
+			Return Me._codcaja
+		End Get
+		Set
+			If (String.Equals(Me._codcaja, value) = false) Then
+				Me._codcaja = value
+			End If
+		End Set
+	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codrubro", DbType:="Int NOT NULL")>  _
 	Public Property codrubro() As Integer

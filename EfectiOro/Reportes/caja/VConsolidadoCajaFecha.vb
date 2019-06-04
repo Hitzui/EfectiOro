@@ -164,6 +164,19 @@ Partial Public Class ConsolidadoCajaFechaResult
 
     Private _transferencias As Decimal
 
+    Private _codcaja As String
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_codcaja", DbType:="VarChar(10)")>
+    Public Property codcaja() As String
+        Get
+            Return Me._codcaja
+        End Get
+        Set
+            If (String.Equals(Me._codcaja, Value) = False) Then
+                Me._codcaja = Value
+            End If
+        End Set
+    End Property
+
     Public Sub New()
         MyBase.New
     End Sub

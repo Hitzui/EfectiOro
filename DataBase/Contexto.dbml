@@ -93,6 +93,7 @@
     <Parameter Name="hasta" Type="System.DateTime" DbType="Date" />
     <Parameter Name="caja" Type="System.String" DbType="NVarChar(10)" />
     <ElementType Name="ConsolidadoCajaFechaResult">
+      <Column Name="codcaja" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="codrubro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="descrubro" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="idmov" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
