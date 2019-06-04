@@ -2,6 +2,7 @@
 Imports EfectiOro.Database
 
 Public Class frmRptCaja
+    Private Const _consolidadoTitulo As String = "Consolidado de cajas"
 
     Private Sub verCombosCajas()
         If Me.radConsolodidadoCaja.Checked = True Then
@@ -40,6 +41,7 @@ Public Class frmRptCaja
         Me.btnClose.Visible = False
         Me.llenarComboConsolidado()
         Me.llenarComboFiltrar()
+        cmbConsolidadoCajaFecha.SelectedIndex = 0
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
@@ -105,7 +107,7 @@ Public Class frmRptCaja
                         consulta = New List(Of VistaMovCaja)
                         If datos.Count <= 0 Then
                             MsgBox("No hay datos que mostrar en el rango de fechas especificado, intente nuevamente",
-                                   MsgBoxStyle.Information, "Consolidado de cajas")
+                                   MsgBoxStyle.Information, _consolidadoTitulo)
                             Return
                         End If
                         For Each dato In datos
@@ -130,9 +132,18 @@ Public Class frmRptCaja
                         Return
                     Case 1
                         Dim buscar = ctx.ConsolidadoCajaFecha(txtDesde.Value.Date, txtHasta.Value.Date, "C001").ToList
-                        If buscar.Count > 0 Then
-
+                        If buscar.Count <= 0 Then
+                            MessageBox.Show(Me, "No hay datos a mostrar según el rango de fechas indicado, intente nuevamente o contacte a soporte ténico.",
+                                            _consolidadoTitulo, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Return
                         End If
+                        Dim frmrpt As New frmReporteConsolodidadoGeneral
+                        Dim xreport As New rptConsolidadoCajaFecha
+                        xreport.SetDataSource(buscar)
+                        frmrpt.CrystalReportViewer1.ParameterFieldInfo = Parametros
+                        frmrpt.CrystalReportViewer1.ReportSource = xreport
+                        frmrpt.Show()
+                        Return
                 End Select
             End If
             If radConsolidadoTodos.Checked Then
@@ -148,7 +159,7 @@ Public Class frmRptCaja
                 consulta = New List(Of VistaMovCaja)
                 If query.Count <= 0 Then
                     MsgBox("No hay datos que mostrar en el rango de fechas especificado, intente nuevamente",
-                           MsgBoxStyle.Information, "Consolidado de cajas")
+                           MsgBoxStyle.Information, _consolidadoTitulo)
                     Return
                 End If
                 For Each dato In query
@@ -189,8 +200,8 @@ Public Class frmRptCaja
                               transferencia = CType(IIf(Naturaleza = 1, g.Sum(Function(p) p.dc.transferencia), -1 * g.Sum(Function(p) p.dc.transferencia)), Decimal?)).ToList()
                 consulta = New List(Of VistaMovCaja)
                 If query.Count <= 0 Then
-                    MsgBox("No hay datos que mostrar en el rango de fechas especificado, intente nuevamente", _
-                           MsgBoxStyle.Information, "Consolidado de cajas")
+                    MsgBox("No hay datos que mostrar en el rango de fechas especificado, intente nuevamente",
+                           MsgBoxStyle.Information, _consolidadoTitulo)
                     Return
                 End If
                 For Each dato In query
