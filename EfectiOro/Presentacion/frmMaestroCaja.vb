@@ -1,6 +1,9 @@
 ﻿Imports EfectiOro.Database
 
 Public Class frmMaestroCaja
+    Private Const _titleAbrirCaja As String = "Abrir caja"
+    Private Const _titleError As String = "Error"
+    Private Const _titleCerrarCaja As String = "Cerrar caja"
     Dim FORMATO_DECIMAL As String = "#,###,#00.00"
     Dim cajaActual As String
     Dim agenciaActual As String = "A001"
@@ -12,26 +15,26 @@ Public Class frmMaestroCaja
             Dim daoIds = DataContext.daoParametros
             Dim recIds = daoIds.recuperarParametros()
             Select Case movimiento
-                Case recIds.Id_adelantos
+                Case recIds.id_adelantos
                     MsgBox("No puede realizar adelantos en el moduo de caja", MsgBoxStyle.Exclamation, "Caja")
                     Return False
-                Case recIds.Idcompras
+                Case recIds.idcompras
                     MsgBox("No puede realizar compras en el moduo de caja", MsgBoxStyle.Exclamation, "Caja")
                     Return False
-                Case recIds.Cierre_compra
+                Case recIds.cierre_compra
                     MsgBox("No puede realizar abonos a compras en el moduo de caja", MsgBoxStyle.Exclamation, "Caja")
                     Return False
-                Case recIds.Anular_compra
-                    MsgBox("No puede realizar reversión (anular) de compras desde caja, esto es posible desde la pantalla de compras", _
+                Case recIds.anular_compra
+                    MsgBox("No puede realizar reversión (anular) de compras desde caja, esto es posible desde la pantalla de compras",
                            MsgBoxStyle.Exclamation, "Caja")
                     Return False
                 Case recIds.anular_adelanto
-                    MsgBox("No puede realizar reversión (anular) de adelantos desde caja.", _
+                    MsgBox("No puede realizar reversión (anular) de adelantos desde caja.",
                            MsgBoxStyle.Exclamation, "Caja")
             End Select
             Return True
         Catch ex As Exception
-            MsgBox("Se produjo el siguiente error: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Se produjo el siguiente error: " & ex.Message, MsgBoxStyle.Critical, _titleError)
             Return False
         End Try
     End Function
@@ -46,7 +49,7 @@ Public Class frmMaestroCaja
         Try
             If dao.ErrorSms.Length > 0 Then
                 MsgBox("Se produjo un error al intentar recuper el saldo de la caja. Revise la siguiente información: " &
-                       vbCr & dao.ErrorSms, MsgBoxStyle.Critical, "Error")
+                       vbCr & dao.ErrorSms, MsgBoxStyle.Critical, _titleError)
             End If
         Catch ex As Exception
         End Try
@@ -219,8 +222,8 @@ Public Class frmMaestroCaja
                 frmReportes.Show()
             End If
         Catch ex As Exception
-            MsgBox("Se produjo un error al intentar visualizar el voucher, rebice la siguiente información: " & _
-                   vbCr & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            MsgBox("Se produjo un error al intentar visualizar el voucher, rebice la siguiente información: " &
+                   vbCr & ex.Message, MsgBoxStyle.Exclamation, _titleError)
         End Try
     End Sub
 
@@ -260,29 +263,29 @@ Public Class frmMaestroCaja
         Dim dcaja As New Detacaja
         Dim xcaja As Mcaja = dao.recuperarSaldoCaja(cajaActual)
         Dim ycaja As New Mcaja()
-        dcaja.Referencia = txtReferencias.Text
-        dcaja.Concepto = cmbRubro.Text
-        dcaja.Idmov = cmbRubro.SelectedValue
+        dcaja.referencia = txtReferencias.Text
+        dcaja.concepto = cmbRubro.Text
+        dcaja.idmov = cmbRubro.SelectedValue
         'especificamos el tipo de transaccion a realizar
         If radCheque.Checked Then
-            dcaja.Cheque = Convert.ToDecimal(txtMonto.Text)
-            dcaja.Efectivo = Decimal.Zero
-            dcaja.Transferencia = Decimal.Zero
+            dcaja.cheque = Convert.ToDecimal(txtMonto.Text)
+            dcaja.efectivo = Decimal.Zero
+            dcaja.transferencia = Decimal.Zero
         End If
         If radEfectivo.Checked Then
-            dcaja.Efectivo = Convert.ToDecimal(txtMonto.Text)
-            dcaja.Transferencia = Decimal.Zero
-            dcaja.Cheque = Decimal.Zero
+            dcaja.efectivo = Convert.ToDecimal(txtMonto.Text)
+            dcaja.transferencia = Decimal.Zero
+            dcaja.cheque = Decimal.Zero
         End If
         If radTransferencia.Checked Then
-            dcaja.Transferencia = Convert.ToDecimal(txtMonto.Text)
-            dcaja.Cheque = Decimal.Zero
-            dcaja.Efectivo = Decimal.Zero
+            dcaja.transferencia = Convert.ToDecimal(txtMonto.Text)
+            dcaja.cheque = Decimal.Zero
+            dcaja.efectivo = Decimal.Zero
         End If
         dcaja.fecha = DateTime.Now
-        dcaja.Hora = lblHora.Text
-        dcaja.Idcaja = xcaja.Idcaja
-        dcaja.Codcaja = cajaActual
+        dcaja.hora = lblHora.Text
+        dcaja.idcaja = xcaja.Idcaja
+        dcaja.codcaja = cajaActual
         If idmovimiento = 1 Then
             'entrada de movimiento
             If radCheque.Checked Then
@@ -313,14 +316,15 @@ Public Class frmMaestroCaja
         ycaja.Codcaja = cajaActual
         ycaja.Codagencia = xcaja.Codagencia
         If xcaja.Sfinal < ycaja.Salida Then
-            MsgBox("No hay saldo suficiente para realizar la transaccion, intente nuevamente." & _
-                              vbCr & "Saldo disponible: " & xcaja.Sfinal, _
+            MsgBox("No hay saldo suficiente para realizar la transaccion, intente nuevamente." &
+                              vbCr & "Saldo disponible: " & xcaja.Sfinal,
                               MsgBoxStyle.Information, "Caja")
             Return
         End If
         'actualizamos el maestro de caja
         'ingresamos el detalle en detacaja
-        If MsgBox("¿Aplicar el movimiento a la caja actual caja?" & vbCr & "Valor a ingresar: " & txtMonto.Text, MsgBoxStyle.YesNo, "Guardar") = MsgBoxResult.No Then
+        Dim mensaje = MessageBox.Show(Me, "¿Aplicar el movimiento a la caja actual caja?" & vbCr & "Valor a ingresar: " & txtMonto.Text, "Guardar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+        If mensaje = DialogResult.Cancel Then
             Return
         End If
         If dao.guardarDatosDetaCaja(dcaja, ycaja) Then
@@ -335,8 +339,8 @@ Public Class frmMaestroCaja
     End Sub
 
     Private Sub btnCerrarCaja_Click(sender As System.Object, e As System.EventArgs) Handles btnCerrarCaja.Click
-        Dim result As DialogResult = MsgBox("¿Cerrar la caja actual?", MsgBoxStyle.YesNo, "Cerrar caja")
-        If result = Windows.Forms.DialogResult.No Then
+        Dim result As DialogResult = MessageBox.Show(Me, "¿Cerrar la caja actual?", _titleCerrarCaja, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+        If result = DialogResult.Cancel Then
             Return
         End If
         Me.cargarCaja()
@@ -346,27 +350,27 @@ Public Class frmMaestroCaja
             lblInicial.Text = "0.0"
             lblEntrada.Text = "0.0"
             lblSalida.Text = "0.0"
-            MsgBox("Caja cerrada de forma correcta", MsgBoxStyle.Information, "Cerrar caja")
+            MsgBox("Caja cerrada de forma correcta", MsgBoxStyle.Information, _titleCerrarCaja)
             Me.revisarEstadoCaja()
         Else
             MsgBox("Se produjo un error al intentar cerrar la caja. Revise la siguiente información: " &
-                       vbCr & dao.ErrorSms, MsgBoxStyle.Critical, "Error")
+                       vbCr & dao.ErrorSms, MsgBoxStyle.Critical, _titleError)
         End If
     End Sub
 
     Private Sub btnAbrirCaja_Click(sender As System.Object, e As System.EventArgs) Handles btnAbrirCaja.Click
-        Dim result As DialogResult = MsgBox("¿Abrir la caja actual?", MsgBoxStyle.YesNo, "Cerrar caja")
-        If result = Windows.Forms.DialogResult.No Then
+        Dim result As DialogResult = MessageBox.Show(Me, "¿Desea abrir la caja actual?", _titleAbrirCaja, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+        If result = DialogResult.Cancel Then
             Return
         End If
         Me.cargarCaja()
         Dim dao = DataContext.daoMcaja
         If dao.abrirCaja(cajaActual, agenciaActual) Then
-            MsgBox("Apertura de caja de forma correcta", MsgBoxStyle.Information, "Abrir caja")
+            MsgBox("Apertura de caja de forma correcta", MsgBoxStyle.Information, _titleAbrirCaja)
             Me.revisarEstadoCaja()
         Else
             MsgBox("Se produjo un error al intentar abrir la caja. Revise la siguiente información: " &
-                       vbCr & dao.ErrorSms, MsgBoxStyle.Critical, "Error")
+                       vbCr & dao.ErrorSms, MsgBoxStyle.Critical, _titleError)
         End If
     End Sub
 
@@ -411,8 +415,8 @@ Public Class frmMaestroCaja
                 frm.viewer.ReportSource = report
                 frm.Show()
             Catch ex As Exception
-                MsgBox("Error al intentar recuperar los datos de la caja, debido a: " & _
-                       ex.Message, MsgBoxStyle.Critical, "Error")
+                MsgBox("Error al intentar recuperar los datos de la caja, debido a: " &
+                       ex.Message, MsgBoxStyle.Critical, _titleError)
             End Try
         End Using
     End Sub
@@ -429,7 +433,7 @@ Public Class frmMaestroCaja
                     "join movcaja mc on dc.idmov = mc.idmov " &
                     "join Rubro r on mc.codrubro = r.codrubro " &
                     "where CAST(fecha as date) = cast('{0}' as date) and dc.codcaja = '{1}' " &
-                    "and mc.idmov <> {2} and mc.idmov <> {3}", dia, Me.cajaActual, parametro.Idcompras, parametro.Id_adelantos)).ToList
+                    "and mc.idmov <> {2} and mc.idmov <> {3}", dia, Me.cajaActual, parametro.idcompras, parametro.id_adelantos)).ToList
                 If Me.panReimprimir.Visible = False Then
                     Me.panReimprimir.Size = New Size(643, 315)
                     Me.panReimprimir.Visible = True
@@ -480,8 +484,8 @@ Public Class frmMaestroCaja
             frmReportes.viewer.ReportSource = reporte
             frmReportes.Show()
         Catch ex As Exception
-            MsgBox("Se produjo un error al intentar visualizar el voucher, rebice la siguiente información: " & _
-                   vbCr & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            MsgBox("Se produjo un error al intentar visualizar el voucher, rebice la siguiente información: " &
+                   vbCr & ex.Message, MsgBoxStyle.Exclamation, _titleError)
         End Try
     End Sub
 End Class

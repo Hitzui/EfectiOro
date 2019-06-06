@@ -21,8 +21,8 @@ Partial Class frmMaestroCaja
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaestroCaja))
-        Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance4 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblHora = New System.Windows.Forms.Label()
@@ -136,7 +136,6 @@ Partial Class frmMaestroCaja
         Me.btnAbrirCaja.Name = "btnAbrirCaja"
         Me.btnAbrirCaja.Size = New System.Drawing.Size(75, 23)
         Me.btnAbrirCaja.TabIndex = 4
-        Me.btnAbrirCaja.Text = "Abrir caja"
         Me.Tool.SetToolTip(Me.btnAbrirCaja, "Abrir caja actual")
         Me.btnAbrirCaja.UseVisualStyleBackColor = False
         '
@@ -150,7 +149,6 @@ Partial Class frmMaestroCaja
         Me.btnCerrarCaja.Name = "btnCerrarCaja"
         Me.btnCerrarCaja.Size = New System.Drawing.Size(75, 23)
         Me.btnCerrarCaja.TabIndex = 5
-        Me.btnCerrarCaja.Text = "Cerrar caja"
         Me.Tool.SetToolTip(Me.btnCerrarCaja, "Cerrar la caja actual")
         Me.btnCerrarCaja.UseVisualStyleBackColor = False
         '
@@ -560,16 +558,15 @@ Partial Class frmMaestroCaja
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(75, 51)
         Me.btnSalir.TabIndex = 12
-        Me.btnSalir.Text = "Salir"
         Me.Tool.SetToolTip(Me.btnSalir, "Salir del formulario")
         Me.btnSalir.UseVisualStyleBackColor = False
         '
         'btnVolver
         '
-        Appearance1.Image = Global.EfectiOro.My.Resources.Resources._23
-        Appearance1.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnVolver.Appearance = Appearance1
+        Appearance3.Image = Global.EfectiOro.My.Resources.Resources._23
+        Appearance3.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnVolver.Appearance = Appearance3
         Me.btnVolver.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnVolver.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnVolver.Location = New System.Drawing.Point(543, 265)
@@ -591,10 +588,10 @@ Partial Class frmMaestroCaja
         '
         'btnReimprimir
         '
-        Appearance2.Image = Global.EfectiOro.My.Resources.Resources.print_view_48
-        Appearance2.ImageHAlign = Infragistics.Win.HAlign.Center
-        Appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle
-        Me.btnReimprimir.Appearance = Appearance2
+        Appearance4.Image = Global.EfectiOro.My.Resources.Resources.print_view_48
+        Appearance4.ImageHAlign = Infragistics.Win.HAlign.Center
+        Appearance4.ImageVAlign = Infragistics.Win.VAlign.Middle
+        Me.btnReimprimir.Appearance = Appearance4
         Me.btnReimprimir.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
         Me.btnReimprimir.ImageSize = New System.Drawing.Size(42, 42)
         Me.btnReimprimir.Location = New System.Drawing.Point(427, 265)

@@ -1,6 +1,8 @@
 ﻿Imports EfectiOro.Database
 
 Public Class frmAdelantos
+    Private Const _titleError As String = "Error"
+    Private Const _titleAdelantos As String = "Adelantos"
 
     'Esto me dira si hay suma segun los campos seleccionados
     Private sumaGen As Decimal = 0
@@ -42,8 +44,8 @@ Public Class frmAdelantos
                 dgvCliente.Rows.Add(valor.Codcliente, valor.Nombres, valor.Apellidos)
             Next
         Catch ex As Exception
-            MsgBox("Error al inentar filtrar el cliene producido por: " & vbCr & ex.Message, _
-                   MsgBoxStyle.Critical, "Error")
+            MsgBox("Error al inentar filtrar el cliene producido por: " & vbCr & ex.Message,
+                   MsgBoxStyle.Critical, _titleError)
         End Try
     End Sub
     ''' <summary>
@@ -72,8 +74,8 @@ Public Class frmAdelantos
             sumaGen = suma
             lbltotal.Text = suma.ToString("#,###,###.00")
         Catch ex As Exception
-            MsgBox("Uno de los formatos de numero no tiene la entrada correcta, revise si ha escrito bien los numeros." & _
-                   vbCr & "Informacion basica: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Uno de los formatos de numero no tiene la entrada correcta, revise si ha escrito bien los numeros." &
+                   vbCr & "Informacion basica: " & ex.Message, MsgBoxStyle.Critical, _titleError)
         End Try
     End Sub
     Sub habilitar(nuevo As Boolean, guardar As Boolean, cancelar As Boolean, grupo As Boolean)
@@ -279,8 +281,8 @@ Public Class frmAdelantos
                         tieneAdelanto = dao.findByCodigoCliente(txtcodcliente.Text)
                         Dim result As DialogResult
                         If saldoActual > 0 Then
-                            result = MsgBox("El cliente actual tiene pendiente un adelanto con un monto de: " & saldoActual _
-                                        & vbCr & "¿Desea aplicar el adelanto al cliente seleccionado?", MsgBoxStyle.YesNo, "Adelanto")
+                            result = MessageBox.Show(Me, "El cliente actual tiene pendiente un adelanto con un monto de: " & saldoActual _
+                                        & vbCr & "¿Desea aplicar el adelanto al cliente seleccionado?", _titleAdelantos, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                         End If
                         If result = MsgBoxResult.No Then
                             txtcodcliente.Clear()
@@ -299,7 +301,7 @@ Public Class frmAdelantos
                     txtcodcliente.Focus()
             End Select
         Catch ex As Exception
-            MsgBox("Error al intentar seleccionar el cliente: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Error al intentar seleccionar el cliente: " & ex.Message, MsgBoxStyle.Critical, _titleError)
         End Try
     End Sub
 
@@ -363,7 +365,7 @@ Public Class frmAdelantos
 
     Private Sub btnGuardar_Click(sender As System.Object, e As System.EventArgs) Handles btnGuardar.Click
         If sumaGen <= 0 Then
-            MsgBox("No se ha especificado un monto para aplicar el adelanto, intente nuevamente", MsgBoxStyle.Information, "Adelantos")
+            MsgBox("No se ha especificado un monto para aplicar el adelanto, intente nuevamente", MsgBoxStyle.Information, _titleAdelantos)
             Return
         End If
         If txtcodcliente.TextLength <= 0 Then
@@ -371,7 +373,7 @@ Public Class frmAdelantos
             txtcodcliente.Focus()
             Return
         End If
-        Dim result As DialogResult = MsgBox("¿Aplicar el adelanto al cliente seleccionado?", MsgBoxStyle.YesNo, "Adelantos")
+        Dim result As DialogResult = MsgBox("¿Aplicar el adelanto al cliente seleccionado?", MsgBoxStyle.YesNo, _titleAdelantos)
         If result = Windows.Forms.DialogResult.No Then
             Return
         End If
@@ -388,14 +390,14 @@ Public Class frmAdelantos
         Dim recuperarCaja As Mcaja
         Try
             If daoCaja.validarCajaAbierta(caja) = False Then
-                MsgBox("La caja actual quedó abierta, cierre la caja y vuelva a abrirla para realizar la transacción.", _
-                       MsgBoxStyle.Information, "Adelantos")
+                MsgBox("La caja actual quedó abierta, cierre la caja y vuelva a abrirla para realizar la transacción.",
+                       MsgBoxStyle.Information, _titleAdelantos)
                 Return
             End If
             recuperarCaja = daoCaja.recuperarSaldoCaja(caja)
         Catch ex As Exception
-            MsgBox("No existe la caja actual, por favor intente nuevamente." & _
-                   vbCr & "Se produjo el siguiente error:" & daoCaja.ErrorSms, MsgBoxStyle.Critical, "Error")
+            MsgBox("No existe la caja actual, por favor intente nuevamente." &
+                   vbCr & "Se produjo el siguiente error:" & daoCaja.ErrorSms, MsgBoxStyle.Critical, _titleError)
             Return
         End Try
         'revisamos si tiene adelanto pendiente el cliente
@@ -468,15 +470,15 @@ Public Class frmAdelantos
         detaCaja.efectivo = x_efectivo
         detaCaja.cheque = x_cheque
         detaCaja.transferencia = x_transferencia
-        detaCaja.Referencia = txtreferencia.Text
-        detaCaja.Idcaja = recuperarCaja.Idcaja
+        detaCaja.referencia = txtreferencia.Text
+        detaCaja.idcaja = recuperarCaja.Idcaja
         detaCaja.idmov = parametros.id_adelantos
         detaCaja.fecha = DateTime.Now
-        detaCaja.Concepto = "***ADELANTO: " & adelanto.Idsalida & "***"
+        detaCaja.concepto = "***ADELANTO: " & adelanto.Idsalida & "***"
         detaCaja.hora = lblHora.Text
         'detaCaja.tipocambio = tipoCambio.Tipocambio1
         'detaCaja.Fecha = Now
-        detaCaja.Codcaja = caja
+        detaCaja.codcaja = caja
         'validamos que haya saldo dsiponible para realizar la transacción
         If recuperarCaja.Sfinal < x_efectivo Then
             MsgBox("No hay saldo suficiente para realizar la transaccion." &
@@ -486,14 +488,14 @@ Public Class frmAdelantos
         End If
         Try
             If daoAdelantos.crearAdelanto(adelanto) And daoMcaja.guardarDatosDetaCaja(detaCaja, actCaja) Then
-                MsgBox("Se guardó el adelanto del cliente de forma correcta", MsgBoxStyle.Information, "Adelantos")
+                MsgBox("Se guardó el adelanto del cliente de forma correcta", MsgBoxStyle.Information, _titleAdelantos)
                 If MsgBox("¿Imprimir el recibo de adelanto?", MsgBoxStyle.YesNo, "Imprimir") = MsgBoxResult.Yes Then
                     Me.recuperarSaldoTotal(adelanto.Codcliente)
                     Me.imprimir(adelanto.Idsalida, Me.nombreCliente)
                 End If
                 btnCancelar_Click(sender, e)
             Else
-                MsgBox("Se produjeron los siguientes errores: " & vbCr & "Maestro de caja: " & daoMcaja.ErrorSms & vbCr & "Adelanto: " & daoAdelantos.ErrorSms, MsgBoxStyle.Critical, "Error")
+                MsgBox("Se produjeron los siguientes errores: " & vbCr & "Maestro de caja: " & daoMcaja.ErrorSms & vbCr & "Adelanto: " & daoAdelantos.ErrorSms, MsgBoxStyle.Critical, _titleError)
             End If
         Catch ex As Exception
 
@@ -517,7 +519,7 @@ Public Class frmAdelantos
             Next
         Catch ex As Exception
             MsgBox("No se pudo calcular el saldo total del cliente debido a un error: " & vbCr _
-                   & ex.Message, "Error", MsgBoxStyle.Exclamation)
+                   & ex.Message, _titleError, MsgBoxStyle.Exclamation)
         End Try
     End Sub
     Private Sub dgvCliente_Leave(sender As Object, e As EventArgs) Handles dgvCliente.Leave
