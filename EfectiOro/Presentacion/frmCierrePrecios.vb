@@ -332,6 +332,11 @@ Public Class frmCierrePrecios
                         End If
                     Case 2
                         'editar registros
+                        Dim usuario As String = DataContext.usuarioLog.Codoperador
+                        If String.Equals(usuario, "ADMIN") = False Then
+                            MsgBox("NO cuenta con los privilegios para editar datos.", MsgBoxStyle.Information, "Error")
+                            Return
+                        End If
                         If Me._cierreSeleccionado = 0 Then
                             MsgBox("NO ha seleccionado ningun valor para editar", MsgBoxStyle.Information, "Error")
                             Return
