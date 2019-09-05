@@ -2,6 +2,7 @@
 
 Public Class frmPrecios2
     Private Const Title As String = "Precios"
+    Private Const _formatMonedo As String = "#,##0.000"
     Private _codcliente As String
     Private _salir As DialogResult = DialogResult.Yes
     Private _nombreCliente As String
@@ -109,6 +110,7 @@ Public Class frmPrecios2
         _nombreCliente = row.Cells(1).Value & " " & row.Cells(2).Value
         Using ctx As New Contexto
             Try
+                listaCierreClientes.Clear()
                 Dim findCierres = (From cp In ctx.CierrePrecios Where cp.Codcliente = _codcliente _
                                     And cp.Status = True And cp.SaldoOnzas > 0 Order By cp.CodCierre Ascending Select cp).ToList
                 onzasDisponibles = findCierres.Sum(Function(c) c.SaldoOnzas)
@@ -118,8 +120,8 @@ Public Class frmPrecios2
                     rows.Cells(0).Value = True
                 Next
                 listaCierreClientes.AddRange(findCierres)
-                lblOnzasDisponibles.Text = findCierres.Sum(Function(p) p.SaldoOnzas).ToString("#,##0.000")
-                lblOnzasIngresar.Text = findCierres.Sum(Function(p) p.SaldoOnzas).ToString("#,##0.000")
+                lblOnzasDisponibles.Text = findCierres.Sum(Function(p) p.SaldoOnzas).ToString(_formatMonedo)
+                lblOnzasIngresar.Text = findCierres.Sum(Function(p) p.SaldoOnzas).ToString(_formatMonedo)
                 Dim preciosCliente = (From p In ctx.Precios Where p.Codcliente = _codcliente Select p).ToList
                 If preciosCliente.Count > 0 Then
                     MsgBox("El cliente actual tiene precios establecidos, eliminelos para poder continuar", MsgBoxStyle.Information, Title)
@@ -206,13 +208,13 @@ Public Class frmPrecios2
             Dim onzas_diferencia As Decimal = Decimal.Zero
             Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
             Dim temp_onzas As Decimal = onzas_ingresar
-            Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
+            'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
             If listaCierreClientes.Count > 0 Then
                 Dim sum_onzas = listaCierreClientes.Sum(Function(p) p.SaldoOnzas)
                 Dim ver_onzas = Decimal.Subtract(onzas_ingresar, sum_onzas)
                 ver_onzas = Decimal.Round(redondearMenos(ver_onzas, 0.0005), 3)
                 If ver_onzas > Decimal.Zero Then
-                    MsgBox("No hay onzas disponibles para ingresar, intente nuevamente." & vbCr & "Diferencias en Onzas: " & ver_onzas.ToString("#,##0.000"), MsgBoxStyle.Information, "Mensaje")
+                    MsgBox("No hay onzas disponibles para ingresar, intente nuevamente." & vbCr & "Diferencias en Onzas: " & ver_onzas.ToString(_formatMonedo), MsgBoxStyle.Information, "Mensaje")
                     Return
                 End If
                 onzas_acumuladas = Decimal.Add(onzas_acumuladas, onzas_ingresar)
@@ -570,6 +572,8 @@ Public Class frmPrecios2
                 For Each valor As CierrePrecios In nuevosCierres
                     bsCierres.Add(valor)
                 Next
+                Dim sumSaldo = bsCierres.Cast(Of CierrePrecios).Sum(Function(p) p.SaldoOnzas)
+                lblOnzasDisponibles.Text = sumSaldo.ToString(_formatMonedo)
             Catch ex As Exception
                 MsgBox("No se pudo actualizar debido a un error interno." & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
@@ -601,7 +605,8 @@ Public Class frmPrecios2
                     End If
                     Dim x_onzas As Decimal = listaCierreClientes.Sum(Function(c) c.SaldoOnzas)
                     dif_onzas = Decimal.Subtract(x_onzas, onzas_acumuladas)
-                    lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
+                    lblOnzasIngresar.Text = Decimal.Round(dif_onzas, 3)
+                    lblOnzasDiferencia.Text = Decimal.Subtract(bsCierres.Cast(Of CierrePrecios).Sum(Function(p) p.SaldoOnzas), listaCierreClientes.Sum(Function(p) p.SaldoOnzas))
                 End Using
             End If
         Catch ex As Exception
@@ -611,7 +616,7 @@ Public Class frmPrecios2
 
     Private Sub BtnQuitarLinea_Click(sender As Object, e As EventArgs) Handles BtnQuitarLinea.Click
         Try
-            Dim result = MessageBox.Show(Me, "¿Seguiro quiere quitar la linea seleccionada?", "Quitar item", MessageBoxButtons.YesNo)
+            Dim result = MessageBox.Show(Me, "¿Seguro quiere quitar la linea seleccionada?", "Quitar item", MessageBoxButtons.YesNo)
             If result = DialogResult.No Then
                 Return
             End If
