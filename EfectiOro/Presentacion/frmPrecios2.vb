@@ -209,49 +209,47 @@ Public Class frmPrecios2
             Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
             Dim temp_onzas As Decimal = onzas_ingresar
             'Dim listaCierreClientes As List(Of CierrePrecios) = dao.listaCierresPreciosCliente(txtCodigo.Text)
-            If listaCierreClientes.Count > 0 Then
-                Dim sum_onzas = listaCierreClientes.Sum(Function(p) p.SaldoOnzas)
-                Dim ver_onzas = Decimal.Subtract(onzas_ingresar, sum_onzas)
-                ver_onzas = Decimal.Round(redondearMenos(ver_onzas, 0.0005), 3)
-                If ver_onzas > Decimal.Zero Then
-                    MsgBox("No hay onzas disponibles para ingresar, intente nuevamente." & vbCr & "Diferencias en Onzas: " & ver_onzas.ToString(_formatMonedo), MsgBoxStyle.Information, "Mensaje")
-                    Return
-                End If
-                onzas_acumuladas = Decimal.Add(onzas_acumuladas, onzas_ingresar)
-                onzas_acumuladas = redondearMenos(onzas_acumuladas, 0.0005)
-                lblOnzasIngresar.Text = Decimal.Round(onzas_acumuladas, 3)
-                dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
-                dif_onzas = redondearMenos(dif_onzas, 0.0005)
-                lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
-                calculoPrecioBaseMatriz.Clear()
-                'Dim aux_linea As Integer = linea
-                calcularPrecio(onzas_ingresar, quilate, gramos)
-                txtQuilate.Clear()
-                txtGramos.Clear()
-                txtQuilate.Focus()
-                'If onzas_ingresar > Decimal.Zero Then
-                '    MsgBox("NO se pudo ingresar el precio, ya que las onza a ingresar son mayores a las disponibles", MsgBoxStyle.Information, "Precios")
-                'End If
-            Else
-                Dim precioBase As Decimal = Decimal.Zero
-                Dim precio As Decimal = Decimal.Zero
-                Dim tipoCambio As Decimal = Decimal.Zero
-                Dim merma As Decimal = 0.002
-                Dim porcentajeRmc As Decimal = 0.994
-                Dim daoTipoCambio = DataContext.daoTipoCambio
-                tipoCambio = daoTipoCambio.buscarDato(Now).Tipocambio1
-                margen = Decimal.Divide(margen, 100)
-                precioBase = (1 - margen) * (1 - merma) * porcentajeRmc * (precioOro - 0.5) * tipoCambio / 31.1035 / 24
-                precioBase = Decimal.Round(precioBase, 2)
-                precio = quilate * precioBase
-                precio = Decimal.Round(precio, 2)
-                precio = redondearMenos(precio)
-                dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 0), gramos)
-                linea = linea + 1
-                txtQuilate.Clear()
-                txtGramos.Clear()
-                txtQuilate.Focus()
-            End If
+            calcularPrecio(onzas_ingresar, quilate, gramos)
+            'If listaCierreClientes.Count > 0 Then
+            '    Dim sum_onzas = listaCierreClientes.Sum(Function(p) p.SaldoOnzas)
+            '    Dim ver_onzas = Decimal.Subtract(onzas_ingresar, sum_onzas)
+            '    ver_onzas = Decimal.Round(redondearMenos(ver_onzas, 0.0005), 3)
+            '    If ver_onzas > Decimal.Zero Then
+            '        MsgBox("No hay onzas disponibles para ingresar, intente nuevamente." & vbCr & "Diferencias en Onzas: " & ver_onzas.ToString(_formatMonedo), MsgBoxStyle.Information, "Mensaje")
+            '        Return
+            '    End If
+            '    onzas_acumuladas = Decimal.Add(onzas_acumuladas, onzas_ingresar)
+            '    onzas_acumuladas = redondearMenos(onzas_acumuladas, 0.0005)
+            '    lblOnzasIngresar.Text = Decimal.Round(onzas_acumuladas, 3)
+            '    dif_onzas = Decimal.Subtract(onzasDisponibles, onzas_acumuladas)
+            '    dif_onzas = redondearMenos(dif_onzas, 0.0005)
+            '    lblOnzasDiferencia.Text = Decimal.Round(dif_onzas, 3)
+            '    calculoPrecioBaseMatriz.Clear()
+
+            '    calcularPrecio(onzas_ingresar, quilate, gramos)
+            '    txtQuilate.Clear()
+            '    txtGramos.Clear()
+            '    txtQuilate.Focus()
+            'Else
+            '    Dim precioBase As Decimal = Decimal.Zero
+            '    Dim precio As Decimal = Decimal.Zero
+            '    Dim tipoCambio As Decimal = Decimal.Zero
+            '    Dim merma As Decimal = 0.002
+            '    Dim porcentajeRmc As Decimal = 0.994
+            '    Dim daoTipoCambio = DataContext.daoTipoCambio
+            '    tipoCambio = daoTipoCambio.buscarDato(Now).Tipocambio1
+            '    margen = Decimal.Divide(margen, 100)
+            '    precioBase = (1 - margen) * (1 - merma) * porcentajeRmc * (precioOro - 0.5) * tipoCambio / 31.1035 / 24
+            '    precioBase = Decimal.Round(precioBase, 2)
+            '    precio = quilate * precioBase
+            '    precio = Decimal.Round(precio, 2)
+            '    precio = redondearMenos(precio)
+            '    dgvPrecios.Rows.Add(linea, quilate, Decimal.Round(precio, 0), gramos)
+            '    linea = linea + 1
+            '    txtQuilate.Clear()
+            '    txtGramos.Clear()
+            '    txtQuilate.Focus()
+            'End If
         Catch ex As Exception
             MsgBox("Error al ingresar los datos: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error en el grid")
         End Try
@@ -665,7 +663,6 @@ Public Class frmPrecios2
     Private Sub calcularPrecio(onzas_ingresar As Decimal, quilate As Decimal, gramos As Decimal)
         Try
             Dim aux_linea = linea
-            'Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
             Dim temp_onzas As Decimal = onzas_ingresar
             Dim onzas_diferencia = Decimal.Zero
             For Each dato As CierrePrecios In listaCierreClientes
