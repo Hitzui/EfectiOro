@@ -313,7 +313,7 @@ Public Class frmRptClientes
                                   Where c.Fecha >= txtDesdegen.Value And c.Fecha <= txtHastagen.Value And cli.Monto_mensual > 1
                                   Order By c.Fecha Ascending
                                   Group By cli.Codcliente, cli.Nombres, cli.Apellidos, cli.Monto_mensual
-                                 Into MontoMensual = Sum(c.Total), Cantcompras = Count()
+                                  Into MontoMensual = Sum(c.Total), Cantcompras = Count()
                                   Select Codcliente, Nombres, Apellidos, Monto = (Monto_mensual * tipoCambio), MontoMensual,
                                  Variacion = (MontoMensual / (Monto_mensual * tipoCambio)) * 100, Cantcompras Order By Nombres).ToList()
                     If CodigoClienteSeleccionado.Length > 0 Then

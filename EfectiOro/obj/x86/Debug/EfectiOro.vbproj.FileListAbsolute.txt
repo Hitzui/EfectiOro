@@ -756,7 +756,6 @@ D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteReservas.resourc
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReservaRpt.resources
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.cache
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
-D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.CoreCompileInputs.cache
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
