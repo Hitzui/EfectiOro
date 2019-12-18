@@ -457,7 +457,6 @@ D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReporteReservas.resource
 D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.frmReservaRpt.resources
 D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.GenerateResource.cache
 D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe.licenses
-D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.CoreCompileInputs.cache
 D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.CopyComplete
 D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
 D:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml

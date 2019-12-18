@@ -136,6 +136,7 @@ Partial Class frmMaestroCaja
         Me.btnAbrirCaja.Name = "btnAbrirCaja"
         Me.btnAbrirCaja.Size = New System.Drawing.Size(75, 23)
         Me.btnAbrirCaja.TabIndex = 4
+        Me.btnAbrirCaja.Text = "Abrir Caja"
         Me.Tool.SetToolTip(Me.btnAbrirCaja, "Abrir caja actual")
         Me.btnAbrirCaja.UseVisualStyleBackColor = False
         '
@@ -149,6 +150,7 @@ Partial Class frmMaestroCaja
         Me.btnCerrarCaja.Name = "btnCerrarCaja"
         Me.btnCerrarCaja.Size = New System.Drawing.Size(75, 23)
         Me.btnCerrarCaja.TabIndex = 5
+        Me.btnCerrarCaja.Text = "Cerrar Caja"
         Me.Tool.SetToolTip(Me.btnCerrarCaja, "Cerrar la caja actual")
         Me.btnCerrarCaja.UseVisualStyleBackColor = False
         '
