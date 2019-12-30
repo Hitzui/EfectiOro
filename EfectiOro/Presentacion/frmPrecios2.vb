@@ -551,11 +551,6 @@ Public Class frmPrecios2
             If result = DialogResult.No Then
                 Return
             End If
-            For Each key In onzasUsadasLinea
-                For Each value In key.Value
-                    MsgBox("Linea: " & key.Key & ", Onzas: " & value.SaldoOnzas)
-                Next
-            Next
             Dim row = dgvPrecios.CurrentRow()
             For Each dato As CierrePrecios In listaCierreClientes
                 For Each valor In onzasUsadas
