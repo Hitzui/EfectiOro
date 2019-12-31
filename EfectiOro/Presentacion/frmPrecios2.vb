@@ -475,27 +475,6 @@ Public Class frmPrecios2
                                     Where c.Codcliente = txtCodigo.Text And c.Status = True
                                     Select c).ToList
                 Dim nuevosCierres = (From c In listaCierres Where Not list_x.Contains(c.CodCierre) Select c).ToList
-                For Each valor As CierrePrecios In bsCierres
-                    Dim y_saldo As Decimal = Decimal.Zero
-                    For Each x_row As DataGridViewRow In dgvCierrePrecios.Rows
-                        Dim x_value = Convert.ToInt32(x_row.Cells("CodCierreDataGridViewTextBoxColumn").Value)
-                        If valor.CodCierre = x_value Then
-                            y_saldo = Convert.ToDecimal(x_row.Cells("OnzasFinasDataGridViewTextBoxColumn").Value)
-                            Exit For
-                        End If
-                    Next
-                    Dim var = (From c In listaCierres Where c.CodCierre = valor.CodCierre Select c).Single
-                    If var.OnzasFinas <> valor.OnzasFinas Then
-                        Dim dif = Decimal.Subtract(var.SaldoOnzas, y_saldo)
-                        valor.SaldoOnzas = Decimal.Add(valor.SaldoOnzas, dif)
-                        valor.OnzasFinas = var.OnzasFinas
-                        If _onzasDiferencias.ContainsKey(valor.CodCierre) Then
-                            Dim sal = _onzasDiferencias.Item(valor.CodCierre)
-                            sal = Decimal.Add(sal, dif)
-                            _onzasDiferencias.Item(valor.CodCierre) = sal
-                        End If
-                    End If
-                Next
                 For Each valor As CierrePrecios In nuevosCierres
                     bsCierres.Add(valor)
                 Next
