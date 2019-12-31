@@ -395,27 +395,25 @@ Public Class frmPrecios2
                     guardarDatos.Add(datos)
                 Next
                 Dim tmpPrecios As New List(Of TmpPrecios)
-                If _onzasDiferencias.Count > 0 Then
-                    If _listaCierresUsar.Count > 0 Then
-                        _listaCierresUsar.Clear()
-                    End If
-                    linea = 1
-                    For Each dato In _onzasDiferencias
-                        Dim cierre As New CierrePrecios
-                        Dim tmp_precios As New TmpPrecios
-                        tmp_precios.Codcierre = dato.Key
-                        tmp_precios.Cantidad = dato.Value
-                        tmp_precios.Codcliente = txtCodigo.Text
-                        tmp_precios.Fecha = Now
-                        tmp_precios.Linea = linea
-                        cierre.CodCierre = dato.Key
-                        cierre.SaldoOnzas = dato.Value
-                        cierre.Codcliente = txtCodigo.Text
-                        tmpPrecios.Add(tmp_precios)
-                        _listaCierresUsar.Add(cierre)
-                        linea += 1
-                    Next
+                If _listaCierresUsar.Count > 0 Then
+                    _listaCierresUsar.Clear()
                 End If
+                linea = 1
+                For Each dato As CierrePrecios In bsCierres.List
+                    Dim cierre As New CierrePrecios
+                    Dim tmp_precios As New TmpPrecios
+                    tmp_precios.Codcierre = dato.CodCierre
+                    tmp_precios.Cantidad = dato.SaldoOnzas
+                    tmp_precios.Codcliente = txtCodigo.Text
+                    tmp_precios.Fecha = Now
+                    tmp_precios.Linea = linea
+                    cierre.CodCierre = dato.CodCierre
+                    cierre.SaldoOnzas = dato.SaldoOnzas
+                    cierre.Codcliente = txtCodigo.Text
+                    tmpPrecios.Add(tmp_precios)
+                    _listaCierresUsar.Add(cierre)
+                    linea += 1
+                Next
                 ctx.TmpPrecios.InsertAllOnSubmit(tmpPrecios)
                 ctx.Precios.InsertAllOnSubmit(guardarDatos)
                 ctx.SubmitChanges()
