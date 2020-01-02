@@ -395,23 +395,15 @@ Public Class frmPrecios2
                     guardarDatos.Add(datos)
                 Next
                 Dim tmpPrecios As New List(Of TmpPrecios)
-                If _listaCierresUsar.Count > 0 Then
-                    _listaCierresUsar.Clear()
-                End If
                 linea = 1
                 For Each dato As CierrePrecios In bsCierres.List
-                    Dim cierre As New CierrePrecios
                     Dim tmp_precios As New TmpPrecios
                     tmp_precios.Codcierre = dato.CodCierre
                     tmp_precios.Cantidad = dato.SaldoOnzas
                     tmp_precios.Codcliente = txtCodigo.Text
                     tmp_precios.Fecha = Now
                     tmp_precios.Linea = linea
-                    cierre.CodCierre = dato.CodCierre
-                    cierre.SaldoOnzas = dato.SaldoOnzas
-                    cierre.Codcliente = txtCodigo.Text
                     tmpPrecios.Add(tmp_precios)
-                    _listaCierresUsar.Add(cierre)
                     linea += 1
                 Next
                 ctx.TmpPrecios.InsertAllOnSubmit(tmpPrecios)
@@ -585,9 +577,19 @@ Public Class frmPrecios2
             Dim aux_linea = linea
             Dim temp_onzas_ingresar As Decimal = onzas_ingresar
             Dim onzas_diferencia = Decimal.Zero
+            Dim sumSaldoOnzas = bsCierres.Cast(Of CierrePrecios).Sum(Function(a) a.SaldoOnzas)
+            If onzas_ingresar > sumSaldoOnzas Then
+                Dim dif = Decimal.Subtract(onzas_ingresar, sumSaldoOnzas)
+                MsgBox("NO se pudo ingresar el precio, ya que las onza a ingresar son mayores a las disponibles." & vbCr &
+                    "Onzas ingresar: " & onzas_ingresar & vbCr & "Onzas disponibles: " & sumSaldoOnzas & vbCr & "Diferencia en onzas: " & dif,
+                       MsgBoxStyle.Information, "Precios")
+                calculoPrecioBaseMatriz.Clear()
+                Return
+            End If
             For Each dato As CierrePrecios In listaCierreClientes
                 Dim saldo_onzas = dato.SaldoOnzas
                 Dim temp_calculo_precioBase = Decimal.Zero
+                onzas_ingresar = Decimal.Round(onzas_ingresar, 4)
                 If onzas_ingresar > Decimal.Zero And saldo_onzas > Decimal.Zero Then
                     onzas_diferencia = Decimal.Subtract(saldo_onzas, onzas_ingresar)
                     If onzas_diferencia < 0 Then
@@ -595,7 +597,7 @@ Public Class frmPrecios2
                         onzas_ingresar = Math.Abs(onzas_diferencia)
                         temp_calculo_precioBase = saldo_onzas * dato.PrecioBase
                     Else
-                        temp_calculo_precioBase = onzas_ingresar * dato.PrecioBase
+                        temp_calculo_precioBase = Decimal.Multiply(onzas_ingresar, dato.PrecioBase)
                         dato.SaldoOnzas = onzas_diferencia
                         onzas_ingresar = Decimal.Zero
                     End If
@@ -609,11 +611,6 @@ Public Class frmPrecios2
                     End If
                 End If
             Next
-            If onzas_ingresar > Decimal.Zero Then
-                MsgBox("NO se pudo ingresar el precio, ya que las onza a ingresar son mayores a las disponibles", MsgBoxStyle.Information, "Precios")
-                calculoPrecioBaseMatriz.Clear()
-                Return
-            End If
             Dim precioBase = calculoPrecioBaseMatriz.Sum() / temp_onzas_ingresar
             precioBase = redondearMenos(precioBase, 0.01)
             precioBase = Decimal.Round(precioBase, 2)
