@@ -798,3 +798,4 @@ D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.CopyComplete
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.exe
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.xml
 D:\Hitzui\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.pdb
+D:\Hitzui\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
