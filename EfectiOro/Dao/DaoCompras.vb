@@ -545,6 +545,9 @@ Public Class DaoCompras
         Using ctx As New Contexto
             Try
                 Dim siAdelanto As Boolean = False
+                Dim config = New ConfiguracionGeneral
+                Dim cod_agencia = config.getAgencia
+                Dim agencias = (From a In ctx.Agencia Where a.Codagencia = cod_agencia Select a).ToList
                 Dim lisGeneral =
                     (From c In ctx.Compras
                      Join dc In ctx.Det_compra On c.Codagencia Equals dc.Codagencia
@@ -626,8 +629,10 @@ Public Class DaoCompras
                 'reportComprobante.SetDataSource(lista)
                 reportComprobante.Database.Tables(0).SetDataSource(lista)
                 reportComprobante.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+                reportComprobante.Database.Tables(2).SetDataSource(agencias)
                 report.Database.Tables(0).SetDataSource(lista)
                 report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+                report.Database.Tables(2).SetDataSource(agencias)
                 'report.SetDataSource(lista)
                 'ServiciosBasicos.ParametrosCrystal(txtDesdedet.Value, txtHastadet.Value)
                 frmcomprobante.viewer.ReportSource = reportComprobante

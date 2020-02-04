@@ -307,6 +307,9 @@ Public Class DaoAdelantos
         Using ctx As New Contexto
             Try
                 Dim parametros = ctx.Ids.First
+                Dim config = New ConfiguracionGeneral
+                Dim cod_agencia = config.getAgencia
+                Dim agencias = ctx.Agencia.Where(Function(a) a.Codagencia = cod_agencia).ToList
                 Dim buscar = (From a In ctx.Adelantos Where a.Idsalida = codigo Select a).ToList()
                 Dim listar As New List(Of Adelantos)
                 For Each dato In buscar
@@ -337,6 +340,7 @@ Public Class DaoAdelantos
                 'report.SetDataSource(listar)
                 report.Database.Tables(0).SetDataSource(listar)
                 report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+                report.Database.Tables(2).SetDataSource(agencias)
                 'ServiciosBasicos.ParametrosCrystal(buscar.Count, txtDesdegen.Value, txtHastagen.Value)
                 frmReporteReciboAdelantoAbono.viewer.ReportSource = report
                 frmReporteReciboAdelantoAbono.Show()

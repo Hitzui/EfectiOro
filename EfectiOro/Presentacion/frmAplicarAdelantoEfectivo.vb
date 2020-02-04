@@ -128,6 +128,7 @@ Public Class frmAplicarAdelantoEfectivo
         'End If
         Dim config As New ConfiguracionGeneral
         Dim caja As String = config.getCaja
+        Dim cod_agencia = config.getAgencia
         Dim daoCaja = DataContext.daoMcaja
         Try
             If daoCaja.validarCajaAbierta(caja) = False Then
@@ -142,6 +143,7 @@ Public Class frmAplicarAdelantoEfectivo
         End Try
         Dim daoAdelanto = DataContext.daoAdelantos
         Dim daoCliente = DataContext.daoCliente
+        Dim daoAgencia = DataContext.daoAgencia
         If daoAdelanto.aplicarAdelantoEfectivo(adelantoSeleccionados, saldoAplicar, Me.codigoCliente) Then
             MsgBox("Aplicación de efectivo a adelanto(s) seleccionado(s) de forma correcta", MsgBoxStyle.Information, "Aplicar")
             If MsgBox("¿Imprimir recibo de pago de reembolso?", MsgBoxStyle.YesNo, "Imprimir") = MsgBoxResult.Yes Then
@@ -161,6 +163,7 @@ Public Class frmAplicarAdelantoEfectivo
                         End If
                     Next
                 Next
+                Dim agencias = daoAgencia.findAll().Where(Function(a) a.Codagencia = cod_agencia).ToList
                 Dim cliente = daoCliente.findById(Me.codigoCliente)
                 Dim listaCliente As New List(Of Cliente)
                 listaCliente.Clear()
@@ -193,6 +196,7 @@ Public Class frmAplicarAdelantoEfectivo
                 frmReporteReciboAdelantoAbono.viewer.ParameterFieldInfo = parametros
                 reporte.Database.Tables(0).SetDataSource(lista)
                 reporte.Database.Tables(1).SetDataSource(listaCliente)
+                reporte.Database.Tables(2).SetDataSource(agencias)
                 frmReporteReciboAdelantoAbono.viewer.ReportSource = reporte
                 frmReporteReciboAdelantoAbono.Show()
             End If

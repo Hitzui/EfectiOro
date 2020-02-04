@@ -20,16 +20,22 @@ Partial Class frmAplicarAdelantoEfectivo
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAplicarAdelantoEfectivo))
         Dim Appearance1 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance2 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance3 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.txtSaldo = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.dgvAdelanto = New System.Windows.Forms.DataGridView()
+        Me.colSeleccionar2 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.colCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colSaldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colMoneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -40,12 +46,6 @@ Partial Class frmAplicarAdelantoEfectivo
         Me.btnRefrescar = New Infragistics.Win.Misc.UltraButton()
         Me.btnAplicarSaldo = New Infragistics.Win.Misc.UltraButton()
         Me.btnSalir = New Infragistics.Win.Misc.UltraButton()
-        Me.colSeleccionar2 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colSaldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colMoneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvAdelanto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -88,6 +88,47 @@ Partial Class frmAplicarAdelantoEfectivo
         Me.dgvAdelanto.Name = "dgvAdelanto"
         Me.dgvAdelanto.Size = New System.Drawing.Size(481, 202)
         Me.dgvAdelanto.TabIndex = 10
+        '
+        'colSeleccionar2
+        '
+        Me.colSeleccionar2.HeaderText = "Seleccionar"
+        Me.colSeleccionar2.Name = "colSeleccionar2"
+        Me.colSeleccionar2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.colSeleccionar2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'colCodigo
+        '
+        Me.colCodigo.HeaderText = "Codigo"
+        Me.colCodigo.Name = "colCodigo"
+        '
+        'colFecha
+        '
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
+        Me.colFecha.HeaderText = "Fecha"
+        Me.colFecha.Name = "colFecha"
+        '
+        'colMonto
+        '
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = "0"
+        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
+        Me.colMonto.HeaderText = "Monto"
+        Me.colMonto.Name = "colMonto"
+        '
+        'colSaldo
+        '
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = "0"
+        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
+        Me.colSaldo.HeaderText = "Saldo"
+        Me.colSaldo.Name = "colSaldo"
+        '
+        'colMoneda
+        '
+        Me.colMoneda.HeaderText = "Moneda"
+        Me.colMoneda.Name = "colMoneda"
         '
         'GroupBox1
         '
@@ -162,8 +203,8 @@ Partial Class frmAplicarAdelantoEfectivo
         '
         Appearance2.Image = Global.EfectiOro.My.Resources.Resources.aceptar
         Me.btnAplicarSaldo.Appearance = Appearance2
-        Me.btnAplicarSaldo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Office2010Button
-        Me.btnAplicarSaldo.Location = New System.Drawing.Point(614, 138)
+        Me.btnAplicarSaldo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
+        Me.btnAplicarSaldo.Location = New System.Drawing.Point(516, 138)
         Me.btnAplicarSaldo.Name = "btnAplicarSaldo"
         Me.btnAplicarSaldo.Size = New System.Drawing.Size(75, 23)
         Me.btnAplicarSaldo.TabIndex = 16
@@ -183,47 +224,6 @@ Partial Class frmAplicarAdelantoEfectivo
         Me.btnSalir.TabIndex = 18
         Me.btnSalir.Text = "Volver"
         Me.btnSalir.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
-        '
-        'colSeleccionar2
-        '
-        Me.colSeleccionar2.HeaderText = "Seleccionar"
-        Me.colSeleccionar2.Name = "colSeleccionar2"
-        Me.colSeleccionar2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colSeleccionar2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'colCodigo
-        '
-        Me.colCodigo.HeaderText = "Codigo"
-        Me.colCodigo.Name = "colCodigo"
-        '
-        'colFecha
-        '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.colFecha.DefaultCellStyle = DataGridViewCellStyle1
-        Me.colFecha.HeaderText = "Fecha"
-        Me.colFecha.Name = "colFecha"
-        '
-        'colMonto
-        '
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = "0"
-        Me.colMonto.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colMonto.HeaderText = "Monto"
-        Me.colMonto.Name = "colMonto"
-        '
-        'colSaldo
-        '
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = "0"
-        Me.colSaldo.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colSaldo.HeaderText = "Saldo"
-        Me.colSaldo.Name = "colSaldo"
-        '
-        'colMoneda
-        '
-        Me.colMoneda.HeaderText = "Moneda"
-        Me.colMoneda.Name = "colMoneda"
         '
         'frmAplicarAdelantoEfectivo
         '
