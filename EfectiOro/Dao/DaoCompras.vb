@@ -545,9 +545,7 @@ Public Class DaoCompras
         Using ctx As New Contexto
             Try
                 Dim siAdelanto As Boolean = False
-                Dim config = New ConfiguracionGeneral
-                Dim cod_agencia = config.getAgencia
-                Dim agencias = (From a In ctx.Agencia Where a.Codagencia = cod_agencia Select a).ToList
+                Dim cod_agencia = String.Empty
                 Dim lisGeneral =
                     (From c In ctx.Compras
                      Join dc In ctx.Det_compra On c.Codagencia Equals dc.Codagencia
@@ -567,6 +565,7 @@ Public Class DaoCompras
                 For Each dato In lisGeneral
                     Dim vista As New ViewCompras
                     suma += dato.Total
+                    cod_agencia = vista.Codagencia
                     vista.Codagencia = dato.Codagencia
                     vista.Numcompra = dato.Numcompra
                     vista.Codcliente = dato.Codcliente
@@ -622,6 +621,7 @@ Public Class DaoCompras
                         vista.NotaAdelanto &= "Nota: Esta compra tiene un saldo pendiente por pagar (pendiente de cierre): " & vista.Porpagar.ToString("#,###,##0.000")
                     End If
                 Next
+                Dim agencias = (From a In ctx.Agencia Where a.Codagencia = cod_agencia Select a).ToList
                 Dim report As New rptCompra
                 Dim reportComprobante As New rptComprobanteLiquidacion
                 Dim frmReporteCompra As New frmReporteCompra
