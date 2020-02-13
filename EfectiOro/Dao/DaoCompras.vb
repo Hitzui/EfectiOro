@@ -545,14 +545,13 @@ Public Class DaoCompras
         Using ctx As New Contexto
             Try
                 Dim siAdelanto As Boolean = False
-                Dim config = New ConfiguracionGeneral
-                Dim cod_agencia = config.getAgencia
+                Dim cod_agencia = ctx.Compras.Where(Function(a) a.Numcompra = numero_compra).Select(Function(a) a.Codagencia).Single
                 Dim agencias = (From a In ctx.Agencia Where a.Codagencia = cod_agencia Select a).ToList
                 Dim lisGeneral =
                     (From c In ctx.Compras
                      Join dc In ctx.Det_compra On c.Codagencia Equals dc.Codagencia
                      Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
-                     Where c.Numcompra = numero_compra And c.Codestado <> 0 And dc.Numcompra = numero_compra And dc.Codagencia = _agencia
+                     Where c.Numcompra = numero_compra And c.Codestado <> 0 And dc.Numcompra = numero_compra And dc.Codagencia = cod_agencia
                      Order By cli.Nombres
                      Select c.Codagencia, c.Numcompra, cli.Numcedula, dc.Descripcion, c.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion,
                     c.Adelantos, c.Transferencia, c.Cheque, c.Efectivo, c.Por_pagar, c.Codmoneda,
@@ -567,6 +566,7 @@ Public Class DaoCompras
                 For Each dato In lisGeneral
                     Dim vista As New ViewCompras
                     suma += dato.Total
+                    cod_agencia = dato.Codagencia
                     vista.Codagencia = dato.Codagencia
                     vista.Numcompra = dato.Numcompra
                     vista.Codcliente = dato.Codcliente
