@@ -22,6 +22,7 @@ Partial Class frmAdelantos
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdelantos))
         Me.grupoRegistrar = New System.Windows.Forms.GroupBox()
+        Me.txtNombreCliente = New System.Windows.Forms.TextBox()
         Me.dgvCliente = New System.Windows.Forms.DataGridView()
         Me.colCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -66,10 +67,11 @@ Partial Class frmAdelantos
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(590, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(701, 25)
         '
         'grupoRegistrar
         '
+        Me.grupoRegistrar.Controls.Add(Me.txtNombreCliente)
         Me.grupoRegistrar.Controls.Add(Me.dgvCliente)
         Me.grupoRegistrar.Controls.Add(Me.Label4)
         Me.grupoRegistrar.Controls.Add(Me.cmbMoneda)
@@ -90,10 +92,17 @@ Partial Class frmAdelantos
         Me.grupoRegistrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grupoRegistrar.Location = New System.Drawing.Point(12, 31)
         Me.grupoRegistrar.Name = "grupoRegistrar"
-        Me.grupoRegistrar.Size = New System.Drawing.Size(566, 184)
+        Me.grupoRegistrar.Size = New System.Drawing.Size(677, 237)
         Me.grupoRegistrar.TabIndex = 1
         Me.grupoRegistrar.TabStop = False
         Me.grupoRegistrar.Text = "Registrar Adelanto a cliente"
+        '
+        'txtNombreCliente
+        '
+        Me.txtNombreCliente.Location = New System.Drawing.Point(243, 24)
+        Me.txtNombreCliente.Name = "txtNombreCliente"
+        Me.txtNombreCliente.Size = New System.Drawing.Size(210, 21)
+        Me.txtNombreCliente.TabIndex = 21
         '
         'dgvCliente
         '
@@ -104,10 +113,10 @@ Partial Class frmAdelantos
         Me.dgvCliente.BackgroundColor = System.Drawing.Color.White
         Me.dgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCliente.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colCodigo, Me.colNombre, Me.colApellido})
-        Me.dgvCliente.Location = New System.Drawing.Point(143, 48)
+        Me.dgvCliente.Location = New System.Drawing.Point(111, 51)
         Me.dgvCliente.Name = "dgvCliente"
         Me.dgvCliente.ReadOnly = True
-        Me.dgvCliente.Size = New System.Drawing.Size(380, 10)
+        Me.dgvCliente.Size = New System.Drawing.Size(450, 13)
         Me.dgvCliente.TabIndex = 18
         Me.dgvCliente.Visible = False
         '
@@ -136,7 +145,7 @@ Partial Class frmAdelantos
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.Label4.Location = New System.Drawing.Point(306, 107)
+        Me.Label4.Location = New System.Drawing.Point(468, 61)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(100, 15)
         Me.Label4.TabIndex = 20
@@ -148,7 +157,7 @@ Partial Class frmAdelantos
         Me.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbMoneda.Enabled = False
         Me.cmbMoneda.FormattingEnabled = True
-        Me.cmbMoneda.Location = New System.Drawing.Point(412, 104)
+        Me.cmbMoneda.Location = New System.Drawing.Point(471, 83)
         Me.cmbMoneda.Name = "cmbMoneda"
         Me.cmbMoneda.Size = New System.Drawing.Size(148, 23)
         Me.cmbMoneda.TabIndex = 19
@@ -157,10 +166,10 @@ Partial Class frmAdelantos
         '
         Me.lbltotal.AutoSize = True
         Me.lbltotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lbltotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lbltotal.Location = New System.Drawing.Point(378, 81)
+        Me.lbltotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbltotal.Location = New System.Drawing.Point(376, 205)
         Me.lbltotal.Name = "lbltotal"
-        Me.lbltotal.Size = New System.Drawing.Size(47, 17)
+        Me.lbltotal.Size = New System.Drawing.Size(50, 18)
         Me.lbltotal.TabIndex = 17
         Me.lbltotal.Text = "(total)"
         Me.lbltotal.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -168,17 +177,17 @@ Partial Class frmAdelantos
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.Label3.Location = New System.Drawing.Point(335, 82)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(328, 206)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(37, 15)
+        Me.Label3.Size = New System.Drawing.Size(42, 16)
         Me.Label3.TabIndex = 16
         Me.Label3.Text = "Total:"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'txttransferencia
         '
-        Me.txttransferencia.Location = New System.Drawing.Point(143, 129)
+        Me.txttransferencia.Location = New System.Drawing.Point(140, 205)
         Me.txttransferencia.Name = "txttransferencia"
         Me.txttransferencia.Size = New System.Drawing.Size(139, 21)
         Me.txttransferencia.TabIndex = 15
@@ -186,7 +195,7 @@ Partial Class frmAdelantos
         '
         'txtcheque
         '
-        Me.txtcheque.Location = New System.Drawing.Point(143, 104)
+        Me.txtcheque.Location = New System.Drawing.Point(140, 165)
         Me.txtcheque.Name = "txtcheque"
         Me.txtcheque.Size = New System.Drawing.Size(139, 21)
         Me.txtcheque.TabIndex = 14
@@ -194,7 +203,7 @@ Partial Class frmAdelantos
         '
         'txtefectivo
         '
-        Me.txtefectivo.Location = New System.Drawing.Point(143, 79)
+        Me.txtefectivo.Location = New System.Drawing.Point(140, 125)
         Me.txtefectivo.Name = "txtefectivo"
         Me.txtefectivo.Size = New System.Drawing.Size(139, 21)
         Me.txtefectivo.TabIndex = 13
@@ -202,7 +211,7 @@ Partial Class frmAdelantos
         'chekTransferencia
         '
         Me.chekTransferencia.AutoSize = True
-        Me.chekTransferencia.Location = New System.Drawing.Point(14, 131)
+        Me.chekTransferencia.Location = New System.Drawing.Point(14, 205)
         Me.chekTransferencia.Name = "chekTransferencia"
         Me.chekTransferencia.Size = New System.Drawing.Size(123, 19)
         Me.chekTransferencia.TabIndex = 12
@@ -212,7 +221,7 @@ Partial Class frmAdelantos
         'chekCheque
         '
         Me.chekCheque.AutoSize = True
-        Me.chekCheque.Location = New System.Drawing.Point(13, 106)
+        Me.chekCheque.Location = New System.Drawing.Point(13, 165)
         Me.chekCheque.Name = "chekCheque"
         Me.chekCheque.Size = New System.Drawing.Size(124, 19)
         Me.chekCheque.TabIndex = 11
@@ -224,7 +233,7 @@ Partial Class frmAdelantos
         Me.chekEfectivo.AutoSize = True
         Me.chekEfectivo.Checked = True
         Me.chekEfectivo.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chekEfectivo.Location = New System.Drawing.Point(14, 81)
+        Me.chekEfectivo.Location = New System.Drawing.Point(11, 125)
         Me.chekEfectivo.Name = "chekEfectivo"
         Me.chekEfectivo.Size = New System.Drawing.Size(123, 19)
         Me.chekEfectivo.TabIndex = 10
@@ -233,16 +242,16 @@ Partial Class frmAdelantos
         '
         'txtreferencia
         '
-        Me.txtreferencia.Location = New System.Drawing.Point(143, 49)
+        Me.txtreferencia.Location = New System.Drawing.Point(95, 85)
         Me.txtreferencia.Name = "txtreferencia"
-        Me.txtreferencia.Size = New System.Drawing.Size(273, 21)
+        Me.txtreferencia.Size = New System.Drawing.Size(370, 21)
         Me.txtreferencia.TabIndex = 9
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.Label2.Location = New System.Drawing.Point(61, 52)
+        Me.Label2.Location = New System.Drawing.Point(13, 83)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(76, 15)
         Me.Label2.TabIndex = 8
@@ -251,16 +260,17 @@ Partial Class frmAdelantos
         '
         'txtcodcliente
         '
-        Me.txtcodcliente.Location = New System.Drawing.Point(155, 24)
+        Me.txtcodcliente.Location = New System.Drawing.Point(125, 24)
         Me.txtcodcliente.Name = "txtcodcliente"
-        Me.txtcodcliente.Size = New System.Drawing.Size(164, 21)
+        Me.txtcodcliente.ReadOnly = True
+        Me.txtcodcliente.Size = New System.Drawing.Size(112, 21)
         Me.txtcodcliente.TabIndex = 7
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.Label1.Location = New System.Drawing.Point(32, 27)
+        Me.Label1.Location = New System.Drawing.Point(14, 27)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(105, 15)
         Me.Label1.TabIndex = 6
@@ -271,7 +281,7 @@ Partial Class frmAdelantos
         '
         Me.lblFecha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.lblFecha.Location = New System.Drawing.Point(338, 22)
+        Me.lblFecha.Location = New System.Drawing.Point(471, 25)
         Me.lblFecha.Name = "lblFecha"
         Me.lblFecha.Size = New System.Drawing.Size(90, 20)
         Me.lblFecha.TabIndex = 5
@@ -282,7 +292,7 @@ Partial Class frmAdelantos
         '
         Me.lblHora.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblHora.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.lblHora.Location = New System.Drawing.Point(441, 22)
+        Me.lblHora.Location = New System.Drawing.Point(581, 25)
         Me.lblHora.Name = "lblHora"
         Me.lblHora.Size = New System.Drawing.Size(90, 20)
         Me.lblHora.TabIndex = 4
@@ -296,9 +306,9 @@ Partial Class frmAdelantos
         Me.GroupBox2.Controls.Add(Me.btnCancelar)
         Me.GroupBox2.Controls.Add(Me.btnGuardar)
         Me.GroupBox2.Controls.Add(Me.btnNuevo)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 211)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 274)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(566, 61)
+        Me.GroupBox2.Size = New System.Drawing.Size(677, 61)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         '
@@ -308,7 +318,7 @@ Partial Class frmAdelantos
         Me.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSalir.ImageIndex = 5
         Me.btnSalir.ImageList = Me.ImageList1
-        Me.btnSalir.Location = New System.Drawing.Point(488, 10)
+        Me.btnSalir.Location = New System.Drawing.Point(599, 10)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(72, 45)
         Me.btnSalir.TabIndex = 4
@@ -384,7 +394,7 @@ Partial Class frmAdelantos
         'frmAdelantos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(590, 284)
+        Me.ClientSize = New System.Drawing.Size(701, 347)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.grupoRegistrar)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -430,4 +440,5 @@ Partial Class frmAdelantos
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents Label4 As Label
     Friend WithEvents cmbMoneda As ComboBox
+    Friend WithEvents txtNombreCliente As TextBox
 End Class

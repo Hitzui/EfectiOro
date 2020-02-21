@@ -34,12 +34,12 @@ Public Class frmAdelantos
     End Sub
     Sub filtrarCliente()
         Try
-            If txtcodcliente.TextLength > 0 Then
-                erp.SetError(txtcodcliente, "")
+            If txtNombreCliente.TextLength > 0 Then
+                erp.SetError(txtNombreCliente, "")
             End If
             Dim dao = DataContext.daoCliente
             dgvCliente.Rows.Clear()
-            Dim listar As List(Of Cliente) = dao.filtrarPorNombre(txtcodcliente.Text)
+            Dim listar As List(Of Cliente) = dao.filtrarPorNombre(txtNombreCliente.Text)
             For Each valor In listar
                 dgvCliente.Rows.Add(valor.Codcliente, valor.Nombres, valor.Apellidos)
             Next
@@ -115,7 +115,7 @@ Public Class frmAdelantos
         cargarMoneda()
         Me.habilitar(False, True, True, True)
         Me.limpiar()
-        txtcodcliente.Focus()
+        txtNombreCliente.Focus()
         Me.filtrarCliente()
     End Sub
 
@@ -126,15 +126,15 @@ Public Class frmAdelantos
         Me.limpiar()
     End Sub
 
-    Private Sub txtcodcliente_Enter(sender As System.Object, e As System.EventArgs) Handles txtcodcliente.Enter
-        ServiciosBasicos.colorDeFondoInfo(txtcodcliente)
+    Private Sub txtcodcliente_Enter(sender As System.Object, e As System.EventArgs) Handles txtNombreCliente.Enter
+        ServiciosBasicos.colorDeFondoInfo(txtNombreCliente)
         If dgvCliente.Visible = False Then
             dgvCliente.Visible = True
-            dgvCliente.Size = New Size(327, 108)
+            dgvCliente.Size = New Size(450, 108)
         End If
     End Sub
 
-    Private Sub txtcodcliente_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles txtcodcliente.KeyDown
+    Private Sub txtcodcliente_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles txtNombreCliente.KeyDown
         Select Case e.KeyValue
             Case Keys.Down
                 dgvCliente.Focus()
@@ -151,7 +151,7 @@ Public Class frmAdelantos
     End Sub
 
     Private Sub txtcodcliente_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtcodcliente.TextChanged
-        Me.filtrarCliente()
+
     End Sub
 
     Private Sub txtreferencia_Enter(sender As System.Object, e As System.EventArgs) Handles txtreferencia.Enter
@@ -532,5 +532,9 @@ Public Class frmAdelantos
 
     Private Sub btnAdelantos_Click(sender As Object, e As EventArgs) Handles btnAdelantos.Click
         frmAdelantosAplicados.Show()
+    End Sub
+
+    Private Sub txtNombreCliente_TextChanged(sender As Object, e As EventArgs) Handles txtNombreCliente.TextChanged
+        Me.filtrarCliente()
     End Sub
 End Class
