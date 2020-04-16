@@ -543,108 +543,109 @@ Public Class DaoCompras
     End Sub
     Public Sub imprimirCompra(numero_compra As String) Implements IDaoCompras.imprimirCompra
         Using ctx As New Contexto
-            Try
-                Dim siAdelanto As Boolean = False
-                Dim cod_agencia = ctx.Compras.Where(Function(a) a.Numcompra = numero_compra).Select(Function(a) a.Codagencia).Single
-                Dim agencias = (From a In ctx.Agencia Where a.Codagencia = cod_agencia Select a).ToList
-                Dim lisGeneral =
-                    (From c In ctx.Compras
-                     Join dc In ctx.Det_compra On c.Codagencia Equals dc.Codagencia
-                     Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
-                     Where c.Numcompra = numero_compra And c.Codestado <> 0 And dc.Numcompra = numero_compra And dc.Codagencia = cod_agencia
-                     Order By cli.Nombres
-                     Select c.Codagencia, c.Numcompra, cli.Numcedula, dc.Descripcion, c.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion,
-                    c.Adelantos, c.Transferencia, c.Cheque, c.Efectivo, c.Por_pagar, c.Codmoneda,
-                    dc.Kilate, dc.Peso, dc.Preciok, dc.Importe, c.Total, c.Fecha, c.Usuario, c.Saldo_adelanto).ToList()
-                If lisGeneral.Count <= 0 Then
-                    MsgBox("No hay datos a mostrar en el rango de fechas indicado, intente nuevamente", MsgBoxStyle.Information, "Reporte de compras por cliente")
-                    Return
+            'Try
+            Dim cod_agencia = config.getAgencia
+            Dim siAdelanto As Boolean = False
+            'Dim cod_agencia = ctx.Compras.Where(Function(a) a.Numcompra = numero_compra).Select(Function(a) a.Codagencia).Single
+            Dim agencias = (From a In ctx.Agencia Where a.Codagencia = cod_agencia Select a).ToList
+            Dim lisGeneral =
+                (From c In ctx.Compras
+                 Join dc In ctx.Det_compra On c.Codagencia Equals dc.Codagencia
+                 Join cli In ctx.Cliente On c.Codcliente Equals cli.Codcliente
+                 Where c.Numcompra = numero_compra And c.Codestado <> 0 And dc.Numcompra = numero_compra And dc.Codagencia = cod_agencia
+                 Order By cli.Nombres
+                 Select c.Codagencia, c.Numcompra, cli.Numcedula, dc.Descripcion, c.Codcliente, cli.Nombres, cli.Apellidos, cli.Direccion,
+                c.Adelantos, c.Transferencia, c.Cheque, c.Efectivo, c.Por_pagar, c.Codmoneda,
+                dc.Kilate, dc.Peso, dc.Preciok, dc.Importe, c.Total, c.Fecha, c.Usuario, c.Saldo_adelanto).ToList()
+            If lisGeneral.Count <= 0 Then
+                MsgBox("No hay datos a mostrar en el rango de fechas indicado, intente nuevamente", MsgBoxStyle.Information, "Reporte de compras por cliente")
+                Return
+            End If
+            Dim lista As New List(Of ViewCompras)
+            Dim suma As Decimal = 0
+            Dim param = (From p In ctx.Ids Where p.cordobas > 0 Select p).First
+            For Each dato In lisGeneral
+                Dim vista As New ViewCompras
+                suma += dato.Total
+                cod_agencia = dato.Codagencia
+                vista.Codagencia = dato.Codagencia
+                vista.Numcompra = dato.Numcompra
+                vista.Codcliente = dato.Codcliente
+                vista.Numcedula = dato.Numcedula
+                vista.Direccion = dato.Direccion
+                vista.Fecha = dato.Fecha
+                vista.Total = dato.Total
+                vista.Descripcion = dato.Descripcion
+                vista.Kilate = dato.Kilate
+                vista.Nomcliente = dato.Nombres & " " & dato.Apellidos
+                vista.TotalGeneral = suma
+                vista.Peso = dato.Peso
+                vista.Precio = dato.Preciok
+                vista.Importe = dato.Importe
+                vista.Adelantos = dato.Adelantos
+                vista.Efectivo = dato.Efectivo
+                vista.Cheque = dato.Cheque
+                vista.Transferencia = dato.Transferencia
+                vista.Porpagar = dato.Por_pagar
+                vista.Usuario = dato.Usuario
+                vista.Saldo_adelanto = dato.Saldo_adelanto
+                vista.CodMoneda = dato.Codmoneda
+                lista.Add(vista)
+                If dato.Adelantos > 0 Then
+                    siAdelanto = True
+                    Dim numAdelanto = (From a In ctx.Adelantos
+                                       Where a.Codcliente = vista.Codcliente And
+                                       a.Numcompra.Contains(dato.Numcompra)
+                                       Select a).ToList()
+                    Dim saldoPendAdelantosCordobas As Decimal = ctx.ExecuteQuery(Of Decimal)(String.Format("select iif(SUM(a.saldo)>0,sum(a.saldo),0) as saldo from adelantos a where a.codcliente = '{0}' and a.saldo >0 and a.codmoneda = {1}", dato.Codcliente, param.cordobas)).First()
+                    Dim saldoPendAdelantosDolares As Decimal = ctx.ExecuteQuery(Of Decimal)(String.Format("select iif(SUM(a.saldo)>0,sum(a.saldo),0) as saldo from adelantos a where a.codcliente = '{0}' and a.saldo >0 and a.codmoneda = {1}", dato.Codcliente, param.dolares)).First()
+                    If vista.Saldo_adelanto <= Decimal.Zero Then
+                        vista.Saldo_adelanto = saldoPendAdelantosCordobas
+                    End If
+                    Dim nextIdAdelanto As String = String.Empty
+                    Dim codAdelanto As String = String.Empty
+                    For Each valorAdelantoCliente In numAdelanto
+                        nextIdAdelanto = valorAdelantoCliente.Idsalida
+                        If nextIdAdelanto.Length = 0 Then
+                            codAdelanto = nextIdAdelanto
+                        End If
+                        codAdelanto = codAdelanto & "; " & nextIdAdelanto
+                    Next
+                    vista.NotaAdelanto = "Nota: En esta compra se aplica un reembolso de C$" & vista.Adelantos.ToString(formatoNumero) & " correspondiente al adelanto número " &
+                        codAdelanto & ". El nuevo saldo es C$: " & saldoPendAdelantosCordobas.ToString(formatoNumero)
+                    If saldoPendAdelantosDolares > Decimal.Zero Then
+                        vista.NotaAdelanto = String.Concat(vista.NotaAdelanto, ", y U$: " & saldoPendAdelantosDolares.ToString(formatoNumero) & vbCr)
+                    Else
+                        vista.NotaAdelanto = String.Concat(vista.NotaAdelanto, vbCr)
+                    End If
                 End If
-                Dim lista As New List(Of ViewCompras)
-                Dim suma As Decimal = 0
-                Dim param = (From p In ctx.Ids Where p.cordobas > 0 Select p).First
-                For Each dato In lisGeneral
-                    Dim vista As New ViewCompras
-                    suma += dato.Total
-                    cod_agencia = dato.Codagencia
-                    vista.Codagencia = dato.Codagencia
-                    vista.Numcompra = dato.Numcompra
-                    vista.Codcliente = dato.Codcliente
-                    vista.Numcedula = dato.Numcedula
-                    vista.Direccion = dato.Direccion
-                    vista.Fecha = dato.Fecha
-                    vista.Total = dato.Total
-                    vista.Descripcion = dato.Descripcion
-                    vista.Kilate = dato.Kilate
-                    vista.Nomcliente = dato.Nombres & " " & dato.Apellidos
-                    vista.TotalGeneral = suma
-                    vista.Peso = dato.Peso
-                    vista.Precio = dato.Preciok
-                    vista.Importe = dato.Importe
-                    vista.Adelantos = dato.Adelantos
-                    vista.Efectivo = dato.Efectivo
-                    vista.Cheque = dato.Cheque
-                    vista.Transferencia = dato.Transferencia
-                    vista.Porpagar = dato.Por_pagar
-                    vista.Usuario = dato.Usuario
-                    vista.Saldo_adelanto = dato.Saldo_adelanto
-                    vista.CodMoneda = dato.Codmoneda
-                    lista.Add(vista)
-                    If dato.Adelantos > 0 Then
-                        siAdelanto = True
-                        Dim numAdelanto = (From a In ctx.Adelantos
-                                           Where a.Codcliente = vista.Codcliente And
-                                           a.Numcompra.Contains(dato.Numcompra)
-                                           Select a).ToList()
-                        Dim saldoPendAdelantosCordobas As Decimal = ctx.ExecuteQuery(Of Decimal)(String.Format("select iif(SUM(a.saldo)>0,sum(a.saldo),0) as saldo from adelantos a where a.codcliente = '{0}' and a.saldo >0 and a.codmoneda = {1}", dato.Codcliente, param.cordobas)).First()
-                        Dim saldoPendAdelantosDolares As Decimal = ctx.ExecuteQuery(Of Decimal)(String.Format("select iif(SUM(a.saldo)>0,sum(a.saldo),0) as saldo from adelantos a where a.codcliente = '{0}' and a.saldo >0 and a.codmoneda = {1}", dato.Codcliente, param.dolares)).First()
-                        If vista.Saldo_adelanto <= Decimal.Zero Then
-                            vista.Saldo_adelanto = saldoPendAdelantosCordobas
-                        End If
-                        Dim nextIdAdelanto As String = String.Empty
-                        Dim codAdelanto As String = String.Empty
-                        For Each valorAdelantoCliente In numAdelanto
-                            nextIdAdelanto = valorAdelantoCliente.Idsalida
-                            If nextIdAdelanto.Length = 0 Then
-                                codAdelanto = nextIdAdelanto
-                            End If
-                            codAdelanto = codAdelanto & "; " & nextIdAdelanto
-                        Next
-                        vista.NotaAdelanto = "Nota: En esta compra se aplica un reembolso de C$" & vista.Adelantos.ToString(formatoNumero) & " correspondiente al adelanto número " &
-                            codAdelanto & ". El nuevo saldo es C$: " & saldoPendAdelantosCordobas.ToString(formatoNumero)
-                        If saldoPendAdelantosDolares > Decimal.Zero Then
-                            vista.NotaAdelanto = String.Concat(vista.NotaAdelanto, ", y U$: " & saldoPendAdelantosDolares.ToString(formatoNumero) & vbCr)
-                        Else
-                            vista.NotaAdelanto = String.Concat(vista.NotaAdelanto, vbCr)
-                        End If
-                    End If
-                    If vista.Porpagar > 0 Then
-                        vista.NotaAdelanto &= "Nota: Esta compra tiene un saldo pendiente por pagar (pendiente de cierre): " & vista.Porpagar.ToString("#,###,##0.000")
-                    End If
-                Next
-                Dim report As New rptCompra
-                Dim reportComprobante As New rptComprobanteLiquidacion
-                Dim frmReporteCompra As New frmReporteCompra
-                Dim frmcomprobante As New frmReporteComprobanteLiquidacion
-                'reportComprobante.SetDataSource(lista)
-                reportComprobante.Database.Tables(0).SetDataSource(lista)
-                reportComprobante.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
-                reportComprobante.Database.Tables(2).SetDataSource(agencias)
-                report.Database.Tables(0).SetDataSource(lista)
-                report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
-                report.Database.Tables(2).SetDataSource(agencias)
-                'report.SetDataSource(lista)
-                'ServiciosBasicos.ParametrosCrystal(txtDesdedet.Value, txtHastadet.Value)
-                frmcomprobante.viewer.ReportSource = reportComprobante
-                frmcomprobante.Show()
-                frmReporteCompra.viewer.ReportSource = report
-                frmReporteCompra.Show()
-            Catch ex As Exception
-                MsgBox("No se pudo imprimir la compra debido al siguiente error: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
-            End Try
+                If vista.Porpagar > 0 Then
+                    vista.NotaAdelanto &= "Nota: Esta compra tiene un saldo pendiente por pagar (pendiente de cierre): " & vista.Porpagar.ToString("#,###,##0.000")
+                End If
+            Next
+            Dim report As New rptCompra
+            Dim reportComprobante As New rptComprobanteLiquidacion
+            Dim frmReporteCompra As New frmReporteCompra
+            Dim frmcomprobante As New frmReporteComprobanteLiquidacion
+            'reportComprobante.SetDataSource(lista)
+            reportComprobante.Database.Tables(0).SetDataSource(lista)
+            reportComprobante.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+            reportComprobante.Database.Tables(2).SetDataSource(agencias)
+            report.Database.Tables(0).SetDataSource(lista)
+            report.Database.Tables(1).SetDataSource(ctx.Moneda.ToList)
+            report.Database.Tables(2).SetDataSource(agencias)
+            'report.SetDataSource(lista)
+            'ServiciosBasicos.ParametrosCrystal(txtDesdedet.Value, txtHastadet.Value)
+            frmcomprobante.viewer.ReportSource = reportComprobante
+            frmcomprobante.Show()
+            frmReporteCompra.viewer.ReportSource = report
+            frmReporteCompra.Show()
+            'Catch ex As Exception
+            '    MsgBox("No se pudo imprimir la compra debido al siguiente error: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
+            'End Try
         End Using
     End Sub
-    
+
     Public ReadOnly Property ErrorSms As String Implements IDaoCompras.ErrorSms
         Get
             Return _error

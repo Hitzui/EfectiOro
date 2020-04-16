@@ -3,6 +3,7 @@
 Public Class frmPrecios2
     Private Const Title As String = "Precios"
     Private Const _formatMonedo As String = "#,##0.000"
+    Private Const titleError As String = "Error"
     Private _codcliente As String
     Private _salir As DialogResult = DialogResult.Yes
     Private _nombreCliente As String
@@ -209,7 +210,7 @@ Public Class frmPrecios2
             Dim onzas_ingresar As Decimal = gramos * quilate / 24 / 31.1035
             calcularPrecio(onzas_ingresar, quilate, gramos)
         Catch ex As Exception
-            MsgBox("Error al ingresar los datos: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error en el grid")
+            MsgBox("Error al ingresar los datos: " & vbCr & ex.Message, MsgBoxStyle.Critical, titleError)
         End Try
     End Sub
 
@@ -369,7 +370,7 @@ Public Class frmPrecios2
             onzasUsadasLinea.Remove(linea)
             dgvPrecios.Rows.Remove(fila)
         Catch ex As Exception
-            MsgBox("NO se pudo quitar la fila seleccionada: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("NO se pudo quitar la fila seleccionada: " & ex.Message, MsgBoxStyle.Critical, titleError)
         End Try
     End Sub
 
@@ -414,7 +415,7 @@ Public Class frmPrecios2
                 btnCancelar_Click(sender, e)
             End Using
         Catch ex As Exception
-            MsgBox("Se produjo un error al guardar: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Se produjo un error al guardar: " & ex.Message, MsgBoxStyle.Critical, titleError)
         End Try
     End Sub
 
@@ -473,7 +474,7 @@ Public Class frmPrecios2
                 Dim sumSaldo = bsCierres.Cast(Of CierrePrecios).Sum(Function(p) p.SaldoOnzas)
                 lblOnzasDisponibles.Text = sumSaldo.ToString(_formatMonedo)
             Catch ex As Exception
-                MsgBox("No se pudo actualizar debido a un error interno." & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
+                MsgBox("No se pudo actualizar debido a un error interno." & vbCr & ex.Message, MsgBoxStyle.Critical, titleError)
             End Try
         End Using
     End Sub
@@ -547,7 +548,7 @@ Public Class frmPrecios2
                 calcularPrecio(onzas_ingresar, quilate, gramos)
             Next
         Catch ex As Exception
-            MsgBox("Delete error: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Delete error: " & ex.Message, MsgBoxStyle.Critical, titleError)
         End Try
     End Sub
 
@@ -580,7 +581,7 @@ Public Class frmPrecios2
                         dato.SaldoOnzas = onzas_diferencia
                         onzas_ingresar = Decimal.Zero
                     End If
-                    calculoPrecioBaseMatriz.Add(Decimal.Round(temp_calculo_precioBase, 3))
+                    calculoPrecioBaseMatriz.Add(Decimal.Round(temp_calculo_precioBase, 4))
                     Dim x_onzas = Decimal.Subtract(saldo_onzas, dato.SaldoOnzas)
                     If onzasUsadas.ContainsKey(aux_linea) Then
                         Dim buscar_onzas = onzasUsadas.Item(aux_linea)
@@ -591,11 +592,11 @@ Public Class frmPrecios2
                 End If
             Next
             Dim precioBase = calculoPrecioBaseMatriz.Sum() / temp_onzas_ingresar
-            precioBase = redondearMenos(precioBase, 0.01)
+            precioBase = redondear2(precioBase)
             precioBase = Decimal.Round(precioBase, 2)
             Dim precio = Decimal.Multiply(precioBase, quilate)
-            precio = redondearMenos(precio, 0.01)
-            precio = Decimal.Round(precio, 2)
+            precio = redondear2(precio)
+            precio = Decimal.Round(precio, 0)
             dgvPrecios.Rows.Add(linea, quilate, precio, gramos)
             linea += 1
             txtGramos.Clear()
@@ -606,7 +607,7 @@ Public Class frmPrecios2
             lblOnzasDiferencia.Text = Decimal.Add(onzas_label, temp_onzas_ingresar).ToString("###.00")
 
         Catch ex As Exception
-            MsgBox("Se produjo el siguiente error al calcular el precio de las onzas: " & vbCr & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Se produjo el siguiente error al calcular el precio de las onzas: " & vbCr & ex.Message, MsgBoxStyle.Critical, titleError)
         End Try
     End Sub
 End Class

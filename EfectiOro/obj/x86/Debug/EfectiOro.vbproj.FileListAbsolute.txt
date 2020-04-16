@@ -914,3 +914,5 @@ C:\Repos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Repos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.xml
 C:\Repos\EfectiOro\EfectiOro\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
 C:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.CopyComplete
+C:\Repos\EfectiOro\EfectiOro\bin\Debug\FlashControlV71.dll
+C:\Repos\EfectiOro\EfectiOro\obj\x86\Debug\EfectiOro.vbproj.CoreCompileInputs.cache

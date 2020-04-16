@@ -43,7 +43,6 @@ Partial Class frmCierrePrecios
         Me.txtGramos = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtPrecioOro = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.txtOnzas = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.grpButtons = New System.Windows.Forms.GroupBox()
@@ -63,6 +62,7 @@ Partial Class frmCierrePrecios
         Me.colPrecioBase = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tip = New System.Windows.Forms.ToolTip(Me.components)
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.grpCliente.SuspendLayout()
         CType(Me.dgvCliente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDatos.SuspendLayout()
@@ -185,11 +185,11 @@ Partial Class frmCierrePrecios
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(6, 107)
+        Me.Label7.Location = New System.Drawing.Point(43, 107)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(93, 17)
+        Me.Label7.Size = New System.Drawing.Size(56, 17)
         Me.Label7.TabIndex = 12
-        Me.Label7.Text = "Margen bruto"
+        Me.Label7.Text = "Margen"
         '
         'txtPrecioBase
         '
@@ -233,16 +233,6 @@ Partial Class frmCierrePrecios
         Me.txtPrecioOro.Name = "txtPrecioOro"
         Me.txtPrecioOro.Size = New System.Drawing.Size(100, 20)
         Me.txtPrecioOro.TabIndex = 7
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(26, 65)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(73, 17)
-        Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Precio oro"
         '
         'txtOnzas
         '
@@ -431,6 +421,16 @@ Partial Class frmCierrePrecios
         Me.erp.ContainerControl = Me
         Me.erp.Icon = CType(resources.GetObject("erp.Icon"), System.Drawing.Icon)
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(26, 65)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(73, 17)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Precio oro"
+        '
         'frmCierrePrecios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -467,7 +467,6 @@ Partial Class frmCierrePrecios
     Friend WithEvents dgvCliente As System.Windows.Forms.DataGridView
     Friend WithEvents grpDatos As System.Windows.Forms.GroupBox
     Friend WithEvents txtPrecioOro As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents txtOnzas As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents grpButtons As System.Windows.Forms.GroupBox
@@ -494,4 +493,5 @@ Partial Class frmCierrePrecios
     Friend WithEvents colFecha As DataGridViewTextBoxColumn
     Friend WithEvents colPrecioBase As DataGridViewTextBoxColumn
     Friend WithEvents btnCerrarPrecio As Infragistics.Win.Misc.UltraButton
+    Friend WithEvents Label4 As Label
 End Class

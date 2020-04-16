@@ -274,17 +274,33 @@ Module ServiciosBasicos
             Return var
         End Try
     End Function
-    Public Function redondearMenos(ByVal var As Decimal, Optional _decimal As Decimal = 0.55) As Decimal
+    Public Function Redondear(ByVal val As Decimal) As Decimal
+        Dim entero = Math.Truncate(val)
+        Dim decimales = Decimal.Subtract(val, entero)
+        Dim punto As Decimal = Decimal.Parse(decimales.ToString("0.####"))
+        MsgBox(punto)
+        Return Decimal.Zero
+    End Function
+    Public Function redondear2(ByVal var As Decimal) As Decimal
         Try
-            Dim Input As Decimal
             Dim Output As Decimal
-            Input = Decimal.Round(var, 4)
-            Output = Input - (Input Mod _decimal)
+            Output = Decimal.Subtract(var, 0.005)
             Return Output
         Catch ex As Exception
             Return var
         End Try
     End Function
+    Public Function redondearMenos(ByVal var As Decimal, Optional _decimal As Decimal = 0.005) As Decimal
+        Try
+            Dim Input As Decimal
+            Dim Output As Decimal
+            Output = var - (Input Mod _decimal)
+            Return Output
+        Catch ex As Exception
+            Return var
+        End Try
+    End Function
+
     Public Sub colorearGrid(ByVal dgv As DataGridView)
         dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells
         ' Set the selection background color for all the cells.
@@ -494,7 +510,7 @@ Module ServiciosBasicos
     Public Sub TextBoxNumeric_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim noNumero As Boolean
         noNumero = True
-        If e.KeyChar >= Convert.ToChar(Keys.D0) And e.KeyChar <= Convert.ToChar(Keys.D9) Or _
+        If e.KeyChar >= Convert.ToChar(Keys.D0) And e.KeyChar <= Convert.ToChar(Keys.D9) Or
             e.KeyChar = Convert.ToChar(8) Or e.KeyChar = Convert.ToChar(46) Then
             noNumero = False
         End If
@@ -513,8 +529,8 @@ Module ServiciosBasicos
 #End Region
 
 #Region "Verificar Rol de usuario"
-    Private Sub nivelAcceso(ByVal usuario As Boolean, catalogo As Boolean, compra As Boolean, _
-                           tipocambio As Boolean, descargue As Boolean, precios As Boolean, _
+    Private Sub nivelAcceso(ByVal usuario As Boolean, catalogo As Boolean, compra As Boolean,
+                           tipocambio As Boolean, descargue As Boolean, precios As Boolean,
                            adelantoEfectivo As Boolean, adelantoOtros As Boolean)
         frmPrincipal.CrearUsuarioToolStripMenuItem.Enabled = usuario
         frmPrincipal.CatalogoToolStripMenuItem.Enabled = catalogo
