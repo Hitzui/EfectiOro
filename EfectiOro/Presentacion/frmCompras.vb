@@ -155,6 +155,8 @@ Public Class frmCompras
         End Try
     End Sub
     Private Function comprobarTotales() As Boolean
+        Dim daoTipoCambio = DataContext.daoTipoCambio
+        Dim tipoCambio = daoTipoCambio.buscarDato(Now)
         Dim efectivo, transaccion, cheque, porpagar, adelantos, suma, xvalor As Decimal
         If txtEfectivo.TextLength > 0 Then
             efectivo = Convert.ToDecimal(txtEfectivo.Text)
@@ -178,6 +180,8 @@ Public Class frmCompras
         End If
         If txtAdelantos.TextLength > 0 Then
             adelantos = Convert.ToDecimal(txtAdelantos.Text)
+            adelantos = Decimal.Multiply(adelantos, tipoCambio.Tipocambio1)
+            adelantos = Decimal.Round(adelantos)
         Else
             adelantos = Decimal.Zero
         End If
@@ -698,6 +702,11 @@ Public Class frmCompras
         'If result = Windows.Forms.DialogResult.No Then
         '    Return
         'End If
+        Dim daoCompra = DataContext.daoCompras
+        Dim daoMcaja = DataContext.daoMcaja
+        Dim daoTc = DataContext.daoTipoCambio
+        Dim dao = DataContext.daoParametros
+        Dim tipoCambio = daoTc.buscarDato(Now.Date)
         If dgvCompras.Rows.Count = 0 Then
             MsgBox("No hay datos que guardar, la lista se encuentra vacia, intente nuevamente", MsgBoxStyle.Information, "Guardar compra")
             ServiciosBasicos.agregarAlLog(Me, "Guardar compra", "No hay datos en el grid a guardar")
@@ -724,11 +733,7 @@ Public Class frmCompras
             Case 1
                 estado = 2 'estado cerrada, no hay saldo a pagar al cliente
         End Select
-        Dim daoCompra = DataContext.daoCompras
-        Dim daoMcaja = DataContext.daoMcaja
-        Dim daoTc = DataContext.daoTipoCambio
-        Dim dao = DataContext.daoParametros
-        Dim tipoCambio = daoTc.buscarDato(Now.Date)
+
         If tipoCambio Is Nothing Then
             MsgBox(daoTc.ErrorSms, MsgBoxStyle.Information, "Tipo de cambio")
             Return

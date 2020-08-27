@@ -2,10 +2,11 @@
 
 Public Class frmVerAdelantos
     Private Const _tituloError As String = "Error"
+    Private Const Format As String = "#,###,#00.00"
     Private codigoCliente, numeroCompra As String
     Private verAdelanto As New Adelantos()
     Private montoCompra, saldoTotal As Decimal
-    Private _codmoneda As Integer = 0
+    Private montoCompraDolares As Decimal = 0D
     Private valorSeleccionadoMonto As Decimal = Decimal.Zero
     ''' <summary>
     ''' Adelantos seleccionados
@@ -19,7 +20,7 @@ Public Class frmVerAdelantos
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        frmVerAdelantos.adelantoSeleccionados = New List(Of Adelantos)
+
     End Sub
     Sub llenarGrid()
         dgvAdelanto.Rows.Clear()
@@ -31,27 +32,37 @@ Public Class frmVerAdelantos
         Try
             saldoTotal = Decimal.Zero
             Dim listar As List(Of Adelantos) = dao.listarAdelantosPorClientes(codigoCliente)
-            Dim seleccionar As Boolean = True
+            Dim seleccionar As Boolean
+            If adelantoSeleccionados.Count = 0 Then
+                adelantoSeleccionados.AddRange(listar)
+            End If
             For Each dato As Adelantos In listar
-                Dim descMoneda As String
-                If dato.Codmoneda = param.dolares Then
-                    Dim dolares = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
-                    saldoTotal = Decimal.Add(saldoTotal, dolares)
-                    descMoneda = "Dolares"
+                Dim descMoneda As String = "Dolares"
+                If adelantoSeleccionados.Exists(Function(a) a.Idsalida = dato.Idsalida) Then
+                    seleccionar = True
+                    If dato.Codmoneda = param.dolares Then
+                        'Dim dolares = Decimal.Multiply(dato.Saldo, tipoCambio.Tipocambio1)
+                        saldoTotal = Decimal.Add(saldoTotal, dato.Saldo)
+                    Else
+                        Dim dolares = Decimal.Divide(dato.Saldo, tipoCambio.Tipocambio1)
+                        saldoTotal = Decimal.Add(saldoTotal, dolares)
+                        'descMoneda = "Cordobas"
+                    End If
                 Else
-                    saldoTotal = Decimal.Add(saldoTotal, dato.Saldo)
-                    descMoneda = "Cordobas"
+                    seleccionar = False
                 End If
                 valorSeleccionadoMonto = saldoTotal
-                adelantoSeleccionados.Add(dato)
+                'adelantoSeleccionados.Add(dato)
                 dgvAdelanto.Rows.Add(seleccionar, dato.Idsalida, dato.Fecha, dato.Monto, dato.Saldo, descMoneda)
             Next
+            montoCompraDolares = Decimal.Divide(montoCompra, tipoCambio.Tipocambio1)
         Catch ex As Exception
             MsgBox("Se produjo el siguiente error: " & vbCr & dao.ErrorSms, MsgBoxStyle.Information, _tituloError)
         End Try
     End Sub
 
     Private Sub frmVerAdelantos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        montoCompra = frmCompras.totalGeneral
         Me.txtSaldo.Clear()
         txtSaldo.Focus()
         lblTitulo.Text = "Adelantos del Cliente"
@@ -60,9 +71,9 @@ Public Class frmVerAdelantos
         Me.txtCodcliente.Text = Me.codigoCliente
         Me.txtNumcompra.Text = Me.numeroCompra
         Me.llenarGrid()
-        lblSaldoTotal.Text = saldoTotal.ToString("#,###,#00.00")
-        Me.montoCompra = frmCompras.totalGeneral
-        _codmoneda = frmCompras._codmoneda
+        lblSaldoTotal.Text = saldoTotal.ToString(Format)
+        lblMontoCompra.Text = "U$ " & montoCompraDolares.ToString(Format)
+        '_codmoneda = frmCompras._codmoneda
     End Sub
 
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
@@ -72,6 +83,7 @@ Public Class frmVerAdelantos
 
     Private Sub btnAplicarSaldo_Click(sender As System.Object, e As System.EventArgs) Handles btnAplicarSaldo.Click
         Dim saldo As Decimal = Decimal.Zero
+        montoCompraDolares = Decimal.Round(montoCompraDolares, 2)
         Try
             If txtSaldo.TextLength <= 0 Then
                 MsgBox("Especifique un saldo a apalicar a la compra", MsgBoxStyle.Critical, "Adelantos")
@@ -83,7 +95,7 @@ Public Class frmVerAdelantos
                 MsgBox("El saldo a aplicar es mayor que el saldo del adelanto del cliente, intente nuevamente", MsgBoxStyle.Information, "Adelantos")
                 Return
             End If
-            If saldo > frmCompras.totalGeneral Then
+            If saldo > montoCompraDolares Then
                 MsgBox("El saldo a aplicar es mayor que el monto de la compra, intente nuevamente", MsgBoxStyle.Information, "Adelantos")
                 Return
             End If
@@ -118,7 +130,7 @@ Public Class frmVerAdelantos
         Me.txtCodcliente.Text = Me.codigoCliente
         Me.txtNumcompra.Text = Me.numeroCompra
         Me.llenarGrid()
-        lblSaldoTotal.Text = saldoTotal.ToString("#,###,#00.00")
+        lblSaldoTotal.Text = "U$ " & saldoTotal.ToString(Format)
         Me.montoCompra = frmCompras.totalGeneral
     End Sub
 
@@ -141,24 +153,26 @@ Public Class frmVerAdelantos
                 Dim saldo As Decimal = Convert.ToDecimal(row.Cells("colSaldo").Value)
                 If Convert.ToBoolean(cellSeleccion.Value) = True Then
                     If addAdelanto.Codmoneda = param.dolares Then
-                        dolares = Decimal.Multiply(addAdelanto.Saldo, tipocambio.Tipocambio1)
-                        valorSeleccionadoMonto = Decimal.Add(valorSeleccionadoMonto, dolares)
-                    Else
+                        'dolares = Decimal.Multiply(addAdelanto.Saldo, tipocambio.Tipocambio1)
                         valorSeleccionadoMonto = Decimal.Add(valorSeleccionadoMonto, saldo)
+                    ElseIf addAdelanto.Codmoneda = param.cordobas Then
+                        dolares = Decimal.Divide(saldo, tipocambio.Tipocambio1)
+                        valorSeleccionadoMonto = Decimal.Add(valorSeleccionadoMonto, dolares)
                     End If
                     adelantoSeleccionados.Add(addAdelanto)
                 Else
                     If addAdelanto.Codmoneda = param.dolares Then
-                        dolares = Decimal.Multiply(saldo, tipocambio.Tipocambio1)
-                        valorSeleccionadoMonto = Decimal.Subtract(valorSeleccionadoMonto, dolares)
-                    Else
+                        'dolares = Decimal.Multiply(saldo, tipocambio.Tipocambio1)
                         valorSeleccionadoMonto = Decimal.Subtract(valorSeleccionadoMonto, saldo)
+                    ElseIf addAdelanto.Codmoneda = param.cordobas Then
+                        dolares = Decimal.Divide(saldo, tipocambio.Tipocambio1)
+                        valorSeleccionadoMonto = Decimal.Subtract(valorSeleccionadoMonto, dolares)
                     End If
                     Dim find = frmVerAdelantos.adelantoSeleccionados.Find(Function(d) d.Idsalida = addAdelanto.Idsalida)
                     adelantoSeleccionados.Remove(find)
                 End If
                 saldoTotal = Me.valorSeleccionadoMonto
-                lblSaldoTotal.Text = Convert.ToString(valorSeleccionadoMonto.ToString("#,###,#00.00"))
+                lblSaldoTotal.Text = "U$ " & valorSeleccionadoMonto.ToString(Format)
             End If
         Catch ex As Exception
             MsgBox(ex.Message)

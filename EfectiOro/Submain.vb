@@ -24,6 +24,7 @@ Public Class Submain
                 Return
             End If
             Try
+                frmVerAdelantos.adelantoSeleccionados = New List(Of Adelantos)
                 Dim frm As New frmPrincipal()
                 Application.Run(frm)
             Catch ex As Exception
