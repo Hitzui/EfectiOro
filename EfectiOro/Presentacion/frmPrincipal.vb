@@ -47,25 +47,29 @@ Public Class frmPrincipal
         End Select
     End Sub
     Private Sub frmPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Me.panelLateral.BackColor = Color.FromArgb(8, Color.Gray)
-        Me.verificarUsuario(DataContext.usuarioLog.Nivel)
-        Me.lblStatus.Text = "Sucursal: " & configuracion.getAgencia & " .:. Usuario: " & DataContext.usuarioLog.Usuario1 & " .:. " & Date.Now.ToShortTimeString() & " .:. Caja: " & configuracion.getCaja
-        'Dim ctl As Control
-        'Dim ctlMDI As MdiClient
-        ' Loop through all of the form's controls looking
-        ' for the control of type MdiClient.
-        Using ctx As New Contexto
-            Dim param As Date = (From p In ctx.Ids Select p.Backup).Single
-            'MsgBox("Valor backup: " & param.ToShortDateString, MsgBoxStyle.Information, "Titulo")
-            Dim dias As Integer = Now.Day - param.Day
-            Select Case usuarioLog.Nivel
-                Case 1, 2
-                    If dias >= 2 Then
-                        MessageBox.Show(Me, "Realice un respaldo de la base de datos, se ha excedido el tiempo el cual no se ha realizado un respaldo de los datos..", "Back Up", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        frmBackupBaseDatos.ShowDialog()
-                    End If
-            End Select
-        End Using
+        Try
+            'Me.panelLateral.BackColor = Color.FromArgb(8, Color.Gray)
+            Me.verificarUsuario(usuarioLog.Nivel)
+            Me.lblStatus.Text = "Sucursal: " & configuracion.getAgencia & " .:. Usuario: " & usuarioLog.Usuario1 & " .:. " & Date.Now.ToShortTimeString() & " .:. Caja: " & configuracion.getCaja
+            'Dim ctl As Control
+            'Dim ctlMDI As MdiClient
+            ' Loop through all of the form's controls looking
+            ' for the control of type MdiClient.
+            Using ctx As New Contexto
+                Dim param As Date = (From p In ctx.Ids Select p.backup).Single
+                'MsgBox("Valor backup: " & param.ToShortDateString, MsgBoxStyle.Information, "Titulo")
+                Dim dias As Integer = Now.Day - param.Day
+                Select Case usuarioLog.Nivel
+                    Case 1, 2
+                        If dias >= 2 Then
+                            MessageBox.Show(Me, "Realice un respaldo de la base de datos, se ha excedido el tiempo el cual no se ha realizado un respaldo de los datos..", "Back Up", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            frmBackupBaseDatos.ShowDialog()
+                        End If
+                End Select
+            End Using
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub ClienteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClienteToolStripMenuItem.Click

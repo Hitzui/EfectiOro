@@ -57,7 +57,7 @@ Public Class frmDescargues
     End Sub
 
     Private Sub frmDescargues_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        Me.lblTitulo.Text = "Generar Descargues - EfectiOro"
+        Me.lblTitulo.Text = "Generar Descargues - SunMetals"
         ServiciosBasicos.colorearGrid(dgvVerlotes)
         pesoT = 0
         importeT = 0
@@ -76,8 +76,7 @@ Public Class frmDescargues
         comprasSeleccionadas.Clear()
         chekTodos.CheckState = False
         Dim dao = DataContext.daoDescargues
-        Dim listarDescargues As New List(Of Compras)
-        listarDescargues = dao.generarLote(txtFechaHasta.Value, _agencia)
+        Dim listarDescargues = dao.generarLote(txtFechaHasta.Value, _agencia)
         If listarDescargues.Count <= 0 Then
             MsgBox("No hay compras para generar el lote hasta la fecha seleccionada, intente nuevamente", MsgBoxStyle.Information, "Descargues")
             Return

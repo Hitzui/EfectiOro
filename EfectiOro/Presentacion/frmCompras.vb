@@ -277,23 +277,25 @@ Public Class frmCompras
     Sub calcularTotales()
         Dim total As Decimal = 0
         For Each row As DataGridViewRow In dgvCompras.Rows
-            total += row.Cells(4).Value
+            Dim importe = Convert.ToDecimal(row.Cells("colImporte").Value)
+            total += importe
         Next
         txtTotal.Text = total.ToString("#,###,###,###.00")
-        Me.totalGeneral = total
+        totalGeneral = total
     End Sub
     Sub agregarAlGrid()
         Try
             Dim total As Decimal
             Dim linea As Integer = 0
             linea = dgvCompras.Rows.Count + 1
-            dgvCompras.Rows.Add(linea, cmbPrecios2.SelectedRow.Cells(0).Value, txtPeso.Text, txtPrecio.Text, txtImporte.Text)
+            dgvCompras.Rows.Add(linea, cmbPrecios2.SelectedRow.Cells(0).Value, "", txtPeso.Text, txtPrecio.Text, txtImporte.Text)
             total = 0
             For Each row As DataGridViewRow In dgvCompras.Rows
-                total += row.Cells(4).Value
+                Dim importe As Decimal = row.Cells("colImporte").Value
+                total += importe
             Next
             txtTotal.Text = total.ToString("#,###,###,###.00")
-            Me.totalGeneral = total
+            totalGeneral = total
             dgvCompras.AutoGenerateColumns = True
         Catch ex As Exception
 
@@ -340,7 +342,7 @@ Public Class frmCompras
         cargarMoneda()
         Me.recuperarCodigo()
         Me.habilitarGrupos(False, False, False, False)
-        lblTitulo.Text = "Formulario de Compras - EfectiOro"
+        lblTitulo.Text = "Formulario de Compras - SunMetals"
         dgvFiltrarCliente.Visible = False
         ServiciosBasicos.colorearGrid(dgvCompras)
         ServiciosBasicos.colorearGrid(dgvFiltrarCliente)
@@ -590,9 +592,9 @@ Public Class frmCompras
             txtPeso.Focus()
             Return
         End If
-        Me.calcularPrecio()
-        Me.agregarAlGrid()
-        Dim daoPrecios = DataContext.daoPrecioKilate
+        calcularPrecio()
+        agregarAlGrid()
+        Dim daoPrecios = daoPrecioKilate
         Dim preciosClientes = daoPrecioKilate.listaPreciosCliente(txtCodcliente.Text)
         If preciosClientes.Count > 0 Then
             Dim kilate = cmbPrecios2.SelectedRow.Cells(0).Value
@@ -602,7 +604,7 @@ Public Class frmCompras
             _preciosSeleccionados.Add(buscar_precio)
         End If
         cmbPrecios2.Focus()
-        Me.limpiarPrecios()
+        limpiarPrecios()
         erp.Clear()
     End Sub
 
@@ -632,7 +634,7 @@ Public Class frmCompras
             End If
             Dim fila As DataGridViewRow = dgvCompras.CurrentRow
             Dim precio As Decimal = Convert.ToDecimal(fila.Cells("colPrecio").Value)
-            Dim kilate As Decimal = Convert.ToDecimal(fila.Cells("colDescripcion").Value)
+            Dim kilate As Decimal = Convert.ToDecimal(fila.Cells("colKilate").Value)
             Dim peso As Decimal = Convert.ToDecimal(fila.Cells("colPeso").Value)
             Using ctx As New Contexto
                 Dim remove_precio = _preciosSeleccionados.Find(Function(p) p.Gramos = peso And p.Kilate = kilate)
@@ -662,7 +664,9 @@ Public Class frmCompras
         Me.cmbEstado.Enabled = True
         Me.cmbEstado.SelectedIndex = 1
         cmbMoneda.SelectedIndex = 0
+        cmbMoneda.Enabled = True
         _codmoneda = cmbMoneda.SelectedValue
+        btnDolares.Enabled = True
     End Sub
 
     Private Sub btnCancelar_Click(sender As System.Object, e As System.EventArgs) Handles btnCancelar.Click
@@ -695,6 +699,8 @@ Public Class frmCompras
         btnDolares.Enabled = False
         _cordobas = True
         _dolares = False
+        cmbMoneda.Enabled = False
+        btnDolares.Enabled = False
     End Sub
 
     Private Sub btnGuardar_Click(sender As System.Object, e As System.EventArgs) Handles btnGuardar.Click
@@ -709,7 +715,7 @@ Public Class frmCompras
         Dim tipoCambio = daoTc.buscarDato(Now.Date)
         If dgvCompras.Rows.Count = 0 Then
             MsgBox("No hay datos que guardar, la lista se encuentra vacia, intente nuevamente", MsgBoxStyle.Information, "Guardar compra")
-            ServiciosBasicos.agregarAlLog(Me, "Guardar compra", "No hay datos en el grid a guardar")
+            agregarAlLog(Me, "Guardar compra", "No hay datos en el grid a guardar")
             Return
         End If
         If txtNomcliente.TextLength <= 0 Then
@@ -727,7 +733,7 @@ Public Class frmCompras
             Return
         End If
         Dim estado As Integer
-        Select Case Me.cmbEstado.SelectedIndex
+        Select Case cmbEstado.SelectedIndex
             Case 0
                 estado = 1 'estado vigente, donde todavía hay saldo por pagar a la compra
             Case 1
@@ -743,12 +749,9 @@ Public Class frmCompras
         Dim config As New ConfiguracionGeneral
         Dim caja, agencia As String
         Dim peso As Decimal = 0
-        Dim total As Decimal = 0
         Dim efectivo As Decimal = 0
         Dim cheque As Decimal = 0
         Dim transferencia As Decimal = 0
-        Dim por_cobrar As Decimal = 0
-        Dim por_pagar As Decimal = 0
         Dim adelantos As Decimal = 0
         Dim x_efectivo As Decimal = Decimal.Zero
         Dim x_cheque As Decimal = Decimal.Zero
@@ -763,12 +766,12 @@ Public Class frmCompras
         nuevaCompra.Codcaja = caja
         nuevaCompra.Codcliente = txtCodcliente.Text
         For Each row As DataGridViewRow In dgvCompras.Rows
-            peso += CDec(row.Cells(2).Value)
+            peso += Convert.ToDecimal(row.Cells("colPeso").Value)
         Next
         nuevaCompra.Peso = peso
         nuevaCompra.Total = totalGeneral
-        Dim moneda As Moneda = cmbMoneda.SelectedItem
-        nuevaCompra.Codmoneda = moneda.Codmoneda
+        'Dim moneda As Moneda = cmbMoneda.SelectedItem
+        nuevaCompra.Codmoneda = _codmoneda
         nuevaCompra.Fecha = txtFecha.Value
         'Estado de la compra 
         '0:anulada
@@ -776,7 +779,7 @@ Public Class frmCompras
         '2:cerrada
         '3:descargado
         nuevaCompra.Codestado = estado
-        nuevaCompra.Usuario = DataContext.usuarioLog.Codoperador
+        nuevaCompra.Usuario = usuarioLog.Codoperador
         nuevaCompra.Hora = Now.ToLongTimeString
         nuevaCompra.Forma_pago = String.Empty
         nuevaCompra.Dgnumdes = 0
@@ -824,17 +827,18 @@ Public Class frmCompras
                 Dim listaDeta As New List(Of Det_compra)
                 Dim daoPrecio = DataContext.daoPrecioKilate
                 For Each row As DataGridViewRow In dgvCompras.Rows
-                    Dim deta As New Det_compra
                     'deta.Numcompra = daoCompra.codigoCompra()
-                    deta.Descripcion = "Oro en bruto"
-                    deta.Peso = Convert.ToDecimal(row.Cells(2).Value)
-                    deta.Preciok = Convert.ToDecimal(row.Cells(3).Value)
-                    deta.Importe = Convert.ToDecimal(row.Cells(4).Value)
-                    deta.Linea = Convert.ToInt32(row.Cells(0).Value)
-                    deta.Kilshowdoc = Convert.ToString(row.Cells(1).Value)
-                    deta.Kilate = row.Cells("colDescripcion").Value
-                    deta.Numdescargue = 0
-                    deta.Fecha = nuevaCompra.Fecha
+                    Dim deta As New Det_compra With {
+                        .Descripcion = row.Cells("colDescripcion").Value,
+                        .Peso = Convert.ToDecimal(row.Cells("colPeso").Value),
+                        .Preciok = Convert.ToDecimal(row.Cells("colPrecio").Value),
+                        .Importe = Convert.ToDecimal(row.Cells("colImporte").Value),
+                        .Linea = Convert.ToInt32(row.Cells("colLinea").Value),
+                        .Kilshowdoc = row.Cells("colKilate").Value,
+                        .Kilate = row.Cells("colKilate").Value,
+                        .Numdescargue = 0,
+                        .Fecha = nuevaCompra.Fecha
+                    }
                     listaDeta.Add(deta)
                 Next
                 'definimos el maestro de caja
@@ -867,17 +871,18 @@ Public Class frmCompras
                 modCaja.Salida = x_efectivo
                 modCaja.Entrada = Decimal.Zero
                 'creamos el detalle del movimiento en la caja
-                Dim detaCaja As New Detacaja
-                detaCaja.codcaja = caja
-                detaCaja.idmov = parametros.idcompras
-                detaCaja.idcaja = modCaja.Idcaja
-                detaCaja.fecha = DateTime.Now
                 'detaCaja.Concepto = "***COMPRA: " & nuevaCompra.Numcompra & "***"
                 'detaCaja.Referencia = "COMPRA: " & nuevaCompra.Numcompra
-                detaCaja.efectivo = x_efectivo
-                detaCaja.cheque = x_cheque
-                detaCaja.transferencia = x_transferencia
-                detaCaja.hora = Now.ToLongTimeString
+                Dim detaCaja As New Detacaja With {
+                    .codcaja = caja,
+                    .idmov = parametros.idcompras,
+                    .idcaja = modCaja.Idcaja,
+                    .fecha = Now,
+                    .efectivo = x_efectivo,
+                    .cheque = x_cheque,
+                    .transferencia = x_transferencia,
+                    .hora = Now.ToLongTimeString
+                }
                 'guardamos los datos de la compra
                 'listo, ahora a guardar los datos
                 _compraActual = nuevaCompra
@@ -893,12 +898,6 @@ Public Class frmCompras
                 End If
                 If daoCompra.crearCompra(nuevaCompra, listaDeta, modCaja, detaCaja, frmVerAdelantos.adelantoSeleccionados, frmPrecios2._listaCierresUsar) Then
                     Dim daoPrecios = DataContext.daoPrecioKilate
-                    'If txtAdelantos.TextLength > 0 Then
-                    '    Dim daoAdelanto = DataContext.daoAdelantos
-                    '    daoAdelanto.actualizarAdelanto(aplicarAdelanto, txtCodcliente.Text, nuevaCompra.Numcompra)
-                    'End If
-                    'daoMcaja.actualizarDatosMaestroCaja(modCaja)
-                    'daoMcaja.guardarDatosDetaCaja(detaCaja)
                     If parametros.varias_compras = False Then
                         daoPrecio.valoresPorDefault()
                     End If
@@ -919,17 +918,18 @@ Public Class frmCompras
                 'definimos los detalles del det_compra        
                 Dim listaDeta As New List(Of Det_compra)
                 For Each row As DataGridViewRow In dgvCompras.Rows
-                    Dim deta As New Det_compra
-                    deta.Numcompra = nuevaCompra.Numcompra
-                    deta.Descripcion = "Oro en bruto"
-                    deta.Peso = Convert.ToDecimal(row.Cells(2).Value)
-                    deta.Preciok = Convert.ToDecimal(row.Cells(3).Value)
-                    deta.Importe = Convert.ToDecimal(row.Cells(4).Value)
-                    deta.Linea = Convert.ToInt32(row.Cells(0).Value)
-                    deta.Kilshowdoc = Convert.ToString(row.Cells(1).Value)
-                    deta.Kilate = row.Cells("colDescripcion").Value
-                    deta.Codagencia = nuevaCompra.Codagencia
-                    deta.Fecha = nuevaCompra.Fecha
+                    Dim deta As New Det_compra With {
+                        .Numcompra = nuevaCompra.Numcompra,
+                        .Descripcion = row.Cells("colDescripcion").Value,
+                        .Peso = Convert.ToDecimal(row.Cells("colPeso").Value),
+                        .Preciok = Convert.ToDecimal(row.Cells("colPrecio").Value),
+                        .Importe = Convert.ToDecimal(row.Cells("colImporte").Value),
+                        .Linea = Convert.ToInt32(row.Cells("colLinea").Value),
+                        .Kilshowdoc = Convert.ToString(row.Cells("colKilate").Value),
+                        .Kilate = row.Cells("colKilate").Value,
+                        .Codagencia = nuevaCompra.Codagencia,
+                        .Fecha = nuevaCompra.Fecha
+                    }
                     listaDeta.Add(deta)
                 Next
                 nuevaCompra.Numcompra = txtNumcompra.Text
@@ -1015,10 +1015,10 @@ Public Class frmCompras
                 Me.panelBuscar_compra.Visible = False
                 Dim filtrar As List(Of Det_compra) = dao.findDetaCompra(txtNumcompra.Text)
                 For Each dato As Det_compra In filtrar
-                    dgvCompras.Rows.Add(dato.Linea, dato.Kilate, dato.Peso, dato.Preciok, dato.Importe)
+                    dgvCompras.Rows.Add(dato.Linea, dato.Kilate, dato.Descripcion, dato.Peso, dato.Preciok, dato.Importe)
                 Next
                 Me.cmbPrecios2.Focus()
-                Me.calcularTotales()
+                calcularTotales()
                 Me.btnAnular.Enabled = True
                 If findCompra.Efectivo > 0 Then
                     Me.txtEfectivo.Visible = True
@@ -1055,8 +1055,9 @@ Public Class frmCompras
                     End If
                 Next
                 Me.compraEncontrada = True
+                cmbMoneda.Enabled = True
                 cmbMoneda.SelectedValue = findCompra.Codmoneda
-                btnDolares.Enabled = False
+                btnDolares.Enabled = True
             Catch ex As Exception
                 MsgBox("No existe la compra seleccionada " & vbCr & ex.Message, MsgBoxStyle.Information, "Buscar compra")
                 Me.compraEncontrada = False
@@ -1298,15 +1299,14 @@ Public Class frmCompras
     Private Sub cmbMoneda_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbMoneda.SelectionChangeCommitted
         Try
             Dim daoParam = DataContext.daoParametros
-            Dim param = daoParam.recuperarParametros
-            If _codmoneda <> cmbMoneda.SelectedValue Then
-                'en este momento son distintos los valores
-            End If
+            Dim param As Ids = daoParam.recuperarParametros
             _codmoneda = cmbMoneda.SelectedValue
-            Select Case CInt(cmbMoneda.SelectedValue)
+            Select Case _codmoneda
                 Case param.dolares
                     _convertirMoneda = param.dolares
+                    _dolares = False
                 Case param.cordobas
+                    _cordobas = False
                     _convertirMoneda = param.cordobas
             End Select
         Catch ex As Exception
@@ -1333,14 +1333,12 @@ Public Class frmCompras
                     End If
                     total = Decimal.Divide(total, tc.Tipocambio1)
                     _dolares = True
-                    _cordobas = False
                 Case param.cordobas
                     If _cordobas = True Then
                         MsgBox("Ya se ha hecho el cambio monetario al tipo Cordoba, intente nuevamente.", MsgBoxStyle.Information, tituloCompra)
                         Return
                     End If
                     total = Decimal.Multiply(total, tc.Tipocambio1)
-                    _dolares = False
                     _cordobas = True
             End Select
             For Each row As DataGridViewRow In dgvCompras.Rows

@@ -13,8 +13,8 @@ Public Class frmAgencia
         Dim listar As List(Of Agencia) = daoAgencia.findAll()
         AgenciaBindingSource.DataSource = listar
     End Sub
-    Private Sub frmAgencia_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        lblTitulo.Text = "Agencias - EfectiOro"
+    Private Sub frmAgencia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lblTitulo.Text = "Agencias - SunMetals"
         habilitarTextBox(False)
         txtFiltrar.Enabled = True
         codigoAgencia()

@@ -172,7 +172,7 @@ Public Class DaoMaestroCaja
             End Try
         End Using
     End Function
-    Public Function guardarDatosDetaCaja(dcaja As Database.Detacaja, mocaja As Database.Mcaja) As Boolean Implements IDaoMaestroCaja.guardarDatosDetaCaja
+    Public Function guardarDatosDetaCaja(dcaja As Detacaja, mocaja As Mcaja) As Boolean Implements IDaoMaestroCaja.guardarDatosDetaCaja
         Using ctx As New Contexto
             Try
                 Dim tipocambio = (From tc In ctx.TipoCambio Where tc.Fecha.Date = dcaja.fecha.Date Select tc).First
@@ -188,6 +188,7 @@ Public Class DaoMaestroCaja
                 Return True
             Catch ex As Exception
                 _error = "Deta caja" & ex.Message
+                MsgBox(ex.Message)
                 Return False
             End Try
         End Using

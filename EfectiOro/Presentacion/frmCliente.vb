@@ -40,7 +40,7 @@ Public Class frmCliente
 
     Private Sub frmCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         codigoCliente()
-        lblTitulo.Text = "Catalogo de Clientes - EfectiOro"
+        lblTitulo.Text = "Catalogo de Clientes - SunMetals"
         lblTitulo.ForeColor = Color.White
     End Sub
 

@@ -25,7 +25,7 @@ Public Class frmPrecios
     End Sub
 
     Private Sub frmPrecios_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        lblTitulo.Text = "Establecer Precio - EfectiOro"
+        lblTitulo.Text = "Establecer Precio - SunMetals"
         Me.btnClose.Visible = False
         cargarDatos()
     End Sub
@@ -40,10 +40,11 @@ Public Class frmPrecios
             Dim listaPrecio As New List(Of PrecioKilate)
             For Each row As DataGridViewRow In dgvPrecio.Rows
                 If row.Cells("colPrecio").Value > 0 Then
-                    Dim precio As New PrecioKilate
-                    precio.Desc_kilate = row.Cells(0).Value
-                    precio.Kilate_peso = row.Cells(1).Value
-                    precio.Precio_kilate = row.Cells(2).Value
+                    Dim precio As New PrecioKilate With {
+                        .Desc_kilate = row.Cells(0).Value,
+                        .Kilate_peso = row.Cells(1).Value,
+                        .Precio_kilate = row.Cells(2).Value
+                    }
                     listaPrecio.Add(precio)
                 End If
             Next
@@ -106,15 +107,20 @@ Public Class frmPrecios
     End Sub
 
     Private Sub dgvPrecio_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvPrecio.CellFormatting
-        Try
-            If e.ColumnIndex = 0 Then
-                If e.Value.ToString().Contains("Kilate") = False Then
-                    e.Value = e.Value & " Kilate"
-                End If
-            End If
-        Catch ex As Exception
 
-        End Try
+        If e.ColumnIndex = 0 Then
+            Try
+                Dim value = e.Value
+                Dim valueTransform = String.Concat(value) & " Kilate"
+                e.Value = valueTransform
+                'If e.Value.ToString().Contains("Kilate") = False Then
+                'e.Value = e.Value & " Kilate"
+                'End If
+            Catch ex As Exception
+                'MsgBox(ex.Message)
+            End Try
+        End If
+
     End Sub
 
     Private Sub dgvPrecio_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPrecio.CellEndEdit

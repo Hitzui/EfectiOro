@@ -52,3 +52,14 @@ D:\OneDrive\EfectiOro\DataBase\obj\Debug\DataBase.vbproj.CoreCompileInputs.cache
 D:\OneDrive\EfectiOro\DataBase\obj\Debug\DataBase.dll
 D:\OneDrive\EfectiOro\DataBase\obj\Debug\DataBase.xml
 D:\OneDrive\EfectiOro\DataBase\obj\Debug\DataBase.pdb
+E:\Repos\EfectiOro\DataBase\bin\Debug\DataBase.dll.config
+E:\Repos\EfectiOro\DataBase\bin\Debug\DataBase.dll
+E:\Repos\EfectiOro\DataBase\bin\Debug\DataBase.pdb
+E:\Repos\EfectiOro\DataBase\bin\Debug\DataBase.xml
+E:\Repos\EfectiOro\DataBase\obj\Debug\DataBase.vbproj.AssemblyReference.cache
+E:\Repos\EfectiOro\DataBase\obj\Debug\DataBase.Resources.resources
+E:\Repos\EfectiOro\DataBase\obj\Debug\DataBase.vbproj.GenerateResource.cache
+E:\Repos\EfectiOro\DataBase\obj\Debug\DataBase.vbproj.CoreCompileInputs.cache
+E:\Repos\EfectiOro\DataBase\obj\Debug\DataBase.dll
+E:\Repos\EfectiOro\DataBase\obj\Debug\DataBase.xml
+E:\Repos\EfectiOro\DataBase\obj\Debug\DataBase.pdb

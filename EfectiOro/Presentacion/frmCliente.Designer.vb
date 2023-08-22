@@ -126,7 +126,6 @@ Partial Class frmCliente
         Me.colApellidos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.erp = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.panelTitulo.SuspendLayout()
         Me.pageDatos.SuspendLayout()
         Me.pageActividad.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -145,10 +144,6 @@ Partial Class frmCliente
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'panelTitulo
-        '
-        Me.panelTitulo.Size = New System.Drawing.Size(741, 25)
-        '
         'btnClose
         '
         Me.btnClose.FlatAppearance.BorderSize = 0
@@ -156,7 +151,7 @@ Partial Class frmCliente
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(716, 25)
+        Me.lblTitulo.Size = New System.Drawing.Size(741, 25)
         '
         'UltraTab1
         '
@@ -276,9 +271,9 @@ Partial Class frmCliente
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(244, 262)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(94, 13)
+        Me.Label13.Size = New System.Drawing.Size(93, 13)
         Me.Label13.TabIndex = 20
-        Me.Label13.Text = "Fecha de emición:"
+        Me.Label13.Text = "Fecha de emisión:"
         '
         'txtCedula
         '
@@ -293,9 +288,9 @@ Partial Class frmCliente
         Me.Label12.AutoSize = True
         Me.Label12.Location = New System.Drawing.Point(43, 262)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(94, 13)
+        Me.Label12.Size = New System.Drawing.Size(93, 13)
         Me.Label12.TabIndex = 18
-        Me.Label12.Text = "Número de cedula"
+        Me.Label12.Text = "Número de D.N.I.:"
         '
         'txtCorreo
         '
@@ -341,9 +336,9 @@ Partial Class frmCliente
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(43, 200)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(119, 13)
+        Me.Label9.Size = New System.Drawing.Size(68, 13)
         Me.Label9.TabIndex = 12
-        Me.Label9.Text = "Telefono convencional:"
+        Me.Label9.Text = "Telefono fijo:"
         '
         'txtEstadoCivil
         '
@@ -1212,11 +1207,9 @@ Partial Class frmCliente
         Me.Controls.Add(Me.tabClienteCentral)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "frmCliente"
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
         Me.Controls.SetChildIndex(Me.tabClienteCentral, 0)
         Me.Controls.SetChildIndex(Me.dgvFiltrar, 0)
-        Me.panelTitulo.ResumeLayout(False)
         Me.pageDatos.ResumeLayout(False)
         Me.pageDatos.PerformLayout()
         Me.pageActividad.ResumeLayout(False)

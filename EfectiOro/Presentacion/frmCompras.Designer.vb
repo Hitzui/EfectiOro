@@ -66,6 +66,7 @@ Partial Class frmCompras
         Me.grupoLista = New System.Windows.Forms.GroupBox()
         Me.dgvCompras = New System.Windows.Forms.DataGridView()
         Me.colLinea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colKilate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPeso = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPrecio = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -389,7 +390,7 @@ Partial Class frmCompras
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(62, 15)
         Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Direccion:"
+        Me.Label4.Text = "Dirección:"
         '
         'txtApecliente
         '
@@ -446,7 +447,7 @@ Partial Class frmCompras
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(105, 15)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Codigo del cliente"
+        Me.Label1.Text = "Código del cliente"
         '
         'grupoItem
         '
@@ -561,7 +562,7 @@ Partial Class frmCompras
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(124, 15)
         Me.Label5.TabIndex = 0
-        Me.Label5.Text = "Descripcion del kilate"
+        Me.Label5.Text = "Descripción del kilate"
         '
         'grupoLista
         '
@@ -587,7 +588,7 @@ Partial Class frmCompras
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvCompras.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCompras.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colLinea, Me.colDescripcion, Me.colPeso, Me.colPrecio, Me.colImporte})
+        Me.dgvCompras.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colLinea, Me.colKilate, Me.colDescripcion, Me.colPeso, Me.colPrecio, Me.colImporte})
         Me.dgvCompras.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvCompras.Location = New System.Drawing.Point(3, 16)
         Me.dgvCompras.Name = "dgvCompras"
@@ -601,12 +602,16 @@ Partial Class frmCompras
         Me.colLinea.Name = "colLinea"
         Me.colLinea.ReadOnly = True
         '
+        'colKilate
+        '
+        Me.colKilate.HeaderText = "Kilate"
+        Me.colKilate.Name = "colKilate"
+        '
         'colDescripcion
         '
         Me.colDescripcion.FillWeight = 200.0!
         Me.colDescripcion.HeaderText = "Descripcion"
         Me.colDescripcion.Name = "colDescripcion"
-        Me.colDescripcion.ReadOnly = True
         '
         'colPeso
         '
@@ -803,7 +808,6 @@ Partial Class frmCompras
         Me.btnDolares.Size = New System.Drawing.Size(50, 36)
         Me.btnDolares.TabIndex = 15
         Me.ToolTip.SetToolTip(Me.btnDolares, "Convertir dolares a cordobas / cordobas a dolar")
-        Me.btnDolares.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]
         '
         'dgvFiltrarCliente
         '
@@ -1345,6 +1349,7 @@ Partial Class frmCompras
     Friend WithEvents Label13 As Label
     Friend WithEvents btnDolares As Infragistics.Win.Misc.UltraButton
     Friend WithEvents colLinea As DataGridViewTextBoxColumn
+    Friend WithEvents colKilate As DataGridViewTextBoxColumn
     Friend WithEvents colDescripcion As DataGridViewTextBoxColumn
     Friend WithEvents colPeso As DataGridViewTextBoxColumn
     Friend WithEvents colPrecio As DataGridViewTextBoxColumn

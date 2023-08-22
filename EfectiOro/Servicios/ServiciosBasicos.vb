@@ -598,18 +598,17 @@ Module ServiciosBasicos
 
 #Region "Log4net"
     Public Sub agregarAlLog(Optional frm As Form = Nothing, Optional metodo As String = "", Optional smsError As String = "")
-        'Try
-        '    logger = log4net.LogManager.GetLogger("log4net.assembly.xml")
-        '    logger.Info("Formulario: " & frm.Name)
-        '    logger.Debug("methodo: " & metodo)
-        '    logger.Error("error: " & smsError)
-        'Catch ex As Exception
-        '    Try
-        '        logger.Error(frm.Name & ", error: " & ex.Message)
-        '    Catch ex2 As Exception
-        '        MsgBox(ex.Message)
-        '    End Try
-        'End Try
+        Try
+            '    logger = log4net.LogManager.GetLogger("log4net.assembly.xml")
+            '    logger.Info("Formulario: " & frm.Name)
+            '    logger.Debug("methodo: " & metodo)
+            '    logger.Error("error: " & smsError)
+            My.Application.Log.WriteEntry("Formulario: " + frm.Name)
+            My.Application.Log.WriteEntry("Metodo: " + metodo)
+            My.Application.Log.WriteEntry("Error: " + smsError)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 #End Region
 

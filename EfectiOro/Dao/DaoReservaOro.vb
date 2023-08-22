@@ -151,6 +151,7 @@ Public Class DaoReservaOro
                 Return buscar
             Catch ex As Exception
                 _error = ex.Message
+                Return New DetaReserva
             End Try
         End Using
     End Function

@@ -45,13 +45,11 @@ Public Class DaoPreciosKilates
             End Try
         End Using
     End Function
-    Public Function actualizar(precios As System.Collections.Generic.List(Of Database.PrecioKilate)) As Boolean Implements IDaoPreciosKilates.actualizar
+    Public Function actualizar(precios As List(Of PrecioKilate)) As Boolean Implements IDaoPreciosKilates.actualizar
         Using ctx As New Contexto
             Try
                 ctx.ExecuteQuery(Of Integer)("delete from preciokilate")
-                For Each valor In precios
-                    ctx.PrecioKilate.InsertOnSubmit(valor)
-                Next
+                ctx.PrecioKilate.InsertAllOnSubmit(precios)
                 ctx.SubmitChanges()
                 Return True
             Catch ex As Exception

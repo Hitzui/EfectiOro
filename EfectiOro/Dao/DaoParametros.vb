@@ -20,9 +20,10 @@ Public Class DaoParametros
         End Using
     End Function
 
-    Public Function recuperarParametros() As Database.Ids Implements IDaoParametros.recuperarParametros
+    Public Function recuperarParametros() As Ids Implements IDaoParametros.recuperarParametros
         Using ctx As New Contexto
-            Return ctx.Ids.First()
+            Return (From p In ctx.Ids Select p).Single
+            'Return ctx.Ids.First()
         End Using
     End Function
     Public Function crearParametros(parametros As Ids) As Boolean Implements IDaoParametros.crearParametros

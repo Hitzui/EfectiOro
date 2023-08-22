@@ -517,7 +517,7 @@ Partial Class frmPrincipal
         Me.lblStatus.BackColor = System.Drawing.Color.Transparent
         Me.lblStatus.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(141, 19)
+        Me.lblStatus.Size = New System.Drawing.Size(140, 19)
         Me.lblStatus.Text = "ToolStripStatusLabel1"
         '
         'frmPrincipal
@@ -536,7 +536,7 @@ Partial Class frmPrincipal
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmPrincipal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = ".:. Joyeria Arce .:."
+        Me.Text = ".:.  Sistema SunMetals - Perú.:."
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()

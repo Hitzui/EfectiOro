@@ -92,7 +92,7 @@ Public Class frmAdelantos
         txtreferencia.Clear()
     End Sub
     Private Sub frmAdelantos_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        lblTitulo.Text = "Registrar Adelantos - EfectiOro"
+        lblTitulo.Text = "Registrar Adelantos - SunMetals"
         lblFecha.Text = Now.ToString("dd/mm/yyyy")
         Me.habilitar(True, False, False, False)
         ServiciosBasicos.colorearGrid(dgvCliente)

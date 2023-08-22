@@ -32,29 +32,22 @@ Partial Class frmLogin
         Me.btnSalir = New System.Windows.Forms.Button()
         Me.cmbSucursal = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.panelTitulo.SuspendLayout()
         CType(Me.erp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'panelTitulo
-        '
-        Me.panelTitulo.Margin = New System.Windows.Forms.Padding(4)
-        Me.panelTitulo.Size = New System.Drawing.Size(599, 29)
         '
         'btnClose
         '
         Me.btnClose.FlatAppearance.BorderSize = 0
         Me.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
         Me.btnClose.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnClose.Size = New System.Drawing.Size(25, 29)
         Me.btnClose.TabIndex = 20
         '
         'lblTitulo
         '
         Me.lblTitulo.BackColor = System.Drawing.Color.DimGray
         Me.lblTitulo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblTitulo.Size = New System.Drawing.Size(574, 29)
+        Me.lblTitulo.Size = New System.Drawing.Size(599, 25)
         Me.lblTitulo.TabIndex = 21
         '
         'Label1
@@ -188,14 +181,12 @@ Partial Class frmLogin
         Me.Controls.SetChildIndex(Me.txtUsuario, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.txtClave, 0)
-        Me.Controls.SetChildIndex(Me.panelTitulo, 0)
         Me.Controls.SetChildIndex(Me.PictureBox1, 0)
         Me.Controls.SetChildIndex(Me.lblRecuperarContraseña, 0)
         Me.Controls.SetChildIndex(Me.btnAceptar, 0)
         Me.Controls.SetChildIndex(Me.btnSalir, 0)
         Me.Controls.SetChildIndex(Me.cmbSucursal, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
-        Me.panelTitulo.ResumeLayout(False)
         CType(Me.erp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -204,9 +204,9 @@ Partial Class frmAplicarAdelantoEfectivo
         Appearance2.Image = Global.EfectiOro.My.Resources.Resources.aceptar
         Me.btnAplicarSaldo.Appearance = Appearance2
         Me.btnAplicarSaldo.ButtonStyle = Infragistics.Win.UIElementButtonStyle.ScenicRibbonButton
-        Me.btnAplicarSaldo.Location = New System.Drawing.Point(516, 138)
+        Me.btnAplicarSaldo.Location = New System.Drawing.Point(516, 149)
         Me.btnAplicarSaldo.Name = "btnAplicarSaldo"
-        Me.btnAplicarSaldo.Size = New System.Drawing.Size(75, 23)
+        Me.btnAplicarSaldo.Size = New System.Drawing.Size(173, 23)
         Me.btnAplicarSaldo.TabIndex = 16
         Me.btnAplicarSaldo.Text = "Aceptar"
         Me.btnAplicarSaldo.UseOsThemes = Infragistics.Win.DefaultableBoolean.[False]

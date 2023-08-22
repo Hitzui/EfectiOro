@@ -110,6 +110,15 @@
             _importe = value
         End Set
     End Property
+    Private _importeTipoCambio As Decimal
+    Public Property ImporteTipoCambio() As Decimal
+        Get
+            Return _importeTipoCambio
+        End Get
+        Set(ByVal value As Decimal)
+            _importeTipoCambio = value
+        End Set
+    End Property
     Private _kilate As String
     Public Property Kilate() As String
         Get

@@ -47,7 +47,7 @@ Public Class frmMaestroCaja
         lblEntrada.Text = xcaja.Entrada.ToString(Me.FORMATO_DECIMAL)
         lblSalida.Text = xcaja.Salida.ToString(Me.FORMATO_DECIMAL)
         Try
-            If dao.ErrorSms.Length > 0 Then
+            If String.IsNullOrEmpty(dao.ErrorSms) = False Then
                 MsgBox("Se produjo un error al intentar recuper el saldo de la caja. Revise la siguiente información: " &
                        vbCr & dao.ErrorSms, MsgBoxStyle.Critical, _titleError)
             End If
@@ -282,7 +282,7 @@ Public Class frmMaestroCaja
             dcaja.cheque = Decimal.Zero
             dcaja.efectivo = Decimal.Zero
         End If
-        dcaja.fecha = DateTime.Now
+        dcaja.fecha = Now
         dcaja.hora = lblHora.Text
         dcaja.idcaja = xcaja.Idcaja
         dcaja.codcaja = cajaActual

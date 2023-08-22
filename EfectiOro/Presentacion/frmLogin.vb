@@ -64,7 +64,7 @@ Public Class frmLogin
 
     Private Sub frmLogin_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.PanelBotones.BackColor = Color.DimGray
-        Me.lblTitulo.Text = "Ingresar al sistema - EfectiOro"
+        Me.lblTitulo.Text = "Ingresar al sistema - SunMetals Perú"
         Me.btnClose.Visible = False
         Dim ctx As New Contexto
         cargarSucursales()

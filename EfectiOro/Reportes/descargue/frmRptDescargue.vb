@@ -39,11 +39,11 @@ Public Class frmRptDescargue
                         MsgBox("No hay datos a mostrar en el rango de fechas indicado, intente nuevamente", MsgBoxStyle.Information, "Descargues")
                         Return
                     End If
-                    Dim report As New rptDescarguedet
-                    report.SetDataSource(desc)
-                    ServiciosBasicos.ParametrosCrystal(txtDesde.Value, txtHasta.Value)
-                    frmReportes.viewer.ReportSource = report
-                    frmReportes.Show()
+                    'Dim report As New rptDescarguedet
+                    'report.SetDataSource(desc)
+                    'ServiciosBasicos.ParametrosCrystal(txtDesde.Value, txtHasta.Value)
+                    'frmReportes.viewer.ReportSource = report
+                    'frmReportes.Show()
                 End If
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Information, "Error")

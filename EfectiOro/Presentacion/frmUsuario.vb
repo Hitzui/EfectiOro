@@ -2,6 +2,7 @@
 
 Public Class frmUsuario
 
+    Dim configuracion As New ConfiguracionGeneral()
     Private auxiliar As Integer
 
     Private Sub btnClose_Click(sender As System.Object, e As System.EventArgs) Handles btnClose.Click
@@ -59,7 +60,7 @@ Public Class frmUsuario
         Next
     End Sub
     Private Sub frmUsuario_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Me.lblTitulo.Text = "Crear Usuario - EfectiOro"
+        Me.lblTitulo.Text = "Administrar Usuarios"
         Me.habilitarTextBox(False)
         Me.cargarGrid()
         Me.cmbEstado.SelectedIndex = 0
@@ -280,6 +281,10 @@ Public Class frmUsuario
 
     Private Sub txtPregunta_KeyPress(sender As System.Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtPregunta.KeyPress
         ServiciosBasicos.keyCharEnter(txtRespuesta, e)
+    End Sub
+
+    Private Sub frmUsuario_Leave(sender As Object, e As EventArgs) Handles Me.Leave
+
     End Sub
 #End Region
 

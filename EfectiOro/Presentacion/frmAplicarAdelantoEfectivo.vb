@@ -129,7 +129,7 @@ Public Class frmAplicarAdelantoEfectivo
         Dim config As New ConfiguracionGeneral
         Dim caja As String = config.getCaja
         Dim cod_agencia = config.getAgencia
-        Dim daoCaja = DataContext.daoMcaja
+        Dim daoCaja = daoMcaja
         Try
             If daoCaja.validarCajaAbierta(caja) = False Then
                 MsgBox("La caja actual quedó abierta, cierre la caja y vuelva a abrirla para realizar la transacción.",
